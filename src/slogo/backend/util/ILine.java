@@ -1,4 +1,5 @@
-package slogo.backend;
+package slogo.backend.util;
+
 
 /**
  * A directed line that is either visible or invisible

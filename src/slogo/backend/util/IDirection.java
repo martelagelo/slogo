@@ -1,4 +1,4 @@
-package slogo.backend;
+package slogo.backend.util;
 
 /**
  * The direction an object faces, with up being 0 degrees

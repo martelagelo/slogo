@@ -1,4 +1,4 @@
-package slogo.backend;
+package slogo.backend.util;
 
 /**
  * The state of the pen; whether it is down, i.e. writing, or up, i.e. not writing

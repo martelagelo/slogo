@@ -1,4 +1,4 @@
-package slogo.backend;
+package slogo.backend.util;
 
 public interface IASTNode {
 

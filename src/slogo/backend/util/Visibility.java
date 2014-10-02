@@ -1,4 +1,4 @@
-package slogo.backend;
+package slogo.backend.util;
 
 /**
  * Whether something is invisible or not

@@ -1,7 +1,13 @@
-package slogo.backend;
+package slogo.backend.evaluation;
 
 import java.util.List;
 import java.util.Map;
+
+import slogo.backend.util.ICoordinates;
+import slogo.backend.util.IDirection;
+import slogo.backend.util.ILine;
+import slogo.backend.util.PenState;
+import slogo.backend.util.Visibility;
 
 /**
  * The read-only state of a Logo simulation at a particular time

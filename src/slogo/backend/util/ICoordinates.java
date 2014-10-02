@@ -1,4 +1,4 @@
-package slogo.backend;
+package slogo.backend.util;
 
 /**
  * A set of 2D coordinate points
