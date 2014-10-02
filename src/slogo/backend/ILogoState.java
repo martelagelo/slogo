@@ -37,7 +37,7 @@ public interface ILogoState {
 	 * 
 	 * @return the state of the turtle
 	 */
-	public TurtleState turtleState();
+	public Visibility turtleVisibility();
 	/**
 	 * Get the return value from the last-called Operation
 	 * 
