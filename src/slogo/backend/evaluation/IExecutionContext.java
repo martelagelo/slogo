@@ -22,20 +22,8 @@ public interface IExecutionContext {
 	 */
 	public Map<String, ITurtleStatus> turtles();
 	/**
-	 * Get the return value from the last-called Operation
-	 * 
-	 * @return a String representing the return value
-	 */
-	public String returnValueString();
-	/**
-	 * Get the return value from the last-called Operation
-	 * 
-	 * @return a Number representing the return value
-	 * @throws NumberFormatException if the return value does not have a numeric representation
-	 */
-	public Number returnValueNumber() throws NumberFormatException;
-	/**
-	 * A general place to put configuration variables, akin to a shell's environment
+	 * A general place to put configuration variables, akin to a shell's environment.
+	 * This can be used to store a return value, for example.
 	 * 
 	 * @return a key-value Map that represents the list of configuration variables
 	 */
