@@ -10,9 +10,8 @@ public interface IOperation {
 	/**
 	 * Perform the function on a state/context
 	 * 
-	 * @param previous the previous state in the execution
 	 * @param args any arguments needed for the operation
 	 * @return the new state of the execution
 	 */
-	public IExecutionContext execute(IExecutionContext previous, List<String> args);
+	public IExecutionContext execute(List<IExecutionContext> args);
 }
