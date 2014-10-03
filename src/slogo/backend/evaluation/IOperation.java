@@ -14,5 +14,5 @@ public interface IOperation {
 	 * @param args any arguments needed for the operation
 	 * @return the new state of the execution
 	 */
-	public ILogoState execute(ILogoState previous, List<String> args);
+	public IExecutionContext execute(IExecutionContext previous, List<String> args);
 }

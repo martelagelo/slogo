@@ -13,7 +13,7 @@ import slogo.backend.util.Visibility;
  * The read-only state of a Logo simulation at a particular time
  *
  */
-public interface ILogoState {
+public interface IExecutionContext {
 	/**
 	 * Get the sequence of lines that have been drawn so far
 	 * 
