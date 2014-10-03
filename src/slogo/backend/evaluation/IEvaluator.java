@@ -8,5 +8,5 @@ import slogo.backend.parsing.IASTNode;
  */
 public interface IEvaluator {
 
-	public void evaluate(IASTNode root);
+	public IExecutionContext evaluate(IASTNode root);
 }

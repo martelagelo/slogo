@@ -6,6 +6,7 @@ import java.util.Map;
 import slogo.backend.util.ICoordinates;
 import slogo.backend.util.IDirection;
 import slogo.backend.util.ILine;
+import slogo.backend.util.ITurtleStatus;
 import slogo.backend.util.PenState;
 import slogo.backend.util.Visibility;
 
@@ -15,35 +16,11 @@ import slogo.backend.util.Visibility;
  */
 public interface IExecutionContext {
 	/**
-	 * Get the sequence of lines that have been drawn so far
+	 * Get the turtles on the map
 	 * 
-	 * @return a list of lines, in order of drawing
+	 * @return a map of turtle names to turtle status
 	 */
-	public List<ILine> lineSequence();
-	/**
-	 * Get the position of the turtle
-	 * 
-	 * @return the coordinates representing the position of the turtle
-	 */
-	public ICoordinates turtlePosition();
-	/**
-	 * Get the direction of the turtle
-	 * 
-	 * @return the direction that the turtle is pointing
-	 */
-	public IDirection turtleDirection();
-	/**
-	 * Get the state of the Pen
-	 * 
-	 * @return the state of the Pen
-	 */
-	public PenState penState();
-	/**
-	 * Get the state of the Turtle
-	 * 
-	 * @return the state of the turtle
-	 */
-	public Visibility turtleVisibility();
+	public Map<String, ITurtleStatus> turtles();
 	/**
 	 * Get the return value from the last-called Operation
 	 * 
