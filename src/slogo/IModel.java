@@ -1,5 +1,9 @@
 package slogo;
 
+import java.util.Collection;
+import java.util.Map;
+
+import slogo.backend.evaluation.ElementUnsupportedException;
 import slogo.backend.evaluation.IExecutionContext;
 
 /**
@@ -8,10 +12,16 @@ import slogo.backend.evaluation.IExecutionContext;
  */
 public interface IModel {
 	/**
-	 * Get the status of the simulation after a command
+	 * Execute a command
 	 * 
 	 * @param string a string representing the command
-	 * @return the state of the environment after execution
 	 */
-	public IExecutionContext update(String string);
+	public void execute(String string);
+	/**
+	 * Get requested data from the backend
+	 * 
+	 * @param elements The elements requested
+	 * @return The data, mapping each element to the value associated with it
+	 */
+	public Map<String,String> getData(Collection<String> elements) throws ElementUnsupportedException;
 }
