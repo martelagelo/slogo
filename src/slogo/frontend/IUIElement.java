@@ -1,5 +1,8 @@
 package slogo.frontend;
 
+import java.util.Collection;
+import java.util.Map;
+
 import javafx.scene.Node;
 
 /**
@@ -18,5 +21,11 @@ public interface IUIElement {
 	 * 
 	 * @param string The changes to be made
 	 */
-	public void update(String string);
+	public void update(Map<String, String> data);
+	/**
+	 * Get the backend data dependencies for this element
+	 * 
+	 * @return the list of dependencies this element needs
+	 */
+	public Collection<String> dataDependencies();
 }
