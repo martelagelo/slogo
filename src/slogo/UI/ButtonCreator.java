@@ -4,28 +4,27 @@ import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 
 public class ButtonCreator {
 	
-	private Group root;
-	private Color backgroundColor;
-	private int xPos;
-	private int yPos;
-
-	public ButtonCreator(Group root, Color backgroundColor, int xPos, int yPos) {
-		this.root = root;
-		this.backgroundColor = backgroundColor;
-		this.xPos = xPos;
-		this.yPos = yPos;
+	private HBox hbox;
+	
+	public ButtonCreator(HBox hbox) {
+		this.hbox = hbox;
 	}
 	
-	private void createButton(Image image) {
+	public Button createButton(Image image) {
 		Button btn = new Button(null, new ImageView(image));
-		btn.setLayoutX(xPos);
-		btn.setLayoutY(yPos);
-		btn.setStyle("-fx-background-color: #CC9900;");
-		root.getChildren().add(btn);
+		hbox.getChildren().add(btn);
+		return btn;
+	}
+	
+	public Button createButton(String content) {
+		Button btn = new Button(content);
+		hbox.getChildren().add(btn);
+		return btn;
 	}
 }
