@@ -1,5 +1,10 @@
 package slogo.UI;
 
+/**
+ * 
+ * @author Michael
+ *
+ */
 public class AppConstants {
 
 	public static final Integer STAGE_WIDTH = 1200;

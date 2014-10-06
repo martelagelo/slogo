@@ -6,6 +6,11 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 
+/**
+ * 
+ * @author Michael
+ *
+ */
 public class ModuleCreationHelper {
 
 	private Group root;
@@ -16,6 +21,9 @@ public class ModuleCreationHelper {
 		this.root = root;
 	}
 	
+	/**
+	 * 
+	 */
 	public void createMainPageModules() {
 		createFirstButtonRow();
 		createTitle();
@@ -24,6 +32,9 @@ public class ModuleCreationHelper {
 		createStopButton();
 	}
 	
+	/**
+	 * 
+	 */
 	private void createFirstButtonRow() {
 		firstButtonRow = new HBox(3);
 		firstButtonRow.setLayoutX(AppConstants.FIRST_ROW_BUTTON_HBOX_X_POS);
@@ -31,6 +42,9 @@ public class ModuleCreationHelper {
 		root.getChildren().add(firstButtonRow);
 	}
 	
+	/**
+	 * 
+	 */
 	private void createTitle() {
 		LabelCreator LC = new LabelCreator(root, AppConstants.TITLE_LABEL_FONT_SIZE, AppConstants.TITLE_X_POS, AppConstants.TITLE_Y_POS, Color.BLACK);
 		LC.createLabel("SLOGO!!!!!");

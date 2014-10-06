@@ -8,6 +8,11 @@ import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 
+/**
+ * 
+ * @author Michael
+ *
+ */
 public class ButtonCreator {
 	
 	private HBox hbox;
