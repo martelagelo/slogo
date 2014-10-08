@@ -17,6 +17,11 @@ public class AppConstants {
 	
 	public static final Integer FIRST_ROW_BUTTON_HBOX_X_POS = STAGE_WIDTH - 2*STAGE_WIDTH/10;
 	public static final Integer FIRST_ROW_BUTTON_HBOX_Y_POS = STAGE_PADDING;
+	
+	public static final Integer TEXT_BOX_ROW_X_POS = STAGE_PADDING;
+	public static final Integer TEXT_BOX_ROW_Y_POS = STAGE_HEIGHT - 50;
+	
+	public static final Integer HBOX_SPACING = STAGE_PADDING;
 }
 
 
