@@ -2,6 +2,7 @@ package slogo.UI;
 
 import javafx.scene.Group;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 import javafx.scene.layout.HBox;
 
 public class TextFieldCreator {
@@ -20,6 +21,7 @@ public class TextFieldCreator {
 	public TextField createTextField() {
 		TextField TF = new TextField();
 		TF.setMinWidth(500);
+		TF.setPromptText("Enter code here");
 		if (root != null) {
 			root.getChildren().add(TF);
 		} else {
