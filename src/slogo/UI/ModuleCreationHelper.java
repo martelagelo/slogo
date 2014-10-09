@@ -4,11 +4,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
+import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
@@ -21,6 +25,9 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
+import javafx.stage.Stage;
 
 /**
  * 
@@ -69,6 +76,7 @@ public class ModuleCreationHelper {
 		createTurtleCanvas();
 		createPlayButton();
 		createStopButton();
+		createHelpButton();
 		createTurtle();
 		createTextField();
 		createEnteredCommandsList();
@@ -120,6 +128,18 @@ public class ModuleCreationHelper {
 	private void createStopButton() {
 		ButtonCreator BC = new ButtonCreator(firstButtonRow);
 		Button btn = BC.createButton(new Image(getClass().getResourceAsStream("red-stop-button-plain-icon-th.png")));
+	}
+	
+	private void createHelpButton(){
+	    ButtonCreator BC = new ButtonCreator(firstButtonRow);
+	    Button btn = BC.createButton("Help");
+	    btn.setPrefSize(50, 50);
+            btn.setOnAction(new EventHandler<ActionEvent>(){
+                @Override
+                public void handle(ActionEvent event){
+                    createHTMLHelpPage();
+                }
+            });	    
 	}
 	
 	private void createTextField(){
@@ -258,6 +278,34 @@ public class ModuleCreationHelper {
 	    mySelectorsVBox.setLayoutY(AppConstants.BACKGROUND_COLOR_YPOS);
 	    root.getChildren().addAll(mySelectorsVBox);
 	    
+	}
+	
+	private void createHTMLHelpPage(){
+	    WebView w = new WebView();
+	    WebEngine engine = w.getEngine();
+	    String helpPageSite = "http://www.cs.duke.edu/courses/compsci308/current/assign/03_slogo/commands.php";
+	    engine.load(helpPageSite);
+	    engine.locationProperty().addListener(new ChangeListener<String>() {
+	        @Override 
+	        public void changed(ObservableValue<? extends String> ov, final String oldLoc, final String loc) {
+	          if (!loc.contains(helpPageSite)) {
+	            Platform.runLater(new Runnable() {
+	              @Override public void run() {
+	                engine.load(oldLoc);
+	              }
+	            });
+	          }
+	        }
+	      });
+	    Group newRoot = new Group();
+	    newRoot.getChildren().addAll(w);
+	    Scene newScene = new Scene(newRoot, 800, 500);
+	    Stage newStage = new Stage();
+	    newStage.setTitle("Help Page");
+            newStage.setScene(newScene);
+            newStage.setX(50);
+            newStage.setY(50);
+            newStage.show();
 	}
 	
 }
