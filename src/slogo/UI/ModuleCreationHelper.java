@@ -9,7 +9,6 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
-import javafx.scene.Node;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
@@ -37,26 +36,20 @@ public class ModuleCreationHelper {
     private GraphicsContext myGraphicsContext;
     private TextField myTextField;
     private Turtle myTurtle;
-    private Node myTurtleImage;
-    private List<String> myImagesList;
-    private Map<String, Object> myVariablesMap = new HashMap<String,Object>();
-    private VBox myCanvasVBox;
+    private Map<String, Object> myVariablesMap;
     private VBox myCommandInputVBox;
-    private VBox myBackgroundVBox;
-    private VBox myPathVBox;
-    private VBox myTurtleVBox;
+    private VBox myBackgroundSelectorVBox;
+    private VBox myPathSelectorVBox;
+    private VBox myTurtleSelectorVBox;
     private VBox mySelectorsVBox;
     private VBox myCommandsVBox;
     private VBox myVariablesVBox;
     private VBox myUserCommandsVBox;
     private VBox myUserVariablesVBox;
-    private ColorPicker myBackGroundColorSelector;
-    private ColorPicker myPathColorSelector;
-    private ComboBox<String> myTurtleImageSelector;
+    private ListView<String> myCommandsList;
+    private ListView<String> myVariablesList;
     private ListView<String> myUserVariablesList;
     private ListView<String> myUserCommandsList;
-    private ListView<String> myVariablesList;
-    private ListView<String> myCommandsList;
     private ObservableList<String> myCommands = FXCollections.observableArrayList();
     private ObservableList<String> myVariables = FXCollections.observableArrayList();
     private ObservableList<String> myUserVariables = FXCollections.observableArrayList();
@@ -102,25 +95,21 @@ public class ModuleCreationHelper {
 	}
 	
 	private void createTurtleCanvas() {
-	    myCanvasVBox = new VBox();
 	    myCanvas = new Canvas(400,400);
+	    myCanvas.setLayoutX(75);
+	    myCanvas.setLayoutY(75);
 	    myGraphicsContext = myCanvas.getGraphicsContext2D();
 	    myGraphicsContext.setFill(Color.WHITE);
 	    myGraphicsContext.setStroke(Color.BLACK);
 	    myGraphicsContext.setLineWidth(1);
 	    myGraphicsContext.fillRect(1, 1, myCanvas.getWidth()-2, myCanvas.getHeight()-2);
 	    myGraphicsContext.strokeRect(0, 0, myCanvas.getWidth(), myCanvas.getHeight());
-	    myCanvasVBox.getChildren().add(myCanvas);
-	    myCanvasVBox.setLayoutX(75);
-	    myCanvasVBox.setLayoutY(75);
-	    root.getChildren().add(myCanvasVBox);
+	    root.getChildren().add(myCanvas);
 	}
 	
 	private void createTurtle(){
-	    myTurtle = new Turtle("Circle");
-	    myTurtleImage = myTurtle.getImage();
-	    myTurtleImage.relocate(myCanvas.getWidth()/2+75, myCanvas.getHeight()/2+75);
-	    root.getChildren().add(myTurtleImage);
+	    myTurtle = new Turtle("Circle", (int) (myCanvas.getLayoutX()+myCanvas.getWidth()/2), (int) (myCanvas.getLayoutY()+myCanvas.getHeight()/2));
+	    root.getChildren().add(myTurtle.getImage());
 	}
 	
 	private void createPlayButton() {
@@ -204,6 +193,7 @@ public class ModuleCreationHelper {
 	}
 	
 	private void initializeVariablesMap(){
+	    myVariablesMap = new HashMap<String, Object>();
 	    myVariablesMap.put("Turtle X Position:     ", myTurtle.getXPos());
 	    myVariablesMap.put("Turtle Y Position:     ", myTurtle.getYPos());
 	    myVariablesMap.put("Turtle Heading:        ", myTurtle.getOrientation());
@@ -212,63 +202,60 @@ public class ModuleCreationHelper {
 	
         private void createBackgroundColorSelector(){
             ColorSelectorCreator sc = new ColorSelectorCreator(root, "Background Color", (Color) myGraphicsContext.getFill());
-            myBackGroundColorSelector = sc.getSelector();
-            myBackGroundColorSelector.setOnAction(new EventHandler<ActionEvent>() {
+            ColorPicker bgColor = sc.getSelector();
+            bgColor.setOnAction(new EventHandler<ActionEvent>() {
             @Override
                 public void handle (ActionEvent event){
-                    if(myBackGroundColorSelector.getValue() != null){
-                        Color c = myBackGroundColorSelector.getValue();
+                    if(bgColor.getValue() != null){
+                        Color c = bgColor.getValue();
                         myGraphicsContext.setFill(c);
                         myGraphicsContext.fillRect(1, 1, myCanvas.getWidth()-2, myCanvas.getHeight()-2);
                     }
                 }
             });
-            myBackgroundVBox = sc.createSelectorWithLabel("Select a Background Color", AppConstants.TITLE_LABEL_FONT_SIZE/3, Color.BLACK);
+            myBackgroundSelectorVBox = sc.createSelectorWithLabel("Select a Background Color", AppConstants.TITLE_LABEL_FONT_SIZE/3, Color.BLACK);
         }
         
         private void createPathColorSelector(){
             ColorSelectorCreator sc = new ColorSelectorCreator(root, "Path Color", (Color) myGraphicsContext.getStroke());
-            myPathColorSelector = sc.getSelector();
-            myPathColorSelector.setOnAction(new EventHandler<ActionEvent>() {
+            ColorPicker pathColor = sc.getSelector();
+            pathColor.setOnAction(new EventHandler<ActionEvent>() {
             @Override
                 public void handle (ActionEvent event){
-                    if(myPathColorSelector.getValue() != null){
-                        myGraphicsContext.setStroke(myPathColorSelector.getValue());
+                    if(pathColor.getValue() != null){
+                        myGraphicsContext.setStroke(pathColor.getValue());
                     }
                 }
             });
-            myPathVBox = sc.createSelectorWithLabel("Select a Path Color", AppConstants.TITLE_LABEL_FONT_SIZE/3, Color.BLACK);
+            myPathSelectorVBox = sc.createSelectorWithLabel("Select a Path Color", AppConstants.TITLE_LABEL_FONT_SIZE/3, Color.BLACK);
         }
         
         private void createTurtleImageSelector(){
-            myImagesList = new ArrayList<String>();
-            myImagesList.addAll(myTurtle.getShapesMap().keySet());
-            SelectorCreator sc = new SelectorCreator(root, "Turtle Image", myImagesList);
-            myTurtleImageSelector = sc.getSelector();
-            myTurtleImageSelector.setOnAction(new EventHandler<ActionEvent>() {
+            List<String> images = new ArrayList<String>();
+            images.addAll(myTurtle.getShapesMap().keySet());
+            SelectorCreator sc = new SelectorCreator(root, "Turtle Image", images);
+            ComboBox<String> turtleSelector = sc.getSelector();
+            turtleSelector.setOnAction(new EventHandler<ActionEvent>() {
             @Override
                 public void handle (ActionEvent event){
-                    if(myTurtleImageSelector.getValue() != null){
-                        root.getChildren().remove(myTurtleImage);
-                        myTurtle.setImage(myTurtleImageSelector.getValue());
-                        myTurtleImage = myTurtle.getImage();
-                        myTurtleImage.relocate(myCanvas.getWidth()/2, myCanvas.getHeight()/2);
-                        root.getChildren().add(myTurtleImage);
+                    if(turtleSelector.getValue() != null){
+                        root.getChildren().remove(myTurtle.getImage());
+                        myTurtle.setImage(turtleSelector.getValue());
+                        root.getChildren().add(myTurtle.getImage());
                     }
                 }
             });
-            myTurtleVBox = sc.createSelectorWithLabel("Select a Turtle Image", AppConstants.TITLE_LABEL_FONT_SIZE/3, Color.BLACK);
+            myTurtleSelectorVBox = sc.createSelectorWithLabel("Select a Turtle Image", AppConstants.TITLE_LABEL_FONT_SIZE/3, Color.BLACK);
         }	
 	
 	private void createSelectors(){
 	    createBackgroundColorSelector();
 	    createPathColorSelector();
 	    createTurtleImageSelector();
-	    mySelectorsVBox = new VBox();
-	    mySelectorsVBox.getChildren().addAll(myBackgroundVBox, myPathVBox, myTurtleVBox);
+	    mySelectorsVBox = new VBox(15);
+	    mySelectorsVBox.getChildren().addAll(myBackgroundSelectorVBox, myPathSelectorVBox, myTurtleSelectorVBox);
 	    mySelectorsVBox.setLayoutX(AppConstants.ALL_SELECTORS_XPOS);
 	    mySelectorsVBox.setLayoutY(AppConstants.BACKGROUND_COLOR_YPOS);
-	    mySelectorsVBox.setSpacing(15);
 	    root.getChildren().addAll(mySelectorsVBox);
 	    
 	}

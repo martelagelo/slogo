@@ -17,9 +17,9 @@ public class Turtle {
     private int orientation;
     private Map<String, Node> imagesMap;
     
-    public Turtle(String s){
-        xpos = 250;
-        ypos = 250;
+    public Turtle(String s, int x, int y){
+        xpos = x;
+        ypos = y;
         imagesMap = new HashMap<String, Node>();
         fillUpMap();
         turtleImage = imagesMap.get(s);
