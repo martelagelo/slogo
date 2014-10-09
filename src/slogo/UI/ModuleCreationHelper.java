@@ -137,7 +137,8 @@ public class ModuleCreationHelper {
             btn.setOnAction(new EventHandler<ActionEvent>(){
                 @Override
                 public void handle(ActionEvent event){
-                    createHTMLHelpPage();
+                    HTMLHelpPage help = new HTMLHelpPage("http://www.cs.duke.edu/courses/compsci308/current/assign/03_slogo/commands.php");
+                    help.displayPage();
                 }
             });	    
 	}
@@ -278,35 +279,6 @@ public class ModuleCreationHelper {
 	    mySelectorsVBox.setLayoutY(AppConstants.BACKGROUND_COLOR_YPOS);
 	    root.getChildren().addAll(mySelectorsVBox);
 	    
-	}
-	
-	private void createHTMLHelpPage(){
-	    WebView w = new WebView();
-	    WebEngine engine = w.getEngine();
-	    String helpPageSite = "http://www.cs.duke.edu/courses/compsci308/current/assign/03_slogo/commands.php";
-	    engine.load(helpPageSite);
-	    engine.locationProperty().addListener(new ChangeListener<String>() {
-	        @Override 
-	        public void changed(ObservableValue<? extends String> ov, final String oldLoc, final String loc) {
-	          if (!loc.contains(helpPageSite)) {
-	            Platform.runLater(new Runnable() {
-	              @Override public void run() {
-	                engine.load(oldLoc);
-	              }
-	            });
-	          }
-	        }
-	      });
-	    Group newRoot = new Group();
-	    newRoot.getChildren().addAll(w);
-	    Scene newScene = new Scene(newRoot, 800, 500);
-	    Stage newStage = new Stage();
-	    newStage.setTitle("Help Page");
-            newStage.setScene(newScene);
-            newStage.setX(50);
-            newStage.setY(50);
-            newStage.show();
-	}
-	
+	}	
 }
 
