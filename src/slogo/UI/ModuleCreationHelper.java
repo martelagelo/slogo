@@ -20,6 +20,9 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
 /**
+ * October 8th, 2014
+ * 
+ * Version 1
  * 
  * @author Nick Widmaier
  * @author Michael Deng 
@@ -27,6 +30,7 @@ import javafx.scene.paint.Color;
  */
 public class ModuleCreationHelper {
 
+	private View myView;
 	private Group root;
 	private HBox firstButtonRow;
 	private TurtleCanvas myCanvas;
@@ -45,6 +49,10 @@ public class ModuleCreationHelper {
     private GraphicsContext myGraphicsContext;
 
 
+	/**
+	 * The constructor
+	 * @param root The group all the modules are placed in
+	 */
 	public ModuleCreationHelper(Group root) {
 		this.root = root;
 	}
@@ -71,12 +79,18 @@ public class ModuleCreationHelper {
 		firstButtonRow.setLayoutY(AppConstants.FIRST_ROW_BUTTON_HBOX_Y_POS);
 		root.getChildren().add(firstButtonRow);
 	}
-	
+
+	/**
+	 * Creates the title for our application
+	 */
 	private void createTitle(){
 		LabelCreator LC = new LabelCreator(root);
 		Label label = LC.createLabel("SLOGO!!!", 75, 0, AppConstants.TITLE_LABEL_FONT_SIZE, Color.BLACK);
 	}
 
+	/**
+	 * Creates the canvas on which the turtle runs
+	 */
 	private void createTurtleCanvas() {
 		myCanvas = new TurtleCanvas(root);
 		myGraphicsContext = myCanvas.getGraphicsContext();
@@ -134,7 +148,6 @@ public class ModuleCreationHelper {
             mySelectorsVBox.setLayoutY(AppConstants.BACKGROUND_COLOR_YPOS);
             root.getChildren().addAll(mySelectorsVBox);
     }
-	
 	/**
 	 * Creates an event handler than exits the application on button click.
 	 * 
@@ -149,7 +162,7 @@ public class ModuleCreationHelper {
 			}
 		});
 	}
-	
+
 	public void activatPlayAppButton(Button btn) {
 		btn.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
@@ -158,11 +171,11 @@ public class ModuleCreationHelper {
 				v.init(root, myCanvas.getCanvas(), myTurtle);
 				try {
 					v.executeCommand("f");
-				} catch (IllegalAccessException | IllegalArgumentException
-						| InvocationTargetException e) {
+				} catch (IllegalArgumentException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				v.executeCommand("fd");
 			}
 		});
 	}
@@ -196,9 +209,13 @@ public class ModuleCreationHelper {
 	public Turtle getTurtle() {
 		return myTurtle;
 	}
-	
+
 	public Canvas getCanvas() {
 		return myCanvas.getCanvas();
+	}
+	
+	public void getView(View view) {
+		this.myView = view;
 	}
 }
 

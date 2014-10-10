@@ -8,8 +8,14 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 /**
+ * October 7th, 2014
  * 
- * @author Michael
+ * Version 1
+ * 
+ * @author Michael Deng
+ * @author Nick Widmaier
+ * @author Michael Ren
+ * @author Eric Chen
  *
  */
 public class Main extends Application {
@@ -17,6 +23,9 @@ public class Main extends Application {
 	private ModuleCreationHelper ModulePopulator; 
 	private View view;
 
+	/**
+	 * Starts up the application
+	 */
 	public void start(Stage primaryStage) {
 		Group root = new Group();
 		ModulePopulator = new ModuleCreationHelper(root);
@@ -26,14 +35,18 @@ public class Main extends Application {
 		//scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 
 		ModulePopulator.createMainPageModules();
-
 		view.init(root, ModulePopulator.getCanvas(), ModulePopulator.getTurtle());
-
+		ModulePopulator.getView(view);
+		
 		primaryStage.setTitle("SLogo!");
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}
 
+	/**
+	 * Launches the application
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		launch(args);
 	}
