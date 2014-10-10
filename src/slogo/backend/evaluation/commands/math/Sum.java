@@ -10,11 +10,14 @@ public class Sum implements IOperation {
     @Override
     public IExecutionContext execute (List<IExecutionContext> args) {
         // TODO Auto-generated method stub
+        double sum = 0;
         for (IExecutionContext context: args){
             String argument = context.environment().get("returnValue");
-            
+            double doubleArgument = Double.parseDouble(argument);
+            sum+=doubleArgument;
         }
-        return null;
+        String returnArgument = String.valueOf(sum);
+        //update or create a new ExecutionContext and return it
     }
 
 }
