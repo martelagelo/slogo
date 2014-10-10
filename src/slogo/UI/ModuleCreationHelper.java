@@ -1,14 +1,6 @@
 package slogo.UI;
 
-<<<<<<< HEAD
-=======
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
->>>>>>> 70e6acb95078dd9964d5e17964bf0c0d0755e97b
-import java.util.Map;
-
 import slogo.View;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -24,7 +16,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
@@ -87,20 +78,13 @@ public class ModuleCreationHelper {
 	}
 
 	private void createTurtleCanvas() {
-		myCanvas = new Canvas(400,400);
-		myCanvas.setLayoutX(75);
-		myCanvas.setLayoutY(75);
-		myGraphicsContext = myCanvas.getGraphicsContext2D();
-		myGraphicsContext.setFill(Color.WHITE);
-		myGraphicsContext.setStroke(Color.BLACK);
-		myGraphicsContext.setLineWidth(1);
-		myGraphicsContext.fillRect(1, 1, myCanvas.getWidth()-2, myCanvas.getHeight()-2);
-		myGraphicsContext.strokeRect(0, 0, myCanvas.getWidth(), myCanvas.getHeight());
-		root.getChildren().add(myCanvas);
+		TurtleCanvas TC = new TurtleCanvas(root);
+		myGraphicsContext = TC.getGraphicsContext();
+		myCanvas = TC.getCanvas();
 	}
 
 	private void createTurtle(){
-		myTurtle = new Turtle("Circle", (int) (myCanvas.getLayoutX()+myCanvas.getWidth()/2), (int) (myCanvas.getLayoutY()+myCanvas.getHeight()/2));
+		myTurtle = new Turtle("Circle", 275, 275);
 		root.getChildren().add(myTurtle.getImage());
 	}
 
@@ -136,7 +120,7 @@ public class ModuleCreationHelper {
 		myTextField = new TextField();
 		myTextField.setPromptText("Enter Command");
 		myTextField.setPrefHeight(20);
-		myTextField.setPrefWidth(myCanvas.getWidth() - 75);
+		myTextField.setPrefWidth(400);
 		myTextField.setOnAction(new EventHandler<ActionEvent>(){
 			@Override
 			public void handle (ActionEvent event){
@@ -168,7 +152,7 @@ public class ModuleCreationHelper {
             TurtleImageSelector turtleSelect = new TurtleImageSelector(mySelectorsVBox);
             turtleSelect.create(myTurtle, root);
             BackgroundColorSelector backgroundSelect = new BackgroundColorSelector(mySelectorsVBox);
-            backgroundSelect.create(root, myCanvas, myGraphicsContext);
+            backgroundSelect.create(root, myGraphicsContext);
             PathColorSelector pathSelect = new PathColorSelector(mySelectorsVBox);
             pathSelect.create(root, myGraphicsContext);
             mySelectorsVBox.setLayoutX(AppConstants.ALL_SELECTORS_XPOS);
