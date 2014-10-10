@@ -13,10 +13,10 @@ import javafx.stage.Stage;
  *
  */
 public class Main extends Application {
-	
+
 	private ModuleCreationHelper ModulePopulator; 
 	private View view;
-	
+
 	public void start(Stage primaryStage) {
 		Group root = new Group();
 		ModulePopulator = new ModuleCreationHelper(root);
@@ -24,16 +24,16 @@ public class Main extends Application {
 		Scene scene = new Scene(root, AppConstants.STAGE_WIDTH, AppConstants.STAGE_HEIGHT);
 		scene.setFill(Color.BISQUE);
 		//scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-		
+
 		ModulePopulator.createMainPageModules();
-		
+
 		view.init(root, ModulePopulator.getCanvas(), ModulePopulator.getTurtle());
-		
+
 		primaryStage.setTitle("SLogo!");
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}
-	
+
 	public static void main(String[] args) {
 		launch(args);
 	}

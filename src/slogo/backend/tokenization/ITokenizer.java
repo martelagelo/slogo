@@ -1,5 +1,6 @@
 package slogo.backend.tokenization;
 
+import java.io.IOException;
 import java.io.Reader;
 import java.util.List;
 
@@ -13,12 +14,14 @@ public interface ITokenizer {
 	 * 
 	 * @param input an input stream of characters
 	 * @return a list of tokens, in order
+	 * @throws IOException 
 	 */
-	public List<IToken> tokenize(Reader input);
+	public List<IToken> tokenize(Reader input) throws IOException;
 	/**
 	 * Load rules for recognizing tokens
 	 * 
 	 * @param rules a list of rules
+	 * @throws InvalidTokenRulesException 
 	 */
-	public void loadTokenRules(List<ITokenRule> rules);
+	public void loadTokenRules(List<ITokenRule> rules) throws InvalidTokenRulesException;
 }
