@@ -20,6 +20,9 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
 /**
+ * October 8th, 2014
+ * 
+ * Version 1
  * 
  * @author Nick Widmaier
  * @author Michael Deng 
@@ -27,6 +30,7 @@ import javafx.scene.paint.Color;
  */
 public class ModuleCreationHelper {
 
+	private View myView;
 	private Group root;
 	private HBox firstButtonRow;
 	private Canvas myCanvas;
@@ -45,6 +49,10 @@ public class ModuleCreationHelper {
 	private ObservableList<String> myUserCommands = FXCollections.observableArrayList();
 
 
+	/**
+	 * The constructor
+	 * @param root The group all the modules are placed in
+	 */
 	public ModuleCreationHelper(Group root) {
 		this.root = root;
 	}
@@ -71,12 +79,18 @@ public class ModuleCreationHelper {
 		firstButtonRow.setLayoutY(AppConstants.FIRST_ROW_BUTTON_HBOX_Y_POS);
 		root.getChildren().add(firstButtonRow);
 	}
-	
+
+	/**
+	 * Creates the title for our application
+	 */
 	private void createTitle(){
 		LabelCreator LC = new LabelCreator(root);
 		Label label = LC.createLabel("SLOGO!!!", 75, 0, AppConstants.TITLE_LABEL_FONT_SIZE, Color.BLACK);
 	}
 
+	/**
+	 * Creates the canvas on which the turtle runs
+	 */
 	private void createTurtleCanvas() {
 		TurtleCanvas TC = new TurtleCanvas(root);
 		myGraphicsContext = TC.getGraphicsContext();
@@ -124,6 +138,7 @@ public class ModuleCreationHelper {
 		myTextField.setOnAction(new EventHandler<ActionEvent>(){
 			@Override
 			public void handle (ActionEvent event){
+				myView.sendCommandToBackend(myTextField.getText());
 				myCommands.add(myTextField.getText());
 				myCommandsList.setItems(myCommands);
 				//for fun with testing all the listviews
@@ -141,25 +156,25 @@ public class ModuleCreationHelper {
 	}
 
 	private void createListViews(){
-	       myCommandsList = new ListViewPreviousCommands(root).createAndGetListView();
-	       myVariablesList = new ListViewSLOGOVariables(root).createAndGetListView();
-	       myUserVariablesList = new ListViewUserVariables(root).createAndGetListView();
-	       myUserCommandsList = new ListViewUserCommands(root).createAndGetListView();
+		myCommandsList = new ListViewPreviousCommands(root).createAndGetListView();
+		myVariablesList = new ListViewSLOGOVariables(root).createAndGetListView();
+		myUserVariablesList = new ListViewUserVariables(root).createAndGetListView();
+		myUserCommandsList = new ListViewUserCommands(root).createAndGetListView();
 	}
-        
-        private void createSelectors(){
-            mySelectorsVBox = new VBox(5);
-            TurtleImageSelector turtleSelect = new TurtleImageSelector(mySelectorsVBox);
-            turtleSelect.create(myTurtle, root);
-            BackgroundColorSelector backgroundSelect = new BackgroundColorSelector(mySelectorsVBox);
-            backgroundSelect.create(root, myGraphicsContext);
-            PathColorSelector pathSelect = new PathColorSelector(mySelectorsVBox);
-            pathSelect.create(root, myGraphicsContext);
-            mySelectorsVBox.setLayoutX(AppConstants.ALL_SELECTORS_XPOS);
-            mySelectorsVBox.setLayoutY(AppConstants.BACKGROUND_COLOR_YPOS);
-            root.getChildren().addAll(mySelectorsVBox);
-    }
-	
+
+	private void createSelectors(){
+		mySelectorsVBox = new VBox(5);
+		TurtleImageSelector turtleSelect = new TurtleImageSelector(mySelectorsVBox);
+		turtleSelect.create(myTurtle, root);
+		BackgroundColorSelector backgroundSelect = new BackgroundColorSelector(mySelectorsVBox);
+		backgroundSelect.create(root, myGraphicsContext);
+		PathColorSelector pathSelect = new PathColorSelector(mySelectorsVBox);
+		pathSelect.create(root, myGraphicsContext);
+		mySelectorsVBox.setLayoutX(AppConstants.ALL_SELECTORS_XPOS);
+		mySelectorsVBox.setLayoutY(AppConstants.BACKGROUND_COLOR_YPOS);
+		root.getChildren().addAll(mySelectorsVBox);
+	}
+
 	/**
 	 * Creates an event handler than exits the application on button click.
 	 * 
@@ -174,30 +189,29 @@ public class ModuleCreationHelper {
 			}
 		});
 	}
-	
+
 	public void activatPlayAppButton(Button btn) {
 		btn.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
 				View v = new View();
 				v.init(root, myCanvas, myTurtle);
-				try {
-					v.executeCommand("f");
-				} catch (IllegalAccessException | IllegalArgumentException
-						| InvocationTargetException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				v.executeCommand("fd");
+
 			}
 		});
 	}
-	
+
 	public Turtle getTurtle() {
 		return myTurtle;
 	}
-	
+
 	public Canvas getCanvas() {
 		return myCanvas;
+	}
+	
+	public void getView(View view) {
+		this.myView = view;
 	}
 }
 

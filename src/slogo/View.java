@@ -18,6 +18,17 @@ import javafx.stage.Stage;
 import slogo.UI.MethodRunner;
 import slogo.UI.Turtle;
 
+/**
+ * October 5th, 2014
+ * 
+ * Version 1
+ * 
+ * @author Michael Deng
+ * @author Nick Widmaier
+ * @author Michael Ren
+ * @author Eric Chen
+ *
+ */
 public class View implements IView{
 
 	private Map<String, Runnable> commandMap = new HashMap<String, Runnable>();
@@ -26,17 +37,32 @@ public class View implements IView{
 	
 	private Stack<Line> pathStack;
 	
+	/**
+	 * Initializes the View 
+	 * 
+	 * @param root The Group all the modules are placed on
+	 * @param canvas The canvas on which the turtle is drawn
+	 * @param turtle The moving object on the canvas
+	 */
 	public void init(Group root, Canvas canvas, Turtle turtle) {
 		pathStack = new Stack<Line>();
 		runner = new MethodRunner(root, canvas, turtle, commandMap, pathStack);
 		runner.init();
 	}
 	
+	/**
+	 * Sends a command to the back-end
+	 * @param command The code written by the user to be computed
+	 */
 	public void sendCommandToBackend(String command) {
-		
+		System.out.println(command);
 	}
 	
-	public void executeCommand(String str) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+	/**
+	 * Executes the command returned from the back-end
+	 * @param str 
+	 */
+	public void executeCommand(String str){
 		existingFunction = false;
 		runner.setInput(400, 500);
 		for(String k: commandMap.keySet()) {
@@ -50,6 +76,9 @@ public class View implements IView{
 		}
 	}
 
+	/**
+	 * Creates and displays an error pop-up
+	 */
 	@Override
 	public void error(String message) {
 		 final Stage dialog = new Stage();
