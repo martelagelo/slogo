@@ -182,7 +182,7 @@ public class ModuleCreationHelper {
 				View v = new View();
 				v.init(root, myCanvas, myTurtle);
 				try {
-					v.executeCommand("fd");
+					v.executeCommand("f");
 				} catch (IllegalAccessException | IllegalArgumentException
 						| InvocationTargetException e) {
 					// TODO Auto-generated catch block
