@@ -16,17 +16,5 @@ public interface IToken {
 	 * 
 	 * @return the type
 	 */
-	public String tokenType();
-	/**
-	 * Get the line number of the token
-	 * 
-	 * @return the line number
-	 */
-	public Number lineNumber();
-	/**
-	 * Get the starting column of the token
-	 * 
-	 * @return the column number
-	 */
-	public Number columnNumber();
+	public String type();
 }
