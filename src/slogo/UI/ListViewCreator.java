@@ -21,9 +21,9 @@ public class ListViewCreator {
     
     protected VBox createListViewWithLabel(String s, int fontsize, Color color){
         VBox listViewWithLabel = new VBox();
-        LabelCreator lc = new LabelCreator(fontsize, color);
-        Label l = lc.createLabel(s);
-        listViewWithLabel.getChildren().addAll(l, myListView);
+        LabelCreator lc = new LabelCreator(listViewWithLabel);
+        Label l = lc.createLabel(s, fontsize, color);
+        listViewWithLabel.getChildren().addAll(myListView);
         return listViewWithLabel;
     }
 
