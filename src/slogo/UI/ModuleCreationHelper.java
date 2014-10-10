@@ -1,14 +1,10 @@
 package slogo.UI;
 
-<<<<<<< HEAD
-=======
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
->>>>>>> 70e6acb95078dd9964d5e17964bf0c0d0755e97b
 import java.util.Map;
-
 import slogo.View;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -198,7 +194,7 @@ public class ModuleCreationHelper {
 				View v = new View();
 				v.init(root, myCanvas, myTurtle);
 				try {
-					v.executeCommand("fd");
+					v.executeCommand("f");
 				} catch (IllegalAccessException | IllegalArgumentException
 						| InvocationTargetException e) {
 					// TODO Auto-generated catch block
