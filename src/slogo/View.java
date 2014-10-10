@@ -2,7 +2,9 @@ package slogo;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Stack;
 
@@ -48,6 +50,18 @@ public class View implements IView{
 		pathStack = new Stack<Line>();
 		runner = new MethodRunner(root, canvas, turtle, commandMap, pathStack);
 		runner.init();
+		
+		CommandExecutor CE = new CommandExecutor();
+		List<Line> lines = new ArrayList<Line>();
+		Line line = new Line(275, 275, 300, 300);
+		lines.add(line);
+		Line line2 = new Line(300, 300, 250, 350);
+		lines.add(line2);
+		Line line3 = new Line(250, 350, 200, 200);
+		lines.add(line3);
+		CE.setList(lines);
+		CE.setType("move");
+		executeCommand(CE);
 	}
 	
 	/**
@@ -62,11 +76,11 @@ public class View implements IView{
 	 * Executes the command returned from the back-end
 	 * @param str 
 	 */
-	public void executeCommand(String str){
+	public void executeCommand(CommandExecutor CE){
 		existingFunction = false;
-		runner.setCommandExecutor(400, 500);
+		runner.setCommandExecutor(CE);
 		for(String k: commandMap.keySet()) {
-			if (k.equals(str)) {
+			if (k.equals(CE.getType())) {
 				commandMap.get(k).run();
 				existingFunction = true;
 			}

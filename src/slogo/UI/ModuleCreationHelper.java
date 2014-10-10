@@ -148,6 +148,7 @@ public class ModuleCreationHelper {
             mySelectorsVBox.setLayoutY(AppConstants.BACKGROUND_COLOR_YPOS);
             root.getChildren().addAll(mySelectorsVBox);
     }
+        
 	/**
 	 * Creates an event handler than exits the application on button click.
 	 * 
@@ -167,15 +168,7 @@ public class ModuleCreationHelper {
 		btn.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				View v = new View();
-				v.init(root, myCanvas.getCanvas(), myTurtle);
-				try {
-					v.executeCommand("f");
-				} catch (IllegalArgumentException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				v.executeCommand("fd");
+				//TODO
 			}
 		});
 	}

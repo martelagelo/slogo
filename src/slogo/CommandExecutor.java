@@ -15,6 +15,8 @@ import javafx.scene.shape.Line;
  *
  */
 public class CommandExecutor {
+	
+	//All code below written by Michael Deng for testing. Feel free to delete. 
 
 	private List<Line> lines = new ArrayList<Line>();
 	private String type;
