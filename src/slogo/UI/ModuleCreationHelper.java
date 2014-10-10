@@ -29,20 +29,20 @@ public class ModuleCreationHelper {
 
 	private Group root;
 	private HBox firstButtonRow;
-	private Canvas myCanvas;
-	private GraphicsContext myGraphicsContext;
-	private TextField myTextField;
+	private TurtleCanvas myCanvas;
+	private CommandsTextField myTextField;
 	private Turtle myTurtle;
 	private VBox myCommandInputVBox;
 	private VBox mySelectorsVBox;
-	private ListView<String> myCommandsList;
-	private ListView<String> myVariablesList;
-	private ListView<String> myUserVariablesList;
-	private ListView<String> myUserCommandsList;
+	private ListViewPreviousCommands myCommandsList;
+	private ListViewSLOGOVariables myVariablesList;
+	private ListViewUserVariables myUserVariablesList;
+	private ListViewUserCommands myUserCommandsList;
 	private ObservableList<String> myCommands = FXCollections.observableArrayList();
 	private ObservableList<String> myVariables = FXCollections.observableArrayList();
 	private ObservableList<String> myUserVariables = FXCollections.observableArrayList();
 	private ObservableList<String> myUserCommands = FXCollections.observableArrayList();
+    private GraphicsContext myGraphicsContext;
 
 
 	public ModuleCreationHelper(Group root) {
@@ -78,9 +78,8 @@ public class ModuleCreationHelper {
 	}
 
 	private void createTurtleCanvas() {
-		TurtleCanvas TC = new TurtleCanvas(root);
-		myGraphicsContext = TC.getGraphicsContext();
-		myCanvas = TC.getCanvas();
+		myCanvas = new TurtleCanvas(root);
+		myGraphicsContext = myCanvas.getGraphicsContext();
 	}
 
 	private void createTurtle(){
@@ -104,47 +103,23 @@ public class ModuleCreationHelper {
 		ButtonCreator BC = new ButtonCreator(firstButtonRow);
 		Button btn = BC.createButton("Help");
 		btn.setPrefSize(100, 50);
-		btn.setOnAction(new EventHandler<ActionEvent>(){
-			@Override
-			public void handle(ActionEvent event){
-				HTMLHelpPage help = new HTMLHelpPage(AppConstants.HELP_URL);
-				help.displayPage();
-			}
-		});	    
+		activateHelpButton(btn);    
 	}
 
 	private void createTextField(){
-		myCommandInputVBox = new VBox();
-		LabelCreator LC = new LabelCreator(root);
-		Label l = LC.createLabel("Enter your commands here! Hit Enter to see them displayed!", AppConstants.TITLE_LABEL_FONT_SIZE/3, Color.BLACK);
-		myTextField = new TextField();
-		myTextField.setPromptText("Enter Command");
-		myTextField.setPrefHeight(20);
-		myTextField.setPrefWidth(400);
-		myTextField.setOnAction(new EventHandler<ActionEvent>(){
-			@Override
-			public void handle (ActionEvent event){
-				myCommands.add(myTextField.getText());
-				myCommandsList.setItems(myCommands);
-				//for fun with testing all the listviews
-				myUserCommands.add(myTextField.getText());
-				myUserCommandsList.setItems(myUserCommands);
-				myUserVariables.add(myTextField.getText());
-				myUserVariablesList.setItems(myUserVariables);
-				myTextField.setText("");
-			}
-		});
-		myCommandInputVBox.getChildren().addAll(l, myTextField);
-		myCommandInputVBox.setLayoutX(75);
-		myCommandInputVBox.setLayoutY(500);
-		root.getChildren().add(myCommandInputVBox);
+	    myTextField = new CommandsTextField(root).createTextField();
+	    activateTextField(myTextField.getTextField());
 	}
 
 	private void createListViews(){
-	       myCommandsList = new ListViewPreviousCommands(root).createAndGetListView();
-	       myVariablesList = new ListViewSLOGOVariables(root).createAndGetListView();
-	       myUserVariablesList = new ListViewUserVariables(root).createAndGetListView();
-	       myUserCommandsList = new ListViewUserCommands(root).createAndGetListView();
+	       myCommandsList = new ListViewPreviousCommands(root);
+	       myCommandsList.create();
+	       myVariablesList = new ListViewSLOGOVariables(root);
+	       myVariablesList.create();
+	       myUserVariablesList = new ListViewUserVariables(root);
+	       myUserVariablesList.create();
+	       myUserCommandsList = new ListViewUserCommands(root);
+	       myUserCommandsList.create();
 	}
         
         private void createSelectors(){
@@ -180,7 +155,7 @@ public class ModuleCreationHelper {
 			@Override
 			public void handle(ActionEvent event) {
 				View v = new View();
-				v.init(root, myCanvas, myTurtle);
+				v.init(root, myCanvas.getCanvas(), myTurtle);
 				try {
 					v.executeCommand("f");
 				} catch (IllegalAccessException | IllegalArgumentException
@@ -192,12 +167,38 @@ public class ModuleCreationHelper {
 		});
 	}
 	
+	public void activateHelpButton(Button btn){
+	    btn.setOnAction(new EventHandler<ActionEvent>(){
+	        @Override
+	        public void handle(ActionEvent event){
+	            HTMLHelpPage help = new HTMLHelpPage(AppConstants.HELP_URL);
+	            help.displayPage();
+	        }
+	    });
+	}
+
+	public void activateTextField(TextField TF){
+	    TF.setOnAction(new EventHandler<ActionEvent>(){
+	        @Override
+	        public void handle (ActionEvent event){
+	            myCommands.add(myTextField.getText());
+	            myCommandsList.setItems(myCommands);
+	            //for fun with testing all the listviews
+	            myUserCommands.add(myTextField.getText());
+	            myUserCommandsList.setItems(myUserCommands);
+	            myUserVariables.add(myTextField.getText());
+	            myUserVariablesList.setItems(myUserVariables);
+	            myTextField.setText("");
+	        }
+	    });
+	}
+	
 	public Turtle getTurtle() {
 		return myTurtle;
 	}
 	
 	public Canvas getCanvas() {
-		return myCanvas;
+		return myCanvas.getCanvas();
 	}
 }
 

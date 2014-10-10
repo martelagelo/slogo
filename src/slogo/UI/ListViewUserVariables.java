@@ -1,7 +1,6 @@
 package slogo.UI;
 
 import javafx.scene.Group;
-import javafx.scene.control.ListView;
 import javafx.scene.paint.Color;
 
 public class ListViewUserVariables extends ListViewAllSLOGO {
@@ -11,10 +10,9 @@ public class ListViewUserVariables extends ListViewAllSLOGO {
     }
     
     @Override
-    protected ListView<String> createAndGetListView(){
-        ListViewCreator lvc = createThings(200, 200, AppConstants.ALL_SELECTORS_XPOS - 225, AppConstants.TURTLE_IMAGE_YPOS + 80,
+    protected void create(){
+        createThings(200, 200, AppConstants.ALL_SELECTORS_XPOS - 225, AppConstants.TURTLE_IMAGE_YPOS + 80,
                                            "User Variables", 1, Color.BLACK);
-        return lvc.getListView();
     }
     
 }
