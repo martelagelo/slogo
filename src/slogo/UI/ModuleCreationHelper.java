@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -223,66 +222,33 @@ public class ModuleCreationHelper {
 		myVariablesMap.put("Pen Down?:     ", true);
 	}
 
-	private void createBackgroundColorSelector(){
-		ColorSelectorCreator sc = new ColorSelectorCreator(root, "Background Color", (Color) myGraphicsContext.getFill());
-		final ColorPicker bgColor = sc.getSelector();
-		bgColor.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle (ActionEvent event){
-				if(bgColor.getValue() != null){
-					Color c = bgColor.getValue();
-					myGraphicsContext.setFill(c);
-					myGraphicsContext.fillRect(1, 1, myCanvas.getWidth()-2, myCanvas.getHeight()-2);
-				}
-			}
-		});
-		myBackgroundSelectorVBox = sc.createSelectorWithLabel("Select a Background Color", AppConstants.TITLE_LABEL_FONT_SIZE/3, Color.BLACK);
-	}
+        private void createPathColorSelector(){
+            ColorSelectorCreator sc = new ColorSelectorCreator(root);
+            sc.setUpSelector("Path Color", AppConstants.SELECTOR_WIDTH, AppConstants.SELECTOR_HEIGHT, AppConstants.SELECTOR_FONT_SIZE, (Color) myGraphicsContext.getStroke());
+            final ColorPicker pathColor = sc.getSelector();
+            pathColor.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle (ActionEvent event){
+                            if(pathColor.getValue() != null){
+                                    myGraphicsContext.setStroke(pathColor.getValue());
+                            }
+                    }
+            });
+            myPathSelectorVBox = sc.createSelectorWithLabel("Select a Path Color", AppConstants.TITLE_LABEL_FONT_SIZE/3, Color.BLACK);
+    }
+        private void createSelectors(){
+            mySelectorsVBox = new VBox(5);
+            TurtleImageSelector turtleSelect = new TurtleImageSelector(mySelectorsVBox);
+            turtleSelect.create(myTurtle, root);
+            BackgroundColorSelector backgroundSelect = new BackgroundColorSelector(mySelectorsVBox);
+            backgroundSelect.create(root, myCanvas, myGraphicsContext);
+            createPathColorSelector();
+            mySelectorsVBox.getChildren().addAll(myPathSelectorVBox);
+            mySelectorsVBox.setLayoutX(AppConstants.ALL_SELECTORS_XPOS);
+            mySelectorsVBox.setLayoutY(AppConstants.BACKGROUND_COLOR_YPOS);
+            root.getChildren().addAll(mySelectorsVBox);
 
-	private void createPathColorSelector(){
-		ColorSelectorCreator sc = new ColorSelectorCreator(root, "Path Color", (Color) myGraphicsContext.getStroke());
-		final ColorPicker pathColor = sc.getSelector();
-		pathColor.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle (ActionEvent event){
-				if(pathColor.getValue() != null){
-					myGraphicsContext.setStroke(pathColor.getValue());
-				}
-			}
-		});
-		myPathSelectorVBox = sc.createSelectorWithLabel("Select a Path Color", AppConstants.TITLE_LABEL_FONT_SIZE/3, Color.BLACK);
-	}
-
-	private void createTurtleImageSelector(){
-		List<String> images = new ArrayList<String>();
-		images.addAll(myTurtle.getShapesMap().keySet());
-		SelectorCreator sc = new SelectorCreator(root, "Turtle Image", images);
-		final ComboBox<String> turtleSelector = sc.getSelector();
-		turtleSelector.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle (ActionEvent event){
-				if(turtleSelector.getValue() != null){
-					root.getChildren().remove(myTurtle.getImage());
-					myTurtle.setImage(turtleSelector.getValue());
-					root.getChildren().add(myTurtle.getImage());
-					
-				}
-			}
-		});
-		myTurtleSelectorVBox = sc.createSelectorWithLabel("Select a Turtle Image", AppConstants.TITLE_LABEL_FONT_SIZE/3, Color.BLACK);
-	}	
-
-	private void createSelectors(){
-		createBackgroundColorSelector();
-		createPathColorSelector();
-		createTurtleImageSelector();
-		mySelectorsVBox = new VBox(5);
-		mySelectorsVBox.getChildren().addAll(myBackgroundSelectorVBox, myPathSelectorVBox, myTurtleSelectorVBox);
-		mySelectorsVBox.setLayoutX(AppConstants.ALL_SELECTORS_XPOS);
-		mySelectorsVBox.setLayoutY(AppConstants.BACKGROUND_COLOR_YPOS);
-		root.getChildren().addAll(mySelectorsVBox);
-
-	}	
+    }
 	
 	/**
 	 * Creates an event handler than exits the application on button click.
