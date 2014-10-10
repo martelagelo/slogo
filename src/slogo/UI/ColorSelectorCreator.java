@@ -31,9 +31,9 @@ public class ColorSelectorCreator {
         
         protected VBox createSelectorWithLabel(String s, int fontsize, Color color){
             VBox selectorWithLabel = new VBox();
-            LabelCreator lc = new LabelCreator(fontsize, color);
-            Label l = lc.createLabel(s);
-            selectorWithLabel.getChildren().addAll(l, myColorSelector);
+            LabelCreator lc = new LabelCreator(selectorWithLabel);
+            Label l = lc.createLabel(s, fontsize, color);
+            selectorWithLabel.getChildren().addAll(myColorSelector);
             return selectorWithLabel;
             
         }

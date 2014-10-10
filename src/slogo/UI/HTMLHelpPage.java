@@ -15,8 +15,8 @@ public class HTMLHelpPage {
 
     public HTMLHelpPage(String siteName){
         myWebView = new WebView();
-        WebEngine engine = myWebView.getEngine();
-        String helpPageSite = "http://www.cs.duke.edu/courses/compsci308/current/assign/03_slogo/commands.php";
+        final WebEngine engine = myWebView.getEngine();
+        final String helpPageSite = "http://www.cs.duke.edu/courses/compsci308/current/assign/03_slogo/commands.php";
         engine.load(helpPageSite);
         engine.locationProperty().addListener(new ChangeListener<String>() {
             @Override 
@@ -39,8 +39,8 @@ public class HTMLHelpPage {
         Stage newStage = new Stage();
         newStage.setTitle("Help Page");
         newStage.setScene(newScene);
-        newStage.setX(50);
-        newStage.setY(50);
+        newStage.setX(100);
+        newStage.setY(100);
         newStage.show();
     }
 }
