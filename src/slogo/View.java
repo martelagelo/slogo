@@ -64,7 +64,7 @@ public class View implements IView{
 	 */
 	public void executeCommand(String str){
 		existingFunction = false;
-		runner.setInput(400, 500);
+		runner.setCommandExecutor(400, 500);
 		for(String k: commandMap.keySet()) {
 			if (k.equals(str)) {
 				commandMap.get(k).run();

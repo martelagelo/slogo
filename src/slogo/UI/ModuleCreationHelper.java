@@ -214,7 +214,7 @@ public class ModuleCreationHelper {
 		return myCanvas.getCanvas();
 	}
 	
-	public void getView(View view) {
+	public void setView(View view) {
 		this.myView = view;
 	}
 }

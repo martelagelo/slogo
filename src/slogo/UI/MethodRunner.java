@@ -1,9 +1,11 @@
 package slogo.UI;
 
 import java.lang.reflect.Method;
+import java.util.List;
 import java.util.Map;
 import java.util.Stack;
 
+import slogo.CommandExecutor;
 import javafx.geometry.Point2D;
 import javafx.scene.Group;
 import javafx.scene.canvas.Canvas;
@@ -18,6 +20,7 @@ public class MethodRunner {
 	private Group root;
 	private Stack<Line> pathStack;
 	
+	private CommandExecutor CE;
 	private int x;
 	private int y;
 
@@ -34,7 +37,7 @@ public class MethodRunner {
 			moveTurtle(x, y);
 		});
 		commandMap.put("move", () -> {
-			moveTurtle(x, y);
+			moveTurtle(CE.getList());
 		});
 	}
 
@@ -53,24 +56,25 @@ public class MethodRunner {
 		root.getChildren().add(line);
 	}
 	
-	private void moveTurtle(Line[] lines) {
+	private void moveTurtle(List<Line> lines) {
 		for (Line l: lines) {
 			root.getChildren().add(l);
 			pathStack.push(l);
-			if (lines[lines.length - 1] == l) {
-				turtle.moveTurtle(l.getEndX(), l.getEndY());
-			}
+			if (lines.get(lines.size()-1) == l) turtle.moveTurtle(l.getEndX(), l.getEndY());
 		}
-		
 	}
 
 	private void setTurtleDirection(int orientation) {
 		turtle.setOrientaion(orientation);
 	}
 	
-	public void setInput(int x, int y) {
+	public void setCommandExecutor(int x, int y) {
 		this.x = x;
 		this.y = y;
+	}
+	
+	public void setCommandExecutor(CommandExecutor commandExecutor) {
+		this.CE = commandExecutor;
 	}
 
 }
