@@ -12,8 +12,8 @@ import javafx.scene.shape.Rectangle;
 public class Turtle {
 
 	private Node turtleImage;
-	private int xpos;
-	private int ypos;
+	private double xpos;
+	private double ypos;
 	private int orientation;
 	private Map<String, Node> imagesMap;
 
@@ -43,32 +43,33 @@ public class Turtle {
 		Polygon p = new Polygon();
 		p.getPoints().addAll(new Double[]{
 				(double) (xpos-6), (double) ypos,
-				(double) (xpos+6), (double) ypos,
-				(double) xpos, (double) (ypos+12) });
+				(double) xpos, (double) (ypos+12),
+				(double) (xpos+6), (double) ypos, 
+				});
 		imagesMap.put("Triangle", p);
-		Image i = new Image(getClass().getResourceAsStream("Turtle"));
-		ImageView iv = new ImageView(i);
-		iv.setLayoutX(xpos);
-		iv.setLayoutY(ypos);
-		imagesMap.put("Turtle", iv);
+		Image I = new Image(getClass().getResourceAsStream("Turtle"));
+		ImageView IV = new ImageView(I);
+		IV.setLayoutX(xpos);
+		IV.setLayoutY(ypos);
+		imagesMap.put("Turtle", IV);
 
 	}
 
-	private void setXPos(int x){
-		turtleImage.setLayoutX(x);
-		xpos = x;
+	private void setXPos(double d){
+		turtleImage.setLayoutX(d - 275);
+		xpos = d;
 	}
 
-	protected int getXPos(){
+	protected double getXPos(){
 		return xpos;
 	}
 
-	private void setYPos(int y){
-		turtleImage.setLayoutY(y);
-		ypos = y;
+	private void setYPos(double e){
+		turtleImage.setLayoutY(e - 275);
+		ypos = e;
 	}
 
-	protected int getYPos(){
+	protected double getYPos(){
 		return ypos;
 	}
 
@@ -90,9 +91,13 @@ public class Turtle {
 		return turtleImage;
 	}
 
-	protected void moveTurtle(int x, int y){
-		setXPos(x);
-		setYPos(y);
+	protected void moveTurtle(double d, double e){
+		setXPos(d);
+		setYPos(e);
+	}
+	
+	protected Turtle getTurtle() {
+		return this;
 	}
 
 	protected Map<String, Node> getShapesMap () {

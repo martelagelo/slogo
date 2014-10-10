@@ -122,6 +122,7 @@ public class ModuleCreationHelper {
 	private void createPlayButton() {
 		ButtonCreator BC = new ButtonCreator(firstButtonRow);
 		Button btn = BC.createButton(new Image(getClass().getResourceAsStream("green-plain-play-button-icon-th.png")));
+		activatPlayAppButton(btn);
 	}
 
 	private void createStopButton() {
@@ -264,6 +265,7 @@ public class ModuleCreationHelper {
 					root.getChildren().remove(myTurtle.getImage());
 					myTurtle.setImage(turtleSelector.getValue());
 					root.getChildren().add(myTurtle.getImage());
+					
 				}
 			}
 		});
@@ -295,6 +297,23 @@ public class ModuleCreationHelper {
 				Platform.exit();
 			}
 		});
+	}
+	
+	public void activatPlayAppButton(Button btn) {
+		btn.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				new MethodRunner(root, myCanvas, myTurtle).moveTurtleForward((int) (myTurtle.getXPos() + 50), (int) myTurtle.getYPos() + 50);
+			}
+		});
+	}
+	
+	public Turtle getTurtle() {
+		return myTurtle;
+	}
+	
+	public Canvas getCanvas() {
+		return myCanvas;
 	}
 }
 
