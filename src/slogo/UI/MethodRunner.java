@@ -2,6 +2,7 @@ package slogo.UI;
 
 import java.lang.reflect.Method;
 import java.util.Map;
+import java.util.Stack;
 
 import javafx.geometry.Point2D;
 import javafx.scene.Group;
@@ -15,25 +16,29 @@ public class MethodRunner {
 	private Turtle turtle;
 	private Canvas canvas;
 	private Group root;
+	private Stack<Line> pathStack;
 	
 	private int x;
 	private int y;
 
-	public MethodRunner(Group root, Canvas canvas, Turtle turtle, Map commandMap) {
+	public MethodRunner(Group root, Canvas canvas, Turtle turtle, Map commandMap, Stack stack) {
 		this.turtle = turtle;
 		this.canvas = canvas;
 		this.root = root;
 		this.commandMap = commandMap;
+		this.pathStack = stack;
 	}
 
 	public void init() {
 		commandMap.put("fd", () -> { 
-			System.out.println("NOTOOTOOO");   
+			moveTurtle(x, y);
+		});
+		commandMap.put("move", () -> {
 			moveTurtle(x, y);
 		});
 	}
 
-	void moveTurtle(int x, int y) {
+	private void moveTurtle(int x, int y) {
 		Double xPos = turtle.getXPos();
 		Double yPos = turtle.getYPos();
 		//turtle.moveTurtle(coord.getX(), coord.getY());
@@ -46,6 +51,17 @@ public class MethodRunner {
 		//line.setEndX(coord.getX());
 		//.line.setEndY(coord.getY());
 		root.getChildren().add(line);
+	}
+	
+	private void moveTurtle(Line[] lines) {
+		for (Line l: lines) {
+			root.getChildren().add(l);
+			pathStack.push(l);
+			if (lines[lines.length - 1] == l) {
+				turtle.moveTurtle(l.getEndX(), l.getEndY());
+			}
+		}
+		
 	}
 
 	private void setTurtleDirection(int orientation) {
