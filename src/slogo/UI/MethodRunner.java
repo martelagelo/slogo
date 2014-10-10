@@ -3,7 +3,6 @@ package slogo.UI;
 import java.lang.reflect.Method;
 import java.util.Map;
 import java.util.Stack;
-
 import javafx.geometry.Point2D;
 import javafx.scene.Group;
 import javafx.scene.canvas.Canvas;
@@ -57,11 +56,8 @@ public class MethodRunner {
 		for (Line l: lines) {
 			root.getChildren().add(l);
 			pathStack.push(l);
-			if (lines[lines.length - 1] == l) {
-				turtle.moveTurtle(l.getEndX(), l.getEndY());
-			}
+			if (lines[lines.length - 1] == l) turtle.moveTurtle(l.getEndX(), l.getEndY());
 		}
-		
 	}
 
 	private void setTurtleDirection(int orientation) {
