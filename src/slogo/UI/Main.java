@@ -36,7 +36,7 @@ public class Main extends Application {
 
 		ModulePopulator.createMainPageModules();
 		view.init(root, ModulePopulator.getCanvas(), ModulePopulator.getTurtle());
-		ModulePopulator.getView(view);
+		ModulePopulator.setView(view);
 		
 		primaryStage.setTitle("SLogo!");
 		primaryStage.setScene(scene);

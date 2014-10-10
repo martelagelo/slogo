@@ -210,7 +210,7 @@ public class ModuleCreationHelper {
 		return myCanvas;
 	}
 	
-	public void getView(View view) {
+	public void setView(View view) {
 		this.myView = view;
 	}
 }
