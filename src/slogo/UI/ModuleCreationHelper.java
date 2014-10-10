@@ -1,26 +1,24 @@
 package slogo.UI;
 
+<<<<<<< HEAD
+=======
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+>>>>>>> 70e6acb95078dd9964d5e17964bf0c0d0755e97b
 import java.util.Map;
 
 import slogo.View;
 import javafx.application.Platform;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
-import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
-import javafx.scene.control.ColorPicker;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
@@ -29,9 +27,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.web.WebEngine;
-import javafx.scene.web.WebView;
-import javafx.stage.Stage;
 
 /**
  * 
@@ -47,16 +42,8 @@ public class ModuleCreationHelper {
 	private GraphicsContext myGraphicsContext;
 	private TextField myTextField;
 	private Turtle myTurtle;
-	private Map<String, Object> myVariablesMap;
 	private VBox myCommandInputVBox;
-	private VBox myBackgroundSelectorVBox;
-	private VBox myPathSelectorVBox;
-	private VBox myTurtleSelectorVBox;
 	private VBox mySelectorsVBox;
-	private VBox myCommandsVBox;
-	private VBox myVariablesVBox;
-	private VBox myUserCommandsVBox;
-	private VBox myUserVariablesVBox;
 	private ListView<String> myCommandsList;
 	private ListView<String> myVariablesList;
 	private ListView<String> myUserVariablesList;
@@ -83,13 +70,8 @@ public class ModuleCreationHelper {
 		createHelpButton();
 		createTurtle();
 		createTextField();
-		createEnteredCommandsList();
-		initializeVariablesMap();
-		updateObservableVariables();
+		createListViews();
 		createSelectors();
-		createPermanentVariablesList();
-		createUserVariablesList();
-		createUserCommandsList();
 	}
 
 	private void createFirstButtonRow() {
@@ -141,7 +123,7 @@ public class ModuleCreationHelper {
 		btn.setOnAction(new EventHandler<ActionEvent>(){
 			@Override
 			public void handle(ActionEvent event){
-				HTMLHelpPage help = new HTMLHelpPage("http://www.cs.duke.edu/courses/compsci308/current/assign/03_slogo/commands.php");
+				HTMLHelpPage help = new HTMLHelpPage(AppConstants.HELP_URL);
 				help.displayPage();
 			}
 		});	    
@@ -174,84 +156,24 @@ public class ModuleCreationHelper {
 		root.getChildren().add(myCommandInputVBox);
 	}
 
-	private void createEnteredCommandsList(){
-		ListViewCreator lvc = new ListViewCreator((int) (myCanvas.getHeight()/2), 350);
-		myCommandsList = lvc.getListView();
-		myCommandsVBox = lvc.createListViewWithLabel("Your Previously Entered Commands", 1, Color.BLACK);
-		myCommandsVBox.setLayoutX(myCanvas.getWidth()+95);
-		myCommandsVBox.setLayoutY(60);
-		root.getChildren().add(myCommandsVBox);
+	private void createListViews(){
+	       myCommandsList = new ListViewPreviousCommands(root).createAndGetListView();
+	       myVariablesList = new ListViewSLOGOVariables(root).createAndGetListView();
+	       myUserVariablesList = new ListViewUserVariables(root).createAndGetListView();
+	       myUserCommandsList = new ListViewUserCommands(root).createAndGetListView();
 	}
-
-	private void createPermanentVariablesList(){
-		ListViewCreator lvc = new ListViewCreator(200, 200);
-		myVariablesList = lvc.getListView();
-		myVariablesList.setItems(myVariables);
-		myVariablesVBox = lvc.createListViewWithLabel("SLOGO Variables", 1, Color.BLACK);
-		myVariablesVBox.setLayoutX(AppConstants.ALL_SELECTORS_XPOS);
-		myVariablesVBox.setLayoutY(AppConstants.TURTLE_IMAGE_YPOS + 80);
-		root.getChildren().add(myVariablesVBox);
-	}
-
-	private void createUserVariablesList(){
-		ListViewCreator lvc = new ListViewCreator(200, 200);
-		myUserVariablesList = lvc.getListView();
-		myUserVariablesVBox = lvc.createListViewWithLabel("User Variables", 1, Color.BLACK);
-		myUserVariablesVBox.setLayoutX(AppConstants.ALL_SELECTORS_XPOS - 225);
-		myUserVariablesVBox.setLayoutY(AppConstants.TURTLE_IMAGE_YPOS + 80);
-		root.getChildren().add(myUserVariablesVBox);
-	}
-
-	private void createUserCommandsList(){
-		ListViewCreator lvc = new ListViewCreator(200, 200);
-		myUserCommandsList = lvc.getListView();
-		myUserCommandsVBox = lvc.createListViewWithLabel("User Defined Commands", 1, Color.BLACK);
-		myUserCommandsVBox.setLayoutX(AppConstants.ALL_SELECTORS_XPOS - 450);
-		myUserCommandsVBox.setLayoutY(AppConstants.TURTLE_IMAGE_YPOS + 80);
-		root.getChildren().addAll(myUserCommandsVBox);
-	}
-
-	private void updateObservableVariables(){
-		myVariables = FXCollections.observableArrayList();
-		for(Object key : myVariablesMap.keySet()){
-			myVariables.add(key.toString() + myVariablesMap.get(key).toString());
-		}
-	}
-
-	private void initializeVariablesMap(){
-		myVariablesMap = new HashMap<String, Object>();
-		myVariablesMap.put("Turtle X Position:     ", myTurtle.getXPos());
-		myVariablesMap.put("Turtle Y Position:     ", myTurtle.getYPos());
-		myVariablesMap.put("Turtle Heading:        ", myTurtle.getOrientation());
-		myVariablesMap.put("Pen Down?:     ", true);
-	}
-
-        private void createPathColorSelector(){
-            ColorSelectorCreator sc = new ColorSelectorCreator(root);
-            sc.setUpSelector("Path Color", AppConstants.SELECTOR_WIDTH, AppConstants.SELECTOR_HEIGHT, AppConstants.SELECTOR_FONT_SIZE, (Color) myGraphicsContext.getStroke());
-            final ColorPicker pathColor = sc.getSelector();
-            pathColor.setOnAction(new EventHandler<ActionEvent>() {
-                    @Override
-                    public void handle (ActionEvent event){
-                            if(pathColor.getValue() != null){
-                                    myGraphicsContext.setStroke(pathColor.getValue());
-                            }
-                    }
-            });
-            myPathSelectorVBox = sc.createSelectorWithLabel("Select a Path Color", AppConstants.TITLE_LABEL_FONT_SIZE/3, Color.BLACK);
-    }
+        
         private void createSelectors(){
             mySelectorsVBox = new VBox(5);
             TurtleImageSelector turtleSelect = new TurtleImageSelector(mySelectorsVBox);
             turtleSelect.create(myTurtle, root);
             BackgroundColorSelector backgroundSelect = new BackgroundColorSelector(mySelectorsVBox);
             backgroundSelect.create(root, myCanvas, myGraphicsContext);
-            createPathColorSelector();
-            mySelectorsVBox.getChildren().addAll(myPathSelectorVBox);
+            PathColorSelector pathSelect = new PathColorSelector(mySelectorsVBox);
+            pathSelect.create(root, myGraphicsContext);
             mySelectorsVBox.setLayoutX(AppConstants.ALL_SELECTORS_XPOS);
             mySelectorsVBox.setLayoutY(AppConstants.BACKGROUND_COLOR_YPOS);
             root.getChildren().addAll(mySelectorsVBox);
-
     }
 	
 	/**

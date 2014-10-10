@@ -11,10 +11,10 @@ import javafx.scene.paint.Color;
 
 public class TurtleImageSelector {
     
-    private VBox myVBox;
+    private VBox mySelectorsVBox;
     
-    public TurtleImageSelector(VBox vbox){
-        myVBox = vbox;
+    public TurtleImageSelector(VBox selectorsVBox){
+        mySelectorsVBox = selectorsVBox;    
     }
     
     protected void create(Turtle turtle, Group root){
@@ -34,6 +34,6 @@ public class TurtleImageSelector {
             }
         });
         VBox selectorWithLabel = sc.createSelectorWithLabel("Select a Turtle Image", AppConstants.TITLE_LABEL_FONT_SIZE/3, Color.BLACK);
-        myVBox.getChildren().addAll(selectorWithLabel); 
+        mySelectorsVBox.getChildren().add(selectorWithLabel);
     }
 }

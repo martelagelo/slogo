@@ -33,6 +33,7 @@ public class AppConstants {
         public static final Integer SELECTOR_HEIGHT = 40;
         public static final Integer SELECTOR_WIDTH = 200;
         public static final Double SELECTOR_FONT_SIZE = .8;
+        public static final String HELP_URL = "http://www.cs.duke.edu/courses/compsci308/current/assign/03_slogo/commands.php";
 }
 
 
