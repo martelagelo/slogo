@@ -14,4 +14,11 @@ public interface IOperation {
 	 * @return the new state of the execution
 	 */
 	public IExecutionContext execute(List<IExecutionContext> args);
+	/**
+	 * 
+	 * @return
+	 */
+	public Number minArgCount();
+	public Number maxArgCount();
+	public String type();
 }
