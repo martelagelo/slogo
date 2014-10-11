@@ -8,7 +8,7 @@ import slogo.backend.evaluation.IOperation;
  * A node of an abstract syntax tree
  *
  */
-public interface IASTNode {
+public interface ISyntaxNode {
 	/**
 	 * Get the operation associated with the node
 	 * 
@@ -20,17 +20,18 @@ public interface IASTNode {
 	 * 
 	 * @return the node's children
 	 */
-	List<IASTNode> children();
+	List<ISyntaxNode> children();
+	public void setChildren(List<ISyntaxNode> children);
 	/**
 	 * Get the parent of this node
 	 * 
 	 * @return the node's parent
 	 */
-	IASTNode parent();
+	//ISyntaxNode parent();
 	/**
 	 * Get a name representing the child
 	 * 
 	 * @return the name
 	 */
-	String name();
+	String type();
 }
