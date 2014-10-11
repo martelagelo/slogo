@@ -19,6 +19,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import slogo.UI.MethodRunner;
 import slogo.UI.Turtle;
+import slogo.backend.evaluation.ExecutionContext;
 
 /**
  * October 5th, 2014
@@ -61,7 +62,7 @@ public class View implements IView{
 		lines.add(line3);
 		CE.setList(lines);
 		CE.setType("move");
-		executeCommand(CE);
+		//executeCommand(CE);
 	}
 	
 	/**
@@ -76,17 +77,23 @@ public class View implements IView{
 	 * Executes the command returned from the back-end
 	 * @param str 
 	 */
-	public void executeCommand(CommandExecutor CE){
-		existingFunction = false;
-		runner.setCommandExecutor(CE);
-		for(String k: commandMap.keySet()) {
-			if (k.equals(CE.getType())) {
-				commandMap.get(k).run();
-				existingFunction = true;
-			}
-		}
-		if (!existingFunction) {
-			error("Command does not exist!!!");
+//	public void executeInidividualsCommands(TurtleStatus TS) {			//CommandExecutor CE){
+//		existingFunction = false;
+//		runner.setCommandExecutor(TS);
+//		for(String k: commandMap.keySet()) {
+//			if (k.equals(TS.getType())) {
+//				commandMap.get(k).run();
+//				existingFunction = true;
+//			}
+//		}
+//		if (!existingFunction) {
+//			error("Command does not exist!!!");
+//		}
+//	}
+	
+	public void executeCommand(ExecutionContext EC) {
+		for(String k: EC.turtles().keySet()) {
+			//executeInidividualsCommands(EC.turtles().get(k));
 		}
 	}
 
