@@ -15,6 +15,10 @@ public class ListViewCreator {
         myListView.setPrefWidth(width);
     }
     
+    public ListViewCreator () {
+        this(200,200);
+    }
+
     protected ListView<String> getListView(){
         return myListView;
     }
