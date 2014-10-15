@@ -2,6 +2,7 @@ package slogo.backend.evaluation.commands.math;
 
 import java.util.List;
 
+import slogo.backend.evaluation.ExecutionContext;
 import slogo.backend.evaluation.IExecutionContext;
 import slogo.backend.evaluation.IOperation;
 
@@ -15,7 +16,8 @@ public class Log implements IOperation{
         double naturalLog = Math.log(number);
         //check for error
         String returnArgument = String.valueOf(naturalLog);
-        //update or create a new ExecutionContext and return it
+        args.get(0).environment().put("returnValue", returnArgument);
+        return new ExecutionContext(args.get(0).turtles(),args.get(0).environment());
     }
 
 }

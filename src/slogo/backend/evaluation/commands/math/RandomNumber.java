@@ -3,6 +3,7 @@ package slogo.backend.evaluation.commands.math;
 import java.util.List;
 import java.util.Random;
 
+import slogo.backend.evaluation.ExecutionContext;
 import slogo.backend.evaluation.IExecutionContext;
 import slogo.backend.evaluation.IOperation;
 
@@ -16,7 +17,8 @@ public class RandomNumber implements IOperation{
         Random random = new Random();
         double r = max*random.nextDouble();
         String returnArgument = String.valueOf(r);
-        //update or create a new ExecutionContext and return it
+        args.get(0).environment().put("returnValue", returnArgument);
+        return new ExecutionContext(args.get(0).turtles(),args.get(0).environment());
     }
 
 }
