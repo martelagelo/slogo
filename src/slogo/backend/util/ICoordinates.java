@@ -17,4 +17,6 @@ public interface ICoordinates {
 	 * @return the y coordinate
 	 */
 	public Number getY();
+	
+	public Number getDistance(ICoordinates c);
 }
