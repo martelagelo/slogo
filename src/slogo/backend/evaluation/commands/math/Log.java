@@ -4,18 +4,16 @@ import java.util.List;
 
 import slogo.backend.evaluation.IExecutionContext;
 import slogo.backend.evaluation.IOperation;
+import slogo.backend.evaluation.commands.MathOperation;
 
-public class Log implements IOperation{
+public class Log extends MathOperation{
 
-    @Override
-    public IExecutionContext execute (List<IExecutionContext> args) {
-        // TODO Auto-generated method stub
-        String argument = args.get(0).environment().get("returnValue");
-        double number = Double.parseDouble(argument);
-        double naturalLog = Math.log(number);
-        //check for error
-        String returnArgument = String.valueOf(naturalLog);
-        //update or create a new ExecutionContext and return it
-    }
+    public Log() {
+		super("Log", 1, 1);
+	}
 
+	@Override
+	protected Number executeMath(List<Number> args) {
+		return Math.log(args.get(0).doubleValue());
+	}
 }

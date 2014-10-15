@@ -4,18 +4,18 @@ import java.util.List;
 
 import slogo.backend.evaluation.IExecutionContext;
 import slogo.backend.evaluation.IOperation;
+import slogo.backend.evaluation.commands.MathOperation;
 
-public class Sin implements IOperation{
+public class Sin extends MathOperation{
 
-    @Override
-    public IExecutionContext execute (List<IExecutionContext> args) {
-        // TODO Auto-generated method stub
-        String argument = args.get(0).environment().get("returnValue");
-        double degree = Double.parseDouble(argument);
-        double radian = Math.toRadians(degree);
-        double sine = Math.sin(radian);
-        String returnArgument = String.valueOf(sine);
-        //update or create a new ExecutionContext and return it
-    }
+    public Sin() {
+		super("Sin", 1, 1);
+	}
 
+	@Override
+	protected Number executeMath(List<Number> args) {
+		double argument = Math.toRadians(args.get(0).doubleValue());
+        double result = Math.sin(argument);
+        return Math.toDegrees(result);
+	}
 }

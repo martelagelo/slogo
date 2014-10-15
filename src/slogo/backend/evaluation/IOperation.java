@@ -13,12 +13,10 @@ public interface IOperation {
 	 * @param args any arguments needed for the operation
 	 * @return the new state of the execution
 	 */
-	public IExecutionContext execute(List<IExecutionContext> args);
+	public IExecutionContext execute(List<IExecutionContext> args) throws MalformedSyntaxException;
 	/**
 	 * 
 	 * @return
 	 */
-	public Number minArgCount();
-	public Number maxArgCount();
 	public String type();
 }

@@ -4,20 +4,20 @@ import java.util.List;
 
 import slogo.backend.evaluation.IExecutionContext;
 import slogo.backend.evaluation.IOperation;
+import slogo.backend.evaluation.commands.MathOperation;
 
-public class Sum implements IOperation {
+public class Sum extends MathOperation {
 
-    @Override
-    public IExecutionContext execute (List<IExecutionContext> args) {
-        // TODO Auto-generated method stub
-        double sum = 0;
-        for (IExecutionContext context: args){
-            String argument = context.environment().get("returnValue");
-            double doubleArgument = Double.parseDouble(argument);
-            sum+=doubleArgument;
-        }
-        String returnArgument = String.valueOf(sum);
-        //update or create a new ExecutionContext and return it
-    }
+    public Sum() {
+		super("Sum", 2, -1);
+	}
 
+	@Override
+	protected Number executeMath(List<Number> args) {
+		double result = 0;
+		for (Number number: args){
+			result += number.doubleValue();
+		}
+		return result;
+	}
 }

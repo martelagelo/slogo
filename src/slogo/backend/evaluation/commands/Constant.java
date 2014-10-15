@@ -17,7 +17,7 @@ public class Constant implements IOperation{
 		args.get(0).environment().put("returnValue", value);
 		return args.get(0);
 	}
-
+/*
 	@Override
 	public Number minArgCount() {
 		return 1;
@@ -27,7 +27,7 @@ public class Constant implements IOperation{
 	public Number maxArgCount() {
 		return 1;
 	}
-
+*/
 	@Override
 	public String type() {
 		return "constant";
