@@ -4,19 +4,18 @@ import java.util.List;
 
 import slogo.backend.evaluation.IExecutionContext;
 import slogo.backend.evaluation.IOperation;
+import slogo.backend.evaluation.commands.MathOperation;
 
-public class Tan implements IOperation{
+public class Tan extends MathOperation{
 
-    @Override
-    public IExecutionContext execute (List<IExecutionContext> args) {
-        // TODO Auto-generated method stub
-        String argument = args.get(0).environment().get("returnValue");
-        double degree = Double.parseDouble(argument);
-        double radian = Math.toRadians(degree);
-        double tan = Math.tan(radian);
-        //check for error
-        String returnArgument = String.valueOf(tan);
-        //update or create a new ExecutionContext and return it
-    }
+    public Tan() {
+		super("Tan", 1, 1);
+	}
 
+	@Override
+	protected Number executeMath(List<Number> args) {
+		double argument = Math.toRadians(args.get(0).doubleValue());
+        double result = Math.tan(argument);
+        return Math.toDegrees(result);
+	}
 }

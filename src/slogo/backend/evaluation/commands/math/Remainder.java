@@ -4,19 +4,16 @@ import java.util.List;
 
 import slogo.backend.evaluation.IExecutionContext;
 import slogo.backend.evaluation.IOperation;
+import slogo.backend.evaluation.commands.MathOperation;
 
-public class Remainder implements IOperation{
+public class Remainder extends MathOperation{
 
-    @Override
-    public IExecutionContext execute (List<IExecutionContext> args) {
-        // TODO Auto-generated method stub
-        String argumentOne = args.get(0).environment().get("returnValue");
-        double dividend = Double.parseDouble(argumentOne);
-        String argumentTwo = args.get(1).environment().get("returnValue");
-        double divisor = Double.parseDouble(argumentTwo);
-        double remainder = dividend % divisor;
-        String returnArgument = String.valueOf(remainder);
-        //update or create a new ExecutionContext and return it
-    }
+    public Remainder() {
+		super("Remainder", 2, 2);
+	}
 
+	@Override
+	protected Number executeMath(List<Number> args) {
+		return args.get(0).doubleValue() % args.get(1).doubleValue();
+	}
 }

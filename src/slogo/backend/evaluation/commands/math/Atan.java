@@ -2,21 +2,18 @@ package slogo.backend.evaluation.commands.math;
 
 import java.util.List;
 
-import slogo.backend.evaluation.IExecutionContext;
-import slogo.backend.evaluation.IOperation;
+import slogo.backend.evaluation.commands.MathOperation;
 
-public class Atan implements IOperation{
+public class Atan extends MathOperation{
 
-    @Override
-    public IExecutionContext execute (List<IExecutionContext> args) {
-        // TODO Auto-generated method stub
-        String argument = args.get(0).environment().get("returnValue");
-        double tan = Double.parseDouble(argument);
-        double radian = Math.atan(tan);
-        double degree = Math.toDegrees(radian);
-        //check for error
-        String returnArgument = String.valueOf(degree);
-        //update or create a new ExecutionContext and return it
-    }
+    public Atan() {
+		super("Atan", 1, 1);
+	}
 
+	@Override
+	protected Number executeMath(List<Number> args) {
+		double argument = Math.toRadians(args.get(0).doubleValue());
+        double result = Math.atan(argument);
+        return Math.toDegrees(result);
+	}
 }

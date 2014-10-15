@@ -4,18 +4,18 @@ import java.util.List;
 
 import slogo.backend.evaluation.IExecutionContext;
 import slogo.backend.evaluation.IOperation;
+import slogo.backend.evaluation.commands.MathOperation;
 
-public class Cos implements IOperation{
+public class Cos extends MathOperation{
 
-    @Override
-    public IExecutionContext execute (List<IExecutionContext> args) {
-        // TODO Auto-generated method stub
-        String argument = args.get(0).environment().get("returnValue");
-        double degree = Double.parseDouble(argument);
-        double radian = Math.toRadians(degree);
-        double cosine = Math.cos(radian);
-        String returnArgument = String.valueOf(cosine);
-        //update or create a new ExecutionContext and return it
-    }
+    public Cos() {
+		super("Cos", 1, 1);
+	}
 
+	@Override
+	protected Number executeMath(List<Number> args) {
+		double argument = Math.toRadians(args.get(0).doubleValue());
+        double result = Math.cos(argument);
+        return Math.toDegrees(result);
+	}
 }

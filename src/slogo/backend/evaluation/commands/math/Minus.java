@@ -4,17 +4,16 @@ import java.util.List;
 
 import slogo.backend.evaluation.IExecutionContext;
 import slogo.backend.evaluation.IOperation;
+import slogo.backend.evaluation.commands.MathOperation;
 
-public class Minus implements IOperation{
+public class Minus extends MathOperation{
 
-    @Override
-    public IExecutionContext execute (List<IExecutionContext> args) {
-        // TODO Auto-generated method stub
-        String argument = args.get(0).environment().get("returnValue");
-        double number = Double.parseDouble(argument);
-        double minusNumber = 0 - number;
-        String returnArgument = String.valueOf(minusNumber);
-      //update or create a new ExecutionContext and return it
-    }
+    public Minus() {
+		super("Minus", 1, 1);
+	}
 
+	@Override
+	protected Number executeMath(List<Number> args) {
+		return 0 - args.get(0).doubleValue();
+	}
 }
