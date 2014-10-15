@@ -23,10 +23,10 @@ public class Left implements IOperation{
         ICoordinates pos = status.turtlePosition();
         IDirection dir = status.turtleDirection();
         PenState pen = status.penState();
-       IDirection newDir = new Direction(dir.toDegrees()+leftValue);
-        
-        
-        
+        IDirection newDir = new Direction(dir.toDegrees()+leftValue);
+
+
+
         ITurtleStatus newStatus = new TurtleStatus(status.lineSequence(),pos,newDir,pen,status.turtleVisibility());
         args.get(0).turtles().put("1", newStatus);
         return new ExecutionContext(args.get(0).turtles(),args.get(0).environment());
