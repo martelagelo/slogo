@@ -10,6 +10,7 @@ public interface IOperationFactory {
 	 * 
 	 * @param element The type of element to create
 	 * @return The newly created UI element
+	 * @throws ClassNotFoundException 
 	 */
-	public IOperation makeElement(String element);
+	public IOperation makeElement(String element) throws ClassNotFoundException;
 }

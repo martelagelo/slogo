@@ -5,7 +5,6 @@ import java.util.Map;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Group;
-import javafx.scene.control.ListView;
 import javafx.scene.paint.Color;
 
 public class ListViewSLOGOVariables extends ListViewAllSLOGO {
@@ -15,11 +14,10 @@ public class ListViewSLOGOVariables extends ListViewAllSLOGO {
     }
     
     @Override
-    protected ListView<String> createAndGetListView(){
-        ListViewCreator lvc = createThings(200, 200, AppConstants.ALL_SELECTORS_XPOS, AppConstants.TURTLE_IMAGE_YPOS + 80,
+    protected void create(){
+        createThings(200, 200, AppConstants.ALL_SELECTORS_XPOS, AppConstants.TURTLE_IMAGE_YPOS + 80,
                                            "SLOGO Variables", 1, Color.BLACK);
-        lvc.getListView().setItems(updateObservableVariables(initializeVariablesMap()));
-        return lvc.getListView();
+        myListViewCreator.getListView().setItems(updateObservableVariables(initializeVariablesMap()));
     }
     
     private Map<String, Object> initializeVariablesMap(){

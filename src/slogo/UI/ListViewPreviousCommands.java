@@ -1,7 +1,7 @@
 package slogo.UI;
 
 import javafx.scene.Group;
-import javafx.scene.control.ListView;
+
 import javafx.scene.paint.Color;
 
 public class ListViewPreviousCommands extends ListViewAllSLOGO {
@@ -10,9 +10,7 @@ public class ListViewPreviousCommands extends ListViewAllSLOGO {
         super(root);
     }
     
-    @Override
-    protected ListView<String> createAndGetListView(){
-        ListViewCreator lvc = createThings(200, 400, 505, 60, "Your Previously Entered Commands", 1, Color.BLACK);
-        return lvc.getListView();
+    protected void create(){
+        createThings(200, 400, 505, 60, "Your Previously Entered Commands", 1, Color.BLACK);
     }
 }
