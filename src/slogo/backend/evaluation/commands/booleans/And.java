@@ -2,6 +2,7 @@ package slogo.backend.evaluation.commands.booleans;
 
 import java.util.List;
 
+import slogo.backend.evaluation.ExecutionContext;
 import slogo.backend.evaluation.IExecutionContext;
 import slogo.backend.evaluation.IOperation;
 
@@ -16,7 +17,8 @@ public class And implements IOperation{
         double testTwo = Double.parseDouble(argumentTwo);
         int value = testOne!=0&&testTwo!=0 ? 1:0;
         String returnArgument = String.valueOf(value);
-        //Update or create new ExecutionContext
+        args.get(0).environment().put("returnValue", returnArgument);
+        return new ExecutionContext(args.get(0).turtles(),args.get(0).environment());
     }
 
 }
