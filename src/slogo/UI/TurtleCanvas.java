@@ -13,9 +13,9 @@ public class TurtleCanvas {
     
     public TurtleCanvas (Group root){
         myRoot = root;
-        myCanvas = new Canvas(400,400);
-        myCanvas.setLayoutX(75);
-        myCanvas.setLayoutY(75);
+        myCanvas = new Canvas(AppConstants.CANVAS_WIDTH, AppConstants.CANVAS_HEIGHT);
+        myCanvas.setLayoutX(AppConstants.CANVAS_OFFSET_X_POS);
+        myCanvas.setLayoutY(AppConstants.CANVAS_OFFSET_Y_POS);
         myGraphicsContext = myCanvas.getGraphicsContext2D();
         myGraphicsContext.setFill(Color.WHITE);
         myGraphicsContext.setStroke(Color.BLACK);

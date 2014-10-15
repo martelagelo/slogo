@@ -15,6 +15,11 @@ public class AppConstants {
         public static final Integer TITLE_X_POS = STAGE_PADDING;
         public static final Integer TITLE_Y_POS = STAGE_PADDING;
         
+        public static final Integer CANVAS_OFFSET_X_POS = 75;
+        public static final Integer CANVAS_OFFSET_Y_POS = 75;
+        public static final Integer CANVAS_WIDTH = 400;
+        public static final Integer CANVAS_HEIGHT = 400;
+        
         public static final Integer FIRST_ROW_BUTTON_HBOX_X_POS = STAGE_WIDTH - 2*STAGE_WIDTH/10;
         public static final Integer FIRST_ROW_BUTTON_HBOX_Y_POS = STAGE_PADDING;
         

@@ -1,6 +1,7 @@
 package slogo.UI;
 
 import java.lang.reflect.InvocationTargetException;
+
 import slogo.View;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -11,6 +12,7 @@ import javafx.scene.Group;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
@@ -18,6 +20,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Line;
 
 /**
  * October 8th, 2014
@@ -26,6 +29,8 @@ import javafx.scene.paint.Color;
  * 
  * @author Nick Widmaier
  * @author Michael Deng 
+ * @author Michael Ren
+ * @author Eric Chen
  *
  */
 public class ModuleCreationHelper {
@@ -46,7 +51,7 @@ public class ModuleCreationHelper {
 	private ObservableList<String> myVariables = FXCollections.observableArrayList();
 	private ObservableList<String> myUserVariables = FXCollections.observableArrayList();
 	private ObservableList<String> myUserCommands = FXCollections.observableArrayList();
-    private GraphicsContext myGraphicsContext;
+	private GraphicsContext myGraphicsContext;
 
 
 	/**
@@ -71,6 +76,13 @@ public class ModuleCreationHelper {
 		createTextField();
 		createListViews();
 		createSelectors();
+		createGridCheckBox();
+	}
+
+	private void createGridCheckBox() {
+		CheckBoxCreator cb = new CheckBoxCreator(root);
+		CheckBox CB = cb.createCheckBox("Toggle Grid");
+		activateReferenceCB(CB);
 	}
 
 	private void createFirstButtonRow() {
@@ -104,7 +116,7 @@ public class ModuleCreationHelper {
 	private void createPlayButton() {
 		ButtonCreator BC = new ButtonCreator(firstButtonRow);
 		Button btn = BC.createButton(new Image(getClass().getResourceAsStream("green-plain-play-button-icon-th.png")));
-		activatPlayAppButton(btn);
+		//activateReferenceGridButton(btn);
 	}
 
 	private void createStopButton() {
@@ -121,34 +133,34 @@ public class ModuleCreationHelper {
 	}
 
 	private void createTextField(){
-	    myTextField = new CommandsTextField(root).createTextField();
-	    activateTextField(myTextField.getTextField());
+		myTextField = new CommandsTextField(root).createTextField();
+		activateTextField(myTextField.getTextField());
 	}
 
 	private void createListViews(){
-	       myCommandsList = new ListViewPreviousCommands(root);
-	       myCommandsList.create();
-	       myVariablesList = new ListViewSLOGOVariables(root);
-	       myVariablesList.create();
-	       myUserVariablesList = new ListViewUserVariables(root);
-	       myUserVariablesList.create();
-	       myUserCommandsList = new ListViewUserCommands(root);
-	       myUserCommandsList.create();
+		myCommandsList = new ListViewPreviousCommands(root);
+		myCommandsList.create();
+		myVariablesList = new ListViewSLOGOVariables(root);
+		myVariablesList.create();
+		myUserVariablesList = new ListViewUserVariables(root);
+		myUserVariablesList.create();
+		myUserCommandsList = new ListViewUserCommands(root);
+		myUserCommandsList.create();
 	}
-        
-        private void createSelectors(){
-            mySelectorsVBox = new VBox(5);
-            TurtleImageSelector turtleSelect = new TurtleImageSelector(mySelectorsVBox);
-            turtleSelect.create(myTurtle, root);
-            BackgroundColorSelector backgroundSelect = new BackgroundColorSelector(mySelectorsVBox);
-            backgroundSelect.create(root, myGraphicsContext);
-            PathColorSelector pathSelect = new PathColorSelector(mySelectorsVBox);
-            pathSelect.create(root, myGraphicsContext);
-            mySelectorsVBox.setLayoutX(AppConstants.ALL_SELECTORS_XPOS);
-            mySelectorsVBox.setLayoutY(AppConstants.BACKGROUND_COLOR_YPOS);
-            root.getChildren().addAll(mySelectorsVBox);
-    }
-        
+
+	private void createSelectors(){
+		mySelectorsVBox = new VBox(5);
+		TurtleImageSelector turtleSelect = new TurtleImageSelector(mySelectorsVBox);
+		turtleSelect.create(myTurtle, root);
+		BackgroundColorSelector backgroundSelect = new BackgroundColorSelector(mySelectorsVBox);
+		backgroundSelect.create(root, myGraphicsContext);
+		PathColorSelector pathSelect = new PathColorSelector(mySelectorsVBox);
+		pathSelect.create(root, myGraphicsContext);
+		mySelectorsVBox.setLayoutX(AppConstants.ALL_SELECTORS_XPOS);
+		mySelectorsVBox.setLayoutY(AppConstants.BACKGROUND_COLOR_YPOS);
+		root.getChildren().addAll(mySelectorsVBox);
+	}
+
 	/**
 	 * Creates an event handler than exits the application on button click.
 	 * 
@@ -172,33 +184,51 @@ public class ModuleCreationHelper {
 			}
 		});
 	}
-	
+
 	public void activateHelpButton(Button btn){
-	    btn.setOnAction(new EventHandler<ActionEvent>(){
-	        @Override
-	        public void handle(ActionEvent event){
-	            HTMLHelpPage help = new HTMLHelpPage(AppConstants.HELP_URL);
-	            help.displayPage();
-	        }
-	    });
+		btn.setOnAction(new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent event){
+				HTMLHelpPage help = new HTMLHelpPage(AppConstants.HELP_URL);
+				help.displayPage();
+			}
+		});
+	}
+
+	public void activateReferenceCB(CheckBox cb){
+		cb.setOnAction(new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent event){
+				if(cb.isSelected()) {
+					Line line = new Line(myCanvas.getCanvas().getLayoutY(), myTurtle.getYPos(), myCanvas.getCanvas().getLayoutY() + myCanvas.getCanvas().getHeight(), myTurtle.getYPos());
+					root.getChildren().add(line);
+					Line line2 = new Line(myTurtle.getXPos(), myCanvas.getCanvas().getLayoutX(), myTurtle.getXPos(), myCanvas.getCanvas().getLayoutX() + myCanvas.getCanvas().getWidth());
+					root.getChildren().add(line2);
+				}
+				else {
+					root.getChildren().remove(root.getChildren().size()-1);
+					root.getChildren().remove(root.getChildren().size()-1);
+				}
+			}
+		});
 	}
 
 	public void activateTextField(TextField TF){
-	    TF.setOnAction(new EventHandler<ActionEvent>(){
-	        @Override
-	        public void handle (ActionEvent event){
-	            myCommands.add(myTextField.getText());
-	            myCommandsList.setItems(myCommands);
-	            //for fun with testing all the listviews
-	            myUserCommands.add(myTextField.getText());
-	            myUserCommandsList.setItems(myUserCommands);
-	            myUserVariables.add(myTextField.getText());
-	            myUserVariablesList.setItems(myUserVariables);
-	            myTextField.setText("");
-	        }
-	    });
+		TF.setOnAction(new EventHandler<ActionEvent>(){
+			@Override
+			public void handle (ActionEvent event){
+				myCommands.add(myTextField.getText());
+				myCommandsList.setItems(myCommands);
+				//for fun with testing all the listviews
+				myUserCommands.add(myTextField.getText());
+				myUserCommandsList.setItems(myUserCommands);
+				myUserVariables.add(myTextField.getText());
+				myUserVariablesList.setItems(myUserVariables);
+				myTextField.setText("");
+			}
+		});
 	}
-	
+
 	public Turtle getTurtle() {
 		return myTurtle;
 	}
@@ -206,7 +236,7 @@ public class ModuleCreationHelper {
 	public Canvas getCanvas() {
 		return myCanvas.getCanvas();
 	}
-	
+
 	public void setView(View view) {
 		this.myView = view;
 	}
