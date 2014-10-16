@@ -28,9 +28,9 @@ public class Main extends Application {
 	 */
 	public void start(Stage primaryStage) {
 		Group root = new Group();
-		ModulePopulator = new ModuleCreationHelper(root);
-		view = new View();
 		Scene scene = new Scene(root, AppConstants.STAGE_WIDTH, AppConstants.STAGE_HEIGHT);
+		ModulePopulator = new ModuleCreationHelper(root, scene);
+		view = new View();
 		scene.setFill(Color.BISQUE);
 		//scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 

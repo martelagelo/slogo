@@ -9,6 +9,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
+import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
@@ -16,11 +17,15 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
+import javafx.scene.shape.Rectangle;
 
 /**
  * October 8th, 2014
@@ -37,6 +42,7 @@ public class ModuleCreationHelper {
 
 	private View myView;
 	private Group root;
+	private Scene scene;
 	private HBox firstButtonRow;
 	private TurtleCanvas myCanvas;
 	private CommandsTextField myTextField;
@@ -58,8 +64,9 @@ public class ModuleCreationHelper {
 	 * The constructor
 	 * @param root The group all the modules are placed in
 	 */
-	public ModuleCreationHelper(Group root) {
+	public ModuleCreationHelper(Group root, Scene scene) {
 		this.root = root;
+		this.scene = scene;
 	}
 
 	/**
@@ -78,6 +85,7 @@ public class ModuleCreationHelper {
 		createListViews();
 		createSelectors();
 		createGridCheckBox();
+		activateKeyEvents();
 	}
 
 	private void createGridCheckBox() {
@@ -225,6 +233,26 @@ public class ModuleCreationHelper {
 				myUserVariables.add(myTextField.getText());
 				myUserVariablesList.setItems(myUserVariables);
 				myTextField.setText("");
+			}
+		});
+	}
+	
+	private void activateKeyEvents() {
+		root.setOnKeyPressed(new EventHandler<KeyEvent>() {
+			@Override
+			public void handle(KeyEvent event) {
+				if (event.getCode() == KeyCode.A) {
+					myTurtle.moveTurtle(myTurtle.getXPos() - 10, myTurtle.getYPos());
+				}
+				if (event.getCode() == KeyCode.D) {
+					myTurtle.moveTurtle(myTurtle.getXPos() + 10, myTurtle.getYPos());
+				}
+				if (event.getCode() == KeyCode.W) {
+					myTurtle.moveTurtle(myTurtle.getXPos(), myTurtle.getYPos() - 10);
+				}
+				if (event.getCode() == KeyCode.S) {
+					myTurtle.moveTurtle(myTurtle.getXPos(), myTurtle.getYPos() + 10);
+				}
 			}
 		});
 	}
