@@ -5,6 +5,7 @@ import java.util.List;
 
 import slogo.backend.evaluation.IOperation;
 import slogo.backend.evaluation.IOperationFactory;
+import slogo.backend.evaluation.MalformedSyntaxException;
 import slogo.backend.evaluation.commands.Constant;
 import slogo.backend.impl.evaluation.OperationFactory;
 import slogo.backend.parsing.IGrammarRule;
@@ -24,7 +25,7 @@ public class Parser implements IParser {
 	}
 
 	@Override
-	public ISyntaxNode parse(List<IToken> tokens) {
+	public ISyntaxNode parse(List<IToken> tokens) throws MalformedSyntaxException {
 		List<ISyntaxNode> nodes = tokensToNodes(tokens);
 		List<ISyntaxNode> nodeStack = new ArrayList<>();
 		
@@ -53,7 +54,7 @@ public class Parser implements IParser {
 			return null;
 		}
 	}
-	public List<ISyntaxNode> tokensToNodes(List<IToken> tokens){
+	public List<ISyntaxNode> tokensToNodes(List<IToken> tokens) throws MalformedSyntaxException {
 		List<ISyntaxNode> nodes = new ArrayList<>();
 		for (IToken token: tokens){
 			IOperation operation;
@@ -61,7 +62,11 @@ public class Parser implements IParser {
 				operation = new Constant(token.text());
 			}
 			else {
-				operation =  operationFactory.makeElement(token.text());
+				try {
+					operation =  operationFactory.makeElement(token.text());
+				} catch (ClassNotFoundException e) {
+					throw new MalformedSyntaxException(e.getMessage());
+				}
 			}
 			ISyntaxNode newNode = new SyntaxNode(token.type(), operation, new ArrayList<>());
 			nodes.add(newNode);

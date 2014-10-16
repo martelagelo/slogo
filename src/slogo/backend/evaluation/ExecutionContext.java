@@ -1,6 +1,5 @@
 package slogo.backend.evaluation;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import slogo.backend.util.ITurtleStatus;
@@ -23,4 +22,7 @@ public class ExecutionContext implements IExecutionContext {
     public Map<String, String> environment () {
         return environmentInfo;
     }
+    //public ExecutionContext copy(){
+      // Deep copy? 
+    //}
 }
