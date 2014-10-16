@@ -35,7 +35,7 @@ public class HTMLHelpPage {
     protected void displayPage(){
         Group newRoot = new Group();
         newRoot.getChildren().addAll(myWebView);
-        Scene newScene = new Scene(newRoot, 800, 500);
+        Scene newScene = new Scene(newRoot, AppConstants.HELP_BUTTON_PREF_WIDTH, AppConstants.HELP_PAGE_HEIGHT);
         Stage newStage = new Stage();
         newStage.setTitle("Help Page");
         newStage.setScene(newScene);

@@ -67,12 +67,13 @@ public class ModuleCreationHelper {
 	 */
 	public void createMainPageModules() {
 		createTitle();
-		createFirstButtonRow();
 		createTurtleCanvas();
+		createTurtle();
+		createSelectorVBox();
+		createFirstButtonRow();
 		createPlayButton();
 		createStopButton();
 		createHelpButton();
-		createTurtle();
 		createTextField();
 		createListViews();
 		createSelectors();
@@ -80,16 +81,14 @@ public class ModuleCreationHelper {
 	}
 
 	private void createGridCheckBox() {
-		CheckBoxCreator cb = new CheckBoxCreator(root);
+		CheckBoxCreator cb = new CheckBoxCreator(mySelectorsVBox);
 		CheckBox CB = cb.createCheckBox("Toggle Grid");
 		activateReferenceCB(CB);
 	}
 
 	private void createFirstButtonRow() {
-		firstButtonRow = new HBox(3);
-		firstButtonRow.setLayoutX(AppConstants.FIRST_ROW_BUTTON_HBOX_X_POS);
-		firstButtonRow.setLayoutY(AppConstants.FIRST_ROW_BUTTON_HBOX_Y_POS);
-		root.getChildren().add(firstButtonRow);
+		HBoxCreator HBC = new HBoxCreator(mySelectorsVBox);
+		firstButtonRow = HBC.createHBox(AppConstants.STAGE_PADDING);
 	}
 
 	/**
@@ -97,7 +96,7 @@ public class ModuleCreationHelper {
 	 */
 	private void createTitle(){
 		LabelCreator LC = new LabelCreator(root);
-		Label label = LC.createLabel("SLOGO!!!", 75, 0, AppConstants.TITLE_LABEL_FONT_SIZE, Color.BLACK);
+		Label label = LC.createLabel("SLOGO!!!", AppConstants.TITLE_X_POS, AppConstants.TITLE_Y_POS, AppConstants.TITLE_LABEL_FONT_SIZE, Color.BLACK);
 	}
 
 	/**
@@ -109,7 +108,7 @@ public class ModuleCreationHelper {
 	}
 
 	private void createTurtle(){
-		myTurtle = new Turtle("Circle", 275, 275);
+		myTurtle = new Turtle("Circle", AppConstants.INITIAL_TURTLE_X_POS, AppConstants.INITIAL_TURTLE_Y_POS);
 		root.getChildren().add(myTurtle.getImage());
 	}
 
@@ -128,7 +127,7 @@ public class ModuleCreationHelper {
 	private void createHelpButton(){
 		ButtonCreator BC = new ButtonCreator(firstButtonRow);
 		Button btn = BC.createButton("Help");
-		btn.setPrefSize(100, 50);
+		btn.setPrefSize(AppConstants.HELP_BUTTON_PREF_WIDTH, AppConstants.HELP_BUTTON_PREF_HEIGHT);
 		activateHelpButton(btn);    
 	}
 
@@ -148,17 +147,18 @@ public class ModuleCreationHelper {
 		myUserCommandsList.create();
 	}
 
-	private void createSelectors(){
-		mySelectorsVBox = new VBox(5);
+	private void createSelectorVBox(){
+		VBoxCreator VBC = new VBoxCreator(root);
+		mySelectorsVBox = VBC.createVBox(AppConstants.STAGE_PADDING, AppConstants.FIRST_ROW_BUTTON_HBOX_X_POS, AppConstants.FIRST_ROW_BUTTON_HBOX_Y_POS);
+	}
+	
+	private void createSelectors() {
 		TurtleImageSelector turtleSelect = new TurtleImageSelector(mySelectorsVBox);
 		turtleSelect.create(myTurtle, root);
 		BackgroundColorSelector backgroundSelect = new BackgroundColorSelector(mySelectorsVBox);
 		backgroundSelect.create(root, myGraphicsContext);
 		PathColorSelector pathSelect = new PathColorSelector(mySelectorsVBox);
 		pathSelect.create(root, myGraphicsContext);
-		mySelectorsVBox.setLayoutX(AppConstants.ALL_SELECTORS_XPOS);
-		mySelectorsVBox.setLayoutY(AppConstants.BACKGROUND_COLOR_YPOS);
-		root.getChildren().addAll(mySelectorsVBox);
 	}
 
 	/**

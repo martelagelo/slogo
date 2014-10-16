@@ -10,18 +10,27 @@ public class AppConstants {
         public static final Integer STAGE_WIDTH = 1200;
         public static final Integer STAGE_HEIGHT = 600;
         public static final Integer STAGE_PADDING = 5;
-        
-        public static final Integer TITLE_LABEL_FONT_SIZE = 3;
-        public static final Integer TITLE_X_POS = STAGE_PADDING;
-        public static final Integer TITLE_Y_POS = STAGE_PADDING;
+        public static final Integer MODULE_PADDING = 30;
         
         public static final Integer CANVAS_OFFSET_X_POS = 75;
         public static final Integer CANVAS_OFFSET_Y_POS = 75;
         public static final Integer CANVAS_WIDTH = 400;
         public static final Integer CANVAS_HEIGHT = 400;
         
+        public static final Integer LABEL_FONT_SIZE = 1;
+        
+        public static final Integer TITLE_LABEL_FONT_SIZE = 3;
+        public static final Integer TITLE_X_POS = CANVAS_OFFSET_X_POS;
+        public static final Integer TITLE_Y_POS = STAGE_PADDING;
+        
+        public static final Integer INITIAL_TURTLE_X_POS = CANVAS_OFFSET_X_POS + CANVAS_WIDTH/2;
+        public static final Integer INITIAL_TURTLE_Y_POS = CANVAS_OFFSET_Y_POS + CANVAS_HEIGHT/2;
+        
         public static final Integer FIRST_ROW_BUTTON_HBOX_X_POS = STAGE_WIDTH - 2*STAGE_WIDTH/10;
         public static final Integer FIRST_ROW_BUTTON_HBOX_Y_POS = STAGE_PADDING;
+        
+        public static final Integer HELP_BUTTON_PREF_WIDTH = 100;
+        public static final Integer HELP_BUTTON_PREF_HEIGHT = 50;
         
         public static final Integer TEXT_BOX_ROW_X_POS = STAGE_PADDING;
         public static final Integer TEXT_BOX_ROW_Y_POS = STAGE_HEIGHT - 50;
@@ -38,7 +47,10 @@ public class AppConstants {
         public static final Integer SELECTOR_HEIGHT = 40;
         public static final Integer SELECTOR_WIDTH = 200;
         public static final Double SELECTOR_FONT_SIZE = .8;
+        
         public static final String HELP_URL = "http://www.cs.duke.edu/courses/compsci308/current/assign/03_slogo/commands.php";
+        public static final Integer HELP_PAGE_WIDTH = 800;
+        public static final Integer HELP_PAGE_HEIGHT = 500;
 }
 
 
