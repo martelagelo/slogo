@@ -12,7 +12,7 @@ public class Atan extends MathOperation{
 
 	@Override
 	protected Number executeMath(List<Number> args) {
-		double argument = Math.toRadians(args.get(0).doubleValue());
+		double argument = (args.get(0).doubleValue());
         double result = Math.atan(argument);
         return Math.toDegrees(result);
 	}

@@ -18,6 +18,10 @@ import org.junit.Test;
 
 
 
+
+
+
+
 import slogo.backend.evaluation.ExecutionContext;
 import slogo.backend.evaluation.IExecutionContext;
 import slogo.backend.evaluation.IOperation;
@@ -27,7 +31,10 @@ import slogo.backend.evaluation.commands.booleans.And;
 import slogo.backend.evaluation.commands.booleans.Less;
 import slogo.backend.evaluation.commands.booleans.Not;
 import slogo.backend.evaluation.commands.booleans.Or;
+import slogo.backend.evaluation.commands.math.Atan;
 import slogo.backend.evaluation.commands.math.Sum;
+import slogo.backend.evaluation.commands.turtle.Forward;
+import slogo.backend.evaluation.commands.turtle.HideTurtle;
 import slogo.backend.impl.evaluation.OperationFactory;
 import slogo.backend.util.Coordinates;
 import slogo.backend.util.Direction;
@@ -35,6 +42,7 @@ import slogo.backend.util.ICoordinates;
 import slogo.backend.util.IDirection;
 import slogo.backend.util.ILine;
 import slogo.backend.util.ITurtleStatus;
+import slogo.backend.util.Line;
 import slogo.backend.util.PenState;
 import slogo.backend.util.TurtleStatus;
 import slogo.backend.util.Visibility;
@@ -68,13 +76,16 @@ public class OperationTest {
 	    Map<String, String> environment = new HashMap<String, String>();
 	    return new ExecutionContext(turtles, environment);
 	}
-	public String binary (IOperation op, String s1, String s2){
+	public String operate (int flag, IOperation op, String s1, String s2){
 	    IExecutionContext con1 = buildContext();
         con1.environment().put("returnValue", s1);
         IExecutionContext con2 = buildContext();
         con2.environment().put("returnValue", s2);
         List<IExecutionContext> list = new ArrayList<IExecutionContext>();
-        list.add(con1);list.add(con2);
+        list.add(con1);
+        if(flag==2){
+        list.add(con2);
+        }
         IExecutionContext result = null;
         try {
             result = op.execute(list);
@@ -87,73 +98,147 @@ public class OperationTest {
 	@Test
 	public void testAnd(){
 	    And and = new And();
-	    String s1 = binary (and, "20", "41");
-	    String s2 = binary (and, "1", "-3");
-	    String s3 = binary (and, "0", "10");
-	    String s4 = binary (and, "-3", "0");
-	    String s5 = binary (and, "0", "0");
-	    assertEquals(s1, "1");
-	    assertEquals(s2, "1");
-	    assertEquals(s3, "0");
-	    assertEquals(s4, "0");
-	    assertEquals(s5, "0");
+	    String s1 = operate (2,and, "20", "41");
+	    String s2 = operate (2,and, "1", "-3");
+	    String s3 = operate (2,and, "0", "10");
+	    String s4 = operate (2,and, "-3", "0");
+	    String s5 = operate (2,and, "0", "0");
+	    assertEquals("1",s1);
+	    assertEquals("1",s2);
+	    assertEquals("0",s3);
+	    assertEquals("0",s4);
+	    assertEquals("0",s5);
 	    
 	}
 	@Test
 	public void testOr(){
 	    Or or = new Or();
-        String s1 = binary (or, "20", "41");
-        String s2 = binary (or, "1", "-3");
-        String s3 = binary (or, "0", "10");
-        String s4 = binary (or, "-3", "0");
-        String s5 = binary (or, "0", "0");
-        assertEquals(s1, "1");
-        assertEquals(s2, "1");
-        assertEquals(s3, "1");
-        assertEquals(s4, "1");
-        assertEquals(s5, "0");
+        String s1 = operate (2,or, "20", "41");
+        String s2 = operate (2,or, "1", "-3");
+        String s3 = operate (2,or, "0", "10");
+        String s4 = operate (2,or, "-3", "0");
+        String s5 = operate (2,or, "0", "0");
+        assertEquals("1",s1);
+        assertEquals("1",s2);
+        assertEquals("1",s3);
+        assertEquals("1",s4);
+        assertEquals("0",s5);
 	}
 	@Test
     public void testNot(){
         Not not = new Not();
-        String s1 = binary (not, "20", "");
-        String s2 = binary (not, "1", "");
-        String s3 = binary (not, "0", "");
-        String s4 = binary (not, "-3", "");
-        String s5 = binary (not, "0", "");
-        assertEquals(s1, "0");
-        assertEquals(s2, "0");
-        assertEquals(s3, "1");
-        assertEquals(s4, "0");
-        assertEquals(s5, "1");
+        String s1 = operate (1,not, "20", "");
+        String s2 = operate (1,not, "1", "");
+        String s3 = operate (1,not, "0", "");
+        String s4 = operate (1,not, "-3", "");
+        String s5 = operate (1,not, "0", "");
+        assertEquals("0",s1);
+        assertEquals("0",s2);
+        assertEquals("1",s3);
+        assertEquals("0",s4);
+        assertEquals("1",s5);
     }
 	@Test
     public void testLess(){
         Less less = new Less();
-        String s1 = binary (less, "20", "100");
-        String s2 = binary (less, "1", "1");
-        String s3 = binary (less, "0", "0.1");
-        String s4 = binary (less, "-3", "1");
-        String s5 = binary (less, "0", "7.2");
-        assertEquals(s1, "1");
-        assertEquals(s2, "0");
-        assertEquals(s3, "1");
-        assertEquals(s4, "1");
-        assertEquals(s5, "1");
+        String s1 = operate (2,less, "20", "100");
+        String s2 = operate (2,less, "1", "1");
+        String s3 = operate (2,less, "0", "0.1");
+        String s4 = operate (2,less, "-3", "1");
+        String s5 = operate (2,less, "0", "7.2");
+        assertEquals("1",s1);
+        assertEquals("0",s2);
+        assertEquals("1",s3);
+        assertEquals("1",s4);
+        assertEquals("1",s5);
     }
 	@Test
     public void testSum(){
         Sum sum = new Sum();
-        String s1 = binary (sum, "27", "7.2");
-        String s2 = binary (sum, "1", "1");
-        String s3 = binary (sum, "0", "0.1");
-        String s4 = binary (sum, "-3", "1");
-        String s5 = binary (sum, "0", "7.2");
-        assertEquals(s1, "34.2");
-        assertEquals(s2, "2");
-        assertEquals(s3, "0.1");
-        assertEquals(s4, "-2");
-        assertEquals(s5, "7.2");
+        String s1 = operate (2,sum, "27", "7.2");
+        String s2 = operate (2,sum, "1", "1");
+        String s3 = operate (2,sum, "0", "0.1");
+        String s4 = operate (2,sum, "-3", "1");
+        String s5 = operate (2,sum, "0", "7.2");
+        assertEquals("34.2",s1);
+        assertEquals("2.0",s2);
+        assertEquals("0.1",s3);
+        assertEquals("-2.0",s4);
+        assertEquals("7.2",s5);
     }
+	@Test
+    public void testAtan(){
+        Atan atan = new Atan();
+        String s1 = operate (1,atan, "1", "");
+        String s2 = operate (1,atan, "2.2", "");
+        String s3 = operate (1,atan, "1.2", "");
+        String s4 = operate (1,atan, "-10.3", "");
+        String s5 = operate (1,atan, "7.8", "");
+        assertEquals(Double.toString(Math.toDegrees(Math.atan(1))),s1);
+        assertEquals(Double.toString(Math.toDegrees(Math.atan(2.2))),s2);
+        assertEquals(Double.toString(Math.toDegrees(Math.atan(1.2))),s3);
+        assertEquals(Double.toString(Math.toDegrees(Math.atan(-10.3))),s4);
+        assertEquals(Double.toString(Math.toDegrees(Math.atan(7.8))),s5);
+    }
+	@Test
+    public void testForward(){
+	Forward forward = new Forward();
+	IExecutionContext con1 = buildContext();
 	
+	con1.environment().put("returnValue", "50");
+	List<IExecutionContext> list = new ArrayList<IExecutionContext>();
+	list.add(con1);
+	IExecutionContext con = forward.execute(list);
+	ITurtleStatus stat = con.turtles().get("1");
+	
+	String retString = con.environment().get("returnValue");
+	
+	List<ILine> lineList = stat.lineSequence();
+	int listSize = lineList.size();
+	ILine line = lineList.get(0);
+	String startX = line.start().getX().toString();
+	String startY = line.start().getY().toString();
+	String endX = line.end().getX().toString();
+	String endY = line.end().getY().toString();
+	
+	ICoordinates cor = stat.turtlePosition();
+	String x = cor.getX().toString();
+	String y = cor.getY().toString();
+	
+	IDirection dir = stat.turtleDirection();
+	String dirString = Double.toString(dir.toDegrees());
+	
+	PenState pen = stat.penState();
+	
+	Visibility vis = stat.turtleVisibility();
+	
+	assertEquals("50",retString);
+	
+	assertEquals(1,listSize);
+	assertEquals("0.0",startX);
+	assertEquals("0.0",startY);
+	assertEquals("50.0",endX);
+	assertEquals("0.0",endY);
+	
+	assertEquals("50.0",x);
+	assertEquals("0.0",y);
+	
+	assertEquals("0.0",dirString);
+	
+	assertEquals(PenState.DOWN,pen);
+	
+	assertEquals(Visibility.VISIBLE,vis);
+	}
+	@Test
+	public void testHideTurtle(){
+	    HideTurtle hide = new HideTurtle();
+	    IExecutionContext con1 = buildContext();
+	    List<IExecutionContext> list = new ArrayList<IExecutionContext>();
+	    list.add(con1);
+	    IExecutionContext con = hide.execute(list);
+	    Visibility vis = con.turtles().get("1").turtleVisibility();
+	    
+	    assertEquals(Visibility.INVISIBLE,vis);
+	    
+	}
 }
