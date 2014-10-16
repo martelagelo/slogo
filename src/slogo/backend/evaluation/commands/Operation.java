@@ -5,8 +5,9 @@ import java.util.List;
 import slogo.backend.evaluation.IExecutionContext;
 import slogo.backend.evaluation.IOperation;
 import slogo.backend.evaluation.MalformedSyntaxException;
+import slogo.backend.parsing.IGrammarRule;
 
-public abstract class Operation implements IOperation{
+public abstract class Operation implements IOperation {
 
 	private String type;
 	private int argMin;
@@ -31,7 +32,7 @@ public abstract class Operation implements IOperation{
 
 	@Override
 	public String type() {
-		return null;
+		return type;
 	}
 
 }
