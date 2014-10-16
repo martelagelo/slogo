@@ -86,7 +86,6 @@ public class ModuleCreationHelper {
 		createSelectors();
 		createGridCheckBox();
 		activateKeyEvents();
-		System.out.println(mySelectorsVBox.getWidth());
 	}
 
 	private void createGridCheckBox() {
@@ -194,6 +193,9 @@ public class ModuleCreationHelper {
 		
 		PathColorSelector pathSelect = new PathColorSelector(mySelectorsVBox);
 		pathSelect.create(root, myGraphicsContext);
+		
+		PathTextureSelector pathTexture = new PathTextureSelector(mySelectorsVBox);
+		pathTexture.create(root);
 	}
 
 	/**
