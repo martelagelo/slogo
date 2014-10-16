@@ -86,6 +86,7 @@ public class ModuleCreationHelper {
 		createSelectors();
 		createGridCheckBox();
 		activateKeyEvents();
+		System.out.println(mySelectorsVBox.getWidth());
 	}
 
 	private void createGridCheckBox() {
@@ -115,35 +116,53 @@ public class ModuleCreationHelper {
 		myGraphicsContext = myCanvas.getGraphicsContext();
 	}
 
+	/**
+	 * Creates the turtle object on the canvas
+	 */
 	private void createTurtle(){
 		myTurtle = new Turtle("Circle", AppConstants.INITIAL_TURTLE_X_POS, AppConstants.INITIAL_TURTLE_Y_POS);
 		root.getChildren().add(myTurtle.getImage());
 	}
 
+	/**
+	 * 
+	 */
 	private void createPlayButton() {
 		ButtonCreator BC = new ButtonCreator(firstButtonRow);
 		Button btn = BC.createButton(new Image(getClass().getResourceAsStream("green-plain-play-button-icon-th.png")));
 		//activateReferenceGridButton(btn);
 	}
 
+	/**
+	 * Creates the button that exits the application
+	 */
 	private void createStopButton() {
 		ButtonCreator BC = new ButtonCreator(firstButtonRow);
 		Button btn = BC.createButton(new Image(getClass().getResourceAsStream("red-stop-button-plain-icon-th.png")));
 		activateExitAppButton(btn);
 	}
 
+	/**
+	 * Creates the help button
+	 */
 	private void createHelpButton(){
 		ButtonCreator BC = new ButtonCreator(firstButtonRow);
 		Button btn = BC.createButton("Help");
 		btn.setPrefSize(AppConstants.HELP_BUTTON_PREF_WIDTH, AppConstants.HELP_BUTTON_PREF_HEIGHT);
 		activateHelpButton(btn);    
 	}
-
+	
+	/**
+	 * Creates the text field where the user enters code
+	 */
 	private void createTextField(){
 		myTextField = new CommandsTextField(root).createTextField();
 		activateTextField(myTextField.getTextField());
 	}
 
+	/**
+	 * 
+	 */
 	private void createListViews(){
 		myCommandsList = new ListViewPreviousCommands(root);
 		myCommandsList.create();
@@ -154,17 +173,25 @@ public class ModuleCreationHelper {
 		myUserCommandsList = new ListViewUserCommands(root);
 		myUserCommandsList.create();
 	}
-
+	
+	/**
+	 * 
+	 */
 	private void createSelectorVBox(){
 		VBoxCreator VBC = new VBoxCreator(root);
 		mySelectorsVBox = VBC.createVBox(AppConstants.STAGE_PADDING, AppConstants.FIRST_ROW_BUTTON_HBOX_X_POS, AppConstants.FIRST_ROW_BUTTON_HBOX_Y_POS);
 	}
 	
+	/**
+	 * 
+	 */
 	private void createSelectors() {
 		TurtleImageSelector turtleSelect = new TurtleImageSelector(mySelectorsVBox);
 		turtleSelect.create(myTurtle, root);
+		
 		BackgroundColorSelector backgroundSelect = new BackgroundColorSelector(mySelectorsVBox);
 		backgroundSelect.create(root, myGraphicsContext);
+		
 		PathColorSelector pathSelect = new PathColorSelector(mySelectorsVBox);
 		pathSelect.create(root, myGraphicsContext);
 	}
@@ -209,13 +236,15 @@ public class ModuleCreationHelper {
 			public void handle(ActionEvent event){
 				if(cb.isSelected()) {
 					Line line = new Line(myCanvas.getCanvas().getLayoutY(), myTurtle.getYPos(), myCanvas.getCanvas().getLayoutY() + myCanvas.getCanvas().getHeight(), myTurtle.getYPos());
+					line.setFill(Color.DARKGREY);
 					root.getChildren().add(line);
 					Line line2 = new Line(myTurtle.getXPos(), myCanvas.getCanvas().getLayoutX(), myTurtle.getXPos(), myCanvas.getCanvas().getLayoutX() + myCanvas.getCanvas().getWidth());
+					line2.setFill(Color.DARKGREY);
 					root.getChildren().add(line2);
 				}
 				else {
-					root.getChildren().remove(root.getChildren().size()-1);
-					root.getChildren().remove(root.getChildren().size()-1);
+					root.getChildren().remove(root.getChildren().size() - 1);
+					root.getChildren().remove(root.getChildren().size() - 1);
 				}
 			}
 		});
@@ -252,6 +281,12 @@ public class ModuleCreationHelper {
 				}
 				if (event.getCode() == KeyCode.S) {
 					myTurtle.moveTurtle(myTurtle.getXPos(), myTurtle.getYPos() + 10);
+				}
+				if (event.getCode() == KeyCode.E) {
+					myTurtle.incrementOrientation(10);
+				}
+				if (event.getCode() == KeyCode.Q) {
+					myTurtle.incrementOrientation(-10);
 				}
 			}
 		});

@@ -76,9 +76,14 @@ public class Turtle {
 		return ypos;
 	}
 
-	protected void setOrientaion(int o){
+	protected void setOrientation(int o){
 		turtleImage.setRotate(o);
 		orientation = o;
+	}
+
+	protected void incrementOrientation(int o) {
+		turtleImage.setRotate(orientation + o);
+		orientation = orientation + o;
 	}
 
 	protected int getOrientation(){
@@ -102,6 +107,7 @@ public class Turtle {
 	protected Turtle getTurtle() {
 		return this;
 	}
+
 
 	protected Map<String, Node> getShapesMap () {
 		return imagesMap;

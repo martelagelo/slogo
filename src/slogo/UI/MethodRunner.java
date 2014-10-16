@@ -12,6 +12,17 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Line;
 
+/**
+ * 10/7/2014
+ * 
+ * Version 1
+ * 
+ * @author Eric Chen
+ * @author Michael Deng
+ * @author Michael Ren
+ * @auther Nick Widmaier
+ *
+ */
 public class MethodRunner {
 
 	private Map<String, Runnable> commandMap;
@@ -44,15 +55,13 @@ public class MethodRunner {
 	private void moveTurtle(int x, int y) {
 		Double xPos = turtle.getXPos();
 		Double yPos = turtle.getYPos();
-		//turtle.moveTurtle(coord.getX(), coord.getY());
 		turtle.moveTurtle(x, y);
 		Line line = new Line();
 		line.setStartX(xPos);
 		line.setStartY(yPos);
 		line.setEndX(x);
 		line.setEndY(y);
-		//line.setEndX(coord.getX());
-		//.line.setEndY(coord.getY());
+
 		root.getChildren().add(line);
 	}
 	
@@ -65,7 +74,7 @@ public class MethodRunner {
 	}
 
 	private void setTurtleDirection(int orientation) {
-		turtle.setOrientaion(orientation);
+		turtle.setOrientation(orientation);
 	}
 	
 	public void setCommandExecutor(int x, int y) {
