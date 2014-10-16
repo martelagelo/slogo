@@ -52,17 +52,17 @@ public class View implements IView{
 		runner = new MethodRunner(root, canvas, turtle, commandMap, pathStack);
 		runner.init();
 		
-//		CommandExecutor CE = new CommandExecutor();
-//		List<Line> lines = new ArrayList<Line>();
-//		Line line = new Line(275, 275, 300, 300);
-//		lines.add(line);
-//		Line line2 = new Line(300, 300, 250, 350);
-//		lines.add(line2);
-//		Line line3 = new Line(250, 350, 200, 200);
-//		lines.add(line3);
-//		CE.setList(lines);
-//		CE.setType("move");
-//		executeInidividualCommands(CE);
+		CommandExecutor CE = new CommandExecutor();
+		List<Line> lines = new ArrayList<Line>();
+		Line line = new Line(275, 275, 300, 300);
+		lines.add(line);
+		Line line2 = new Line(300, 300, 250, 350);
+		lines.add(line2);
+		Line line3 = new Line(250, 350, 200, 200);
+		lines.add(line3);
+		CE.setList(lines);
+		CE.setType("move");
+		executeInidividualCommands(CE);
 	}
 	
 	/**
