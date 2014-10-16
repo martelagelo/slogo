@@ -18,8 +18,11 @@ public abstract class Operation implements IOperation {
 		this.argMax = argMax;
 	}
 	protected void validateArguments(List<IExecutionContext> args) throws MalformedSyntaxException {
-		if (args.size() < argMin || (args.size() > argMax && argMax != -1)) {
-			throw new MalformedSyntaxException();
+		if (args.size() < argMin){
+			throw new MalformedSyntaxException("Arg size is below " + argMin);
+		}
+		if (args.size() > argMax && argMax != -1){
+		    throw new MalformedSyntaxException("Arg size is above " + argMax);
 		}
 	}
 	@Override

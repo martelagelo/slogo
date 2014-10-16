@@ -10,7 +10,7 @@ import slogo.backend.evaluation.commands.MathOperation;
 public class Sum extends MathOperation {
 
     public Sum() {
-		super("Sum", 2, -1);
+		super("Sum", 2, 2);
 	}
 
 	@Override
