@@ -21,4 +21,10 @@ public class And implements IOperation{
         return new ExecutionContext(args.get(0).turtles(),args.get(0).environment());
     }
 
+    @Override
+    public String type () {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
 }
