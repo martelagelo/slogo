@@ -36,7 +36,6 @@ public class ModuleCreationHelper {
 	private TurtleCanvas myCanvas;
 	private CommandsTextField myTextField;
 	private Turtle myTurtle;
-	private VBox myCommandInputVBox;
 	private VBox mySelectorsVBox;
 	private ListViewPreviousCommands myCommandsList;
 	private ListViewSLOGOVariables myVariablesList;
