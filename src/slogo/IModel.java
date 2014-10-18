@@ -16,7 +16,7 @@ public interface IModel {
 	 * 
 	 * @param string a string representing the command
 	 */
-	public void execute(String string);
+	public IExecutionContext execute(String string);
 	/**
 	 * Get requested data from the backend
 	 * 
