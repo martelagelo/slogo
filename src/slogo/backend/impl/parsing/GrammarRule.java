@@ -1,6 +1,7 @@
 package slogo.backend.impl.parsing;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import slogo.backend.evaluation.IOperation;
@@ -13,33 +14,29 @@ import slogo.backend.tokenization.IToken;
 public class GrammarRule implements IGrammarRule {
 	private String command;
 	private List<String> args;
+	public GrammarRule(String command, String[] args){
+		this(command, Arrays.asList(args));
+	}
 	public GrammarRule(String command, List<String> args){
 		this.command = command;
 		this.args = args;
 	}
 	@Override
-	public boolean matches(List<ISyntaxNode> nodes) {
-		if (nodes.size() == 1 + args.size()
-				&& nodes.get(0).type() == command
-				){
-			for (int i = 0; i < args.size(); i++){
-				if (args.get(i) != nodes.get(i+1).type()){
-					return false;
-				}
-			}
-			return true;
+	public int matches(List<ISyntaxNode> nodes) {
+		List<String> searchPattern = new ArrayList<>();
+		searchPattern.add(command);
+		searchPattern.addAll(args);
+		
+		List<String> toSearch = new ArrayList<>();
+		for (ISyntaxNode node: nodes){
+			toSearch.add(node.type());
 		}
-		return false;
-	}
-	@Override
-	public ISyntaxNode produce(List<ISyntaxNode> nodes) {
-		ISyntaxNode result = new SyntaxNode("result", new Result(), new ArrayList<>());
-		ISyntaxNode operation = nodes.get(0);
-		List<ISyntaxNode> args = nodes.subList(1, nodes.size());
-		operation.setChildren(args);
-		List<ISyntaxNode> operationList = new ArrayList<>();
-		operationList.add(operation);
-		result.setChildren(operationList);
-		return result;
+		
+		for (int i = 0; i <= toSearch.size() - searchPattern.size(); i++){
+			if (searchPattern.equals(toSearch.subList(i, i + searchPattern.size()))){
+				return i;
+			}
+		}
+		return -1;
 	}
 }
