@@ -6,7 +6,7 @@ import java.util.List;
 
 import slogo.backend.evaluation.IOperation;
 import slogo.backend.evaluation.IOperationFactory;
-import slogo.backend.evaluation.commands.Result;
+import slogo.backend.impl.evaluation.commands.Result;
 import slogo.backend.parsing.IGrammarRule;
 import slogo.backend.parsing.ISyntaxNode;
 import slogo.backend.tokenization.IToken;
