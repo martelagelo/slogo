@@ -93,7 +93,6 @@ public class OperationTest {
         try {
             result = op.execute(list);
         } catch (MalformedSyntaxException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         return result.environment().get("returnValue");

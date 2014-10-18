@@ -35,16 +35,11 @@ public class Parser implements IParser {
 		}
 	}
 
-	//FIXME
 	@Override
 	public ISyntaxNode parse(List<IToken> tokens) throws MalformedSyntaxException {
 		List<ISyntaxNode> nodes = tokensToNodes(tokens);
 		List<ISyntaxNode> nodeStack = new ArrayList<>();
-		
-		//int nodeIndex = 0;
-		//int oldSize = -1;
-		//int newSize = 0;
-		
+
 		for (ISyntaxNode node: nodes) {
 			nodeStack.add(node);
 			int index = hasProduction(nodeStack);
@@ -59,31 +54,6 @@ public class Parser implements IParser {
 		else {
 			throw new MalformedSyntaxException("Unable to parse tokens");
 		}
-		/*
-		while (newSize != oldSize){
-			nodeStack.add(nodes.get(nodeIndex));
-			for (IGrammarRule rule: rules){
-				for (int i = 0; i < nodeStack.size(); i++){
-					List<ISyntaxNode> subList = nodeStack.subList(i, nodeStack.size());
-					ArrayList<ISyntaxNode> foofoo = new ArrayList<>(subList);
-					if (rule.matches(subList)){
-						nodeStack = reduce(nodeStack, rule, i);
-					}
-				}
-			}
-			if (nodeIndex < nodes.size() - 1){
-				nodeIndex++;
-			}
-			oldSize = newSize;
-			newSize = nodeStack.size();
-		}
-		if (nodeStack.size() == 1){
-			return nodeStack.get(0);
-		}
-		else {
-			return null;
-		}
-		*/
 	}
 
 
