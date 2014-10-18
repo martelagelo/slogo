@@ -33,7 +33,7 @@ public class TurtleImageSelector {
                     }
             }
         });
-        VBox selectorWithLabel = sc.createSelectorWithLabel("Select a Turtle Image", AppConstants.TITLE_LABEL_FONT_SIZE/3, Color.BLACK);
+        VBox selectorWithLabel = sc.createSelectorWithLabel("Select a Turtle Image", AppConstants.LABEL_FONT_SIZE, Color.BLACK);
         mySelectorsVBox.getChildren().add(selectorWithLabel);
     }
 }

@@ -2,7 +2,9 @@ package slogo;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Stack;
 
@@ -17,6 +19,11 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import slogo.UI.MethodRunner;
 import slogo.UI.Turtle;
+import slogo.backend.evaluation.IExecutionContext;
+import slogo.backend.impl.Backend;
+import slogo.backend.impl.evaluation.ExecutionContext;
+import slogo.backend.impl.util.TurtleStatus;
+import slogo.backend.util.ITurtleStatus;
 
 /**
  * October 5th, 2014
@@ -34,6 +41,7 @@ public class View implements IView{
 	private Map<String, Runnable> commandMap = new HashMap<String, Runnable>();
 	private MethodRunner runner;
 	private boolean existingFunction;
+	private IModel backend;
 	
 	private Stack<Line> pathStack;
 	
@@ -47,7 +55,20 @@ public class View implements IView{
 	public void init(Group root, Canvas canvas, Turtle turtle) {
 		pathStack = new Stack<Line>();
 		runner = new MethodRunner(root, canvas, turtle, commandMap, pathStack);
-		runner.init();
+		backend = new Backend();
+		//runner.init();
+		
+//		CommandExecutor CE = new CommandExecutor();
+//		List<Line> lines = new ArrayList<Line>();
+//		Line line = new Line(275, 275, 300, 300);
+//		lines.add(line);
+//		Line line2 = new Line(300, 300, 250, 350);
+//		lines.add(line2);
+//		Line line3 = new Line(250, 350, 200, 200);
+//		lines.add(line3);
+//		CE.setList(lines);
+//		CE.setType("move");
+//		executeInidividualCommands(CE);
 	}
 	
 	/**
@@ -55,24 +76,29 @@ public class View implements IView{
 	 * @param command The code written by the user to be computed
 	 */
 	public void sendCommandToBackend(String command) {
-		System.out.println(command);
+		//System.out.println(command);
+		//IModel backend = new Backend();
+		IExecutionContext result = backend.execute(command);
+		executeCommand(result);
 	}
 	
 	/**
 	 * Executes the command returned from the back-end
 	 * @param str 
 	 */
-	public void executeCommand(String str){
-		existingFunction = false;
-		runner.setCommandExecutor(400, 500);
-		for(String k: commandMap.keySet()) {
-			if (k.equals(str)) {
-				commandMap.get(k).run();
-				existingFunction = true;
-			}
-		}
-		if (!existingFunction) {
-			error("Command does not exist!!!");
+	private void executeInidividualCommands(ITurtleStatus iTurtleStatus){
+		//existingFunction = false;
+		runner.setTurtleStatus(iTurtleStatus);
+		runner.changeFrontEnd();
+				//existingFunction = true;
+//		if (!existingFunction) {
+//			error("Command does not exist!!!");
+//		}
+	}
+	
+	private void executeCommand(IExecutionContext result) {
+		for(String k: result.turtles().keySet()) {
+			executeInidividualCommands(result.turtles().get(k));
 		}
 	}
 

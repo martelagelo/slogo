@@ -15,7 +15,7 @@ public class ListViewSLOGOVariables extends ListViewAllSLOGO {
     
     @Override
     protected void create(){
-        createThings(200, 200, AppConstants.ALL_SELECTORS_XPOS, AppConstants.TURTLE_IMAGE_YPOS + 80,
+        createThings(AppConstants.LIST_BLOCKS_HEIGHT, AppConstants.LIST_BLOCKS_WIDTH, AppConstants.LIST_BLOCKS_X_POS, AppConstants.LIST_BLOCKS_Y_POS_SLOGO_VARIABLES, 
                                            "SLOGO Variables", 1, Color.BLACK);
         myListViewCreator.getListView().setItems(updateObservableVariables(initializeVariablesMap()));
     }
