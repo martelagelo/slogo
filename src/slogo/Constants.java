@@ -5,4 +5,5 @@ public class Constants {
 	public static final String BODY_TOKEN_STRING = "body";
 	public static final String CLOSING_TOKEN_STRING = "closing";
 	public static final String RETURN_VALUE_ENVIRONMENT = "returnValue";
+	public static final String CONSTANT_LABEL = "constant";
 }

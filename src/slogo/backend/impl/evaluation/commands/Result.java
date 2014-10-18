@@ -1,28 +1,21 @@
 package slogo.backend.impl.evaluation.commands;
 
+import java.util.HashMap;
 import java.util.List;
 
 import slogo.backend.evaluation.IExecutionContext;
 import slogo.backend.evaluation.IOperation;
+import slogo.backend.impl.evaluation.ExecutionContext;
 
 public class Result implements IOperation {
 
 	@Override
 	public IExecutionContext execute(List<IExecutionContext> args) {
-		return args.get(0);
-	}
-/*
-	@Override
-	public Number minArgCount() {
-		return 1;
+		return new ExecutionContext(
+				new HashMap<>(args.get(0).turtles()),
+				new HashMap<>(args.get(0).environment()));
 	}
 
-	@Override
-	public Number maxArgCount() {
-		// TODO Auto-generated method stub
-		return 1;
-	}
-*/
 	@Override
 	public String type() {
 		return "result";

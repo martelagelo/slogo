@@ -6,9 +6,9 @@ import slogo.backend.evaluation.IExecutionContext;
 import slogo.backend.util.ITurtleStatus;
 
 public class ExecutionContext implements IExecutionContext {
-    Map<String, ITurtleStatus> turtleInfo;
-    Map<String, String> environmentInfo;
-    
+    private final Map<String, ITurtleStatus> turtleInfo;
+    private final Map<String, String> environmentInfo;
+
     public ExecutionContext(Map<String,ITurtleStatus> myTurtleInfo, Map<String,String> myEnvironmentInfo){
         turtleInfo = myTurtleInfo;
         environmentInfo = myEnvironmentInfo;

@@ -11,6 +11,6 @@ import slogo.backend.parsing.ISyntaxNode;
  */
 public interface IEvaluator {
 
-	public void evaluate(ISyntaxNode root) throws MalformedSyntaxException;
-	public Map<String,String> getData(Collection<String> elements) throws ElementUnsupportedException;
+	public IExecutionContext evaluate(ISyntaxNode root, IExecutionContext previous) throws MalformedSyntaxException;
+	//public Map<String,String> getData(Collection<String> elements) throws ElementUnsupportedException;
 }

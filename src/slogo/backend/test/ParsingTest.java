@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.junit.Test;
 
+import slogo.backend.evaluation.IEvaluator;
 import slogo.backend.evaluation.MalformedSyntaxException;
 import slogo.backend.impl.parsing.GrammarRule;
 import slogo.backend.impl.parsing.Parser;

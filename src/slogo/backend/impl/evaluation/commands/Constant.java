@@ -1,36 +1,28 @@
 package slogo.backend.impl.evaluation.commands;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import slogo.Constants;
 import slogo.backend.evaluation.IExecutionContext;
 import slogo.backend.evaluation.IOperation;
+import slogo.backend.impl.evaluation.ExecutionContext;
 
-public class Constant implements IOperation{
+public class Constant implements IOperation {
 	private String value;
-
 	public Constant(String value){
 		this.value = value;
 	}
-
 	@Override
-	public IExecutionContext execute(List<IExecutionContext> args) {
-		args.get(0).environment().put("returnValue", value);
-		return args.get(0);
+	public IExecutionContext execute (List<IExecutionContext> args) {
+		Map<String, String> newEnvironment = new HashMap<>(args.get(0).environment());
+		newEnvironment.put(Constants.RETURN_VALUE_ENVIRONMENT, value);
+		return new ExecutionContext(new HashMap<>(args.get(0).turtles()), newEnvironment);
 	}
-/*
-	@Override
-	public Number minArgCount() {
-		return 1;
-	}
-
-	@Override
-	public Number maxArgCount() {
-		return 1;
-	}
-*/
 	@Override
 	public String type() {
-		return "constant";
+		return Constants.CONSTANT_LABEL;
 	}
 
 }
