@@ -3,8 +3,8 @@ package slogo.backend.impl.evaluation.commands.turtle;
 import java.util.List;
 
 import slogo.backend.evaluation.IExecutionContext;
-import slogo.backend.evaluation.IOperation;
 import slogo.backend.impl.evaluation.ExecutionContext;
+import slogo.backend.impl.evaluation.commands.Operation;
 import slogo.backend.impl.util.Coordinates;
 import slogo.backend.impl.util.Line;
 import slogo.backend.impl.util.TurtleStatus;
@@ -15,10 +15,15 @@ import slogo.backend.util.ITurtleStatus;
 import slogo.backend.util.PenState;
 import slogo.backend.util.Visibility;
 
-public class Back implements IOperation{
+public class Back extends Operation{
+
+    public Back (String type, int argMin, int argMax) {
+        super("Back", 1, 1);
+        // TODO Auto-generated constructor stub
+    }
 
     @Override
-    public IExecutionContext execute (List<IExecutionContext> args) {
+    protected IExecutionContext executeRaw (List<IExecutionContext> args) {
         // TODO Auto-generated method stub
         ITurtleStatus status = args.get(0).turtles().get("1");
         String backward = args.get(0).environment().get("returnValue");
@@ -41,5 +46,7 @@ public class Back implements IOperation{
         args.get(0).turtles().put("1", newStatus);
         return new ExecutionContext(args.get(0).turtles(),args.get(0).environment());
     }
+
+   
 
 }
