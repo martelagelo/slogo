@@ -30,7 +30,7 @@ import slogo.backend.tokenization.ITokenizer;
 import slogo.backend.tokenization.InvalidTokenRulesException;
 
 public class Backend implements IModel{
-	private ExecutionContext lastContext;
+	private IExecutionContext lastContext;
 
 	public Backend(){
 		this.lastContext = new ExecutionContext(new HashMap<>(), new HashMap<>());
@@ -43,14 +43,6 @@ public class Backend implements IModel{
 		return rules;
 	}
 	private List<IGrammarRule> grammarRules(){
-		// three-star programming
-		/*
-		String[][][] rules = {
-				{ { "Difference" }, { "constant", "constant" } },
-				{ { "Sum" }, { "constant", "constant" } },
-				{ { "Minus" }, { "constant" } }
-		};
-		*/
 		String[][] rules = {
 				{ "Difference", "2" },
 				{ "Sum", "2" },
@@ -95,7 +87,7 @@ public class Backend implements IModel{
 		} catch (MalformedSyntaxException | IOException e) {
 			e.printStackTrace();
 		}
-		
+		lastContext = result;
 		return result;
 	}
 
