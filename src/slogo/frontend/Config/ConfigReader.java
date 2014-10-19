@@ -4,35 +4,36 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.FileReader;
 import java.io.BufferedReader;
+import java.util.HashMap;
+import java.util.Map;
 
+/**
+ * 
+ * @author Michael Deng
+ *
+ */
 public class ConfigReader {
 
-	private static String path = "C:/Users/Michael/workspace/slogo_team03/src/slogo/frontend/Config/Config.txt";
+	private Map<String, String> configMap;
+	private String path = "src/slogo/frontend/Config/Config.txt";
 
 	public ConfigReader() {
-
+		configMap = new HashMap<String, String>();
 	}
 
-	public static void readFile() throws IOException{
+	public void readFile() throws IOException{
 
 		FileReader fr = new FileReader(path);
 		BufferedReader textReader = new BufferedReader(fr);
 
 		int numOfLines = calculateNumOfLines();
-		
-		String[] textData = new String[numOfLines];
 
-		for (int i = 0; i < numOfLines; i++) {
-			textData[i] = textReader.readLine();
-			textData[i] = textData[i].substring(0, textData[i].indexOf(' '));
-			System.out.println(textData[i]);
-		}
+		populateTextData(numOfLines, textReader);
 
 		textReader.close();
 	}
 	
-	private static int calculateNumOfLines() throws IOException{
-		
+	private int calculateNumOfLines() throws IOException{
 		FileReader fr = new FileReader(path);
 		BufferedReader textReader = new BufferedReader(fr);
 		
@@ -44,7 +45,14 @@ public class ConfigReader {
 		return numberOfLines;
 	}
 	
-	public static void main(String[] args) throws IOException {
-		readFile();
+	private void populateTextData(int count, BufferedReader textReader) throws IOException{
+		String textLine;
+		for (int i = 0; i < count; i++) {
+			textLine = textReader.readLine();
+			configMap.put(textLine.substring(textLine.indexOf(' ')+1), textLine.substring(0, textLine.indexOf(' ')));
+			System.out.println(textLine.substring(textLine.indexOf(' ')+1));
+			System.out.println(configMap.get(textLine.substring(textLine.indexOf(' ')+1)));
+		}
 	}
+		
 }

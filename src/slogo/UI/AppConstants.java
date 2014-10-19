@@ -1,12 +1,18 @@
 package slogo.UI;
 
+import java.util.Map;
+
+import javafx.scene.paint.Color;
+
 /**
  * 
  * @author Michael
  *
  */
 public class AppConstants {
-
+	
+		public static final Color BACKGROUND_COLOR = Color.BURLYWOOD;
+	
         public static final Integer STAGE_WIDTH = 1300;
         public static final Integer STAGE_HEIGHT = 750;
         public static final Integer STAGE_PADDING = 5;
@@ -18,6 +24,8 @@ public class AppConstants {
         public static final Integer CANVAS_HEIGHT = 400;
         
         public static final Integer LABEL_FONT_SIZE = 1;
+        
+        public static final Integer VBOX_SPACING = 10;
         
         public static final Integer TITLE_LABEL_FONT_SIZE = LABEL_FONT_SIZE * 3;
         public static final Integer TITLE_X_POS = CANVAS_OFFSET_X_POS;
@@ -64,6 +72,10 @@ public class AppConstants {
         public static final String HELP_URL = "http://www.cs.duke.edu/courses/compsci308/current/assign/03_slogo/commands.php";
         public static final Integer HELP_PAGE_WIDTH = 800;
         public static final Integer HELP_PAGE_HEIGHT = 500;
+        
+        public AppConstants() {
+        	//BACKGROUND_COLOR = Color.BLACK;
+        }
 }
 
 

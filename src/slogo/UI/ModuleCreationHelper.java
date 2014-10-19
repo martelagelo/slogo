@@ -1,8 +1,11 @@
 package slogo.UI;
 
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 
 import slogo.View;
+import slogo.frontend.Config.ConfigReader;
+import slogo.frontend.Config.ConfigWriter;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -40,6 +43,8 @@ import javafx.scene.shape.Rectangle;
  */
 public class ModuleCreationHelper {
 
+	private ConfigReader configReader;
+	private ConfigWriter configWriter;
 	private View myView;
 	private Group root;
 	private Scene scene;
@@ -67,6 +72,8 @@ public class ModuleCreationHelper {
 	public ModuleCreationHelper(Group root, Scene scene) {
 		this.root = root;
 		this.scene = scene;
+		configReader = new ConfigReader();
+		configWriter = new ConfigWriter();
 	}
 
 	/**
@@ -84,6 +91,8 @@ public class ModuleCreationHelper {
 		createTextField();
 		createListViews();
 		createSelectors();
+		createLoadButton();
+		createSaveButton();
 		createGridCheckBox();
 		activateKeyEvents();
 	}
@@ -158,6 +167,24 @@ public class ModuleCreationHelper {
 	}
 	
 	/**
+	 * Creates a button that loads in a config file
+	 */
+	private void createLoadButton() {
+		ButtonCreator BC = new ButtonCreator(mySelectorsVBox);
+		Button btn = BC.createButton("Load Config File");
+		activateLoadButton(btn);
+	}
+	
+	/**
+	 * Create a button that saves to a config file
+	 */
+	private void createSaveButton() {
+		ButtonCreator BC = new ButtonCreator(mySelectorsVBox);
+		Button btn = BC.createButton("Save to Config File");
+		activateSaveButton(btn);
+	}
+	
+	/**
 	 * Creates the text field where the user enters code
 	 */
 	private void createTextField(){
@@ -184,7 +211,7 @@ public class ModuleCreationHelper {
 	 */
 	private void createSelectorVBox(){
 		VBoxCreator VBC = new VBoxCreator(root);
-		mySelectorsVBox = VBC.createVBox(AppConstants.STAGE_PADDING, AppConstants.FIRST_ROW_BUTTON_HBOX_X_POS, AppConstants.FIRST_ROW_BUTTON_HBOX_Y_POS);
+		mySelectorsVBox = VBC.createVBox(AppConstants.VBOX_SPACING, AppConstants.FIRST_ROW_BUTTON_HBOX_X_POS, AppConstants.FIRST_ROW_BUTTON_HBOX_Y_POS);
 	}
 	
 	/**
@@ -219,6 +246,10 @@ public class ModuleCreationHelper {
 		});
 	}
 
+	/**
+	 * 
+	 * @param btn
+	 */
 	public void activatPlayAppButton(Button btn) {
 		btn.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
@@ -238,6 +269,39 @@ public class ModuleCreationHelper {
 			public void handle(ActionEvent event){
 				HTMLHelpPage help = new HTMLHelpPage(AppConstants.HELP_URL);
 				help.displayPage();
+			}
+		});
+	}
+	
+	/**
+	 * Lets the load button load a configuration file
+	 * 
+	 * @param btn The load button
+	 */
+	public void activateLoadButton(Button btn){
+		btn.setOnAction(new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent event){
+				try {
+					configReader.readFile();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+	
+	/**
+	 * Lets the save button save to a configuration file
+	 * 
+	 * @param btn The save button
+	 */
+	public void activateSaveButton(Button btn){
+		btn.setOnAction(new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent event){
+				//TODO
 			}
 		});
 	}

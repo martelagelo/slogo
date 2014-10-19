@@ -31,7 +31,7 @@ public class Main extends Application {
 		Scene scene = new Scene(root, AppConstants.STAGE_WIDTH, AppConstants.STAGE_HEIGHT);
 		ModulePopulator = new ModuleCreationHelper(root, scene);
 		view = new View();
-		scene.setFill(Color.BISQUE);
+		scene.setFill(AppConstants.BACKGROUND_COLOR);
 		//scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 
 		ModulePopulator.createMainPageModules();
