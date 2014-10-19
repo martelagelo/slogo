@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import slogo.backend.evaluation.IExecutionContext;
-import slogo.backend.evaluation.IOperation;
 import slogo.backend.impl.evaluation.ExecutionContext;
+import slogo.backend.impl.evaluation.commands.Operation;
 import slogo.backend.impl.util.Coordinates;
 import slogo.backend.impl.util.TurtleStatus;
 import slogo.backend.util.ICoordinates;
@@ -14,10 +14,15 @@ import slogo.backend.util.ILine;
 import slogo.backend.util.ITurtleStatus;
 import slogo.backend.util.PenState;
 
-public class ClearScreen implements IOperation{
+public class ClearScreen extends Operation{
+
+    public ClearScreen (String type, int argMin, int argMax) {
+        super("ClearScreen", 0, 0);
+        // TODO Auto-generated constructor stub
+    }
 
     @Override
-    public IExecutionContext execute (List<IExecutionContext> args) {
+    protected IExecutionContext executeRaw (List<IExecutionContext> args) {
         // TODO Auto-generated method stub
         ITurtleStatus status = args.get(0).turtles().get("1");
         
@@ -36,5 +41,7 @@ public class ClearScreen implements IOperation{
         args.get(0).turtles().put("1", newStatus);
         return new ExecutionContext(args.get(0).turtles(),args.get(0).environment());
     }
+
+   
 
 }
