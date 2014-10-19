@@ -6,6 +6,9 @@ import java.util.Map;
 import java.util.Stack;
 
 import slogo.CommandExecutor;
+import slogo.backend.impl.util.TurtleStatus;
+import slogo.backend.util.ILine;
+import slogo.backend.util.ITurtleStatus;
 import javafx.geometry.Point2D;
 import javafx.scene.Group;
 import javafx.scene.canvas.Canvas;
@@ -31,7 +34,7 @@ public class MethodRunner {
 	private Group root;
 	private Stack<Line> pathStack;
 	
-	private CommandExecutor CE;
+	private ITurtleStatus TS;
 	private int x;
 	private int y;
 
@@ -43,47 +46,52 @@ public class MethodRunner {
 		this.pathStack = stack;
 	}
 
-	public void init() {
-		commandMap.put("fd", () -> { 
-			moveTurtle(x, y);
-		});
-		commandMap.put("move", () -> {
-			moveTurtle(CE.getList());
-		});
+//	public void init() {
+//		commandMap.put("fd", () -> { 
+//			moveTurtle(x, y);
+//		});
+//		commandMap.put("move", () -> {
+//			moveTurtle(CE.getList());
+//		});
+//	}
+	
+	public void changeFrontEnd() {
+		//moveTurtle();
+		setVariables();
 	}
 
-	private void moveTurtle(int x, int y) {
-		Double xPos = turtle.getXPos();
-		Double yPos = turtle.getYPos();
-		turtle.moveTurtle(x, y);
-		Line line = new Line();
-		line.setStartX(xPos);
-		line.setStartY(yPos);
-		line.setEndX(x);
-		line.setEndY(y);
-
-		root.getChildren().add(line);
+//	private void moveTurtle(int x, int y) {
+//		Double xPos = turtle.getXPos();
+//		Double yPos = turtle.getYPos();
+//		turtle.moveTurtle(x, y);
+//		Line line = new Line();
+//		line.setStartX(xPos);
+//		line.setStartY(yPos);
+//		line.setEndX(x);
+//		line.setEndY(y);
+//
+//		root.getChildren().add(line);
+//	}
+	
+	private void setVariables() {
+		
 	}
 	
-	private void moveTurtle(List<Line> lines) {
-		for (Line l: lines) {
-			root.getChildren().add(l);
-			pathStack.push(l);
-			if (lines.get(lines.size()-1) == l) turtle.moveTurtle(l.getEndX(), l.getEndY());
+	private void moveTurtle() {
+		for (ILine l: TS.lineSequence()) {
+			root.getChildren().add((Line) l);
+			pathStack.push((Line) l);
+			//if (lines.get(lines.size()-1) == l) turtle.moveTurtle(l.getEndX(), l.getEndY());
 		}
+		turtle.moveTurtle((double) TS.turtlePosition().getX(), (double) TS.turtlePosition().getY()); 
 	}
 
 	private void setTurtleDirection(int orientation) {
 		turtle.setOrientation(orientation);
 	}
 	
-	public void setCommandExecutor(int x, int y) {
-		this.x = x;
-		this.y = y;
-	}
-	
-	public void setCommandExecutor(CommandExecutor commandExecutor) {
-		this.CE = commandExecutor;
+	public void setTurtleStatus(ITurtleStatus TS) {
+		this.TS = TS;
 	}
 
 }

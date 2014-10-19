@@ -258,6 +258,10 @@ public class ModuleCreationHelper {
 			public void handle (ActionEvent event){
 				myCommands.add(myTextField.getText());
 				myCommandsList.setItems(myCommands);
+				
+				myView.sendCommandToBackend(myTextField.getText());
+				
+				
 				//for fun with testing all the listviews
 				myUserCommands.add(myTextField.getText());
 				myUserCommandsList.setItems(myUserCommands);
