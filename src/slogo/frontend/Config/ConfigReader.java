@@ -15,18 +15,33 @@ public class ConfigReader {
 
 	public static void readFile() throws IOException{
 
-		FileReader fr = new FileReader("Config");
+		FileReader fr = new FileReader(path);
 		BufferedReader textReader = new BufferedReader(fr);
 
-		int numberOfLines = 1;
-		String[] textData = new String[numberOfLines];
+		int numOfLines = calculateNumOfLines();
+		
+		String[] textData = new String[numOfLines];
 
-		for (int i = 0; i < numberOfLines; i++) {
+		for (int i = 0; i < numOfLines; i++) {
 			textData[i] = textReader.readLine();
+			textData[i] = textData[i].substring(0, textData[i].indexOf(' '));
+			System.out.println(textData[i]);
 		}
 
 		textReader.close();
-		System.out.println(textData[0]);
+	}
+	
+	private static int calculateNumOfLines() throws IOException{
+		
+		FileReader fr = new FileReader(path);
+		BufferedReader textReader = new BufferedReader(fr);
+		
+		String aLine;
+		int numberOfLines = 0;
+		while ((aLine = textReader.readLine()) != null) {
+			numberOfLines++;
+		}
+		return numberOfLines;
 	}
 	
 	public static void main(String[] args) throws IOException {
