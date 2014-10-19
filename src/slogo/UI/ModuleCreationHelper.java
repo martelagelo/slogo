@@ -46,7 +46,7 @@ public class ModuleCreationHelper {
 
 	private ConfigReader configReader;
 	private ConfigWriter configWriter;
-	private Stage primaryStage;
+	private Stage stage;
 	private View myView;
 	private Group root;
 	private Scene scene;
@@ -72,7 +72,7 @@ public class ModuleCreationHelper {
 	 * @param root The group all the modules are placed in
 	 */
 	public ModuleCreationHelper(Group root, Scene scene, Stage stage) {
-		this.primaryStage = stage;
+		this.stage = stage;
 		this.root = root;
 		this.scene = scene;
 		configReader = new ConfigReader();
@@ -96,6 +96,7 @@ public class ModuleCreationHelper {
 		createSelectors();
 		createLoadButton();
 		createSaveButton();
+		createExtraWorkspaceButton();
 		createGridCheckBox();
 		activateKeyEvents();
 	}
@@ -187,6 +188,12 @@ public class ModuleCreationHelper {
 		activateSaveButton(btn);
 	}
 	
+	private void createExtraWorkspaceButton() {
+		ButtonCreator BC = new ButtonCreator(mySelectorsVBox);
+		Button btn = BC.createButton("Load Extra Workspace");
+		activateExtraWorkspaceButton(btn);
+	}
+	
 	/**
 	 * Creates the text field where the user enters code
 	 */
@@ -258,7 +265,7 @@ public class ModuleCreationHelper {
 			@Override
 			public void handle(ActionEvent event) {
 				Main main = new Main();
-				main.start(primaryStage);
+				main.start(stage);
 				//Platform.exit();
 			}
 		});
@@ -307,6 +314,21 @@ public class ModuleCreationHelper {
 			@Override
 			public void handle(ActionEvent event){
 				configWriter.writeToTextFile();
+			}
+		});
+	}
+	
+	/**
+	 * 
+	 * @param btn
+	 */
+	public void activateExtraWorkspaceButton(Button btn){
+		btn.setOnAction(new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent event){
+				Stage newStage = new Stage();
+				Main main = new Main();
+				main.start(newStage);
 			}
 		});
 	}

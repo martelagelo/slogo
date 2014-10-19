@@ -6,9 +6,7 @@ import java.io.IOException;
 
 public class ConfigWriter {
 
-	private String path = "src/slogo/frontend/Config/Config.txt";
-	
-	
+	private String path = "src/slogo/frontend/Config/Config.txt";	
 	
 	public void writeToTextFile() {
 		BufferedWriter writer = null;
