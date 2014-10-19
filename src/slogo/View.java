@@ -39,9 +39,7 @@ import slogo.backend.util.ITurtleStatus;
 public class View implements IView{
 
 	private MethodRunner runner;
-	private boolean existingFunction;
-	private IModel backend;
-	
+	private IModel backend;	
 	private Stack<Line> pathStack;
 	
 	/**
@@ -84,12 +82,8 @@ public class View implements IView{
 	 * @param str 
 	 */
 	private void executeTurtleCommands(ITurtleStatus iTurtleStatus){
-		//existingFunction = false;
 		runner.setTurtleStatus(iTurtleStatus);
 		runner.changeTurtle();
-//		if (!existingFunction) {
-//			error("Command does not exist!!!");
-//		}
 	}
 	
 	private void executeEnvironmentCommands(String var) {

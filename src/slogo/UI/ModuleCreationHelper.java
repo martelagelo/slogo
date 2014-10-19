@@ -88,12 +88,18 @@ public class ModuleCreationHelper {
 		activateKeyEvents();
 	}
 
+	/**
+	 * Creates a checkBox for the Grid
+	 */
 	private void createGridCheckBox() {
 		CheckBoxCreator cb = new CheckBoxCreator(mySelectorsVBox);
 		CheckBox CB = cb.createCheckBox("Toggle Grid");
 		activateReferenceCB(CB);
 	}
 
+	/**
+	 * Creates a HBox for the buttons
+	 */
 	private void createFirstButtonRow() {
 		HBoxCreator HBC = new HBoxCreator(mySelectorsVBox);
 		firstButtonRow = HBC.createHBox(AppConstants.STAGE_PADDING);
@@ -174,7 +180,7 @@ public class ModuleCreationHelper {
 	}
 	
 	/**
-	 * 
+	 * Creates a VBox for all of the selectors
 	 */
 	private void createSelectorVBox(){
 		VBoxCreator VBC = new VBoxCreator(root);
@@ -222,6 +228,10 @@ public class ModuleCreationHelper {
 		});
 	}
 
+	/**
+	 * Lets the help button navigate to a help website
+	 * @param btn: The help button
+	 */
 	public void activateHelpButton(Button btn){
 		btn.setOnAction(new EventHandler<ActionEvent>(){
 			@Override
@@ -298,14 +308,26 @@ public class ModuleCreationHelper {
 		});
 	}
 
+	/**
+	 * Returns the current turtle
+	 * @return The turtle
+	 */
 	public Turtle getTurtle() {
 		return myTurtle;
 	}
 
+	/**
+	 * Returns the canvas 
+	 * @return The canvas
+	 */
 	public Canvas getCanvas() {
 		return myCanvas.getCanvas();
 	}
 
+	/**
+	 * Sets the value of myView
+	 * @param view The view
+	 */
 	public void setView(View view) {
 		this.myView = view;
 	}

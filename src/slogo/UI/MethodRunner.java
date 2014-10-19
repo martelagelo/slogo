@@ -44,10 +44,10 @@ public class MethodRunner {
 	}
 	
 	public void changeTurtle() {
-		//moveTurtle();
-		//setTurtleDirection();
-		//setPenState();
-		//setTurtleVisibility();
+		moveTurtle();
+		setTurtleDirection();
+		setPenState();
+		setTurtleVisibility();
 	}
 	
 	public void changeEnvironment() {
@@ -87,7 +87,9 @@ public class MethodRunner {
 	}
 	
 	private void setTurtleVisibility() {
-		
+		if (TS.turtleVisibility().VISIBLE != null) {
+			//TODO
+		}
 	}
 	
 	public void setTurtleStatus(ITurtleStatus TS) {
