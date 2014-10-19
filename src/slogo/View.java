@@ -38,7 +38,6 @@ import slogo.backend.util.ITurtleStatus;
  */
 public class View implements IView{
 
-	private Map<String, Runnable> commandMap = new HashMap<String, Runnable>();
 	private MethodRunner runner;
 	private boolean existingFunction;
 	private IModel backend;
@@ -54,9 +53,8 @@ public class View implements IView{
 	 */
 	public void init(Group root, Canvas canvas, Turtle turtle) {
 		pathStack = new Stack<Line>();
-		runner = new MethodRunner(root, canvas, turtle, commandMap, pathStack);
+		runner = new MethodRunner(root, canvas, turtle, pathStack);
 		backend = new Backend();
-		//runner.init();
 		
 //		CommandExecutor CE = new CommandExecutor();
 //		List<Line> lines = new ArrayList<Line>();
@@ -77,7 +75,6 @@ public class View implements IView{
 	 */
 	public void sendCommandToBackend(String command) {
 		//System.out.println(command);
-		//IModel backend = new Backend();
 		IExecutionContext result = backend.execute(command);
 		executeCommand(result);
 	}
@@ -86,19 +83,26 @@ public class View implements IView{
 	 * Executes the command returned from the back-end
 	 * @param str 
 	 */
-	private void executeInidividualCommands(ITurtleStatus iTurtleStatus){
+	private void executeTurtleCommands(ITurtleStatus iTurtleStatus){
 		//existingFunction = false;
 		runner.setTurtleStatus(iTurtleStatus);
-		runner.changeFrontEnd();
-				//existingFunction = true;
+		runner.changeTurtle();
 //		if (!existingFunction) {
 //			error("Command does not exist!!!");
 //		}
 	}
 	
+	private void executeEnvironmentCommands(String var) {
+		runner.setEnvironment(var);
+		runner.changeEnvironment();
+	}
+	
 	private void executeCommand(IExecutionContext result) {
 		for(String k: result.turtles().keySet()) {
-			executeInidividualCommands(result.turtles().get(k));
+			executeTurtleCommands(result.turtles().get(k));
+		}
+		for(String k: result.environment().keySet()) {
+			executeEnvironmentCommands(result.environment().get("returnValue"));
 		}
 	}
 
