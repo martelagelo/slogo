@@ -29,6 +29,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.Stage;
 
 /**
  * October 8th, 2014
@@ -45,6 +46,7 @@ public class ModuleCreationHelper {
 
 	private ConfigReader configReader;
 	private ConfigWriter configWriter;
+	private Stage primaryStage;
 	private View myView;
 	private Group root;
 	private Scene scene;
@@ -69,7 +71,8 @@ public class ModuleCreationHelper {
 	 * The constructor
 	 * @param root The group all the modules are placed in
 	 */
-	public ModuleCreationHelper(Group root, Scene scene) {
+	public ModuleCreationHelper(Group root, Scene scene, Stage stage) {
+		this.primaryStage = stage;
 		this.root = root;
 		this.scene = scene;
 		configReader = new ConfigReader();
@@ -144,7 +147,7 @@ public class ModuleCreationHelper {
 	private void createPlayButton() {
 		ButtonCreator BC = new ButtonCreator(firstButtonRow);
 		Button btn = BC.createButton(new Image(getClass().getResourceAsStream("green-plain-play-button-icon-th.png")));
-		//activateReferenceGridButton(btn);
+		activatePlayAppButton(btn);
 	}
 
 	/**
@@ -250,11 +253,13 @@ public class ModuleCreationHelper {
 	 * 
 	 * @param btn
 	 */
-	public void activatPlayAppButton(Button btn) {
+	public void activatePlayAppButton(Button btn) {
 		btn.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				//TODO
+				Main main = new Main();
+				main.start(primaryStage);
+				//Platform.exit();
 			}
 		});
 	}
@@ -301,7 +306,7 @@ public class ModuleCreationHelper {
 		btn.setOnAction(new EventHandler<ActionEvent>(){
 			@Override
 			public void handle(ActionEvent event){
-				//TODO
+				configWriter.writeToTextFile();
 			}
 		});
 	}
@@ -334,7 +339,6 @@ public class ModuleCreationHelper {
 				myCommandsList.setItems(myCommands);
 				
 				myView.sendCommandToBackend(myTextField.getText());
-				
 				
 				//for fun with testing all the listviews
 				myUserCommands.add(myTextField.getText());

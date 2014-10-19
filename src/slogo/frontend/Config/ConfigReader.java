@@ -7,6 +7,9 @@ import java.io.BufferedReader;
 import java.util.HashMap;
 import java.util.Map;
 
+import slogo.UI.AppConstants;
+
+
 /**
  * 
  * @author Michael Deng
@@ -16,6 +19,7 @@ public class ConfigReader {
 
 	private Map<String, String> configMap;
 	private String path = "src/slogo/frontend/Config/Config.txt";
+	private AppConstants appConstants;
 
 	public ConfigReader() {
 		configMap = new HashMap<String, String>();
@@ -31,6 +35,8 @@ public class ConfigReader {
 		populateTextData(numOfLines, textReader);
 
 		textReader.close();
+		
+		//setVariablesFromConfig(configMap);
 	}
 	
 	private int calculateNumOfLines() throws IOException{
