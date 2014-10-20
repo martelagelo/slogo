@@ -6,7 +6,7 @@ import slogo.backend.evaluation.IExecutionContext;
 import slogo.backend.evaluation.IOperation;
 import slogo.backend.impl.evaluation.ExecutionContext;
 
-public class And implements IOperation{
+public class And extends Operation{
 
     @Override
     public IExecutionContext execute (List<IExecutionContext> args) {
@@ -21,10 +21,6 @@ public class And implements IOperation{
         return new ExecutionContext(args.get(0).turtles(),args.get(0).environment());
     }
 
-    @Override
-    public String type () {
-        // TODO Auto-generated method stub
-        return null;
-    }
+   
 
 }

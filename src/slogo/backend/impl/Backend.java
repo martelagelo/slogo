@@ -44,10 +44,44 @@ public class Backend implements IModel{
 	}
 	private List<IGrammarRule> grammarRules(){
 		String[][] rules = {
-				{ "Difference", "2" },
+		        {"And", "2"},
+		        {"Equal","2"},
+		        {"Greater","2"},    
+		        {"Less","2"},
+		        {"Not","1"},
+		        {"NotEqual","2"},
+		        {"Or","2"},
+		        {"Atan","1"},
+		        {"Cos","1"},
+		        { "Difference", "2" },
+		        {"Log","1"},
+		        { "Minus", "1" },
+				{"Pow","2"},
+				{"Product","2"},
+				{"Quotient","2"},
+				{"RandomNumber","1"},
+				{"Remainder","2"},
+				{"Sin","1"},
 				{ "Sum", "2" },
-				{ "Minus", "1" },
-				{ "Forward", "1" }
+				{"Tan","1"},
+				{"Back","1"},
+				{"ClearScreen","0"},
+				{ "Forward", "1" },
+				{"Heading","0"},
+				{"HideTurtle","0"},
+				{"Home","0"},
+				{"IsPenDown","0"},
+				{"IsShowing","0"},
+				{"Left","1"},
+				{"PenDown","0"},
+				{"PenUp","0"},
+				{"Right","1"},
+				{"SetHeading","1"},
+				{"SetXY","2"},
+				{"ShowTurtle","0"},
+				{"Towards","2"},
+				{"Xcor","0"},
+				{"Ycor","0"}
 		};
 		List<IGrammarRule> ruleList = new ArrayList<>();
 		for (String[] rule: rules) {
