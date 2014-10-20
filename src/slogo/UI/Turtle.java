@@ -14,9 +14,9 @@ public class Turtle {
 	private Node turtleImage;
 	private double xpos;
 	private double ypos;
-	private int orientation;
 	private boolean myDashed;
 	private boolean myBold;
+	private double orientation;
 	private Map<String, Node> imagesMap;
 
 	public Turtle(String s, int x, int y){
@@ -79,7 +79,7 @@ public class Turtle {
 		return ypos;
 	}
 
-	protected void setOrientation(int o){
+	protected void setOrientation(double o){
 		turtleImage.setRotate(o);
 		orientation = o;
 	}
@@ -89,7 +89,7 @@ public class Turtle {
 		orientation = orientation + o;
 	}
 
-	protected int getOrientation(){
+	protected double getOrientation(){
 		return orientation;
 	}
 

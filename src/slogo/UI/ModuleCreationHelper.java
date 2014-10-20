@@ -1,8 +1,11 @@
 package slogo.UI;
 
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 
 import slogo.View;
+import slogo.frontend.Config.ConfigReader;
+import slogo.frontend.Config.ConfigWriter;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -26,6 +29,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.Stage;
 
 /**
  * October 8th, 2014
@@ -40,6 +44,9 @@ import javafx.scene.shape.Rectangle;
  */
 public class ModuleCreationHelper {
 
+	private ConfigReader configReader;
+	private ConfigWriter configWriter;
+	private Stage stage;
 	private View myView;
 	private Group root;
 	private Scene scene;
@@ -63,9 +70,12 @@ public class ModuleCreationHelper {
 	 * The constructor
 	 * @param root The group all the modules are placed in
 	 */
-	public ModuleCreationHelper(Group root, Scene scene) {
+	public ModuleCreationHelper(Group root, Scene scene, Stage stage) {
+		this.stage = stage;
 		this.root = root;
 		this.scene = scene;
+		configReader = new ConfigReader();
+		configWriter = new ConfigWriter();
 	}
 
 	/**
@@ -84,16 +94,25 @@ public class ModuleCreationHelper {
 		createTextField();
 		createListViews();
 		createSelectors();
+		createLoadButton();
+		createSaveButton();
+		createExtraWorkspaceButton();
 		createGridCheckBox();
 		activateKeyEvents();
 	}
 
+	/**
+	 * Creates a checkBox for the Grid
+	 */
 	private void createGridCheckBox() {
 		CheckBoxCreator cb = new CheckBoxCreator(mySelectorsVBox);
 		CheckBox CB = cb.createCheckBox("Toggle Grid");
 		activateReferenceCB(CB);
 	}
 
+	/**
+	 * Creates a HBox for the buttons
+	 */
 	private void createFirstButtonRow() {
 		HBoxCreator HBC = new HBoxCreator(mySelectorsVBox);
 		firstButtonRow = HBC.createHBox(AppConstants.STAGE_PADDING);
@@ -129,7 +148,7 @@ public class ModuleCreationHelper {
 	private void createPlayButton() {
 		ButtonCreator BC = new ButtonCreator(firstButtonRow);
 		Button btn = BC.createButton(new Image(getClass().getResourceAsStream("green-plain-play-button-icon-th.png")));
-		//activateReferenceGridButton(btn);
+		activatePlayAppButton(btn);
 	}
 
 	/**
@@ -152,6 +171,7 @@ public class ModuleCreationHelper {
 	}
 	
 	/**
+<<<<<<< HEAD
 	 * Add another turtle to scene
 	 */
 	private void createNewTurtleButton(){
@@ -172,6 +192,32 @@ public class ModuleCreationHelper {
     }
 
     /**
+=======
+	 * Creates a button that loads in a config file
+	 */
+	private void createLoadButton() {
+		ButtonCreator BC = new ButtonCreator(mySelectorsVBox);
+		Button btn = BC.createButton("Load Config File");
+		activateLoadButton(btn);
+	}
+	
+	/**
+	 * Create a button that saves to a config file
+	 */
+	private void createSaveButton() {
+		ButtonCreator BC = new ButtonCreator(mySelectorsVBox);
+		Button btn = BC.createButton("Save to Config File");
+		activateSaveButton(btn);
+	}
+	
+	private void createExtraWorkspaceButton() {
+		ButtonCreator BC = new ButtonCreator(mySelectorsVBox);
+		Button btn = BC.createButton("Load Extra Workspace");
+		activateExtraWorkspaceButton(btn);
+	}
+	
+	/**
+>>>>>>> 78fae374bb78bc7f101f64b99aa3777d6cded20c
 	 * Creates the text field where the user enters code
 	 */
 	private void createTextField(){
@@ -194,11 +240,11 @@ public class ModuleCreationHelper {
 	}
 	
 	/**
-	 * 
+	 * Creates a VBox for all of the selectors
 	 */
 	private void createSelectorVBox(){
 		VBoxCreator VBC = new VBoxCreator(root);
-		mySelectorsVBox = VBC.createVBox(AppConstants.STAGE_PADDING, AppConstants.FIRST_ROW_BUTTON_HBOX_X_POS, AppConstants.FIRST_ROW_BUTTON_HBOX_Y_POS);
+		mySelectorsVBox = VBC.createVBox(AppConstants.VBOX_SPACING, AppConstants.FIRST_ROW_BUTTON_HBOX_X_POS, AppConstants.FIRST_ROW_BUTTON_HBOX_Y_POS);
 	}
 	
 	/**
@@ -233,21 +279,79 @@ public class ModuleCreationHelper {
 		});
 	}
 
-	public void activatPlayAppButton(Button btn) {
+	/**
+	 * 
+	 * @param btn
+	 */
+	public void activatePlayAppButton(Button btn) {
 		btn.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				//TODO
+				Main main = new Main();
+				main.start(stage);
+				//Platform.exit();
 			}
 		});
 	}
 
+	/**
+	 * Lets the help button navigate to a help website
+	 * @param btn: The help button
+	 */
 	public void activateHelpButton(Button btn){
 		btn.setOnAction(new EventHandler<ActionEvent>(){
 			@Override
 			public void handle(ActionEvent event){
 				HTMLHelpPage help = new HTMLHelpPage(AppConstants.HELP_URL);
 				help.displayPage();
+			}
+		});
+	}
+	
+	/**
+	 * Lets the load button load a configuration file
+	 * 
+	 * @param btn The load button
+	 */
+	public void activateLoadButton(Button btn){
+		btn.setOnAction(new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent event){
+				try {
+					configReader.readFile();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+	
+	/**
+	 * Lets the save button save to a configuration file
+	 * 
+	 * @param btn The save button
+	 */
+	public void activateSaveButton(Button btn){
+		btn.setOnAction(new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent event){
+				configWriter.writeToTextFile();
+			}
+		});
+	}
+	
+	/**
+	 * 
+	 * @param btn
+	 */
+	public void activateExtraWorkspaceButton(Button btn){
+		btn.setOnAction(new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent event){
+				Stage newStage = new Stage();
+				Main main = new Main();
+				main.start(newStage);
 			}
 		});
 	}
@@ -280,7 +384,6 @@ public class ModuleCreationHelper {
 				myCommandsList.setItems(myCommands);
 				
 				myView.sendCommandToBackend(myTextField.getText());
-				
 				
 				//for fun with testing all the listviews
 				myUserCommands.add(myTextField.getText());
@@ -320,14 +423,26 @@ public class ModuleCreationHelper {
 		});
 	}
 
+	/**
+	 * Returns the current turtle
+	 * @return The turtle
+	 */
 	public Turtle getTurtle() {
 		return myTurtle;
 	}
 
+	/**
+	 * Returns the canvas 
+	 * @return The canvas
+	 */
 	public Canvas getCanvas() {
 		return myCanvas.getCanvas();
 	}
 
+	/**
+	 * Sets the value of myView
+	 * @param view The view
+	 */
 	public void setView(View view) {
 		this.myView = view;
 	}

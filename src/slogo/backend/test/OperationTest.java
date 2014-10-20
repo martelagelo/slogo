@@ -184,13 +184,19 @@ public class OperationTest {
     }
 	@Test
     public void testForward(){
-	Forward forward = new Forward();
+	Forward forward = new Forward("Forward", 1 , 1);
 	IExecutionContext con1 = buildContext();
 	
 	con1.environment().put("returnValue", "50");
 	List<IExecutionContext> list = new ArrayList<IExecutionContext>();
 	list.add(con1);
-	IExecutionContext con = forward.execute(list);
+	IExecutionContext con = null;
+    try {
+        con = forward.execute(list);
+    } catch (MalformedSyntaxException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+    }
 	ITurtleStatus stat = con.turtles().get("1");
 	
 	String retString = con.environment().get("returnValue");
@@ -233,11 +239,17 @@ public class OperationTest {
 	}
 	@Test
 	public void testHideTurtle(){
-	    HideTurtle hide = new HideTurtle();
+	    HideTurtle hide = new HideTurtle("HideTurtle", 0, 0);
 	    IExecutionContext con1 = buildContext();
 	    List<IExecutionContext> list = new ArrayList<IExecutionContext>();
 	    list.add(con1);
-	    IExecutionContext con = hide.execute(list);
+	    IExecutionContext con = null;
+        try {
+            con = hide.execute(list);
+        } catch (MalformedSyntaxException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
 	    Visibility vis = con.turtles().get("1").turtleVisibility();
 	    
 	    assertEquals(Visibility.INVISIBLE,vis);

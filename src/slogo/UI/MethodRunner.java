@@ -28,36 +28,31 @@ import javafx.scene.shape.Line;
  */
 public class MethodRunner {
 
-	private Map<String, Runnable> commandMap;
 	private Turtle turtle;
 	private Canvas canvas;
 	private Group root;
 	private Stack<Line> pathStack;
 	
 	private ITurtleStatus TS;
-	private int x;
-	private int y;
-
-	public MethodRunner(Group root, Canvas canvas, Turtle turtle, Map commandMap, Stack stack) {
+	private String environment;
+	
+	public MethodRunner(Group root, Canvas canvas, Turtle turtle, Stack stack) {
 		this.turtle = turtle;
 		this.canvas = canvas;
 		this.root = root;
-		this.commandMap = commandMap;
 		this.pathStack = stack;
 	}
-
-//	public void init() {
-//		commandMap.put("fd", () -> { 
-//			moveTurtle(x, y);
-//		});
-//		commandMap.put("move", () -> {
-//			moveTurtle(CE.getList());
-//		});
-//	}
 	
-	public void changeFrontEnd() {
-		//moveTurtle();
-		setVariables();
+	public void changeTurtle() {
+		moveTurtle();
+		setTurtleDirection();
+		setPenState();
+		setTurtleVisibility();
+	}
+	
+	public void changeEnvironment() {
+		System.out.println(environment);
+		
 	}
 
 //	private void moveTurtle(int x, int y) {
@@ -73,9 +68,6 @@ public class MethodRunner {
 //		root.getChildren().add(line);
 //	}
 	
-	private void setVariables() {
-		
-	}
 	
 	private void moveTurtle() {
 		for (ILine l: TS.lineSequence()) {
@@ -90,12 +82,26 @@ public class MethodRunner {
 		turtle.moveTurtle((double) TS.turtlePosition().getX(), (double) TS.turtlePosition().getY()); 
 	}
 
-	private void setTurtleDirection(int orientation) {
-		turtle.setOrientation(orientation);
+	private void setTurtleDirection() {
+		turtle.setOrientation(TS.turtleDirection().toDegrees());
+	}
+	
+	private void setPenState() {
+		
+	}
+	
+	private void setTurtleVisibility() {
+		if (TS.turtleVisibility().VISIBLE != null) {
+			//TODO
+		}
 	}
 	
 	public void setTurtleStatus(ITurtleStatus TS) {
 		this.TS = TS;
+	}
+
+	public void setEnvironment(String var) {
+		this.environment = var;
 	}
 
 }
