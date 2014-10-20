@@ -2,9 +2,12 @@ package slogo.UI;
 
 import java.util.HashMap;
 import java.util.Map;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
@@ -18,6 +21,8 @@ public class Turtle {
 	private boolean myBold;
 	private double orientation;
 	private Map<String, Node> imagesMap;
+	
+	private boolean active;
 
 	public Turtle(String s, int x, int y){
 		xpos = x;
@@ -27,9 +32,21 @@ public class Turtle {
 		fillUpMap();
 		turtleImage = imagesMap.get(s);
 		turtleImage.relocate(xpos, ypos);
+		active = true;
+		activateTurtle();
 	}
 
-	private void fillUpMap () {
+	private void activateTurtle () {
+            turtleImage.setOnMouseClicked(new EventHandler<MouseEvent>(){
+                @Override
+                public void handle(MouseEvent event){
+                    active = !active;
+                }
+            });
+        
+	}
+
+    private void fillUpMap () {
 		Circle c = new Circle();
 		c.setCenterX(xpos);
 		c.setCenterY(ypos);
@@ -128,6 +145,10 @@ public class Turtle {
         protected void bold (boolean b) {
             myBold = b;
             
+        }
+
+        public boolean isActive () {
+            return active;
         }
 
 }

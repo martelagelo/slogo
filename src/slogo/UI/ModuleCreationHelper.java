@@ -60,7 +60,7 @@ public class ModuleCreationHelper {
 	private HBox firstButtonRow;
 	private TurtleCanvas myCanvas;
 	private CommandsTextField myTextField;
-	private Turtle myTurtle;
+	private List<Turtle> myTurtleList;
 	private VBox mySelectorsVBox;
 	private ListViewPreviousCommands myCommandsList;
 	private ListViewSLOGOVariables myVariablesList;
@@ -154,8 +154,9 @@ public class ModuleCreationHelper {
 	 * Creates the turtle object on the canvas
 	 */
 	private void createTurtle(){
-		myTurtle = new Turtle("Circle", AppConstants.INITIAL_TURTLE_X_POS, AppConstants.INITIAL_TURTLE_Y_POS);
-		root.getChildren().add(myTurtle.getImage());
+	        myTurtleList = new ArrayList<Turtle>();
+		myTurtleList.add(new Turtle("Circle", AppConstants.INITIAL_TURTLE_X_POS, AppConstants.INITIAL_TURTLE_Y_POS));
+		root.getChildren().add(myTurtleList.get(0).getImage());
 	}
 
 	/**
@@ -207,6 +208,7 @@ public class ModuleCreationHelper {
                 public void handle(ActionEvent event) {
                         Turtle newTurtle = new Turtle("Circle", AppConstants.INITIAL_TURTLE_X_POS, AppConstants.INITIAL_TURTLE_Y_POS);
                         root.getChildren().add(newTurtle.getImage());
+                        myTurtleList.add(newTurtle);
                 }
         });	    
         
@@ -222,7 +224,7 @@ public class ModuleCreationHelper {
 	            File selectedFile = fileChooser.showOpenDialog(stage);
 	            if (selectedFile != null) {
 	                Image i = new Image((selectedFile.toURI().toString()), AppConstants.MAX_NEW_IMAGE_WIDTH, AppConstants.MAX_NEW_IMAGE_HEIGHT, true, true);
-	                myTurtleSelector.updateMap("User Image #" + totalUserImages, new ImageView(i), myTurtle);
+	                myTurtleSelector.updateMap("User Image #" + totalUserImages, new ImageView(i), myTurtleList.get(0));
 	                totalUserImages +=1;
 	            }
 	            else{
@@ -291,7 +293,7 @@ public class ModuleCreationHelper {
 	 */
 	private void createSelectors() {
 		TurtleImageSelector turtleSelect = new TurtleImageSelector(mySelectorsVBox);
-		turtleSelect.create(root, myTurtle);
+		turtleSelect.create(root, myTurtleList.get(0));
 		myTurtleSelector = turtleSelect;
 		
 		BackgroundColorSelector backgroundSelect = new BackgroundColorSelector(mySelectorsVBox);
@@ -301,7 +303,7 @@ public class ModuleCreationHelper {
 		pathSelect.create(root, myGraphicsContext);
 		
 		PathTextureSelector pathTexture = new PathTextureSelector(mySelectorsVBox);
-		pathTexture.create(root, myTurtle);
+		pathTexture.create(root, myTurtleList.get(0));
 	}
 
 	/**
@@ -446,26 +448,30 @@ public class ModuleCreationHelper {
 		root.setOnKeyPressed(new EventHandler<KeyEvent>() {
 			@Override
 			public void handle(KeyEvent event) {
-				if (event.getCode() == KeyCode.A) {
-					myTurtle.moveTurtle(myTurtle.getXPos() - 10, myTurtle.getYPos());
-				}
-				if (event.getCode() == KeyCode.D) {
-					myTurtle.moveTurtle(myTurtle.getXPos() + 10, myTurtle.getYPos());
-				}
-				if (event.getCode() == KeyCode.W) {
-					myTurtle.moveTurtle(myTurtle.getXPos(), myTurtle.getYPos() - 10);
-				}
-				if (event.getCode() == KeyCode.S) {
-					myTurtle.moveTurtle(myTurtle.getXPos(), myTurtle.getYPos() + 10);
-				}
-				if (event.getCode() == KeyCode.E) {
-					myTurtle.incrementOrientation(10);
-				}
-				if (event.getCode() == KeyCode.Q) {
-					myTurtle.incrementOrientation(-10);
-				}
-				System.out.println(myTurtle.getXPos() +"  "+ myTurtle.getYPos());
-				System.out.println(myTurtle.getImage().getLayoutX() + "  " + myTurtle.getImage().getLayoutY());
+			    for(Turtle t : myTurtleList){
+			        if(t.isActive()){
+			            if (event.getCode() == KeyCode.A) {
+			                t.moveTurtle(t.getXPos() - 10, t.getYPos());
+			            }
+			            if (event.getCode() == KeyCode.D) {
+			                t.moveTurtle(t.getXPos() + 10, t.getYPos());
+			            }
+			            if (event.getCode() == KeyCode.W) {
+			                t.moveTurtle(t.getXPos(), t.getYPos() - 10);
+			            }
+			            if (event.getCode() == KeyCode.S) {
+			                t.moveTurtle(t.getXPos(), t.getYPos() + 10);
+			            }
+			            if (event.getCode() == KeyCode.E) {
+			                t.incrementOrientation(10);
+			            }
+			            if (event.getCode() == KeyCode.Q) {
+			                t.incrementOrientation(-10);
+			            }
+			        }
+			        System.out.println(t.getXPos() +"  "+ t.getYPos());
+			        System.out.println(t.getImage().getLayoutX() + "  " + t.getImage().getLayoutY());
+			    }
 			}
 		});
 	}
@@ -475,7 +481,12 @@ public class ModuleCreationHelper {
 	 * @return The turtle
 	 */
 	public Turtle getTurtle() {
-		return myTurtle;
+	    for(Turtle t : myTurtleList){
+	        if(t.isActive()){
+	            return t;
+	        }
+	    }
+	    return null;
 	}
 
 	/**
