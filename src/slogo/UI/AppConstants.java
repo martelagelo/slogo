@@ -13,7 +13,7 @@ import java.lang.reflect.Field;
  */
 public class AppConstants {
 	
-		public static Color BACKGROUND_COLOR = Color.BURLYWOOD;
+		public static final Color BACKGROUND_COLOR = Color.BURLYWOOD;
 	
         public static final Integer STAGE_WIDTH = 1300;
         public static final Integer STAGE_HEIGHT = 750;
@@ -80,23 +80,6 @@ public class AppConstants {
 
         public static final double GRIDLINES_SPACING = 50;
         
-        public AppConstants(Map<String, String> map) throws NoSuchFieldException, SecurityException {
-        	for(String s: map.keySet()) {
-        		if (s.equals("BackgroundColor")) {
-        			Field color;
-					try {
-						color = Color.class.getField(map.get(s));
-						BACKGROUND_COLOR = (Color) color.get(null);
-					} catch (IllegalArgumentException e) {
-						// TODO Auto-generated catch block
-						BACKGROUND_COLOR = Color.BISQUE;
-					} catch (IllegalAccessException e) {
-						// TODO Auto-generated catch block
-						BACKGROUND_COLOR = Color.BISQUE;
-					}
-        		}
-        	}
-        }
 }
 
 

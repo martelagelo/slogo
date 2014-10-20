@@ -3,17 +3,20 @@ package slogo.frontend.Config;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ConfigWriter {
 
 	private String path = "src/slogo/frontend/Config/Config.txt";	
 	
+	
 	public void writeToTextFile() {
 		BufferedWriter writer = null;
 	    try {
 	        writer = new BufferedWriter(new FileWriter(path));
-	        for (int i = 0; i < 10; i++) {
-	    		writer.write("13 yo");
+	        for (String s: hashMapTest().keySet()) {
+	    		writer.write(hashMapTest().get(s) + " " + s);
 	    		writer.newLine();
 	    	}
 	    } catch (IOException e) {
@@ -27,5 +30,14 @@ public class ConfigWriter {
 	            }
 	        }
 	    }
+	}
+	
+	private Map<String, String> hashMapTest() {
+		Map<String, String> map = new HashMap<String, String>();
+		int a = 3;
+		int b = 4;
+		map.put("variable a", a + "");
+		map.put("variable b", b + "");
+		return map;
 	}
 }

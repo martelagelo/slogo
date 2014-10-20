@@ -19,10 +19,11 @@ public class ConfigReader {
 
 	private Map<String, String> configMap;
 	private String path = "src/slogo/frontend/Config/Config.txt";
-	private AppConstants appConstants;
+	private ParameterDistributor paramDistributor;
 
 	public ConfigReader() {
 		configMap = new HashMap<String, String>();
+		paramDistributor = new ParameterDistributor();
 	}
 
 	public void readFile() throws IOException{
@@ -35,8 +36,9 @@ public class ConfigReader {
 		populateTextData(numOfLines, textReader);
 
 		textReader.close();
+
+		paramDistributor.readConfigHashMap(configMap);
 		
-		//setVariablesFromConfig(configMap);
 	}
 	
 	private int calculateNumOfLines() throws IOException{
@@ -56,9 +58,20 @@ public class ConfigReader {
 		for (int i = 0; i < count; i++) {
 			textLine = textReader.readLine();
 			configMap.put(textLine.substring(textLine.indexOf(' ')+1), textLine.substring(0, textLine.indexOf(' ')));
-			System.out.println(textLine.substring(textLine.indexOf(' ')+1));
-			System.out.println(configMap.get(textLine.substring(textLine.indexOf(' ')+1)));
+			//System.out.println(textLine.substring(textLine.indexOf(' ')+1));
+			//System.out.println(configMap.get(textLine.substring(textLine.indexOf(' ')+1)));
 		}
+	}
+	
+	private Map<String, String> hashMapTest() {
+		Map<String, String> map = new HashMap<String, String>();
+		int a = 3;
+		int b = 4;
+		map.put("variable a", a + "");
+		map.put("variable b", b + "");
+		map.put("color BackgroundColor", "yellow");
+		map.put("color PenColor", "black");
+		return map;
 	}
 		
 }
