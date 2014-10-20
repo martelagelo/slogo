@@ -15,7 +15,6 @@ public class Or extends Operation{
 
 	@Override
     public IExecutionContext executeRaw(List<IExecutionContext> args) {
-        // TODO Auto-generated method stub
         String argumentOne = args.get(0).environment().get("returnValue");
         double testOne = Double.parseDouble(argumentOne);
         String argumentTwo = args.get(1).environment().get("returnValue");

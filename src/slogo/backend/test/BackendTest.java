@@ -17,5 +17,8 @@ public class BackendTest {
 		assertEquals("-30.0", result.environment().get(Constants.RETURN_VALUE_ENVIRONMENT));
 		IExecutionContext foo = backend.execute("Forward 50");
 		assertEquals(1, foo.turtles().get("1").lineSequence().size());
+		IExecutionContext bar = backend.execute("And 1 0");
+		assertEquals("0", bar.environment().get(Constants.RETURN_VALUE_ENVIRONMENT));
+		assertEquals(1, bar.turtles().get("1").lineSequence().size());
 	}
 }

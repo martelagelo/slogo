@@ -202,7 +202,6 @@ public class OperationTest {
     try {
         con = forward.execute(list);
     } catch (MalformedSyntaxException e) {
-        // TODO Auto-generated catch block
         e.printStackTrace();
     }
 	ITurtleStatus stat = con.turtles().get("1");
