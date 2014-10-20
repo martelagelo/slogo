@@ -14,14 +14,12 @@ import slogo.backend.util.PenState;
 
 public class Towards extends Operation{
 
-    public Towards (String type, int argMin, int argMax) {
-        super(type, 2, 2);
-        // TODO Auto-generated constructor stub
+    public Towards () {
+        super("Towards", 2, 2);
     }
 
     @Override
     protected IExecutionContext executeRaw (List<IExecutionContext> args) {
-        // TODO Auto-generated method stub
         ITurtleStatus status = args.get(0).turtles().get("1");
         String xString = args.get(0).environment().get("returnValue");
         double faceXValue = Double.parseDouble(xString);

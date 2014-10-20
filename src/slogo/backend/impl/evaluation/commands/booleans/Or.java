@@ -5,11 +5,16 @@ import java.util.List;
 import slogo.backend.evaluation.IExecutionContext;
 import slogo.backend.evaluation.IOperation;
 import slogo.backend.impl.evaluation.ExecutionContext;
+import slogo.backend.impl.evaluation.commands.Operation;
 
-public class Or implements IOperation{
+public class Or extends Operation{
 
-    @Override
-    public IExecutionContext execute (List<IExecutionContext> args) {
+    public Or() {
+		super("Or", 2, 2);
+	}
+
+	@Override
+    public IExecutionContext executeRaw(List<IExecutionContext> args) {
         // TODO Auto-generated method stub
         String argumentOne = args.get(0).environment().get("returnValue");
         double testOne = Double.parseDouble(argumentOne);

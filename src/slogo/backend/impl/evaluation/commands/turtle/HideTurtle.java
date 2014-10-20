@@ -15,14 +15,12 @@ import slogo.backend.util.Visibility;
 
 public class HideTurtle extends Operation{
 
-    public HideTurtle (String type, int argMin, int argMax) {
-        super(type, 0, 0);
-        // TODO Auto-generated constructor stub
+    public HideTurtle () {
+        super("HideTurtle", 0, 0);
     }
 
     @Override
     protected IExecutionContext executeRaw (List<IExecutionContext> args) {
-        // TODO Auto-generated method stub
         ITurtleStatus status = args.get(0).turtles().get("1");
 
         ICoordinates cor = status.turtlePosition();

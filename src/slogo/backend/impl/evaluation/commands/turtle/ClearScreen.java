@@ -16,14 +16,12 @@ import slogo.backend.util.PenState;
 
 public class ClearScreen extends Operation{
 
-    public ClearScreen (String type, int argMin, int argMax) {
+    public ClearScreen () {
         super("ClearScreen", 0, 0);
-        // TODO Auto-generated constructor stub
     }
 
     @Override
     protected IExecutionContext executeRaw (List<IExecutionContext> args) {
-        // TODO Auto-generated method stub
         ITurtleStatus status = args.get(0).turtles().get("1");
         
         ICoordinates pos = status.turtlePosition();

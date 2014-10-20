@@ -17,14 +17,12 @@ import slogo.backend.util.Visibility;
 
 public class Back extends Operation{
 
-    public Back (String type, int argMin, int argMax) {
+    public Back () {
         super("Back", 1, 1);
-        // TODO Auto-generated constructor stub
     }
 
     @Override
     protected IExecutionContext executeRaw (List<IExecutionContext> args) {
-        // TODO Auto-generated method stub
         ITurtleStatus status = args.get(0).turtles().get("1");
         String backward = args.get(0).environment().get("returnValue");
         double backwardValue = Double.parseDouble(backward);

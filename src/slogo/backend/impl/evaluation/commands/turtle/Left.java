@@ -14,14 +14,12 @@ import slogo.backend.util.PenState;
 
 public class Left extends Operation{
 
-    public Left (String type, int argMin, int argMax) {
-        super(type, 1, 1);
-        // TODO Auto-generated constructor stub
+    public Left () {
+        super("Left", 1, 1);
     }
 
     @Override
     protected IExecutionContext executeRaw (List<IExecutionContext> args) {
-        // TODO Auto-generated method stub
         ITurtleStatus status = args.get(0).turtles().get("1");
         String left = args.get(0).environment().get("returnValue");
         double leftValue = Double.parseDouble(left);

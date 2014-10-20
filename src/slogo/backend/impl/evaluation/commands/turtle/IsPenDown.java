@@ -10,14 +10,12 @@ import slogo.backend.util.PenState;
 
 public class IsPenDown extends Operation{
 
-    public IsPenDown (String type, int argMin, int argMax) {
-        super(type, 0, 0);
-        // TODO Auto-generated constructor stub
+    public IsPenDown () {
+        super("IsPenDown", 0, 0);
     }
 
     @Override
     protected IExecutionContext executeRaw (List<IExecutionContext> args) {
-        // TODO Auto-generated method stub
         ITurtleStatus status = args.get(0).turtles().get("1");
         PenState pen = status.penState();
         String returnString = pen.equals(PenState.DOWN)? "1":"0";

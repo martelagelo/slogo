@@ -17,14 +17,12 @@ import slogo.backend.util.Visibility;
 
 public class Forward  extends Operation{
 
-    public Forward (String type, int argMin, int argMax) {
-        super(type, 1, 1);
-        // TODO Auto-generated constructor stub
+    public Forward () {
+        super("Forward", 1, 1);
     }
 
     @Override
     protected IExecutionContext executeRaw (List<IExecutionContext> args) {
-        // TODO Auto-generated method stub
         ITurtleStatus status = args.get(0).turtles().get("1");
         String forward = args.get(0).environment().get("returnValue");
         double forwardValue = Double.parseDouble(forward);

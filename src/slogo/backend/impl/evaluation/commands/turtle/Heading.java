@@ -10,14 +10,12 @@ import slogo.backend.util.ITurtleStatus;
 
 public class Heading extends Operation{
 
-    public Heading (String type, int argMin, int argMax) {
-        super(type, 0, 0);
-        // TODO Auto-generated constructor stub
+    public Heading () {
+        super("Heading", 0, 0);
     }
 
     @Override
     protected IExecutionContext executeRaw (List<IExecutionContext> args) {
-        // TODO Auto-generated method stub
         ITurtleStatus status = args.get(0).turtles().get("1");
         
         

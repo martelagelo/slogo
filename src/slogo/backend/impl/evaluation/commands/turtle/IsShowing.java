@@ -10,14 +10,12 @@ import slogo.backend.util.Visibility;
 
 public class IsShowing extends Operation{
 
-    public IsShowing (String type, int argMin, int argMax) {
-        super(type, 0, 0);
-        // TODO Auto-generated constructor stub
+    public IsShowing () {
+        super("IsShowing", 0, 0);
     }
 
     @Override
     protected IExecutionContext executeRaw (List<IExecutionContext> args) {
-        // TODO Auto-generated method stub
         ITurtleStatus status = args.get(0).turtles().get("1");
         Visibility vis = status.turtleVisibility();
         String returnString = vis.equals(Visibility.VISIBLE)? "1":"0";
