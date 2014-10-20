@@ -77,6 +77,8 @@ public class AppConstants {
 
         public static final double MAX_NEW_IMAGE_WIDTH = 15;
         public static final double MAX_NEW_IMAGE_HEIGHT = 15;
+
+        public static final double GRIDLINES_SPACING = 50;
         
         public AppConstants(Map<String, String> map) throws NoSuchFieldException, SecurityException {
         	for(String s: map.keySet()) {

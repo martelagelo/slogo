@@ -3,6 +3,8 @@ package slogo.UI;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import slogo.View;
 import slogo.frontend.Config.ConfigReader;
@@ -73,6 +75,8 @@ public class ModuleCreationHelper {
 	private Map<String, Node> myImagesMap;
         private int totalUserImages;
         private TurtleImageSelector myTurtleSelector;
+        
+        private List<Line> myGridLines;
 
 
 	/**
@@ -118,6 +122,7 @@ public class ModuleCreationHelper {
 	private void createGridCheckBox() {
 		CheckBoxCreator cb = new CheckBoxCreator(mySelectorsVBox);
 		CheckBox CB = cb.createCheckBox("Toggle Grid");
+		myGridLines = new ArrayList<Line>();
 		activateReferenceCB(CB);
 	}
 
@@ -393,19 +398,26 @@ public class ModuleCreationHelper {
 
 	public void activateReferenceCB(CheckBox cb){
 		cb.setOnAction(new EventHandler<ActionEvent>(){
-			@Override
+		    @Override
 			public void handle(ActionEvent event){
 				if(cb.isSelected()) {
-					Line line = new Line(myCanvas.getCanvas().getLayoutY(), myTurtle.getYPos(), myCanvas.getCanvas().getLayoutY() + myCanvas.getCanvas().getHeight(), myTurtle.getYPos());
+				    for(double x = myCanvas.getCanvas().getLayoutX(); x < myCanvas.getCanvas().getHeight() + myCanvas.getCanvas().getLayoutX(); x +=AppConstants.GRIDLINES_SPACING){
+				        Line line = new Line(x, myCanvas.getCanvas().getLayoutY(), x, myCanvas.getCanvas().getLayoutY() + myCanvas.getCanvas().getHeight());
 					line.setFill(Color.DARKGREY);
-					root.getChildren().add(line);
-					Line line2 = new Line(myTurtle.getXPos(), myCanvas.getCanvas().getLayoutX(), myTurtle.getXPos(), myCanvas.getCanvas().getLayoutX() + myCanvas.getCanvas().getWidth());
+					
+					
+					Line line2 = new Line(myCanvas.getCanvas().getLayoutX(), x, myCanvas.getCanvas().getLayoutX() + myCanvas.getCanvas().getWidth(), x);
 					line2.setFill(Color.DARKGREY);
-					root.getChildren().add(line2);
+					myGridLines.add(line);
+					myGridLines.add(line2);
+				    }
+				    root.getChildren().addAll(myGridLines);
 				}
-				else {
-					root.getChildren().remove(root.getChildren().size() - 1);
-					root.getChildren().remove(root.getChildren().size() - 1);
+				else{
+				    for(Line l : myGridLines){
+					root.getChildren().remove(l);
+				    }
+				    myGridLines.clear();
 				}
 			}
 		});
