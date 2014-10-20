@@ -1,10 +1,4 @@
-13 yo
-13 yo
-13 yo
-13 yo
-13 yo
-13 yo
-13 yo
-13 yo
-13 yo
-13 yo
+4 variable b
+3 variable a
+YELLOW color BackgroundColor
+BLACK color PenColor
