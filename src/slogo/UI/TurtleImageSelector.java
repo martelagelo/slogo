@@ -6,34 +6,42 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.control.ComboBox;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
 public class TurtleImageSelector {
     
     private VBox mySelectorsVBox;
+    private List<String> myPossibleImages;
+    private ComboBox<String> mySelector;
     
     public TurtleImageSelector(VBox selectorsVBox){
         mySelectorsVBox = selectorsVBox;    
+        myPossibleImages = new ArrayList<String>();
     }
     
     protected void create(Group root, Turtle turtle){
-        List<String> possibleImages = new ArrayList<String>();
-        possibleImages.addAll(turtle.getShapesMap().keySet());
+        myPossibleImages.addAll(turtle.getShapesMap().keySet());
         SelectorCreator sc = new SelectorCreator(root);
-        sc.setUpSelector("Turtle image", AppConstants.SELECTOR_WIDTH, AppConstants.SELECTOR_HEIGHT, AppConstants.SELECTOR_FONT_SIZE, possibleImages);
-        final ComboBox<String> turtleSelector = sc.getSelector();
-        turtleSelector.setOnAction(new EventHandler<ActionEvent>() {
+        sc.setUpSelector("Turtle image", AppConstants.SELECTOR_WIDTH, AppConstants.SELECTOR_HEIGHT, AppConstants.SELECTOR_FONT_SIZE, myPossibleImages);
+        mySelector = sc.getSelector();
+        mySelector.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle (ActionEvent event){
-                    if(turtleSelector.getValue() != null){
+                    if(mySelector.getValue() != null){
                             root.getChildren().remove(turtle.getImage());
-                            turtle.setImage(turtleSelector.getValue());
+                            turtle.setImage(mySelector.getValue());
                             root.getChildren().add(turtle.getImage());
                     }
             }
         });
         VBox selectorWithLabel = sc.createSelectorWithLabel("Select a Turtle Image", AppConstants.LABEL_FONT_SIZE, Color.BLACK);
         mySelectorsVBox.getChildren().add(selectorWithLabel);
+    }
+    
+    protected void updateMap(String s, ImageView iv, Turtle t){
+        mySelector.getItems().add(s);
+        t.getShapesMap().put(s, iv);
     }
 }

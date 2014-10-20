@@ -74,6 +74,9 @@ public class AppConstants {
         public static final String HELP_URL = "http://www.cs.duke.edu/courses/compsci308/current/assign/03_slogo/commands.php";
         public static final Integer HELP_PAGE_WIDTH = 800;
         public static final Integer HELP_PAGE_HEIGHT = 500;
+
+        public static final double MAX_NEW_IMAGE_WIDTH = 15;
+        public static final double MAX_NEW_IMAGE_HEIGHT = 15;
         
         public AppConstants(Map<String, String> map) throws NoSuchFieldException, SecurityException {
         	for(String s: map.keySet()) {

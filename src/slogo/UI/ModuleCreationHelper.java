@@ -1,8 +1,9 @@
 package slogo.UI;
 
+import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
-
+import java.util.Map;
 import slogo.View;
 import slogo.frontend.Config.ConfigReader;
 import slogo.frontend.Config.ConfigWriter;
@@ -12,6 +13,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -22,6 +24,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
@@ -29,7 +32,9 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.stage.FileChooser.ExtensionFilter;
 
 /**
  * October 8th, 2014
@@ -64,6 +69,10 @@ public class ModuleCreationHelper {
 	private ObservableList<String> myUserVariables = FXCollections.observableArrayList();
 	private ObservableList<String> myUserCommands = FXCollections.observableArrayList();
 	private GraphicsContext myGraphicsContext;
+	
+	private Map<String, Node> myImagesMap;
+        private int totalUserImages;
+        private TurtleImageSelector myTurtleSelector;
 
 
 	/**
@@ -76,6 +85,7 @@ public class ModuleCreationHelper {
 		this.scene = scene;
 		configReader = new ConfigReader();
 		configWriter = new ConfigWriter();
+		totalUserImages = 1;
 	}
 
 	/**
@@ -90,10 +100,11 @@ public class ModuleCreationHelper {
 		createPlayButton();
 		createStopButton();
 		createHelpButton();
-		createNewTurtleButton();
 		createTextField();
 		createListViews();
 		createSelectors();
+	        createNewTurtleButton();
+	        createTurtleImageLoaderButton();
 		createLoadButton();
 		createSaveButton();
 		createExtraWorkspaceButton();
@@ -170,12 +181,17 @@ public class ModuleCreationHelper {
 		activateHelpButton(btn);    
 	}
 	
+	private void createTurtleImageLoaderButton(){
+	    ButtonCreator BC = new ButtonCreator(mySelectorsVBox);
+            Button btn = BC.createButton("Load New Turtle Image");
+            activateTurtleImageLoaderButton(btn);
+	}
+	
 	/**
-<<<<<<< HEAD
 	 * Add another turtle to scene
 	 */
 	private void createNewTurtleButton(){
-	    ButtonCreator BC = new ButtonCreator(firstButtonRow);
+	    ButtonCreator BC = new ButtonCreator(mySelectorsVBox);
 	    Button btn = BC.createButton("Add turtle");
 	    activateNewTurtleButton(btn);
 	}
@@ -189,10 +205,29 @@ public class ModuleCreationHelper {
                 }
         });	    
         
-    }
+        }
+	
+	private void activateTurtleImageLoaderButton(Button btn){
+	    btn.setOnAction(new EventHandler<ActionEvent>(){
+	        @Override
+	        public void handle(ActionEvent event){
+	            FileChooser fileChooser = new FileChooser();
+	            fileChooser.setTitle("Load in a New Turtle Image");
+	            //fileChooser.getExtensionFilters().addAll(new ExtensionFilter("*.png", "*.jpg"));
+	            File selectedFile = fileChooser.showOpenDialog(stage);
+	            if (selectedFile != null) {
+	                Image i = new Image((selectedFile.toURI().toString()), AppConstants.MAX_NEW_IMAGE_WIDTH, AppConstants.MAX_NEW_IMAGE_HEIGHT, true, true);
+	                myTurtleSelector.updateMap("User Image #" + totalUserImages, new ImageView(i), myTurtle);
+	                totalUserImages +=1;
+	            }
+	            else{
+	                System.out.println("No File Selected");
+	            }
+	        }
+	    });
+	}
 
     /**
-=======
 	 * Creates a button that loads in a config file
 	 */
 	private void createLoadButton() {
@@ -217,7 +252,6 @@ public class ModuleCreationHelper {
 	}
 	
 	/**
->>>>>>> 78fae374bb78bc7f101f64b99aa3777d6cded20c
 	 * Creates the text field where the user enters code
 	 */
 	private void createTextField(){
@@ -253,6 +287,7 @@ public class ModuleCreationHelper {
 	private void createSelectors() {
 		TurtleImageSelector turtleSelect = new TurtleImageSelector(mySelectorsVBox);
 		turtleSelect.create(root, myTurtle);
+		myTurtleSelector = turtleSelect;
 		
 		BackgroundColorSelector backgroundSelect = new BackgroundColorSelector(mySelectorsVBox);
 		backgroundSelect.create(root, myGraphicsContext);
