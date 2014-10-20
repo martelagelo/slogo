@@ -79,6 +79,10 @@ public class MethodRunner {
 	
 	private void moveTurtle() {
 		for (ILine l: TS.lineSequence()) {
+		    Line line = (Line) l;
+		    if(turtle.isDashed()){
+		        line.getStrokeDashArray().addAll(10d);
+		    }
 			root.getChildren().add((Line) l);
 			pathStack.push((Line) l);
 			//if (lines.get(lines.size()-1) == l) turtle.moveTurtle(l.getEndX(), l.getEndY());

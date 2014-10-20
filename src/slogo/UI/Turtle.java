@@ -15,11 +15,14 @@ public class Turtle {
 	private double xpos;
 	private double ypos;
 	private int orientation;
+	private boolean myDashed;
+	private boolean myBold;
 	private Map<String, Node> imagesMap;
 
 	public Turtle(String s, int x, int y){
 		xpos = x;
 		ypos = y;
+		//myBold = true;
 		imagesMap = new HashMap<String, Node>();
 		fillUpMap();
 		turtleImage = imagesMap.get(s);
@@ -112,5 +115,19 @@ public class Turtle {
 	protected Map<String, Node> getShapesMap () {
 		return imagesMap;
 	}
+
+        protected void dashed (boolean b) {
+            myDashed = b;
+        
+        }
+
+        public boolean isDashed () {
+            return myDashed;
+        }
+
+        protected void bold (boolean b) {
+            myBold = b;
+            
+        }
 
 }

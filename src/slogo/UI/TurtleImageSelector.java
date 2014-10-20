@@ -17,7 +17,7 @@ public class TurtleImageSelector {
         mySelectorsVBox = selectorsVBox;    
     }
     
-    protected void create(Turtle turtle, Group root){
+    protected void create(Group root, Turtle turtle){
         List<String> possibleImages = new ArrayList<String>();
         possibleImages.addAll(turtle.getShapesMap().keySet());
         SelectorCreator sc = new SelectorCreator(root);

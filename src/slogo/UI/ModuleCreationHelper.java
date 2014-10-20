@@ -80,6 +80,7 @@ public class ModuleCreationHelper {
 		createPlayButton();
 		createStopButton();
 		createHelpButton();
+		createNewTurtleButton();
 		createTextField();
 		createListViews();
 		createSelectors();
@@ -151,6 +152,26 @@ public class ModuleCreationHelper {
 	}
 	
 	/**
+	 * Add another turtle to scene
+	 */
+	private void createNewTurtleButton(){
+	    ButtonCreator BC = new ButtonCreator(firstButtonRow);
+	    Button btn = BC.createButton("Add turtle");
+	    activateNewTurtleButton(btn);
+	}
+	
+	private void activateNewTurtleButton(Button btn) {
+            btn.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                        Turtle newTurtle = new Turtle("Circle", AppConstants.INITIAL_TURTLE_X_POS, AppConstants.INITIAL_TURTLE_Y_POS);
+                        root.getChildren().add(newTurtle.getImage());
+                }
+        });	    
+        
+    }
+
+    /**
 	 * Creates the text field where the user enters code
 	 */
 	private void createTextField(){
@@ -185,7 +206,7 @@ public class ModuleCreationHelper {
 	 */
 	private void createSelectors() {
 		TurtleImageSelector turtleSelect = new TurtleImageSelector(mySelectorsVBox);
-		turtleSelect.create(myTurtle, root);
+		turtleSelect.create(root, myTurtle);
 		
 		BackgroundColorSelector backgroundSelect = new BackgroundColorSelector(mySelectorsVBox);
 		backgroundSelect.create(root, myGraphicsContext);
@@ -194,7 +215,7 @@ public class ModuleCreationHelper {
 		pathSelect.create(root, myGraphicsContext);
 		
 		PathTextureSelector pathTexture = new PathTextureSelector(mySelectorsVBox);
-		pathTexture.create(root);
+		pathTexture.create(root, myTurtle);
 	}
 
 	/**
@@ -293,6 +314,8 @@ public class ModuleCreationHelper {
 				if (event.getCode() == KeyCode.Q) {
 					myTurtle.incrementOrientation(-10);
 				}
+				System.out.println(myTurtle.getXPos() +"  "+ myTurtle.getYPos());
+				System.out.println(myTurtle.getImage().getLayoutX() + "  " + myTurtle.getImage().getLayoutY());
 			}
 		});
 	}

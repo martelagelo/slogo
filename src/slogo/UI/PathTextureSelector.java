@@ -20,7 +20,7 @@ public class PathTextureSelector {
         myVbox = vbox;
     }
     
-    protected void create(Group root){
+    protected void create(Group root, Turtle t){
     	List<String> possibleTextures = new ArrayList<String>();
     	populateLineTextureList(possibleTextures);
         SelectorCreator sc = new SelectorCreator(root);
@@ -29,8 +29,11 @@ public class PathTextureSelector {
         pathTexture.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle (ActionEvent event){
-                    if(pathTexture.getValue() != null){
-                            //TODO: User should be able to select a line texture
+                    if(pathTexture.getValue().equals("Dashed")){
+                        t.dashed(true);
+                    }
+                    if(pathTexture.getValue().equals("Bold")){
+                        t.bold(true);
                     }
             }
         });
