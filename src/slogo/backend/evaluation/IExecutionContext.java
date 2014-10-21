@@ -3,6 +3,7 @@ package slogo.backend.evaluation;
 import java.util.List;
 import java.util.Map;
 
+import slogo.backend.parsing.ISyntaxNode;
 import slogo.backend.util.ICoordinates;
 import slogo.backend.util.IDirection;
 import slogo.backend.util.ILine;
@@ -28,4 +29,11 @@ public interface IExecutionContext {
 	 * @return a key-value Map that represents the list of configuration variables
 	 */
 	public Map<String, String> environment();
+	/**
+	 * A place for commands that the user defines; the commands are stored in the tree
+	 * representation created in parsing
+	 * 
+	 * @return The list of user-defined commands
+	 */
+	public Map<String, ISyntaxNode> userDefinedCommands();
 }

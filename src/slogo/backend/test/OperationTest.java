@@ -85,7 +85,7 @@ public class OperationTest {
 	    Map <String, ITurtleStatus> turtles = new HashMap<String, ITurtleStatus>();
 	    turtles.put("1", status);
 	    Map<String, String> environment = new HashMap<String, String>();
-	    return new ExecutionContext(turtles, environment);
+	    return new ExecutionContext(turtles, environment, new HashMap<>());
 	}
 	public String operate (int flag, IOperation op, String s1, String s2){
 	    IExecutionContext con1 = buildContext();

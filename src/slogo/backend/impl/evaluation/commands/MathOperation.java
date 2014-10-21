@@ -21,13 +21,11 @@ public abstract class MathOperation extends Operation{
 		for (IExecutionContext arg: args){
 			argsNum.add(new Double(arg.environment().get(Constants.RETURN_VALUE_ENVIRONMENT)));
 		}
-        Number result = executeMath(argsNum);
+        String result = executeMath(argsNum).toString();
         // this is problematic; assume 0th argument for now
-        IExecutionContext retContext = args.get(0);
-        Map<String,String> retEnvironment = new HashMap<>(retContext.environment());
-        String returnArgument = result.toString();
-        retEnvironment.put(Constants.RETURN_VALUE_ENVIRONMENT, returnArgument);
-        return new ExecutionContext(retContext.turtles(), retEnvironment);
+        IExecutionContext retContext = new ExecutionContext(args.get(0));
+        retContext.environment().put(Constants.RETURN_VALUE_ENVIRONMENT, result);
+        return retContext;
 	}
 	protected abstract Number executeMath(List<Number> args);
 }
