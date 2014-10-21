@@ -8,6 +8,7 @@ import slogo.backend.impl.evaluation.ExecutionContext;
 import slogo.backend.impl.evaluation.commands.Operation;
 import slogo.backend.impl.util.Coordinates;
 import slogo.backend.impl.util.TurtleStatus;
+import slogo.backend.parsing.ISyntaxNode;
 import slogo.backend.util.ICoordinates;
 import slogo.backend.util.IDirection;
 import slogo.backend.util.ILine;
@@ -21,7 +22,7 @@ public class ClearScreen extends Operation{
     }
 
     @Override
-    protected IExecutionContext executeRaw (List<IExecutionContext> args) {
+    protected IExecutionContext executeRaw (List<IExecutionContext> args, IExecutionContext previous, ISyntaxNode current) {
         ITurtleStatus status = args.get(0).turtles().get("1");
         
         ICoordinates pos = status.turtlePosition();

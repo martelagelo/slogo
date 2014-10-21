@@ -6,6 +6,7 @@ import slogo.backend.evaluation.IExecutionContext;
 import slogo.backend.evaluation.IOperation;
 import slogo.backend.impl.evaluation.ExecutionContext;
 import slogo.backend.impl.evaluation.commands.Operation;
+import slogo.backend.parsing.ISyntaxNode;
 
 public class Not extends Operation{
 
@@ -14,7 +15,7 @@ public class Not extends Operation{
 	}
 
 	@Override
-    public IExecutionContext executeRaw(List<IExecutionContext> args) {
+    public IExecutionContext executeRaw(List<IExecutionContext> args, IExecutionContext previous, ISyntaxNode current) {
         String argument = args.get(0).environment().get("returnValue");
         double test = Double.parseDouble(argument);
         int value = test==0 ? 1:0;

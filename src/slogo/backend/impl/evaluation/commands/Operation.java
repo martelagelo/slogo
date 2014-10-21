@@ -29,10 +29,10 @@ public abstract class Operation implements IOperation {
 	@Override
 	public IExecutionContext execute(List<IExecutionContext> args, IExecutionContext previous, ISyntaxNode current) throws MalformedSyntaxException{
 		validateArguments(args);
-		return executeRaw(args);
+		return executeRaw(args, previous, current);
 	}
 
-	protected abstract IExecutionContext executeRaw(List<IExecutionContext> args);
+	protected abstract IExecutionContext executeRaw(List<IExecutionContext> args,IExecutionContext previous, ISyntaxNode current);
 
 	@Override
 	public String type() {

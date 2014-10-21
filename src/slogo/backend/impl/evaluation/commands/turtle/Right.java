@@ -7,6 +7,7 @@ import slogo.backend.impl.evaluation.ExecutionContext;
 import slogo.backend.impl.evaluation.commands.Operation;
 import slogo.backend.impl.util.Direction;
 import slogo.backend.impl.util.TurtleStatus;
+import slogo.backend.parsing.ISyntaxNode;
 import slogo.backend.util.ICoordinates;
 import slogo.backend.util.IDirection;
 import slogo.backend.util.ITurtleStatus;
@@ -19,7 +20,7 @@ public class Right extends Operation{
     }
 
     @Override
-    protected IExecutionContext executeRaw (List<IExecutionContext> args) {
+    protected IExecutionContext executeRaw (List<IExecutionContext> args, IExecutionContext previous, ISyntaxNode current) {
         ITurtleStatus status = args.get(0).turtles().get("1");
         String right = args.get(0).environment().get("returnValue");
         double rightValue = Double.parseDouble(right);

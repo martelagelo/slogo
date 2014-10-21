@@ -5,6 +5,7 @@ import java.util.List;
 import slogo.backend.evaluation.IExecutionContext;
 import slogo.backend.impl.evaluation.ExecutionContext;
 import slogo.backend.impl.evaluation.commands.Operation;
+import slogo.backend.parsing.ISyntaxNode;
 import slogo.backend.util.ITurtleStatus;
 
 public class Ycor extends Operation{
@@ -14,7 +15,7 @@ public class Ycor extends Operation{
     }
 
     @Override
-    protected IExecutionContext executeRaw (List<IExecutionContext> args) {
+    protected IExecutionContext executeRaw (List<IExecutionContext> args, IExecutionContext previous, ISyntaxNode current) {
         ITurtleStatus status = args.get(0).turtles().get("1");
         double y = status.turtlePosition().getY().doubleValue();
         String returnString = String.valueOf(y);

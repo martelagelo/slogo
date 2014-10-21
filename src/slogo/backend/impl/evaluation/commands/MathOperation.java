@@ -8,6 +8,7 @@ import java.util.Map;
 import slogo.Constants;
 import slogo.backend.evaluation.IExecutionContext;
 import slogo.backend.impl.evaluation.ExecutionContext;
+import slogo.backend.parsing.ISyntaxNode;
 
 public abstract class MathOperation extends Operation{
 
@@ -16,7 +17,7 @@ public abstract class MathOperation extends Operation{
 	}
 
 	@Override
-	protected IExecutionContext executeRaw(List<IExecutionContext> args) {
+	protected IExecutionContext executeRaw(List<IExecutionContext> args, IExecutionContext previous, ISyntaxNode current) {
 		List<Number> argsNum = new ArrayList<>();
 		for (IExecutionContext arg: args){
 			argsNum.add(new Double(arg.environment().get(Constants.RETURN_VALUE_ENVIRONMENT)));
