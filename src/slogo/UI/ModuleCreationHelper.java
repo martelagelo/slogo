@@ -6,9 +6,11 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
 import slogo.View;
 import slogo.frontend.Config.ConfigReader;
 import slogo.frontend.Config.ConfigWriter;
+import slogo.frontend.Config.ParameterDistributor;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -71,12 +73,12 @@ public class ModuleCreationHelper {
 	private ObservableList<String> myUserVariables = FXCollections.observableArrayList();
 	private ObservableList<String> myUserCommands = FXCollections.observableArrayList();
 	private GraphicsContext myGraphicsContext;
-	
+
 	private Map<String, Node> myImagesMap;
-        private int totalUserImages;
-        private TurtleImageSelector myTurtleSelector;
-        
-        private List<Line> myGridLines;
+	private int totalUserImages;
+	private TurtleImageSelector myTurtleSelector;
+
+	private List<Line> myGridLines;
 
 
 	/**
@@ -107,8 +109,8 @@ public class ModuleCreationHelper {
 		createTextField();
 		createListViews();
 		createSelectors();
-	        createNewTurtleButton();
-	        createTurtleImageLoaderButton();
+		createNewTurtleButton();
+		createTurtleImageLoaderButton();
 		createLoadButton();
 		createSaveButton();
 		createExtraWorkspaceButton();
@@ -154,7 +156,7 @@ public class ModuleCreationHelper {
 	 * Creates the turtle object on the canvas
 	 */
 	private void createTurtle(){
-	        myTurtleList = new ArrayList<Turtle>();
+		myTurtleList = new ArrayList<Turtle>();
 		myTurtleList.add(new Turtle("Circle", AppConstants.INITIAL_TURTLE_X_POS, AppConstants.INITIAL_TURTLE_Y_POS));
 		root.getChildren().add(myTurtleList.get(0).getImage());
 	}
@@ -186,55 +188,57 @@ public class ModuleCreationHelper {
 		btn.setPrefSize(AppConstants.HELP_BUTTON_PREF_WIDTH, AppConstants.HELP_BUTTON_PREF_HEIGHT);
 		activateHelpButton(btn);    
 	}
-	
+
 	private void createTurtleImageLoaderButton(){
-	    ButtonCreator BC = new ButtonCreator(mySelectorsVBox);
-            Button btn = BC.createButton("Load New Turtle Image");
-            activateTurtleImageLoaderButton(btn);
+		ButtonCreator BC = new ButtonCreator(mySelectorsVBox);
+		Button btn = BC.createButton("Load New Turtle Image");
+		activateTurtleImageLoaderButton(btn);
 	}
-	
+
 	/**
 	 * Add another turtle to scene
 	 */
 	private void createNewTurtleButton(){
-	    ButtonCreator BC = new ButtonCreator(mySelectorsVBox);
-	    Button btn = BC.createButton("Add turtle");
-	    activateNewTurtleButton(btn);
-	}
-	
-	private void activateNewTurtleButton(Button btn) {
-            btn.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent event) {
-                        Turtle newTurtle = new Turtle("Circle", AppConstants.INITIAL_TURTLE_X_POS, AppConstants.INITIAL_TURTLE_Y_POS);
-                        root.getChildren().add(newTurtle.getImage());
-                        myTurtleList.add(newTurtle);
-                }
-        });	    
-        
-        }
-	
-	private void activateTurtleImageLoaderButton(Button btn){
-	    btn.setOnAction(new EventHandler<ActionEvent>(){
-	        @Override
-	        public void handle(ActionEvent event){
-	            FileChooser fileChooser = new FileChooser();
-	            fileChooser.setTitle("Load in a New Turtle Image");
-	            fileChooser.getExtensionFilters().addAll(new ExtensionFilter("Images", "*.jpg", "*.png"));
-	            File selectedFile = fileChooser.showOpenDialog(stage);
-	            if (selectedFile != null) {
-	                Image i = new Image((selectedFile.toURI().toString()), AppConstants.MAX_NEW_IMAGE_WIDTH, AppConstants.MAX_NEW_IMAGE_HEIGHT, true, true);
-	                myTurtleSelector.updateMap("User Image #" + totalUserImages, new ImageView(i), myTurtleList.get(0));
-	                totalUserImages +=1;
-	            }
-	            else{
-	                System.out.println("No File Selected");
-	            }
-	        }
-	    });
+		ButtonCreator BC = new ButtonCreator(mySelectorsVBox);
+		Button btn = BC.createButton("Add turtle");
+		activateNewTurtleButton(btn);
 	}
 
-    /**
+	//NEEDS BACKEND FUNCTIONALITY
+	private void activateNewTurtleButton(Button btn) {
+		btn.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				Turtle newTurtle = new Turtle("Circle", AppConstants.INITIAL_TURTLE_X_POS, AppConstants.INITIAL_TURTLE_Y_POS);
+				root.getChildren().add(newTurtle.getImage());
+				myTurtleList.add(newTurtle);
+			}
+		});	    
+
+	}
+
+	//NEEDS BACKEND FUNCTIONALITY
+	private void activateTurtleImageLoaderButton(Button btn){
+		btn.setOnAction(new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent event){
+				FileChooser fileChooser = new FileChooser();
+				fileChooser.setTitle("Load in a New Turtle Image");
+				fileChooser.getExtensionFilters().addAll(new ExtensionFilter("Images", "*.jpg", "*.png"));
+				File selectedFile = fileChooser.showOpenDialog(stage);
+				if (selectedFile != null) {
+					Image i = new Image((selectedFile.toURI().toString()), AppConstants.MAX_NEW_IMAGE_WIDTH, AppConstants.MAX_NEW_IMAGE_HEIGHT, true, true);
+					myTurtleSelector.updateMap("User Image #" + totalUserImages, new ImageView(i), myTurtleList.get(0));
+					totalUserImages +=1;
+				}
+				else{
+					System.out.println("No File Selected");
+				}
+			}
+		});
+	}
+
+	/**
 	 * Creates a button that loads in a config file
 	 */
 	private void createLoadButton() {
@@ -242,7 +246,7 @@ public class ModuleCreationHelper {
 		Button btn = BC.createButton("Load Config File");
 		activateLoadButton(btn);
 	}
-	
+
 	/**
 	 * Create a button that saves to a config file
 	 */
@@ -251,13 +255,13 @@ public class ModuleCreationHelper {
 		Button btn = BC.createButton("Save to Config File");
 		activateSaveButton(btn);
 	}
-	
+
 	private void createExtraWorkspaceButton() {
 		ButtonCreator BC = new ButtonCreator(mySelectorsVBox);
 		Button btn = BC.createButton("Load Extra Workspace");
 		activateExtraWorkspaceButton(btn);
 	}
-	
+
 	/**
 	 * Creates the text field where the user enters code
 	 */
@@ -279,7 +283,7 @@ public class ModuleCreationHelper {
 		myUserCommandsList = new ListViewUserCommands(root);
 		myUserCommandsList.create();
 	}
-	
+
 	/**
 	 * Creates a VBox for all of the selectors
 	 */
@@ -287,7 +291,7 @@ public class ModuleCreationHelper {
 		VBoxCreator VBC = new VBoxCreator(root);
 		mySelectorsVBox = VBC.createVBox(AppConstants.VBOX_SPACING, AppConstants.FIRST_ROW_BUTTON_HBOX_X_POS, AppConstants.FIRST_ROW_BUTTON_HBOX_Y_POS);
 	}
-	
+
 	/**
 	 * 
 	 */
@@ -295,13 +299,13 @@ public class ModuleCreationHelper {
 		TurtleImageSelector turtleSelect = new TurtleImageSelector(mySelectorsVBox);
 		turtleSelect.create(root, myTurtleList.get(0));
 		myTurtleSelector = turtleSelect;
-		
+
 		BackgroundColorSelector backgroundSelect = new BackgroundColorSelector(mySelectorsVBox);
 		backgroundSelect.create(root, myGraphicsContext);
-		
+
 		PathColorSelector pathSelect = new PathColorSelector(mySelectorsVBox);
 		pathSelect.create(root, myGraphicsContext);
-		
+
 		PathTextureSelector pathTexture = new PathTextureSelector(mySelectorsVBox);
 		pathTexture.create(root, myTurtleList.get(0));
 	}
@@ -331,7 +335,6 @@ public class ModuleCreationHelper {
 			public void handle(ActionEvent event) {
 				Main main = new Main();
 				main.start(stage);
-				//Platform.exit();
 			}
 		});
 	}
@@ -349,7 +352,7 @@ public class ModuleCreationHelper {
 			}
 		});
 	}
-	
+
 	/**
 	 * Lets the load button load a configuration file
 	 * 
@@ -360,7 +363,17 @@ public class ModuleCreationHelper {
 			@Override
 			public void handle(ActionEvent event){
 				try {
-					configReader.readFile();
+					ParameterDistributor PD = configReader.readFile();
+					
+					Map<String, Integer> Variables = PD.getVariableMap();
+					Map<String, Color> Colors = PD.getColorMap();
+					int numOfTurtles = PD.getNumOfTurtles();
+					
+					for (String s: Variables.keySet()) {
+						addToCertainList(myUserVariables, myUserVariablesList, s +  " = " + Variables.get(s));
+						//NEEDS BACKEND FUNCTIONALITY
+					}
+					
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -368,7 +381,7 @@ public class ModuleCreationHelper {
 			}
 		});
 	}
-	
+
 	/**
 	 * Lets the save button save to a configuration file
 	 * 
@@ -379,10 +392,11 @@ public class ModuleCreationHelper {
 			@Override
 			public void handle(ActionEvent event){
 				configWriter.writeToTextFile();
+				//NEEDS BACKEND FUNCTIONALITY
 			}
 		});
 	}
-	
+
 	/**
 	 * 
 	 * @param btn
@@ -400,26 +414,25 @@ public class ModuleCreationHelper {
 
 	public void activateReferenceCB(CheckBox cb){
 		cb.setOnAction(new EventHandler<ActionEvent>(){
-		    @Override
+			@Override
 			public void handle(ActionEvent event){
 				if(cb.isSelected()) {
-				    for(double x = myCanvas.getCanvas().getLayoutX(); x < myCanvas.getCanvas().getHeight() + myCanvas.getCanvas().getLayoutX(); x +=AppConstants.GRIDLINES_SPACING){
-				        Line line = new Line(x, myCanvas.getCanvas().getLayoutY(), x, myCanvas.getCanvas().getLayoutY() + myCanvas.getCanvas().getHeight());
-					line.setFill(Color.DARKGREY);
-					
-					
-					Line line2 = new Line(myCanvas.getCanvas().getLayoutX(), x, myCanvas.getCanvas().getLayoutX() + myCanvas.getCanvas().getWidth(), x);
-					line2.setFill(Color.DARKGREY);
-					myGridLines.add(line);
-					myGridLines.add(line2);
-				    }
-				    root.getChildren().addAll(myGridLines);
+					for(double x = myCanvas.getCanvas().getLayoutX(); x < myCanvas.getCanvas().getHeight() + myCanvas.getCanvas().getLayoutX(); x += AppConstants.GRIDLINES_SPACING){
+						Line line = new Line(x, myCanvas.getCanvas().getLayoutY(), x, myCanvas.getCanvas().getLayoutY() + myCanvas.getCanvas().getHeight());
+						line.setFill(Color.DARKGREY);
+
+						Line line2 = new Line(myCanvas.getCanvas().getLayoutX(), x, myCanvas.getCanvas().getLayoutX() + myCanvas.getCanvas().getWidth(), x);
+						line2.setFill(Color.DARKGREY);
+						myGridLines.add(line);
+						myGridLines.add(line2);
+					}
+					root.getChildren().addAll(myGridLines);
 				}
 				else{
-				    for(Line l : myGridLines){
-					root.getChildren().remove(l);
-				    }
-				    myGridLines.clear();
+					for(Line l : myGridLines){
+						root.getChildren().remove(l);
+					}
+					myGridLines.clear();
 				}
 			}
 		});
@@ -429,64 +442,64 @@ public class ModuleCreationHelper {
 		TF.setOnAction(new EventHandler<ActionEvent>(){
 			@Override
 			public void handle (ActionEvent event){
-				myCommands.add(myTextField.getText());
-				myCommandsList.setItems(myCommands);
-				
+				addToCertainList(myCommands, myCommandsList,  myTextField.getText());
 				myView.sendCommandToBackend(myTextField.getText());
-				
-				//for fun with testing all the listviews
-				myUserCommands.add(myTextField.getText());
-				myUserCommandsList.setItems(myUserCommands);
-				myUserVariables.add(myTextField.getText());
-				myUserVariablesList.setItems(myUserVariables);
 				myTextField.setText("");
 			}
 		});
 	}
-	
+
+	//NEEDS BACKEND FUNCTIONALITY
 	private void activateKeyEvents() {
 		root.setOnKeyPressed(new EventHandler<KeyEvent>() {
 			@Override
 			public void handle(KeyEvent event) {
-			    for(Turtle t : myTurtleList){
-			        if(t.isActive()){
-			            if (event.getCode() == KeyCode.A) {
-			                t.moveTurtle(t.getXPos() - 10, t.getYPos());
-			            }
-			            if (event.getCode() == KeyCode.D) {
-			                t.moveTurtle(t.getXPos() + 10, t.getYPos());
-			            }
-			            if (event.getCode() == KeyCode.W) {
-			                t.moveTurtle(t.getXPos(), t.getYPos() - 10);
-			            }
-			            if (event.getCode() == KeyCode.S) {
-			                t.moveTurtle(t.getXPos(), t.getYPos() + 10);
-			            }
-			            if (event.getCode() == KeyCode.E) {
-			                t.incrementOrientation(10);
-			            }
-			            if (event.getCode() == KeyCode.Q) {
-			                t.incrementOrientation(-10);
-			            }
-			        }
-			        System.out.println(t.getXPos() +"  "+ t.getYPos());
-			        System.out.println(t.getImage().getLayoutX() + "  " + t.getImage().getLayoutY());
-			    }
+				for(Turtle t : myTurtleList){
+					if(t.isActive()){
+						if (event.getCode() == KeyCode.A) {
+							t.moveTurtle(t.getXPos() - 10, t.getYPos());
+						}
+						if (event.getCode() == KeyCode.D) {
+							t.moveTurtle(t.getXPos() + 10, t.getYPos());
+						}
+						if (event.getCode() == KeyCode.W) {
+							t.moveTurtle(t.getXPos(), t.getYPos() - 10);
+						}
+						if (event.getCode() == KeyCode.S) {
+							t.moveTurtle(t.getXPos(), t.getYPos() + 10);
+						}
+						if (event.getCode() == KeyCode.E) {
+							t.incrementOrientation(10);
+						}
+						if (event.getCode() == KeyCode.Q) {
+							t.incrementOrientation(-10);
+						}
+					}
+					System.out.println(t.getXPos() +"  "+ t.getYPos());
+					System.out.println(t.getImage().getLayoutX() + "  " + t.getImage().getLayoutY());
+				}
 			}
 		});
 	}
+	
+	
+	private void addToCertainList(ObservableList<String> currentList, ListViewAllSLOGO listView, String input) {
+		currentList.add(input);
+		listView.setItems(currentList);
+	}
+	
 
 	/**
 	 * Returns the current turtle
 	 * @return The turtle
 	 */
 	public Turtle getTurtle() {
-	    for(Turtle t : myTurtleList){
-	        if(t.isActive()){
-	            return t;
-	        }
-	    }
-	    return null;
+		for(Turtle t : myTurtleList){
+			if(t.isActive()){
+				return t;
+			}
+		}
+		return null;
 	}
 
 	/**

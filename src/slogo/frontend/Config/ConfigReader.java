@@ -26,7 +26,7 @@ public class ConfigReader {
 		paramDistributor = new ParameterDistributor();
 	}
 
-	public void readFile() throws IOException{
+	public ParameterDistributor readFile() throws IOException{
 
 		FileReader fr = new FileReader(path);
 		BufferedReader textReader = new BufferedReader(fr);
@@ -37,8 +37,8 @@ public class ConfigReader {
 
 		textReader.close();
 
-		paramDistributor.readConfigHashMap(configMap);
-		
+		paramDistributor = paramDistributor.readConfigHashMap(configMap);
+		return paramDistributor;
 	}
 	
 	private int calculateNumOfLines() throws IOException{

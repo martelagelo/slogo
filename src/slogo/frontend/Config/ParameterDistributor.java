@@ -12,8 +12,9 @@ public class ParameterDistributor {
 	
 	Map<String, Integer> variableMap = new HashMap<String, Integer>();
 	Map<String, Color> colorMap = new HashMap<String, Color>();
+	public int numOfTurtles;
 	
-	public void readConfigHashMap(Map<String, String> map) {
+	public ParameterDistributor readConfigHashMap(Map<String, String> map) {
 		this.configMap = map;
 		for(String s: configMap.keySet()) {
 			distributeVariables(s);
@@ -28,6 +29,8 @@ public class ParameterDistributor {
 			System.out.println(s);
 			System.out.println(colorMap.get(s));
 		}
+		
+		return this;
 	}
 	
 	private void distributeVariables(String s) {
@@ -45,9 +48,24 @@ public class ParameterDistributor {
 			    System.out.println("No color found");
 			}
 		}
-		else {
-			
+		else if (s.contains("turtles")) {
+			numOfTurtles = Integer.parseInt(configMap.get(s));
 		}
 	}
+	
+	public Map<String, Integer> getVariableMap() {
+		return variableMap;
+	}
+	
+	public Map<String, Color> getColorMap() {
+		return colorMap;
+	}
+	
+	public int getNumOfTurtles() {
+		return numOfTurtles;
+	}
+	
+	
+	
 	
 }
