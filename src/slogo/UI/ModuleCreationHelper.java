@@ -159,7 +159,7 @@ public class ModuleCreationHelper {
 	 */
 	private void createTurtle(){
 		myTurtleList = new ArrayList<Turtle>();
-		myTurtleList.add(new Turtle("Circle", AppConstants.INITIAL_TURTLE_X_POS, AppConstants.INITIAL_TURTLE_Y_POS));
+		myTurtleList.add(new Turtle("Triangle", AppConstants.INITIAL_TURTLE_X_POS, AppConstants.INITIAL_TURTLE_Y_POS));
 		root.getChildren().add(myTurtleList.get(0).getImage());
 	}
 

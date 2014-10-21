@@ -24,7 +24,7 @@ public class TurtleImageSelector {
     protected void create(Group root, Turtle turtle){
         myPossibleImages.addAll(turtle.getShapesMap().keySet());
         SelectorCreator sc = new SelectorCreator(root);
-        sc.setUpSelector("Turtle image", AppConstants.SELECTOR_WIDTH, AppConstants.SELECTOR_HEIGHT, AppConstants.SELECTOR_FONT_SIZE, myPossibleImages);
+        sc.setUpSelector("Turtle Image", AppConstants.SELECTOR_WIDTH, AppConstants.SELECTOR_HEIGHT, AppConstants.SELECTOR_FONT_SIZE, myPossibleImages);
         mySelector = sc.getSelector();
         mySelector.setOnAction(new EventHandler<ActionEvent>() {
             @Override
