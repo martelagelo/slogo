@@ -4,10 +4,12 @@ import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import slogo.View;
+import slogo.frontend.Config.ConfigHashMapCreator;
 import slogo.frontend.Config.ConfigReader;
 import slogo.frontend.Config.ConfigWriter;
 import slogo.frontend.Config.ParameterDistributor;
@@ -369,6 +371,7 @@ public class ModuleCreationHelper {
 					Map<String, Color> Colors = PD.getColorMap();
 					int numOfTurtles = PD.getNumOfTurtles();
 					
+					clearCertainList(myUserVariables, myUserVariablesList);
 					for (String s: Variables.keySet()) {
 						addToCertainList(myUserVariables, myUserVariablesList, s +  " = " + Variables.get(s));
 						//NEEDS BACKEND FUNCTIONALITY
@@ -391,7 +394,21 @@ public class ModuleCreationHelper {
 		btn.setOnAction(new EventHandler<ActionEvent>(){
 			@Override
 			public void handle(ActionEvent event){
-				configWriter.writeToTextFile();
+				//STILL IN TESTING PHASE
+				ConfigHashMapCreator CHMC = new ConfigHashMapCreator();
+				
+				Map<String, String> variableMap = new HashMap<String, String>();
+				for (String str: myUserVariablesList.getItems()) {
+					variableMap.put(str.substring(0, str.indexOf(' ')), str.substring(str.indexOf('=') + 2));
+					System.out.println(str.substring(0, str.indexOf(' ')));
+					System.out.println(str.substring(str.indexOf('=') + 2));
+				}
+				CHMC.setVariableMap(variableMap);
+				CHMC.setNumOfTurtles(13);
+				
+				configWriter.writeToTextFile(CHMC.getConfigHashMap());
+				
+				
 				//NEEDS BACKEND FUNCTIONALITY
 			}
 		});
@@ -485,6 +502,11 @@ public class ModuleCreationHelper {
 	
 	private void addToCertainList(ObservableList<String> currentList, ListViewAllSLOGO listView, String input) {
 		currentList.add(input);
+		listView.setItems(currentList);
+	}
+	
+	private void clearCertainList(ObservableList<String> currentList, ListViewAllSLOGO listView) {
+		currentList.clear();
 		listView.setItems(currentList);
 	}
 	

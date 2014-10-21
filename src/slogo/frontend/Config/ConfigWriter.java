@@ -11,12 +11,12 @@ public class ConfigWriter {
 	private String path = "src/slogo/frontend/Config/Config.txt";	
 	
 	
-	public void writeToTextFile() {
+	public void writeToTextFile(Map<String, String> configMap) {
 		BufferedWriter writer = null;
 	    try {
 	        writer = new BufferedWriter(new FileWriter(path));
-	        for (String s: hashMapTest().keySet()) {
-	    		writer.write(hashMapTest().get(s) + " " + s);
+	        for (String s: configMap.keySet()) {
+	    		writer.write(configMap.get(s) + " " + s);
 	    		writer.newLine();
 	    	}
 	    } catch (IOException e) {
