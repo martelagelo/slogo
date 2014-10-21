@@ -32,6 +32,7 @@ import slogo.backend.tokenization.InvalidTokenRulesException;
 import slogo.backend.util.ITurtleStatus;
 
 public class Backend implements IModel{
+
 	private IExecutionContext lastContext;
 
 	public Backend(){
@@ -43,7 +44,9 @@ public class Backend implements IModel{
 	private List<ITokenRule> tokenRules(){
 		List<ITokenRule> rules = new ArrayList<>();
 		rules.add(new TokenRule.Builder(Constants.CONSTANT_LABEL, "-?[0-9]+\\.?[0-9]*").build());
-		rules.add(new TokenRule.Builder("command", "[a-zA-z_]+(\\?)?").build());
+		rules.add(new TokenRule.Builder(Constants.COMMAND_LABEL, "[a-zA-z_]+(\\?)?").build());
+		rules.add(new TokenRule.Builder(Constants.VARIABLE_LABEL, ":[a-zA-Z]+").build());
+		rules.add(new TokenRule.Builder(Constants.LIST_LABEL, "\\[.*\\]").build());
 		return rules;
 	}
 	private List<IGrammarRule> grammarRules(){
