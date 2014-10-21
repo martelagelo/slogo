@@ -9,14 +9,12 @@ import slogo.backend.util.ITurtleStatus;
 
 public class Ycor extends Operation{
 
-    public Ycor (String type, int argMin, int argMax) {
-        super(type, 0, 0);
-        // TODO Auto-generated constructor stub
+    public Ycor () {
+        super("Ycor", 0, 0);
     }
 
     @Override
     protected IExecutionContext executeRaw (List<IExecutionContext> args) {
-        // TODO Auto-generated method stub
         ITurtleStatus status = args.get(0).turtles().get("1");
         double y = status.turtlePosition().getY().doubleValue();
         String returnString = String.valueOf(y);

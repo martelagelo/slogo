@@ -21,6 +21,7 @@ import slogo.backend.impl.parsing.GrammarRule;
 import slogo.backend.impl.parsing.Parser;
 import slogo.backend.impl.tokenization.TokenRule;
 import slogo.backend.impl.tokenization.Tokenizer;
+import slogo.backend.impl.util.TurtleStatus;
 import slogo.backend.parsing.IGrammarRule;
 import slogo.backend.parsing.IParser;
 import slogo.backend.parsing.InvalidGrammarRuleException;
@@ -28,12 +29,15 @@ import slogo.backend.tokenization.IToken;
 import slogo.backend.tokenization.ITokenRule;
 import slogo.backend.tokenization.ITokenizer;
 import slogo.backend.tokenization.InvalidTokenRulesException;
+import slogo.backend.util.ITurtleStatus;
 
 public class Backend implements IModel{
 	private IExecutionContext lastContext;
 
 	public Backend(){
-		this.lastContext = new ExecutionContext(new HashMap<>(), new HashMap<>());
+		Map<String, ITurtleStatus> turtles = new HashMap<>();
+		turtles.put("1", new TurtleStatus.Builder().build());
+		this.lastContext = new ExecutionContext(turtles, new HashMap<>());
 	}
 
 	private List<ITokenRule> tokenRules(){

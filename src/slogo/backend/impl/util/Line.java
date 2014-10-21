@@ -16,19 +16,16 @@ public class Line implements ILine {
     }
     @Override
     public ICoordinates start () {
-        // TODO Auto-generated method stub
         return start;
     }
 
     @Override
     public ICoordinates end () {
-        // TODO Auto-generated method stub
         return end;
     }
 
     @Override
     public Visibility visible () {
-        // TODO Auto-generated method stub
         return visibility;
     }
 

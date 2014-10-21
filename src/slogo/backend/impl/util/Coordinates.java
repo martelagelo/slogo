@@ -11,13 +11,11 @@ public Coordinates(double myX, double myY){
 }
     @Override
     public Number getX () {
-        // TODO Auto-generated method stub
         return x;
     }
 
     @Override
     public Number getY () {
-        // TODO Auto-generated method stub
         return y;
     }
     @Override

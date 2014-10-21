@@ -14,14 +14,12 @@ import slogo.backend.util.PenState;
 
 public class Home extends Operation{
 
-    public Home (String type, int argMin, int argMax) {
-        super(type, 0, 0);
-        // TODO Auto-generated constructor stub
+    public Home () {
+        super("Home", 0, 0);
     }
 
     @Override
     protected IExecutionContext executeRaw (List<IExecutionContext> args) {
-        // TODO Auto-generated method stub
         ITurtleStatus status = args.get(0).turtles().get("1");
 
         ICoordinates pos = status.turtlePosition();

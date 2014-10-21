@@ -17,14 +17,12 @@ import slogo.backend.util.Visibility;
 
 public class SetXY extends Operation{
 
-    public SetXY (String type, int argMin, int argMax) {
-        super(type, 2, 2);
-        // TODO Auto-generated constructor stub
+    public SetXY () {
+        super("SetXY", 2, 2);
     }
 
     @Override
     protected IExecutionContext executeRaw (List<IExecutionContext> args) {
-        // TODO Auto-generated method stub
         ITurtleStatus status = args.get(0).turtles().get("1");
         String newX = args.get(0).environment().get("returnValue");
         String newY = args.get(1).environment().get("returnValue");

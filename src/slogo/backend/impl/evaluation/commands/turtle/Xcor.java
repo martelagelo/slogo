@@ -9,14 +9,12 @@ import slogo.backend.util.ITurtleStatus;
 
 public class Xcor extends Operation{
 
-    public Xcor (String type, int argMin, int argMax) {
-        super(type, 0, 0);
-        // TODO Auto-generated constructor stub
+    public Xcor () {
+        super("Xcor", 0, 0);
     }
 
     @Override
     protected IExecutionContext executeRaw (List<IExecutionContext> args) {
-        // TODO Auto-generated method stub
         ITurtleStatus status = args.get(0).turtles().get("1");
         double x = status.turtlePosition().getX().doubleValue();
         String returnString = String.valueOf(x);

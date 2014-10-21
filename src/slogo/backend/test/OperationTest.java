@@ -25,6 +25,7 @@ import org.junit.Test;
 
 
 
+
 import slogo.backend.evaluation.IExecutionContext;
 import slogo.backend.evaluation.IOperation;
 import slogo.backend.evaluation.IOperationFactory;
@@ -53,12 +54,19 @@ import slogo.backend.util.Visibility;
 public class OperationTest {
 	@Test
 	public void testOperationFactory(){
+		String[] commands = {
+				"Sum",
+				"Forward",
+				"And"
+		};
 		IOperationFactory factory = new OperationFactory();
-		try {
-			IOperation sum = factory.makeElement("Sum");
-			assertEquals("Sum", sum.type());
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
+		for (String command: commands) {
+			try {
+				IOperation sum = factory.makeElement(command);
+				assertEquals(command, sum.type());
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
 		}
 		try {
 			factory.makeElement("Tasdf");
@@ -99,7 +107,7 @@ public class OperationTest {
 	}
 	@Test
 	public void testAnd(){
-	    And and = new And();
+	    IOperation and = new And();
 	    String s1 = operate (2,and, "20", "41");
 	    String s2 = operate (2,and, "1", "-3");
 	    String s3 = operate (2,and, "0", "10");
@@ -184,7 +192,7 @@ public class OperationTest {
     }
 	@Test
     public void testForward(){
-	Forward forward = new Forward("Forward", 1 , 1);
+	IOperation forward = new Forward();
 	IExecutionContext con1 = buildContext();
 	
 	con1.environment().put("returnValue", "50");
@@ -194,7 +202,6 @@ public class OperationTest {
     try {
         con = forward.execute(list);
     } catch (MalformedSyntaxException e) {
-        // TODO Auto-generated catch block
         e.printStackTrace();
     }
 	ITurtleStatus stat = con.turtles().get("1");
@@ -239,7 +246,7 @@ public class OperationTest {
 	}
 	@Test
 	public void testHideTurtle(){
-	    HideTurtle hide = new HideTurtle("HideTurtle", 0, 0);
+	    IOperation hide = new HideTurtle();
 	    IExecutionContext con1 = buildContext();
 	    List<IExecutionContext> list = new ArrayList<IExecutionContext>();
 	    list.add(con1);
@@ -247,7 +254,6 @@ public class OperationTest {
         try {
             con = hide.execute(list);
         } catch (MalformedSyntaxException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 	    Visibility vis = con.turtles().get("1").turtleVisibility();
