@@ -19,7 +19,7 @@ public class Evaluator implements IEvaluator{
 		if (current.children().size() == 0) {
 			List<IExecutionContext> previousList = new ArrayList<>();
 			previousList.add(previous);
-			IExecutionContext result = current.operation().execute(previousList);
+			IExecutionContext result = current.operation().execute(previousList,previous,current);
 			return result;
 		}
 		List<IExecutionContext> results = new ArrayList<>();
@@ -27,7 +27,7 @@ public class Evaluator implements IEvaluator{
 			IExecutionContext result = evaluate(child, previous);
 			results.add(result);
 		}
-		IExecutionContext result = current.operation().execute(results);
+		IExecutionContext result = current.operation().execute(results,previous,current);
 		return result;
 	}
 }

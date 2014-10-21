@@ -8,6 +8,7 @@ import slogo.Constants;
 import slogo.backend.evaluation.IExecutionContext;
 import slogo.backend.evaluation.IOperation;
 import slogo.backend.impl.evaluation.ExecutionContext;
+import slogo.backend.parsing.ISyntaxNode;
 
 public class Constant implements IOperation {
 	private String value;
@@ -15,7 +16,7 @@ public class Constant implements IOperation {
 		this.value = value;
 	}
 	@Override
-	public IExecutionContext execute (List<IExecutionContext> args) {
+	public IExecutionContext execute (List<IExecutionContext> args, IExecutionContext previous, ISyntaxNode current) {
 		Map<String, String> newEnvironment = new HashMap<>(args.get(0).environment());
 		newEnvironment.put(Constants.RETURN_VALUE_ENVIRONMENT, value);
 		return new ExecutionContext(new HashMap<>(args.get(0).turtles()), newEnvironment);

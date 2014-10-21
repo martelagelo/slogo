@@ -6,6 +6,7 @@ import slogo.backend.evaluation.IExecutionContext;
 import slogo.backend.evaluation.IOperation;
 import slogo.backend.evaluation.MalformedSyntaxException;
 import slogo.backend.parsing.IGrammarRule;
+import slogo.backend.parsing.ISyntaxNode;
 
 public abstract class Operation implements IOperation {
 
@@ -26,7 +27,7 @@ public abstract class Operation implements IOperation {
 		}
 	}
 	@Override
-	public IExecutionContext execute(List<IExecutionContext> args) throws MalformedSyntaxException{
+	public IExecutionContext execute(List<IExecutionContext> args, IExecutionContext previous, ISyntaxNode current) throws MalformedSyntaxException{
 		validateArguments(args);
 		return executeRaw(args);
 	}
