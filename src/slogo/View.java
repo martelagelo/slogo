@@ -17,6 +17,7 @@ import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import slogo.UI.MessageBox;
 import slogo.UI.MethodRunner;
 import slogo.UI.Turtle;
 import slogo.backend.evaluation.IExecutionContext;
@@ -108,15 +109,8 @@ public class View implements IView{
 	/**
 	 * Creates and displays an error pop-up
 	 */
-	@Override
 	public void error(String message) {
-		 final Stage dialog = new Stage();
-         dialog.initModality(Modality.APPLICATION_MODAL);
-         VBox dialogVbox = new VBox(20);
-         dialogVbox.getChildren().add(new Text(message));
-         Scene dialogScene = new Scene(dialogVbox, 200, 100);
-         dialog.setScene(dialogScene);
-         dialog.show();
+		 new MessageBox(message);
 	}
 
 	@Override

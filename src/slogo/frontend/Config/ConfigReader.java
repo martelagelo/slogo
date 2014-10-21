@@ -58,8 +58,6 @@ public class ConfigReader {
 		for (int i = 0; i < count; i++) {
 			textLine = textReader.readLine();
 			configMap.put(textLine.substring(textLine.indexOf(' ')+1), textLine.substring(0, textLine.indexOf(' ')));
-			//System.out.println(textLine.substring(textLine.indexOf(' ')+1));
-			//System.out.println(configMap.get(textLine.substring(textLine.indexOf(' ')+1)));
 		}
 	}
 	

@@ -25,6 +25,9 @@ public class AppConstants {
         public static final Integer CANVAS_WIDTH = 400;
         public static final Integer CANVAS_HEIGHT = 400;
         
+        public static final Integer MESSAGE_BOX_WIDTH = 250;
+        public static final Integer MESSAGE_BOX_HEIGHT = 50;
+        
         public static final Integer LABEL_FONT_SIZE = 1;
         
         public static final Integer VBOX_SPACING = 10;

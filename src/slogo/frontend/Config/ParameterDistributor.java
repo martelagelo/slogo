@@ -19,17 +19,6 @@ public class ParameterDistributor {
 		for(String s: configMap.keySet()) {
 			distributeVariables(s);
 		}
-		
-		for(String s: variableMap.keySet()) {
-			System.out.println(s);
-			System.out.println(variableMap.get(s));
-		}
-
-		for(String s: colorMap.keySet()) {
-			System.out.println(s);
-			System.out.println(colorMap.get(s));
-		}
-		
 		return this;
 	}
 	

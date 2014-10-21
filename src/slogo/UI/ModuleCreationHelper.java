@@ -377,8 +377,11 @@ public class ModuleCreationHelper {
 						//NEEDS BACKEND FUNCTIONALITY
 					}
 					
+					new MessageBox("Read from config file successful!");
+					
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
+					new MessageBox("ERROR!! Read from config unsuccessful!");
 					e.printStackTrace();
 				}
 			}
@@ -408,6 +411,7 @@ public class ModuleCreationHelper {
 				
 				configWriter.writeToTextFile(CHMC.getConfigHashMap());
 				
+				new MessageBox("Write to config file successful!");
 				
 				//NEEDS BACKEND FUNCTIONALITY
 			}
