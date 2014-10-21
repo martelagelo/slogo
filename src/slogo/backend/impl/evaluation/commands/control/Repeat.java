@@ -18,14 +18,14 @@ public class Repeat extends Operation{
     @Override
     protected IExecutionContext executeRaw (List<IExecutionContext> args, IExecutionContext previous, ISyntaxNode current) {
         // TODO Auto-generated method stub
-        String argumentTwo = args.get(1).environment().get("returnValue");
-        int times = Integer.parseInt(argumentTwo);
+        String expression = args.get(0).environment().get("returnValue");
+        int times = Integer.parseInt(expression);
         //Error check times > 1
         Evaluator e = new Evaluator();
-        IExecutionContext context = args.get(0);
+        IExecutionContext context = args.get(1);
         for (int i = 0 ; i<times-1; i++){
             try {
-                context = e.evaluate(current.children().get(0), context);
+                context = e.evaluate(current.children().get(1), context);
             } catch (MalformedSyntaxException e1) {
                 // TODO Auto-generated catch block
                 e1.printStackTrace();

@@ -17,11 +17,11 @@ public class If extends Operation{
     protected IExecutionContext executeRaw (List<IExecutionContext> args,
             IExecutionContext previous, ISyntaxNode current) {
         // TODO Auto-generated method stub
-        String argumentTwo = args.get(1).environment().get("returnValue");
-        if(argumentTwo.equals("0")){
+        String expression = args.get(0).environment().get("returnValue");
+        if(expression.equals("0")){
             return previous;
         }
-        return args.get(0);
+        return args.get(1);
     }
 
 }

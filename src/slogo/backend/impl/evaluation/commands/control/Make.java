@@ -17,9 +17,9 @@ public class Make extends Operation{
     protected IExecutionContext executeRaw (List<IExecutionContext> args,
             IExecutionContext previous, ISyntaxNode current) {
         // TODO Auto-generated method stub
-        String expression = args.get(0).environment().get("returnValue");
-        String variable = args.get(1).environment().get("returnValue");
-        IExecutionContext context = args.get(0);
+        String expression = args.get(1).environment().get("returnValue");
+        String variable = args.get(0).environment().get("returnValue");
+        IExecutionContext context = args.get(1);
         context.environment().put(variable, expression);
         return context;
         
