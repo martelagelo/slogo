@@ -22,8 +22,8 @@ public class Turtle {
 	private boolean active;
 
 	public Turtle(String s, int x, int y){
-		xpos = x;
-		ypos = y;
+		xpos = x-7.5;
+		ypos = y-7.5;
 		//myBold = true;
 		imagesMap = new HashMap<String, Node>();
 		generateSelectorMap(initialImagesMap());
@@ -44,38 +44,6 @@ public class Turtle {
 		});
 
 	}
-	
-//	private void fillUpMap () {
-//		Circle c = new Circle();
-//		c.setCenterX(xpos);
-//		c.setCenterY(ypos);
-//		c.setRadius(8);
-//		imagesMap.put("Circle", c);
-//
-//		Rectangle r = new Rectangle();
-//		r.setX(xpos);
-//		r.setY(ypos);
-//		r.setWidth(12);
-//		r.setHeight(12);
-//		r.setArcHeight(1);
-//		r.setArcHeight(1);
-//		imagesMap.put("Rectangle", r);
-//
-//		Polygon p = new Polygon();
-//		p.getPoints().addAll(new Double[]{
-//				(double) (xpos-6), (double) ypos,
-//				(double) xpos, (double) (ypos+12),
-//				(double) (xpos+6), (double) ypos, 
-//		});
-//		imagesMap.put("Triangle", p);
-//
-//		Image I = new Image(getClass().getResourceAsStream("Turtle"));
-//		ImageView IV = new ImageView(I);
-//		IV.setLayoutX(xpos);
-//		IV.setLayoutY(ypos);
-//		imagesMap.put("Turtle", IV);
-//
-//	}
 
     private Map<String, String> initialImagesMap(){
         Map<String, String> map = new HashMap<String, String>();
@@ -88,7 +56,7 @@ public class Turtle {
 
     private void generateSelectorMap (Map<String, String> fileList) {
         for(String file : fileList.keySet()){
-            Image I = new Image(getClass().getResourceAsStream(file));
+            Image I = new Image(getClass().getResourceAsStream(file), AppConstants.MAX_NEW_IMAGE_WIDTH, AppConstants.MAX_NEW_IMAGE_HEIGHT, true, true);
             ImageView IV = new ImageView(I);
             IV.setLayoutX(xpos);
             IV.setLayoutY(ypos);
@@ -97,8 +65,9 @@ public class Turtle {
     }
 
 	private void setXPos(double d){
+	        d -= AppConstants.MAX_NEW_IMAGE_WIDTH/2;
 		turtleImage.setLayoutX(d);
-		xpos = d;
+	        xpos = d;
 	}
 
 	protected double getXPos(){
@@ -114,8 +83,9 @@ public class Turtle {
 	}
 
 	private void setYPos(double e){
+	        e -= AppConstants.MAX_NEW_IMAGE_HEIGHT/2;
 		turtleImage.setLayoutY(e);
-		ypos = e;
+	        ypos = e;
 	}
 
 	protected double getYPos(){
@@ -139,7 +109,7 @@ public class Turtle {
 	protected void setImage(String name){
 		turtleImage = imagesMap.get(name); 
 		turtleImage.setRotate(orientation);
-		moveTurtle(xpos, ypos);
+		moveTurtle(xpos+AppConstants.MAX_NEW_IMAGE_WIDTH, ypos + AppConstants.MAX_NEW_IMAGE_HEIGHT);
 	}
 
 	protected Node getImage(){
