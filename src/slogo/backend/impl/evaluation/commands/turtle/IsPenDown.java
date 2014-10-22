@@ -12,7 +12,7 @@ import slogo.backend.util.PenState;
 public class IsPenDown extends Operation{
 
     public IsPenDown () {
-        super("IsPenDown", 0, 0);
+        super("IsPenDown", 1, 1);
     }
 
     @Override

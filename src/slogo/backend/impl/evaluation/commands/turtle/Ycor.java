@@ -11,7 +11,7 @@ import slogo.backend.util.ITurtleStatus;
 public class Ycor extends Operation{
 
     public Ycor () {
-        super("Ycor", 0, 0);
+        super("Ycor", 1, 1);
     }
 
     @Override
