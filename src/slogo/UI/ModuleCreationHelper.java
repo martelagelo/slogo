@@ -294,7 +294,7 @@ public class ModuleCreationHelper {
 		backgroundSelect.create(root, myGraphicsContext);
 
 		PathColorSelector pathSelect = new PathColorSelector(mySelectorsVBox);
-		pathSelect.create(root, myGraphicsContext);
+		pathSelect.create(root, myTurtleList.get(0));
 
 		PathTextureSelector pathTexture = new PathTextureSelector(mySelectorsVBox);
 		pathTexture.create(root, myTurtleList.get(0));

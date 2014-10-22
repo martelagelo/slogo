@@ -76,6 +76,7 @@ public class MethodRunner {
 		pathList.clear();
 		for (ILine l: TS.lineSequence()) {
 		    Line line = new Line();
+		    line.setStroke(turtle.getColor());
 		    line.setStartX((double) l.start().getX() + AppConstants.INITIAL_TURTLE_X_POS);
 		    line.setStartY((double) l.start().getY() + AppConstants.INITIAL_TURTLE_Y_POS);
 		    line.setEndX((double) l.end().getX() + AppConstants.INITIAL_TURTLE_X_POS);

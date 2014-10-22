@@ -16,15 +16,15 @@ public class PathColorSelector {
         myVbox = vbox;
     }
     
-    protected void create(Group root, GraphicsContext GC){
+    protected void create(Group root, Turtle t){
         ColorSelectorCreator sc = new ColorSelectorCreator(root);
-        sc.setUpSelector("Path Color", AppConstants.SELECTOR_WIDTH, AppConstants.SELECTOR_HEIGHT, AppConstants.SELECTOR_FONT_SIZE, (Color) GC.getStroke());
+        sc.setUpSelector("Path Color", AppConstants.SELECTOR_WIDTH, AppConstants.SELECTOR_HEIGHT, AppConstants.SELECTOR_FONT_SIZE, t.getColor());
         final ColorPicker pathColor = sc.getSelector();
         pathColor.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle (ActionEvent event){
                     if(pathColor.getValue() != null){
-                            GC.setStroke(pathColor.getValue());
+                            t.setColor(pathColor.getValue());
                     }
             }
         });

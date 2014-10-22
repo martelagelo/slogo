@@ -7,6 +7,7 @@ import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 
 public class Turtle {
 
@@ -17,6 +18,7 @@ public class Turtle {
 	private boolean myBold;
 	private double orientation;
 	private Map<String, Node> imagesMap;
+	private Color color;
 
 	private boolean active;
 
@@ -29,6 +31,7 @@ public class Turtle {
 		turtleImage = imagesMap.get(s);
 		moveTurtle(xpos, ypos);
 		active = true;
+		color = Color.BLACK;
 		setOrientation(90);
 		activateTurtle();
 	}
@@ -108,7 +111,7 @@ public class Turtle {
 	protected void setImage(String name){
 		turtleImage = imagesMap.get(name); 
 		turtleImage.setRotate(orientation);
-		moveTurtle(xpos+AppConstants.MAX_NEW_IMAGE_WIDTH, ypos + AppConstants.MAX_NEW_IMAGE_HEIGHT);
+		moveTurtle(xpos+AppConstants.MAX_NEW_IMAGE_WIDTH/2, ypos + AppConstants.MAX_NEW_IMAGE_HEIGHT/2);
 	}
 
 	protected Node getImage(){
@@ -146,6 +149,16 @@ public class Turtle {
 	public boolean isActive () {
 		return active;
 	}
+
+
+    public void setColor (Color value) {
+        color = value;
+        
+    }
+    
+    public Color getColor(){
+        return color;
+    }
 	
 
 }
