@@ -30,6 +30,7 @@ public class Turtle {
 		turtleImage = imagesMap.get(s);
 		moveTurtle(xpos, ypos);
 		active = true;
+		setOrientation(90);
 		activateTurtle();
 	}
 

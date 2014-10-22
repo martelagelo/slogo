@@ -71,19 +71,27 @@ public class MethodRunner {
 	
 	private void moveTurtle() {
 		for (ILine l: TS.lineSequence()) {
-		    Line line = (Line) l;
+		    Line line = new Line();
+		    line.setStartX((double) l.start().getX() + AppConstants.INITIAL_TURTLE_X_POS);
+		    System.out.println((double) l.start().getX());
+		    line.setStartY((double) l.start().getY() + AppConstants.INITIAL_TURTLE_Y_POS);
+		    System.out.println((double) l.start().getY());
+		    line.setEndX((double) l.end().getX() + AppConstants.INITIAL_TURTLE_X_POS);
+		    System.out.println((double) l.end().getX() );
+		    line.setEndY((double) l.end().getY() + AppConstants.INITIAL_TURTLE_Y_POS);
+		    System.out.println((double) l.end().getY() );
 		    if(turtle.isDashed()){
 		        line.getStrokeDashArray().addAll(10d);
 		    }
-			root.getChildren().add((Line) l);
-			pathStack.push((Line) l);
+			root.getChildren().add(line);
+			pathStack.push(line);
 			//if (lines.get(lines.size()-1) == l) turtle.moveTurtle(l.getEndX(), l.getEndY());
 		}
-		turtle.moveTurtle((double) TS.turtlePosition().getX(), (double) TS.turtlePosition().getY()); 
+		turtle.moveTurtle((double) TS.turtlePosition().getX() + AppConstants.INITIAL_TURTLE_X_POS, (double) TS.turtlePosition().getY() + AppConstants.INITIAL_TURTLE_Y_POS); 
 	}
 
 	private void setTurtleDirection() {
-		turtle.setOrientation(TS.turtleDirection().toDegrees());
+		turtle.setOrientation(TS.turtleDirection().toDegrees() + 90);
 	}
 	
 	private void setPenState() {

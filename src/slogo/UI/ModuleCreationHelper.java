@@ -8,7 +8,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import application.ApplicationConstants;
 import slogo.View;
 import slogo.frontend.Config.ConfigHashMapCreator;
 import slogo.frontend.Config.ConfigReader;
@@ -507,7 +506,8 @@ public class ModuleCreationHelper {
 							t.moveTurtle(t.getXPos() + 10, t.getYPos());
 						}
 						if (event.getCode() == KeyCode.W) {
-							t.moveTurtle(t.getXPos(), t.getYPos() - 10);
+							myView.sendCommandToBackend("Forward 10");
+							//t.moveTurtle(t.getXPos(), t.getYPos() - 10);
 						}
 						if (event.getCode() == KeyCode.S) {
 							t.moveTurtle(t.getXPos(), t.getYPos() + 10);
