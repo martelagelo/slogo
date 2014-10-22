@@ -77,12 +77,16 @@ public class ModuleCreationHelper {
 	private ObservableList<String> myUserVariables = FXCollections.observableArrayList();
 	private ObservableList<String> myUserCommands = FXCollections.observableArrayList();
 	private GraphicsContext myGraphicsContext;
-
+	private Slider animationSlider;
+	
 	private Map<String, Node> myImagesMap;
 	private int totalUserImages;
 	private TurtleImageSelector myTurtleSelector;
 
 	private List<Line> myGridLines;
+	
+	private Label debugLabel;
+	private Button debugStepButton;
 
 
 	/**
@@ -121,6 +125,7 @@ public class ModuleCreationHelper {
 		createAnimationSpeedSlider();
 		createZoomSlider();
 		createGridCheckBox();
+		createDebugButton();
 		activateKeyEvents();
 	}
 
@@ -239,8 +244,8 @@ public class ModuleCreationHelper {
 		SliderCreator SC = new SliderCreator(mySelectorsVBox);
 		LC.createLabel("Animation Speed Slider", AppConstants.LABEL_FONT_SIZE, AppConstants.DEFAULT_TEXT_COLOR);
 		//GET RID OF MAGIC NUMBERS
-		Slider slider = SC.createSlider(0, 10, 5);
-		activateAnimationSliderListener(slider);
+		animationSlider = SC.createSlider(0, 20, 1);
+		activateAnimationSliderListener(animationSlider);
 	}
 	
 	private void createZoomSlider() {
@@ -250,6 +255,12 @@ public class ModuleCreationHelper {
 		//GET RID OF MAGIC NUMBERS
 		Slider slider = SC.createSlider(0, 10, 5);
 		activateZoomSliderListener(slider);
+	}
+	
+	private void createDebugButton() {
+		CheckBoxCreator cb = new CheckBoxCreator(mySelectorsVBox);
+		CheckBox CB = cb.createCheckBox("Debug Mode");
+		activateDebugCB(CB);
 	}
 
 	/**
@@ -332,12 +343,33 @@ public class ModuleCreationHelper {
 	 * Lets the help button navigate to a help website
 	 * @param btn: The help button
 	 */
-	public void activateHelpButton(Button btn){
+	public void activateHelpButton(Button btn) {
 		btn.setOnAction(new EventHandler<ActionEvent>(){
 			@Override
 			public void handle(ActionEvent event){
 				HTMLHelpPage help = new HTMLHelpPage(AppConstants.HELP_URL);
 				help.displayPage();
+			}
+		});
+	}
+	
+	public void activateDebugCB(CheckBox cb){
+		cb.setOnAction(new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent event){
+				LabelCreator LC = new LabelCreator(root);
+				Label label;
+						LC.createLabel("DEBUG MODE ON", AppConstants.DEBUG_LABEL_X_POS, AppConstants.DEBUG_LABEL_Y_POS, AppConstants.TITLE_LABEL_FONT_SIZE, Color.RED);
+				System.out.print("0");
+				if(cb.isSelected()) {
+					label.setVisible(true);
+					System.out.print("1");
+				}
+				else{
+					label.setVisible(false);
+					root.getChildren().remove(label);
+					System.out.print("2");
+				}
 			}
 		});
 	}
@@ -520,7 +552,7 @@ public class ModuleCreationHelper {
 		slider.setOnMouseReleased(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
-				//NEED FUNCTONALITY
+				
 			}
 		});
 	}
@@ -572,6 +604,10 @@ public class ModuleCreationHelper {
 	 */
 	public void setView(View view) {
 		this.myView = view;
+	}
+	
+	public double getAnimationSliderValue() {
+		return animationSlider.getValue();
 	}
 }
 

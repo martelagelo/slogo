@@ -27,6 +27,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import slogo.UI.MessageBox;
 import slogo.UI.MethodRunner;
+import slogo.UI.ModuleCreationHelper;
 import slogo.UI.Turtle;
 import slogo.backend.evaluation.IExecutionContext;
 import slogo.backend.impl.Backend;
@@ -52,6 +53,7 @@ public class View implements IView{
 	private List<Line> pathList;
 	private Queue<String> commandQueue;
 	private Timeline animationTimeline;
+	private ModuleCreationHelper MCH;
 
 	/**
 	 * Initializes the View 
@@ -60,10 +62,11 @@ public class View implements IView{
 	 * @param canvas The canvas on which the turtle is drawn
 	 * @param turtle The moving object on the canvas
 	 */
-	public void init(Group root, Canvas canvas, Turtle turtle) {
+	public void init(Group root, ModuleCreationHelper MCH) {
 		pathList = new ArrayList<Line>();
 		commandQueue = new LinkedList<String>();
-		runner = new MethodRunner(root, canvas, turtle, pathList);
+		this.MCH = MCH;
+		runner = new MethodRunner(root, MCH.getCanvas(), MCH.getTurtle(), pathList);
 		backend = new Backend();
 	}
 
@@ -82,7 +85,7 @@ public class View implements IView{
 			animationTimeline.setCycleCount(Timeline.INDEFINITE);
 
 			animationTimeline.getKeyFrames().add(
-					new KeyFrame(Duration.millis(1000 / 1),
+					new KeyFrame(Duration.millis(1000 / MCH.getAnimationSliderValue()),
 							new EventHandler<ActionEvent>() {
 						public void handle(ActionEvent event) {
 
@@ -98,13 +101,6 @@ public class View implements IView{
 		}
 	}
 
-
-	//	public void sendCommandToBackend() {
-	//		while (!commandQueue.isEmpty()) {
-	//			IExecutionContext result = backend.execute(commandQueue.poll());
-	//			executeCommand(result);
-	//		}
-	//	}
 
 	/**
 	 * Sends a command to the back-end

@@ -20,14 +20,14 @@ public class CommandsTextField {
     
     protected CommandsTextField createTextField(){
         LabelCreator LC = new LabelCreator(myRoot);
-        Label l = LC.createLabel("Enter your commands here! Hit Enter to see them displayed!", AppConstants.TITLE_LABEL_FONT_SIZE/3, Color.BLACK);
+        Label l = LC.createLabel("Enter your commands here! Hit Enter to see them displayed!", AppConstants.LABEL_FONT_SIZE, Color.BLACK);
         myTextField.setPromptText("Enter Command");
         myTextField.setPrefHeight(20);
         myTextField.setPrefWidth(400);
         VBox vbox = new VBox();
         vbox.getChildren().addAll(l, myTextField);
-        vbox.setLayoutX(75);
-        vbox.setLayoutY(500);
+        vbox.setLayoutX(AppConstants.TEXT_BOX_VBOX_X_POS);
+        vbox.setLayoutY(AppConstants.TEXT_BOX_VBOX_Y_POS);
         myRoot.getChildren().add(vbox);
         return this;
     }
