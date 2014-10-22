@@ -41,7 +41,7 @@ public class View implements IView{
 
 	private MethodRunner runner;
 	private IModel backend;	
-	private Stack<Line> pathStack;
+	private List<Line> pathList;
 	
 	/**
 	 * Initializes the View 
@@ -51,21 +51,21 @@ public class View implements IView{
 	 * @param turtle The moving object on the canvas
 	 */
 	public void init(Group root, Canvas canvas, Turtle turtle) {
-		pathStack = new Stack<Line>();
-		runner = new MethodRunner(root, canvas, turtle, pathStack);
+		pathList = new ArrayList<Line>();
+		runner = new MethodRunner(root, canvas, turtle, pathList);
 		backend = new Backend();
 		
 //		CommandExecutor CE = new CommandExecutor();
 //		List<Line> lines = new ArrayList<Line>();
 //		Line line = new Line(275, 275, 300, 300);
 //		lines.add(line);
-		Line line2 = new Line(300, 300, 250, 350);
-		if(turtle.isDashed()) line2.getStrokeDashArray().add(10d);
+//		Line line2 = new Line(300, 300, 250, 350);
+//		if(turtle.isDashed()) line2.getStrokeDashArray().add(10d);
 //              else if (turtle.myBold == true){
 //		    line2.setStrokeWidth(4);
 //		}
 //		lines.add(line2);
-		root.getChildren().add(line2);
+//		root.getChildren().add(line2);
 //		Line line3 = new Line(250, 350, 200, 200);
 //		lines.add(line3);
 //		CE.setList(lines);
