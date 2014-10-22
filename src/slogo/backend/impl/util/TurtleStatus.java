@@ -16,6 +16,7 @@ public class TurtleStatus implements ITurtleStatus {
 	private IDirection turtleDirection;
 	private PenState penState;
 	private Visibility turtleVisibility;
+	private boolean isActive;
 
 	public static class Builder {
 		private List<ILine> lineSequence;
@@ -23,12 +24,22 @@ public class TurtleStatus implements ITurtleStatus {
 		private IDirection turtleDirection;
 		private PenState penState;
 		private Visibility turtleVisibility;
+		private boolean isActive;
 		public Builder() {
 			this.lineSequence = new ArrayList<>();
 			this.turtlePosition = new Coordinates(0, 0);
 			this.turtleDirection = new Direction(0);
 			this.penState = PenState.DOWN;
 			this.turtleVisibility = Visibility.VISIBLE;
+			this.isActive = true;
+		}
+		public Builder(ITurtleStatus status) {
+			this.lineSequence = status.lineSequence();
+			this.turtlePosition = status.turtlePosition();
+			this.turtleDirection = status.turtleDirection();
+			this.penState = status.penState();
+			this.turtleVisibility = status.turtleVisibility();
+			this.isActive = status.isActive();
 		}
 		public Builder lineSequence(List<ILine> lines){
 			this.lineSequence = lines;
@@ -50,6 +61,10 @@ public class TurtleStatus implements ITurtleStatus {
 			this.turtleVisibility = visibility;
 			return this;
 		}
+		public Builder isActive(boolean isActive){
+			this.isActive = isActive;
+			return this;
+		}
 		public TurtleStatus build() {
 			return new TurtleStatus(this);
 		}
@@ -60,6 +75,7 @@ public class TurtleStatus implements ITurtleStatus {
 		turtleDirection = d;
 		penState = s;
 		turtleVisibility = v;
+		this.isActive = true;
 	}
 	private TurtleStatus(Builder builder) {
 		this.lineSequence = builder.lineSequence;
@@ -67,6 +83,7 @@ public class TurtleStatus implements ITurtleStatus {
 		this.turtleDirection = builder.turtleDirection;
 		this.penState = builder.penState;
 		this.turtleVisibility = builder.turtleVisibility;
+		this.isActive = builder.isActive;
 	}
 
 	@Override
@@ -92,5 +109,9 @@ public class TurtleStatus implements ITurtleStatus {
 	@Override
 	public Visibility turtleVisibility () {
 		return turtleVisibility;
+	}
+	@Override
+	public boolean isActive() {
+		return isActive;
 	}
 }

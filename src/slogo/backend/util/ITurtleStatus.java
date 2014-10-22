@@ -37,4 +37,10 @@ public interface ITurtleStatus {
 	 * @return the state of the turtle
 	 */
 	public Visibility turtleVisibility();
+	/**
+	 * Get whether the turtle is currently active, i.e. will respond to commands
+	 * 
+	 * @return Whether the turtle will respond to commands
+	 */
+	public boolean isActive();
 }

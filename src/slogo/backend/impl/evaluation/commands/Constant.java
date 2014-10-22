@@ -14,7 +14,7 @@ public class Constant extends Operation {
 	}
 	@Override
 	public IExecutionContext executeRaw(List<IExecutionContext> args) {
-		IExecutionContext newContext = new ExecutionContext(args.get(0));
+		IExecutionContext newContext = mergeContexts(args);
 		newContext.environment().put(Constants.RETURN_VALUE_ENVIRONMENT, value);
 		return newContext;
 	}

@@ -20,9 +20,9 @@ public class ExecutionContext implements IExecutionContext {
 	public ExecutionContext(Map<String,ITurtleStatus> myTurtleInfo,
 			Map<String,String> myEnvironmentInfo,
 			Map<String, ISyntaxNode> userDefinedCommands){
-		this.turtleInfo = myTurtleInfo;
-		this.environmentInfo = myEnvironmentInfo;
-		this.userDefinedCommands = userDefinedCommands;
+		this.turtleInfo = new HashMap<>(myTurtleInfo);
+		this.environmentInfo = new HashMap<>(myEnvironmentInfo);
+		this.userDefinedCommands = new HashMap<>(userDefinedCommands);
 	}
 
 	@Override

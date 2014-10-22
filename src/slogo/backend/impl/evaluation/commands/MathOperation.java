@@ -17,13 +17,9 @@ public abstract class MathOperation extends Operation{
 
 	@Override
 	protected IExecutionContext executeRaw(List<IExecutionContext> args) {
-		List<Number> argsNum = new ArrayList<>();
-		for (IExecutionContext arg: args){
-			argsNum.add(new Double(arg.environment().get(Constants.RETURN_VALUE_ENVIRONMENT)));
-		}
+		List<Number> argsNum = generateNumericArguments(args);
         String result = executeMath(argsNum).toString();
-        // this is problematic; assume 0th argument for now
-        IExecutionContext retContext = new ExecutionContext(args.get(0));
+        IExecutionContext retContext = mergeContexts(args);
         retContext.environment().put(Constants.RETURN_VALUE_ENVIRONMENT, result);
         return retContext;
 	}

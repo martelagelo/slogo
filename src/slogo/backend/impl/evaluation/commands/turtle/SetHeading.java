@@ -2,6 +2,7 @@ package slogo.backend.impl.evaluation.commands.turtle;
 
 import java.util.List;
 
+import slogo.Constants;
 import slogo.backend.evaluation.IExecutionContext;
 import slogo.backend.impl.evaluation.ExecutionContext;
 import slogo.backend.impl.evaluation.commands.Operation;
@@ -20,8 +21,8 @@ public class SetHeading extends Operation{
 
     @Override
     protected IExecutionContext executeRaw (List<IExecutionContext> args) {
-        ITurtleStatus status = args.get(0).turtles().get("1");
-        String heading = args.get(0).environment().get("returnValue");
+        ITurtleStatus status = args.get(0).turtles().get(Constants.DEFAULT_TURTLE_NAME);
+        String heading = args.get(0).environment().get(Constants.RETURN_VALUE_ENVIRONMENT);
         double headingValue = Double.parseDouble(heading);
         ICoordinates pos = status.turtlePosition();
         
@@ -30,10 +31,10 @@ public class SetHeading extends Operation{
         IDirection dir = status.turtleDirection();
         double degreeTurned = Math.abs(newDir.toDegrees()-dir.toDegrees());
         String degreeString = String.valueOf(degreeTurned);
-        args.get(0).environment().put("returnValue", degreeString);
+        args.get(0).environment().put(Constants.RETURN_VALUE_ENVIRONMENT, degreeString);
         ITurtleStatus newStatus = new TurtleStatus(status.lineSequence(),pos,newDir,pen,status.turtleVisibility());
-        args.get(0).turtles().put("1", newStatus);
-        return new ExecutionContext(args.get(0).turtles(),args.get(0).environment());
+        args.get(0).turtles().put(Constants.DEFAULT_TURTLE_NAME, newStatus);
+        return new ExecutionContext(args.get(0).turtles(),args.get(0).environment(), args.get(0).userDefinedCommands());
     }
 
 }

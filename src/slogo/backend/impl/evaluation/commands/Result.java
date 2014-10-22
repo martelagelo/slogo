@@ -4,7 +4,6 @@ import java.util.List;
 
 import slogo.Constants;
 import slogo.backend.evaluation.IExecutionContext;
-import slogo.backend.impl.evaluation.ExecutionContext;
 
 public class Result extends Operation {
 
@@ -14,7 +13,7 @@ public class Result extends Operation {
 
 	@Override
 	public IExecutionContext executeRaw(List<IExecutionContext> args) {
-		return new ExecutionContext(args.get(0));
+		return mergeContexts(args);
 	}
 
 }

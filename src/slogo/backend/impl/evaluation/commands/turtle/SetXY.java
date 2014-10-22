@@ -2,6 +2,7 @@ package slogo.backend.impl.evaluation.commands.turtle;
 
 import java.util.List;
 
+import slogo.Constants;
 import slogo.backend.evaluation.IExecutionContext;
 import slogo.backend.impl.evaluation.ExecutionContext;
 import slogo.backend.impl.evaluation.commands.Operation;
@@ -23,9 +24,9 @@ public class SetXY extends Operation{
 
     @Override
     protected IExecutionContext executeRaw (List<IExecutionContext> args) {
-        ITurtleStatus status = args.get(0).turtles().get("1");
-        String newX = args.get(0).environment().get("returnValue");
-        String newY = args.get(1).environment().get("returnValue");
+        ITurtleStatus status = args.get(0).turtles().get(Constants.DEFAULT_TURTLE_NAME);
+        String newX = args.get(0).environment().get(Constants.RETURN_VALUE_ENVIRONMENT);
+        String newY = args.get(1).environment().get(Constants.RETURN_VALUE_ENVIRONMENT);
         double newXValue = Double.parseDouble(newX);
         double newYValue = Double.parseDouble(newY);
         ICoordinates pos = status.turtlePosition();
@@ -39,12 +40,12 @@ public class SetXY extends Operation{
 
         ICoordinates newPos = new Coordinates(newXValue,newYValue);
         String distance = String.valueOf(newPos.getDistance(pos).doubleValue());
-        args.get(0).environment().put("returnValue", distance);
+        args.get(0).environment().put(Constants.RETURN_VALUE_ENVIRONMENT, distance);
         ILine newLine = new Line(pos, newPos, vis);
         status.lineSequence().add(newLine);
         ITurtleStatus newStatus = new TurtleStatus(status.lineSequence(),newPos,dir,pen,status.turtleVisibility());
-        args.get(0).turtles().put("1", newStatus);
-        return new ExecutionContext(args.get(0).turtles(),args.get(0).environment());
+        args.get(0).turtles().put(Constants.DEFAULT_TURTLE_NAME, newStatus);
+        return new ExecutionContext(args.get(0).turtles(),args.get(0).environment(), args.get(0).userDefinedCommands());
     }
 
 }
