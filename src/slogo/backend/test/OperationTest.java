@@ -99,7 +99,7 @@ public class OperationTest {
         }
         IExecutionContext result = null;
         try {
-            result = op.execute(list);
+            result = op.execute(list, null, null);
         } catch (MalformedSyntaxException e) {
             e.printStackTrace();
         }
@@ -200,7 +200,7 @@ public class OperationTest {
 	list.add(con1);
 	IExecutionContext con = null;
     try {
-        con = forward.execute(list);
+        con = forward.execute(list,null,null);
     } catch (MalformedSyntaxException e) {
         e.printStackTrace();
     }
@@ -252,7 +252,7 @@ public class OperationTest {
 	    list.add(con1);
 	    IExecutionContext con = null;
         try {
-            con = hide.execute(list);
+            con = hide.execute(list,null,null);
         } catch (MalformedSyntaxException e) {
             e.printStackTrace();
         }

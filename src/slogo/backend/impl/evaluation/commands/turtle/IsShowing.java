@@ -12,7 +12,7 @@ import slogo.backend.util.Visibility;
 public class IsShowing extends Operation{
 
     public IsShowing () {
-        super("IsShowing", 0, 0);
+        super("IsShowing", 1, 1);
     }
 
     @Override

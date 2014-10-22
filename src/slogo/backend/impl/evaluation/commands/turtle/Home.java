@@ -16,7 +16,7 @@ import slogo.backend.util.PenState;
 public class Home extends Operation{
 
     public Home () {
-        super("Home", 0, 0);
+        super("Home", 1, 1);
     }
 
     @Override

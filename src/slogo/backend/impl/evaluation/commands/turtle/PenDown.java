@@ -15,7 +15,7 @@ import slogo.backend.util.PenState;
 public class PenDown extends Operation{
 
     public PenDown () {
-        super("PenDown", 0, 0);
+        super("PenDown", 1, 1);
     }
 
     @Override

@@ -18,7 +18,7 @@ import slogo.backend.util.PenState;
 public class ClearScreen extends Operation{
 
     public ClearScreen () {
-        super("ClearScreen", 0, 0);
+        super("ClearScreen", 1, 1);
     }
 
     @Override
