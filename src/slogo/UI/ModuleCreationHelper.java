@@ -85,8 +85,10 @@ public class ModuleCreationHelper {
 
 	private List<Line> myGridLines;
 	
+	private VBox debugVBox;
 	private Label debugLabel;
-	private Button debugStepButton;
+	private Button debugStepIntoButton;
+	private Button debugStepOverButton;
 
 
 	/**
@@ -110,10 +112,13 @@ public class ModuleCreationHelper {
 		createTurtleCanvas();
 		createTurtle();
 		createSelectorVBox();
-		createFirstButtonRow();
-		createPlayButton();
-		createStopButton();
-		createHelpButton();
+		createSelectorVBoxModules();
+		createDebugModules();
+		activateKeyEvents();
+	}
+	
+	private void createSelectorVBoxModules() {
+		createFirstRowButtons();
 		createTextField();
 		createListViews();
 		createSelectors();
@@ -125,8 +130,21 @@ public class ModuleCreationHelper {
 		createAnimationSpeedSlider();
 		createZoomSlider();
 		createGridCheckBox();
+	}
+	
+	private void createFirstRowButtons() {
+		createFirstButtonRow();
+		createPlayButton();
+		createStopButton();
+		createHelpButton();
+	}
+	
+	private void createDebugModules() {
+		createDebugVBox();
+		createDebugLabel();
+		createDebugStepIntoButton();
+		createDebugStepOverButton();
 		createDebugButton();
-		activateKeyEvents();
 	}
 
 	/**
@@ -262,6 +280,33 @@ public class ModuleCreationHelper {
 		CheckBox CB = cb.createCheckBox("Debug Mode");
 		activateDebugCB(CB);
 	}
+	
+	private void createDebugVBox() {
+		VBoxCreator VBC = new VBoxCreator(root);
+		debugVBox = VBC.createVBox(AppConstants.VBOX_SPACING, AppConstants.DEBUG_LABEL_X_POS, AppConstants.DEBUG_LABEL_Y_POS);
+	}
+	
+	private void createDebugLabel() {
+		LabelCreator LC = new LabelCreator(debugVBox);
+		debugLabel = LC.createLabel("DEBUG MODE ON", AppConstants.TITLE_LABEL_FONT_SIZE, Color.RED);
+		debugLabel.setVisible(false);
+	}
+	
+	private void createDebugStepIntoButton() {
+		ButtonCreator BC = new ButtonCreator(debugVBox);
+		debugStepIntoButton = BC.createButton("Step Into Next Command");
+		debugStepIntoButton.setVisible(false);
+		//NEEDS FUNCTIONALITY
+		//activateStepIntoButton(btn);
+	}
+	
+	private void createDebugStepOverButton() {
+		ButtonCreator BC = new ButtonCreator(debugVBox);
+		debugStepOverButton = BC.createButton("Step Over Next Command");
+		debugStepOverButton.setVisible(false);
+		//NEEDS FUNCTIONALITY
+		//activateStepOverButton(btn);
+	}
 
 	/**
 	 * Creates the text field where the user enters code
@@ -357,18 +402,15 @@ public class ModuleCreationHelper {
 		cb.setOnAction(new EventHandler<ActionEvent>(){
 			@Override
 			public void handle(ActionEvent event){
-				LabelCreator LC = new LabelCreator(root);
-				Label label;
-						LC.createLabel("DEBUG MODE ON", AppConstants.DEBUG_LABEL_X_POS, AppConstants.DEBUG_LABEL_Y_POS, AppConstants.TITLE_LABEL_FONT_SIZE, Color.RED);
-				System.out.print("0");
 				if(cb.isSelected()) {
-					label.setVisible(true);
-					System.out.print("1");
+					debugLabel.setVisible(true);
+					debugStepIntoButton.setVisible(true);
+					debugStepOverButton.setVisible(true);
 				}
 				else{
-					label.setVisible(false);
-					root.getChildren().remove(label);
-					System.out.print("2");
+					debugLabel.setVisible(false);
+					debugStepIntoButton.setVisible(false);
+					debugStepOverButton.setVisible(false);
 				}
 			}
 		});
