@@ -17,7 +17,6 @@ public class Turtle {
 	private boolean myBold;
 	private double orientation;
 	private Map<String, Node> imagesMap;
-	//private int turtleID;
 
 	private boolean active;
 

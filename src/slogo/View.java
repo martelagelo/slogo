@@ -10,15 +10,21 @@ import java.util.Map;
 import java.util.Queue;
 import java.util.Stack;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import slogo.UI.MessageBox;
 import slogo.UI.MethodRunner;
 import slogo.UI.Turtle;
@@ -45,6 +51,7 @@ public class View implements IView{
 	private IModel backend;	
 	private List<Line> pathList;
 	private Queue<String> commandQueue;
+	private Timeline animationTimeline;
 
 	/**
 	 * Initializes the View 
@@ -58,37 +65,47 @@ public class View implements IView{
 		commandQueue = new LinkedList<String>();
 		runner = new MethodRunner(root, canvas, turtle, pathList);
 		backend = new Backend();
-
-		//		CommandExecutor CE = new CommandExecutor();
-		//		List<Line> lines = new ArrayList<Line>();
-		//		Line line = new Line(275, 275, 300, 300);
-		//		lines.add(line);
-		//		Line line2 = new Line(300, 300, 250, 350);
-		//		if(turtle.isDashed()) line2.getStrokeDashArray().add(10d);
-		//              else if (turtle.myBold == true){
-		//		    line2.setStrokeWidth(4);
-		//		}
-		//		lines.add(line2);
-		//		root.getChildren().add(line2);
-		//		Line line3 = new Line(250, 350, 200, 200);
-		//		lines.add(line3);
-		//		CE.setList(lines);
-		//		CE.setType("move");
-		//		executeInidividualCommands(CE);
 	}
 
-
+	/**
+	 * Stores the command in the queue
+	 * @param command The input from the user
+	 */
 	public void recordCommand(String command) {
 		commandQueue.add(command);
 	}
-	
+
 	public void sendCommandToBackend() {
-		while (!commandQueue.isEmpty()) {
-			IExecutionContext result = backend.execute(commandQueue.poll());
-			executeCommand(result);
+
+		if (!commandQueue.isEmpty()) {
+			animationTimeline = new Timeline();
+			animationTimeline.setCycleCount(Timeline.INDEFINITE);
+
+			animationTimeline.getKeyFrames().add(
+					new KeyFrame(Duration.millis(1000 / 1),
+							new EventHandler<ActionEvent>() {
+						public void handle(ActionEvent event) {
+
+							IExecutionContext result = backend.execute(commandQueue.poll());
+							executeCommand(result);
+
+							if (commandQueue.isEmpty()) {
+								animationTimeline.stop();
+							}
+						}
+					}));
+			animationTimeline.play();
 		}
 	}
-	
+
+
+	//	public void sendCommandToBackend() {
+	//		while (!commandQueue.isEmpty()) {
+	//			IExecutionContext result = backend.execute(commandQueue.poll());
+	//			executeCommand(result);
+	//		}
+	//	}
+
 	/**
 	 * Sends a command to the back-end
 	 * @param command The code written by the user to be computed
