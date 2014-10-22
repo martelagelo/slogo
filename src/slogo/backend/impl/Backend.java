@@ -37,8 +37,8 @@ public class Backend implements IModel{
 
 	public Backend(){
 		Map<String, ITurtleStatus> turtles = new HashMap<>();
-		turtles.put("1", new TurtleStatus.Builder().build());
-		this.lastContext = new ExecutionContext(turtles, new HashMap<>());
+		turtles.put(Constants.DEFAULT_TURTLE_NAME, new TurtleStatus.Builder().build());
+		this.lastContext = new ExecutionContext(turtles, new HashMap<>(), new HashMap<>());
 	}
 
 	private List<ITokenRule> tokenRules(){
@@ -94,7 +94,7 @@ public class Backend implements IModel{
 		for (String[] rule: rules) {
 			List<String> repeatedConstants = new ArrayList<>();
 			for (int i = 0; i < Integer.parseInt(rule[1]); i++){
-				repeatedConstants.add("constant");
+				repeatedConstants.add(Constants.CONSTANT_LABEL);
 			}
 			ruleList.add(new GrammarRule(rule[0], repeatedConstants));
 		}

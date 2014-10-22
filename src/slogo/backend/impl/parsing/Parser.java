@@ -3,6 +3,7 @@ package slogo.backend.impl.parsing;
 import java.util.ArrayList;
 import java.util.List;
 
+import slogo.Constants;
 import slogo.backend.evaluation.IOperation;
 import slogo.backend.evaluation.IOperationFactory;
 import slogo.backend.evaluation.MalformedSyntaxException;
@@ -62,7 +63,7 @@ public class Parser implements IParser {
 		for (IToken token: tokens){
 			IOperation operation;
 			String type;
-			if (token.type() == "constant") {
+			if (token.type() == Constants.CONSTANT_LABEL) {
 				operation = new Constant(token.text());
 				type = token.type();
 			}
@@ -106,7 +107,7 @@ public class Parser implements IParser {
 		ISyntaxNode operation = nodes.get(0);
 		operation.setChildren(args);
 
-		ISyntaxNode result = new SyntaxNode("constant", new Result(), new ArrayList<>());
+		ISyntaxNode result = new SyntaxNode(Constants.CONSTANT_LABEL, new Result(), new ArrayList<>());
 		List<ISyntaxNode> resultChildren = new ArrayList<>();
 		resultChildren.add(operation);
 		result.setChildren(resultChildren);
