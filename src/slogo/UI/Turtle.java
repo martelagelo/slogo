@@ -2,15 +2,11 @@ package slogo.UI;
 
 import java.util.HashMap;
 import java.util.Map;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Polygon;
-import javafx.scene.shape.Rectangle;
 
 public class Turtle {
 
@@ -30,9 +26,9 @@ public class Turtle {
 		ypos = y;
 		//myBold = true;
 		imagesMap = new HashMap<String, Node>();
-		fillUpMap();
+		generateSelectorMap(initialImagesMap());
 		turtleImage = imagesMap.get(s);
-		turtleImage.relocate(xpos, ypos);
+		moveTurtle(xpos, ypos);
 		active = true;
 		activateTurtle();
 	}
@@ -47,50 +43,77 @@ public class Turtle {
 		});
 
 	}
+	
+//	private void fillUpMap () {
+//		Circle c = new Circle();
+//		c.setCenterX(xpos);
+//		c.setCenterY(ypos);
+//		c.setRadius(8);
+//		imagesMap.put("Circle", c);
+//
+//		Rectangle r = new Rectangle();
+//		r.setX(xpos);
+//		r.setY(ypos);
+//		r.setWidth(12);
+//		r.setHeight(12);
+//		r.setArcHeight(1);
+//		r.setArcHeight(1);
+//		imagesMap.put("Rectangle", r);
+//
+//		Polygon p = new Polygon();
+//		p.getPoints().addAll(new Double[]{
+//				(double) (xpos-6), (double) ypos,
+//				(double) xpos, (double) (ypos+12),
+//				(double) (xpos+6), (double) ypos, 
+//		});
+//		imagesMap.put("Triangle", p);
+//
+//		Image I = new Image(getClass().getResourceAsStream("Turtle"));
+//		ImageView IV = new ImageView(I);
+//		IV.setLayoutX(xpos);
+//		IV.setLayoutY(ypos);
+//		imagesMap.put("Turtle", IV);
+//
+//	}
 
-	private void fillUpMap () {
-		Circle c = new Circle();
-		c.setCenterX(xpos);
-		c.setCenterY(ypos);
-		c.setRadius(8);
-		imagesMap.put("Circle", c);
+    private Map<String, String> initialImagesMap(){
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("Turtle", "Turtle");
+        map.put("circle.png", "Circle");
+        map.put("triangle.png", "Triangle");
+        map.put("rectangle.png", "Rectangle");
+        return map;
+    }
 
-		Rectangle r = new Rectangle();
-		r.setX(xpos);
-		r.setY(ypos);
-		r.setWidth(12);
-		r.setHeight(12);
-		r.setArcHeight(1);
-		r.setArcHeight(1);
-		imagesMap.put("Rectangle", r);
-
-		Polygon p = new Polygon();
-		p.getPoints().addAll(new Double[]{
-				(double) (xpos-6), (double) ypos,
-				(double) xpos, (double) (ypos+12),
-				(double) (xpos+6), (double) ypos, 
-		});
-		imagesMap.put("Triangle", p);
-
-		Image I = new Image(getClass().getResourceAsStream("Turtle"));
-		ImageView IV = new ImageView(I);
-		IV.setLayoutX(xpos);
-		IV.setLayoutY(ypos);
-		imagesMap.put("Turtle", IV);
-
-	}
+    private void generateSelectorMap (Map<String, String> fileList) {
+        for(String file : fileList.keySet()){
+            Image I = new Image(getClass().getResourceAsStream(file));
+            ImageView IV = new ImageView(I);
+            IV.setLayoutX(xpos);
+            IV.setLayoutY(ypos);
+            imagesMap.put(fileList.get(file), IV); 
+        }
+    }
 
 	private void setXPos(double d){
-		turtleImage.setLayoutX(d - 275);
+		turtleImage.setLayoutX(d);
 		xpos = d;
 	}
 
 	protected double getXPos(){
 		return xpos;
 	}
+	
+	protected double getImageXPos(){
+	    return turtleImage.getLayoutX();
+	}
+	
+	protected double getImageYPos(){
+	    return turtleImage.getLayoutY();
+	}
 
 	private void setYPos(double e){
-		turtleImage.setLayoutY(e - 275);
+		turtleImage.setLayoutY(e);
 		ypos = e;
 	}
 
@@ -114,7 +137,8 @@ public class Turtle {
 
 	protected void setImage(String name){
 		turtleImage = imagesMap.get(name); 
-		turtleImage.relocate(xpos, ypos);
+		turtleImage.setRotate(orientation);
+		moveTurtle(xpos, ypos);
 	}
 
 	protected Node getImage(){
