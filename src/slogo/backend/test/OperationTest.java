@@ -26,24 +26,32 @@ import org.junit.Test;
 
 
 
+
+
+
+
 import slogo.backend.evaluation.IExecutionContext;
 import slogo.backend.evaluation.IOperation;
 import slogo.backend.evaluation.IOperationFactory;
 import slogo.backend.evaluation.MalformedSyntaxException;
 import slogo.backend.impl.evaluation.ExecutionContext;
 import slogo.backend.impl.evaluation.OperationFactory;
+import slogo.backend.impl.evaluation.commands.Constant;
 import slogo.backend.impl.evaluation.commands.booleans.And;
 import slogo.backend.impl.evaluation.commands.booleans.Less;
 import slogo.backend.impl.evaluation.commands.booleans.Not;
 import slogo.backend.impl.evaluation.commands.booleans.Or;
+import slogo.backend.impl.evaluation.commands.control.Repeat;
 import slogo.backend.impl.evaluation.commands.math.Atan;
 import slogo.backend.impl.evaluation.commands.math.Sum;
 import slogo.backend.impl.evaluation.commands.turtle.Forward;
 import slogo.backend.impl.evaluation.commands.turtle.HideTurtle;
+import slogo.backend.impl.parsing.SyntaxNode;
 import slogo.backend.impl.util.Coordinates;
 import slogo.backend.impl.util.Direction;
 import slogo.backend.impl.util.Line;
 import slogo.backend.impl.util.TurtleStatus;
+import slogo.backend.parsing.ISyntaxNode;
 import slogo.backend.util.ICoordinates;
 import slogo.backend.util.IDirection;
 import slogo.backend.util.ILine;
@@ -260,5 +268,34 @@ public class OperationTest {
 	    
 	    assertEquals(Visibility.INVISIBLE,vis);
 	    
+	}
+	@Test
+	public void testRepeat(){
+	    ISyntaxNode child = new SyntaxNode("Constant",new Constant("50"),new ArrayList<ISyntaxNode>());
+	    List<ISyntaxNode> forwardList = new ArrayList<ISyntaxNode>();
+	    forwardList.add(child);
+	    ISyntaxNode forward = new SyntaxNode("Forward", new Forward(),forwardList );
+	    ISyntaxNode constant = new SyntaxNode("Constant",new Constant("3"), new ArrayList<ISyntaxNode>());
+	    List<ISyntaxNode> repeatList = new ArrayList<ISyntaxNode>();
+	    repeatList.add(constant); repeatList.add(forward);
+	    ISyntaxNode cur = new SyntaxNode("Repeat", new Repeat("Repeat", 2, 2), repeatList);
+	    IExecutionContext expression = buildContext();
+	    expression.environment().put("returnValue", "4");
+	    IExecutionContext context = buildContext();
+	   Repeat re = new Repeat("Repeat", 2, 2);
+	   List<IExecutionContext> contextList = new ArrayList<IExecutionContext>();
+	   contextList.add(expression); contextList.add(context);
+	   IExecutionContext result = context;
+	   try {
+            result = re.execute(contextList, context, cur);
+        } catch (MalformedSyntaxException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+	    ICoordinates cor = result.turtles().get("1").turtlePosition();
+	    double x = cor.getX().doubleValue();
+	    double y = cor.getY().doubleValue();
+	    assertEquals(150, x, 0.001);
+	    assertEquals(0,y,0.001);
 	}
 }
