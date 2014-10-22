@@ -27,6 +27,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
@@ -116,6 +117,8 @@ public class ModuleCreationHelper {
 		createLoadButton();
 		createSaveButton();
 		createExtraWorkspaceButton();
+		createAnimationSpeedSlider();
+		createZoomSlider();
 		createGridCheckBox();
 		activateKeyEvents();
 	}
@@ -206,40 +209,6 @@ public class ModuleCreationHelper {
 		activateNewTurtleButton(btn);
 	}
 
-	//NEEDS BACKEND FUNCTIONALITY
-	private void activateNewTurtleButton(Button btn) {
-		btn.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent event) {
-				Turtle newTurtle = new Turtle("Circle", AppConstants.INITIAL_TURTLE_X_POS, AppConstants.INITIAL_TURTLE_Y_POS);
-				root.getChildren().add(newTurtle.getImage());
-				myTurtleList.add(newTurtle);
-			}
-		});	    
-
-	}
-
-	//NEEDS BACKEND FUNCTIONALITY
-	private void activateTurtleImageLoaderButton(Button btn){
-		btn.setOnAction(new EventHandler<ActionEvent>(){
-			@Override
-			public void handle(ActionEvent event){
-				FileChooser fileChooser = new FileChooser();
-				fileChooser.setTitle("Load in a New Turtle Image");
-				fileChooser.getExtensionFilters().addAll(new ExtensionFilter("Images", "*.jpg", "*.png"));
-				File selectedFile = fileChooser.showOpenDialog(stage);
-				if (selectedFile != null) {
-					Image i = new Image((selectedFile.toURI().toString()), AppConstants.MAX_NEW_IMAGE_WIDTH, AppConstants.MAX_NEW_IMAGE_HEIGHT, true, true);
-					myTurtleSelector.updateMap("User Image #" + totalUserImages, new ImageView(i), myTurtleList.get(0));
-					totalUserImages +=1;
-				}
-				else{
-					System.out.println("No File Selected");
-				}
-			}
-		});
-	}
-
 	/**
 	 * Creates a button that loads in a config file
 	 */
@@ -262,6 +231,23 @@ public class ModuleCreationHelper {
 		ButtonCreator BC = new ButtonCreator(mySelectorsVBox);
 		Button btn = BC.createButton("Load Extra Workspace");
 		activateExtraWorkspaceButton(btn);
+	}
+	
+	private void createAnimationSpeedSlider() {
+		LabelCreator LC = new LabelCreator(mySelectorsVBox);
+		SliderCreator SC = new SliderCreator(mySelectorsVBox);
+		LC.createLabel("Animation Speed Slider", AppConstants.LABEL_FONT_SIZE, AppConstants.DEFAULT_TEXT_COLOR);
+		//GET RID OF MAGIC NUMBERS
+		Slider slider = SC.createSlider(0, 10, 5);
+		
+	}
+	
+	private void createZoomSlider() {
+		LabelCreator LC = new LabelCreator(mySelectorsVBox);
+		SliderCreator SC = new SliderCreator(mySelectorsVBox);
+		LC.createLabel("Turtle Enviornment Size Slider", AppConstants.LABEL_FONT_SIZE, AppConstants.DEFAULT_TEXT_COLOR);
+		//GET RID OF MAGIC NUMBERS
+		Slider slider = SC.createSlider(0, 10, 5);
 	}
 
 	/**
@@ -469,6 +455,40 @@ public class ModuleCreationHelper {
 			}
 		});
 	}
+	
+	//NEEDS BACKEND FUNCTIONALITY
+	private void activateNewTurtleButton(Button btn) {
+		btn.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				Turtle newTurtle = new Turtle("Circle", AppConstants.INITIAL_TURTLE_X_POS, AppConstants.INITIAL_TURTLE_Y_POS);
+				root.getChildren().add(newTurtle.getImage());
+				myTurtleList.add(newTurtle);
+			}
+		});	    
+
+	}
+
+	//NEEDS BACKEND FUNCTIONALITY
+	private void activateTurtleImageLoaderButton(Button btn){
+		btn.setOnAction(new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent event){
+				FileChooser fileChooser = new FileChooser();
+				fileChooser.setTitle("Load in a New Turtle Image");
+				fileChooser.getExtensionFilters().addAll(new ExtensionFilter("Images", "*.jpg", "*.png"));
+				File selectedFile = fileChooser.showOpenDialog(stage);
+				if (selectedFile != null) {
+					Image i = new Image((selectedFile.toURI().toString()), AppConstants.MAX_NEW_IMAGE_WIDTH, AppConstants.MAX_NEW_IMAGE_HEIGHT, true, true);
+					myTurtleSelector.updateMap("User Image #" + totalUserImages, new ImageView(i), myTurtleList.get(0));
+					totalUserImages +=1;
+				}
+				else{
+					System.out.println("No File Selected");
+				}
+			}
+		});
+	}
 
 	//NEEDS BACKEND FUNCTIONALITY
 	private void activateKeyEvents() {
@@ -496,8 +516,6 @@ public class ModuleCreationHelper {
 							t.incrementOrientation(-10);
 						}
 					}
-					System.out.println(t.getXPos() +"  "+ t.getYPos());
-					System.out.println(t.getImage().getLayoutX() + "  " + t.getImage().getLayoutY());
 				}
 			}
 		});

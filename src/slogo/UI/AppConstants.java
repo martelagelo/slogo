@@ -14,6 +14,7 @@ import java.lang.reflect.Field;
 public class AppConstants {
 	
 		public static final Color BACKGROUND_COLOR = Color.BURLYWOOD;
+		public static final Color DEFAULT_TEXT_COLOR = Color.BLACK;
 	
         public static final Integer STAGE_WIDTH = 1300;
         public static final Integer STAGE_HEIGHT = 750;
@@ -30,7 +31,7 @@ public class AppConstants {
         
         public static final Integer LABEL_FONT_SIZE = 1;
         
-        public static final Integer VBOX_SPACING = 10;
+        public static final Integer VBOX_SPACING = 5;
         
         public static final Integer TITLE_LABEL_FONT_SIZE = LABEL_FONT_SIZE * 3;
         public static final Integer TITLE_X_POS = CANVAS_OFFSET_X_POS;

@@ -21,7 +21,8 @@ public class Turtle {
 	private boolean myBold;
 	private double orientation;
 	private Map<String, Node> imagesMap;
-	
+	//private int turtleID;
+
 	private boolean active;
 
 	public Turtle(String s, int x, int y){
@@ -37,22 +38,23 @@ public class Turtle {
 	}
 
 	private void activateTurtle () {
-            turtleImage.setOnMouseClicked(new EventHandler<MouseEvent>(){
-                @Override
-                public void handle(MouseEvent event){
-                    active = !active;
-                }
-            });
-        
+		turtleImage.setOnMouseClicked(new EventHandler<MouseEvent>(){
+			@Override
+			public void handle(MouseEvent event){
+				active = !active;
+				System.out.println(getYPos());
+			}
+		});
+
 	}
 
-    private void fillUpMap () {
+	private void fillUpMap () {
 		Circle c = new Circle();
 		c.setCenterX(xpos);
 		c.setCenterY(ypos);
 		c.setRadius(8);
 		imagesMap.put("Circle", c);
-		
+
 		Rectangle r = new Rectangle();
 		r.setX(xpos);
 		r.setY(ypos);
@@ -61,15 +63,15 @@ public class Turtle {
 		r.setArcHeight(1);
 		r.setArcHeight(1);
 		imagesMap.put("Rectangle", r);
-		
+
 		Polygon p = new Polygon();
 		p.getPoints().addAll(new Double[]{
 				(double) (xpos-6), (double) ypos,
 				(double) xpos, (double) (ypos+12),
 				(double) (xpos+6), (double) ypos, 
-				});
+		});
 		imagesMap.put("Triangle", p);
-		
+
 		Image I = new Image(getClass().getResourceAsStream("Turtle"));
 		ImageView IV = new ImageView(I);
 		IV.setLayoutX(xpos);
@@ -123,7 +125,7 @@ public class Turtle {
 		setXPos(d);
 		setYPos(e);
 	}
-	
+
 	protected Turtle getTurtle() {
 		return this;
 	}
@@ -133,22 +135,23 @@ public class Turtle {
 		return imagesMap;
 	}
 
-        protected void dashed (boolean b) {
-            myDashed = b;
-        
-        }
+	protected void dashed (boolean b) {
+		myDashed = b;
 
-        public boolean isDashed () {
-            return myDashed;
-        }
+	}
 
-        protected void bold (boolean b) {
-            myBold = b;
-            
-        }
+	public boolean isDashed () {
+		return myDashed;
+	}
 
-        public boolean isActive () {
-            return active;
-        }
+	protected void bold (boolean b) {
+		myBold = b;
+
+	}
+
+	public boolean isActive () {
+		return active;
+	}
+	
 
 }
