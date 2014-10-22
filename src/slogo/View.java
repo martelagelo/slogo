@@ -4,8 +4,10 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Queue;
 import java.util.Stack;
 
 import javafx.scene.Group;
@@ -42,7 +44,8 @@ public class View implements IView{
 	private MethodRunner runner;
 	private IModel backend;	
 	private List<Line> pathList;
-	
+	private Queue<String> commandQueue;
+
 	/**
 	 * Initializes the View 
 	 * 
@@ -52,25 +55,38 @@ public class View implements IView{
 	 */
 	public void init(Group root, Canvas canvas, Turtle turtle) {
 		pathList = new ArrayList<Line>();
+		commandQueue = new LinkedList<String>();
 		runner = new MethodRunner(root, canvas, turtle, pathList);
 		backend = new Backend();
-		
-//		CommandExecutor CE = new CommandExecutor();
-//		List<Line> lines = new ArrayList<Line>();
-//		Line line = new Line(275, 275, 300, 300);
-//		lines.add(line);
-//		Line line2 = new Line(300, 300, 250, 350);
-//		if(turtle.isDashed()) line2.getStrokeDashArray().add(10d);
-//              else if (turtle.myBold == true){
-//		    line2.setStrokeWidth(4);
-//		}
-//		lines.add(line2);
-//		root.getChildren().add(line2);
-//		Line line3 = new Line(250, 350, 200, 200);
-//		lines.add(line3);
-//		CE.setList(lines);
-//		CE.setType("move");
-//		executeInidividualCommands(CE);
+
+		//		CommandExecutor CE = new CommandExecutor();
+		//		List<Line> lines = new ArrayList<Line>();
+		//		Line line = new Line(275, 275, 300, 300);
+		//		lines.add(line);
+		//		Line line2 = new Line(300, 300, 250, 350);
+		//		if(turtle.isDashed()) line2.getStrokeDashArray().add(10d);
+		//              else if (turtle.myBold == true){
+		//		    line2.setStrokeWidth(4);
+		//		}
+		//		lines.add(line2);
+		//		root.getChildren().add(line2);
+		//		Line line3 = new Line(250, 350, 200, 200);
+		//		lines.add(line3);
+		//		CE.setList(lines);
+		//		CE.setType("move");
+		//		executeInidividualCommands(CE);
+	}
+
+
+	public void recordCommand(String command) {
+		commandQueue.add(command);
+	}
+	
+	public void sendCommandToBackend() {
+		while (!commandQueue.isEmpty()) {
+			IExecutionContext result = backend.execute(commandQueue.poll());
+			executeCommand(result);
+		}
 	}
 	
 	/**
@@ -78,11 +94,10 @@ public class View implements IView{
 	 * @param command The code written by the user to be computed
 	 */
 	public void sendCommandToBackend(String command) {
-		//System.out.println(command);
 		IExecutionContext result = backend.execute(command);
 		executeCommand(result);
 	}
-	
+
 	/**
 	 * Executes the command returned from the back-end
 	 * @param str 
@@ -91,12 +106,12 @@ public class View implements IView{
 		runner.setTurtleStatus(iTurtleStatus);
 		runner.changeTurtle();
 	}
-	
+
 	private void executeEnvironmentCommands(String var) {
 		runner.setEnvironment(var);
 		runner.changeEnvironment();
 	}
-	
+
 	private void executeCommand(IExecutionContext result) {
 		for(String k: result.turtles().keySet()) {
 			executeTurtleCommands(result.turtles().get(k));
@@ -110,13 +125,13 @@ public class View implements IView{
 	 * Creates and displays an error pop-up
 	 */
 	public void error(String message) {
-		 new MessageBox(message);
+		new MessageBox(message);
 	}
 
 	@Override
 	public void init() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

@@ -323,8 +323,7 @@ public class ModuleCreationHelper {
 		btn.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				Main main = new Main();
-				main.start(stage);
+				myView.sendCommandToBackend();
 			}
 		});
 	}
@@ -452,7 +451,7 @@ public class ModuleCreationHelper {
 			@Override
 			public void handle (ActionEvent event){
 				addToCertainList(myCommands, myCommandsList,  myTextField.getText());
-				myView.sendCommandToBackend(myTextField.getText());
+				myView.recordCommand(myTextField.getText());
 				myTextField.setText("");
 			}
 		});
@@ -500,23 +499,16 @@ public class ModuleCreationHelper {
 				for(Turtle t : myTurtleList){
 					if(t.isActive()){
 						if (event.getCode() == KeyCode.A) {
-							t.moveTurtle(t.getXPos() - 10, t.getYPos());
+							myView.sendCommandToBackend("Right 10");
 						}
 						if (event.getCode() == KeyCode.D) {
-							t.moveTurtle(t.getXPos() + 10, t.getYPos());
+							myView.sendCommandToBackend("Left 10");
 						}
 						if (event.getCode() == KeyCode.W) {
-							myView.sendCommandToBackend("Forward 10");
-							//t.moveTurtle(t.getXPos(), t.getYPos() - 10);
+							myView.sendCommandToBackend("Forward 10");		
 						}
 						if (event.getCode() == KeyCode.S) {
-							t.moveTurtle(t.getXPos(), t.getYPos() + 10);
-						}
-						if (event.getCode() == KeyCode.E) {
-							t.incrementOrientation(10);
-						}
-						if (event.getCode() == KeyCode.Q) {
-							t.incrementOrientation(-10);
+							myView.sendCommandToBackend("Back 10");
 						}
 					}
 				}
