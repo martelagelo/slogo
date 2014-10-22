@@ -12,7 +12,7 @@ import slogo.backend.util.ITurtleStatus;
 public class Heading extends Operation{
 
     public Heading () {
-        super("Heading", 0, 0);
+        super("Heading", 1, 1);
     }
 
     @Override

@@ -17,7 +17,7 @@ import slogo.backend.util.Visibility;
 public class ShowTurtle extends Operation{
 
     public ShowTurtle () {
-        super("ShowTurtle", 0, 0);
+        super("ShowTurtle", 1, 1);
     }
 
     @Override
