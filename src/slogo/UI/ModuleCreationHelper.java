@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import application.ApplicationConstants;
 import slogo.View;
 import slogo.frontend.Config.ConfigHashMapCreator;
 import slogo.frontend.Config.ConfigReader;
@@ -34,6 +35,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -239,7 +241,7 @@ public class ModuleCreationHelper {
 		LC.createLabel("Animation Speed Slider", AppConstants.LABEL_FONT_SIZE, AppConstants.DEFAULT_TEXT_COLOR);
 		//GET RID OF MAGIC NUMBERS
 		Slider slider = SC.createSlider(0, 10, 5);
-		
+		activateAnimationSliderListener(slider);
 	}
 	
 	private void createZoomSlider() {
@@ -248,6 +250,7 @@ public class ModuleCreationHelper {
 		LC.createLabel("Turtle Enviornment Size Slider", AppConstants.LABEL_FONT_SIZE, AppConstants.DEFAULT_TEXT_COLOR);
 		//GET RID OF MAGIC NUMBERS
 		Slider slider = SC.createSlider(0, 10, 5);
+		activateZoomSliderListener(slider);
 	}
 
 	/**
@@ -521,6 +524,23 @@ public class ModuleCreationHelper {
 		});
 	}
 	
+	private void activateAnimationSliderListener(Slider slider) {
+		slider.setOnMouseReleased(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				//NEED FUNCTONALITY
+			}
+		});
+	}
+	
+	private void activateZoomSliderListener(Slider slider) {
+		slider.setOnMouseReleased(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				//NEED FUNCTIONALITY
+			}
+		});
+	}
 	
 	private void addToCertainList(ObservableList<String> currentList, ListViewAllSLOGO listView, String input) {
 		currentList.add(input);
