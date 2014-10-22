@@ -111,6 +111,27 @@ public class View implements IView{
 		executeCommand(result);
 	}
 
+	public void stepIntoCommand() {
+		if (!commandQueue.isEmpty()) {
+			IExecutionContext result = backend.execute(commandQueue.poll());
+			executeCommand(result);
+		}
+		else {
+			new MessageBox("No more commands to step through");
+		}
+	}
+
+	public void stepOverCommand() {
+		if (!(commandQueue.peek() == null)) {
+			commandQueue.poll();
+			IExecutionContext result = backend.execute(commandQueue.poll());
+			executeCommand(result);
+		}
+		else {
+			new MessageBox("No more commands after the next");
+		}
+	}
+
 	/**
 	 * Executes the command returned from the back-end
 	 * @param str 

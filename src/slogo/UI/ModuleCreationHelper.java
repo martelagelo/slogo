@@ -89,6 +89,7 @@ public class ModuleCreationHelper {
 	private Label debugLabel;
 	private Button debugStepIntoButton;
 	private Button debugStepOverButton;
+	private Boolean isInDebugMode;
 
 
 	/**
@@ -102,6 +103,7 @@ public class ModuleCreationHelper {
 		configReader = new ConfigReader();
 		configWriter = new ConfigWriter();
 		totalUserImages = 1;
+		isInDebugMode = false;
 	}
 
 	/**
@@ -296,16 +298,14 @@ public class ModuleCreationHelper {
 		ButtonCreator BC = new ButtonCreator(debugVBox);
 		debugStepIntoButton = BC.createButton("Step Into Next Command");
 		debugStepIntoButton.setVisible(false);
-		//NEEDS FUNCTIONALITY
-		//activateStepIntoButton(btn);
+		activateStepIntoButton(debugStepIntoButton);
 	}
 	
 	private void createDebugStepOverButton() {
 		ButtonCreator BC = new ButtonCreator(debugVBox);
 		debugStepOverButton = BC.createButton("Step Over Next Command");
 		debugStepOverButton.setVisible(false);
-		//NEEDS FUNCTIONALITY
-		//activateStepOverButton(btn);
+		activateStepOverButton(debugStepOverButton);
 	}
 
 	/**
@@ -379,7 +379,8 @@ public class ModuleCreationHelper {
 		btn.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				myView.sendCommandToBackend();
+				if(!isInDebugMode) myView.sendCommandToBackend();
+				else new MessageBox("Currently in Debug Mode.\n Cannot run animation.");
 			}
 		});
 	}
@@ -406,11 +407,13 @@ public class ModuleCreationHelper {
 					debugLabel.setVisible(true);
 					debugStepIntoButton.setVisible(true);
 					debugStepOverButton.setVisible(true);
+					isInDebugMode = true;
 				}
 				else{
 					debugLabel.setVisible(false);
 					debugStepIntoButton.setVisible(false);
 					debugStepOverButton.setVisible(false);
+					isInDebugMode = false;
 				}
 			}
 		});
@@ -490,6 +493,24 @@ public class ModuleCreationHelper {
 				Stage newStage = new Stage();
 				Main main = new Main();
 				main.start(newStage);
+			}
+		});
+	}
+	
+	public void activateStepIntoButton(Button btn) {
+		btn.setOnAction(new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent event){
+				myView.stepIntoCommand();
+			}
+		});
+	}
+	
+	public void activateStepOverButton(Button btn) {
+		btn.setOnAction(new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent event){
+				myView.stepOverCommand();
 			}
 		});
 	}
