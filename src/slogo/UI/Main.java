@@ -45,26 +45,6 @@ public class Main extends Application {
 		
 		System.out.println("App Has Started!");
 	}
-	
-//	public void makeAnotherWorkspace(Stage stage) {
-//		Group root = new Group();
-//		Scene scene = new Scene(root, AppConstants.STAGE_WIDTH, AppConstants.STAGE_HEIGHT);
-//		ModulePopulator = new ModuleCreationHelper(root, scene, stage);
-//		view = new View();
-//		scene.setFill(AppConstants.BACKGROUND_COLOR);
-//		//scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-//
-//		ModulePopulator.createMainPageModules();
-//		view.init(root, ModulePopulator.getCanvas(), ModulePopulator.getTurtle());
-//		ModulePopulator.setView(view);
-//		
-//		stage.setTitle("SLogo!");
-//		stage.setScene(scene);
-//		stage.show();
-//		
-//		System.out.println("App Has Started!");
-//	}
-
 
 	/**
 	 * Launches the application

@@ -53,6 +53,8 @@ public class View implements IView{
 	private IModel backend;	
 	private List<Line> pathList;
 	private Queue<String> commandQueue;
+	private Queue<String> immediateHistoryQueue;
+	private int recordCommandHistoryCounter;
 	private Timeline animationTimeline;
 	private ModuleCreationHelper MCH;
 
@@ -66,6 +68,7 @@ public class View implements IView{
 	public void init(Group root, ModuleCreationHelper MCH) {
 		pathList = new ArrayList<Line>();
 		commandQueue = new LinkedList<String>();
+		immediateHistoryQueue = new LinkedList<String>();
 		this.MCH = MCH;
 		runner = new MethodRunner(root, MCH.getCanvas(), MCH.getTurtle(), pathList, MCH);
 		backend = new Backend();
@@ -86,6 +89,8 @@ public class View implements IView{
 		}
 		else if (!commandQueue.isEmpty()) {
 			MCH.toggleRunningStatusLabel();
+			immediateHistoryQueue = commandQueue;
+			recordCommandHistoryCounter = MCH.getCommandsHistoryCounter();
 			animationTimeline = new Timeline();
 			animationTimeline.setCycleCount(Timeline.INDEFINITE);
 
@@ -102,6 +107,8 @@ public class View implements IView{
 								animationTimeline.stop();
 								animationTimeline = null;
 								MCH.toggleRunningStatusLabel();
+								immediateHistoryQueue.clear();
+								recordCommandHistoryCounter = 0;
 							}
 						}
 					}));
@@ -109,6 +116,16 @@ public class View implements IView{
 		}
 	}
 
+	public void resetAnimation() {
+		if (animationTimeline != null) {
+			animationTimeline.stop();
+			animationTimeline = null;
+			commandQueue = immediateHistoryQueue;
+			MCH.setCommandsHistoryCounter(recordCommandHistoryCounter);
+			MCH.resetCommandsHistoryList(recordCommandHistoryCounter);
+		}
+	}
+	
 	public void pauseAnimation() {
 		if (animationTimeline != null) {
 			animationTimeline.pause();

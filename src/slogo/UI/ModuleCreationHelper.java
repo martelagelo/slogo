@@ -124,29 +124,38 @@ public class ModuleCreationHelper {
 		createRunningStatusLabel();
 	}
 
+	/**
+	 * 
+	 */
 	private void createSelectorVBoxModules() {
 		createFirstRowButtons();
 		createTextField();
 		createListViews();
 		createSelectors();
+		createHelpButton();
 		createNewTurtleButton();
 		createTurtleImageLoaderButton();
 		createLoadButton();
 		createSaveButton();
 		createExtraWorkspaceButton();
 		createAnimationSpeedSlider();
-		createZoomSlider();
 		createGridCheckBox();
 	}
 
+	/**
+	 * 
+	 */
 	private void createFirstRowButtons() {
 		createFirstButtonRow();
 		createPlayButton();
 		createStopButton();
 		createPauseButton();
-		createHelpButton();
+		createResetButton();
 	}
 
+	/**
+	 * 
+	 */
 	private void createDebugModules() {
 		createDebugVBox();
 		createDebugLabel();
@@ -204,7 +213,7 @@ public class ModuleCreationHelper {
 	private void createPlayButton() {
 		ButtonCreator BC = new ButtonCreator(firstButtonRow);
 		Button btn = BC.createButton(new Image(getClass().getResourceAsStream("green-plain-play-button-icon-th.png")));
-		activatePlayAppButton(btn);
+		activatePlayButton(btn);
 	}
 
 	/**
@@ -216,20 +225,31 @@ public class ModuleCreationHelper {
 		activateExitAppButton(btn);
 	}
 	
+	/**
+	 * Creates a button that pauses animation
+	 */
 	private void createPauseButton() {
 		ButtonCreator BC = new ButtonCreator(firstButtonRow);
 		Button btn = BC.createButton(new Image(getClass().getResourceAsStream("Button-Pause-icon.png")));
-		//Add functionality
-		activatePauseAppButton(btn);
+		activatePauseButton(btn);
+	}
+	
+	/**
+	 * Creates a button that resets animation
+	 */
+	private void createResetButton() {
+		ButtonCreator BC = new ButtonCreator(firstButtonRow);
+		Button btn = BC.createButton(new Image(getClass().getResourceAsStream("reset_button.jpg")));
+		activateResetButton(btn);
 	}
 
 	/**
-	 * Creates the help button
+	 * Creates the help link button
 	 */
 	private void createHelpButton(){
-		ButtonCreator BC = new ButtonCreator(firstButtonRow);
-		Button btn = BC.createButton("Help");
-		btn.setPrefSize(AppConstants.HELP_BUTTON_PREF_WIDTH, AppConstants.HELP_BUTTON_PREF_HEIGHT);
+		ButtonCreator BC = new ButtonCreator(mySelectorsVBox);
+		Button btn = BC.createButton("Load Help Page");
+		//btn.setPrefSize(AppConstants.HELP_BUTTON_PREF_WIDTH, AppConstants.HELP_BUTTON_PREF_HEIGHT);
 		activateHelpButton(btn);    
 	}
 
@@ -266,12 +286,18 @@ public class ModuleCreationHelper {
 		activateSaveButton(btn);
 	}
 
+	/**
+	 * Creates an extra workspace window
+	 */
 	private void createExtraWorkspaceButton() {
 		ButtonCreator BC = new ButtonCreator(mySelectorsVBox);
 		Button btn = BC.createButton("Load Extra Workspace");
 		activateExtraWorkspaceButton(btn);
 	}
 
+	/**
+	 * Creates a slider that controls animation speed
+	 */
 	private void createAnimationSpeedSlider() {
 		LabelCreator LC = new LabelCreator(mySelectorsVBox);
 		SliderCreator SC = new SliderCreator(mySelectorsVBox);
@@ -280,32 +306,35 @@ public class ModuleCreationHelper {
 		animationSlider = SC.createSlider(0, 20, 1);
 	}
 
-	private void createZoomSlider() {
-		LabelCreator LC = new LabelCreator(mySelectorsVBox);
-		SliderCreator SC = new SliderCreator(mySelectorsVBox);
-		LC.createLabel("Turtle Enviornment Size Slider", AppConstants.LABEL_FONT_SIZE, AppConstants.DEFAULT_TEXT_COLOR);
-		//GET RID OF MAGIC NUMBERS
-		Slider slider = SC.createSlider(0, 10, 5);
-		activateZoomSliderListener(slider);
-	}
-
+	/**
+	 * Creates a button that activates and deactivates debug mode
+	 */
 	private void createDebugButton() {
 		CheckBoxCreator cb = new CheckBoxCreator(mySelectorsVBox);
 		CheckBox CB = cb.createCheckBox("Debug Mode");
 		activateDebugCB(CB);
 	}
 
+	/**
+	 * Creates a VBox that holds all debug modules
+	 */
 	private void createDebugVBox() {
 		VBoxCreator VBC = new VBoxCreator(root);
 		debugVBox = VBC.createVBox(AppConstants.VBOX_SPACING, AppConstants.DEBUG_LABEL_X_POS, AppConstants.DEBUG_LABEL_Y_POS);
 	}
 
+	/**
+	 * Creates the label that indicates debug mode
+	 */
 	private void createDebugLabel() {
 		LabelCreator LC = new LabelCreator(debugVBox);
 		debugLabel = LC.createLabel("DEBUG MODE ON", AppConstants.TITLE_LABEL_FONT_SIZE, Color.RED);
 		debugLabel.setVisible(false);
 	}
 
+	/**
+	 * Creates a button that steps through commands
+	 */
 	private void createDebugStepIntoButton() {
 		ButtonCreator BC = new ButtonCreator(debugVBox);
 		debugStepIntoButton = BC.createButton("Step Into Next Command");
@@ -313,6 +342,9 @@ public class ModuleCreationHelper {
 		activateStepIntoButton(debugStepIntoButton);
 	}
 
+	/**
+	 * Creates a button that steps over commands
+	 */
 	private void createDebugStepOverButton() {
 		ButtonCreator BC = new ButtonCreator(debugVBox);
 		debugStepOverButton = BC.createButton("Step Over Next Command");
@@ -320,6 +352,9 @@ public class ModuleCreationHelper {
 		activateStepOverButton(debugStepOverButton);
 	}
 	
+	/**
+	 * Creates a label that displays whenever an animation is running
+	 */
 	private void createRunningStatusLabel() {
 		LabelCreator LC = new LabelCreator(root);
 		//Replace magic numbers
@@ -394,7 +429,7 @@ public class ModuleCreationHelper {
 	 * 
 	 * @param btn
 	 */
-	public void activatePlayAppButton(Button btn) {
+	public void activatePlayButton(Button btn) {
 		btn.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
@@ -404,11 +439,21 @@ public class ModuleCreationHelper {
 		});
 	}
 	
-	public void activatePauseAppButton(Button btn) {
+	public void activatePauseButton(Button btn) {
 		btn.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
 				myView.pauseAnimation();
+			}
+		});
+	}
+	
+	public void activateResetButton(Button btn) {
+		btn.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				//UNTESTED
+				myView.resetAnimation();
 			}
 		});
 	}
@@ -472,7 +517,6 @@ public class ModuleCreationHelper {
 					new MessageBox("Read from config file successful!");
 
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					new MessageBox("ERROR!! Read from config unsuccessful!");
 					e.printStackTrace();
 				}
@@ -530,7 +574,6 @@ public class ModuleCreationHelper {
 			@Override
 			public void handle(ActionEvent event){
 				myView.stepIntoCommand();
-				System.out.println(myCommands.size());
 				stepThroughCommandsHistory(0);
 			}
 		});
@@ -642,15 +685,6 @@ public class ModuleCreationHelper {
 		});
 	}
 
-	private void activateZoomSliderListener(Slider slider) {
-		slider.setOnMouseReleased(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent event) {
-				//NEED FUNCTIONALITY
-			}
-		});
-	}
-
 	private void addToCertainList(ObservableList<String> currentList, ListViewAllSLOGO listView, String input) {
 		currentList.add(input);
 		listView.setItems(currentList);
@@ -663,13 +697,31 @@ public class ModuleCreationHelper {
 
 	public void stepThroughCommandsHistory(int offset) {
 		if(commandsHistoryCounter <= myCommands.size()-1) {
-			myCommands.add(commandsHistoryCounter + offset, "(Executed)  " + myCommands.get(commandsHistoryCounter + offset));
+			myCommands.add(commandsHistoryCounter + offset, "(Executed) " + myCommands.get(commandsHistoryCounter + offset));
 			myCommands.remove(commandsHistoryCounter + offset + 1);
 			myCommandsList.setItems(myCommands);
 			commandsHistoryCounter = commandsHistoryCounter + offset + 1;
 		}
 	}
+	
+	public void setCommandsHistoryCounter(int value) {
+		commandsHistoryCounter = value;
+	}
+	
+	public int getCommandsHistoryCounter() {
+		return commandsHistoryCounter;
+	}
 
+	public void resetCommandsHistoryList(int oldCounter) {
+		while(commandsHistoryCounter <= myCommands.size() - 1) {
+			myCommands.add(commandsHistoryCounter, myCommands.get(commandsHistoryCounter).substring(myCommands.get(commandsHistoryCounter).indexOf(' ') + 1));
+			myCommands.remove(commandsHistoryCounter + 1);
+			commandsHistoryCounter++;
+		}
+		myCommandsList.setItems(myCommands);
+		commandsHistoryCounter = oldCounter;
+	}
+	
 	/**
 	 * Returns the current turtle
 	 * @return The turtle
