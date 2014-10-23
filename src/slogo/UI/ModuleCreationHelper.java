@@ -91,6 +91,7 @@ public class ModuleCreationHelper {
 	private Button debugStepOverButton;
 	private Boolean isInDebugMode;
 
+	private Label runningStatusLabel;
 	private int commandsHistoryCounter;
 
 
@@ -120,6 +121,7 @@ public class ModuleCreationHelper {
 		createSelectorVBoxModules();
 		createDebugModules();
 		activateKeyEvents();
+		createRunningStatusLabel();
 	}
 
 	private void createSelectorVBoxModules() {
@@ -141,6 +143,7 @@ public class ModuleCreationHelper {
 		createFirstButtonRow();
 		createPlayButton();
 		createStopButton();
+		createPauseButton();
 		createHelpButton();
 	}
 
@@ -212,6 +215,13 @@ public class ModuleCreationHelper {
 		Button btn = BC.createButton(new Image(getClass().getResourceAsStream("red-stop-button-plain-icon-th.png")));
 		activateExitAppButton(btn);
 	}
+	
+	private void createPauseButton() {
+		ButtonCreator BC = new ButtonCreator(firstButtonRow);
+		Button btn = BC.createButton(new Image(getClass().getResourceAsStream("Button-Pause-icon.png")));
+		//Add functionality
+		activatePauseAppButton(btn);
+	}
 
 	/**
 	 * Creates the help button
@@ -268,7 +278,6 @@ public class ModuleCreationHelper {
 		LC.createLabel("Animation Speed Slider", AppConstants.LABEL_FONT_SIZE, AppConstants.DEFAULT_TEXT_COLOR);
 		//GET RID OF MAGIC NUMBERS
 		animationSlider = SC.createSlider(0, 20, 1);
-		activateAnimationSliderListener(animationSlider);
 	}
 
 	private void createZoomSlider() {
@@ -309,6 +318,13 @@ public class ModuleCreationHelper {
 		debugStepOverButton = BC.createButton("Step Over Next Command");
 		debugStepOverButton.setVisible(false);
 		activateStepOverButton(debugStepOverButton);
+	}
+	
+	private void createRunningStatusLabel() {
+		LabelCreator LC = new LabelCreator(root);
+		//Replace magic numbers
+		runningStatusLabel = LC.createLabel("Running!", 300, AppConstants.STAGE_PADDING, AppConstants.TITLE_LABEL_FONT_SIZE, Color.RED);
+		runningStatusLabel.setVisible(false);
 	}
 
 	/**
@@ -384,6 +400,15 @@ public class ModuleCreationHelper {
 			public void handle(ActionEvent event) {
 				if(!isInDebugMode) myView.sendCommandToBackend();
 				else new MessageBox("Currently in Debug Mode.\n Cannot run animation.");
+			}
+		});
+	}
+	
+	public void activatePauseAppButton(Button btn) {
+		btn.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				myView.pauseAnimation();
 			}
 		});
 	}
@@ -617,15 +642,6 @@ public class ModuleCreationHelper {
 		});
 	}
 
-	private void activateAnimationSliderListener(Slider slider) {
-		slider.setOnMouseReleased(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent event) {
-
-			}
-		});
-	}
-
 	private void activateZoomSliderListener(Slider slider) {
 		slider.setOnMouseReleased(new EventHandler<MouseEvent>() {
 			@Override
@@ -653,9 +669,6 @@ public class ModuleCreationHelper {
 			commandsHistoryCounter = commandsHistoryCounter + offset + 1;
 		}
 	}
-
-
-
 
 	/**
 	 * Returns the current turtle
@@ -686,8 +699,17 @@ public class ModuleCreationHelper {
 		this.myView = view;
 	}
 
+	/**
+	 * Gets the value of of the animation slider
+	 * @return The slider value
+	 */
 	public double getAnimationSliderValue() {
 		return animationSlider.getValue();
+	}
+	
+	public void toggleRunningStatusLabel() {
+		if (runningStatusLabel.isVisible()) runningStatusLabel.setVisible(false);
+		else runningStatusLabel.setVisible(true);
 	}
 }
 

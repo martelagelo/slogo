@@ -62,7 +62,7 @@ public class AppConstants {
         public static final Integer COMMAND_HISTORY_WIDTH = 250;
         public static final Integer COMMAND_HISTORY_HEIGHT = STAGE_HEIGHT - 50;
         
-        public static final Integer HELP_BUTTON_PREF_WIDTH = 100;
+        public static final Integer HELP_BUTTON_PREF_WIDTH = 70;
         public static final Integer HELP_BUTTON_PREF_HEIGHT = 50;
         
         //public static final Integer TEXT_BOX_ROW_X_POS = STAGE_PADDING;
