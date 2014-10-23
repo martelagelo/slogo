@@ -19,15 +19,13 @@ public class Variable implements IOperation{
     @Override
     public IExecutionContext execute (List<IExecutionContext> args, IExecutionContext previous,
             ISyntaxNode current) throws MalformedSyntaxException {
-        // TODO Auto-generated method stub
         Map<String, String> newEnvironment = new HashMap<>(args.get(0).environment());
         newEnvironment.put(Constants.RETURN_VALUE_ENVIRONMENT, args.get(0).environment().get(name));
-        return new ExecutionContext(new HashMap<>(args.get(0).turtles()), newEnvironment);
+        return new ExecutionContext(args.get(0).turtles(), newEnvironment, args.get(0).userDefinedCommands());
     }
 
     @Override
     public String type () {
-        // TODO Auto-generated method stub
         return "Variable";
     }
 
