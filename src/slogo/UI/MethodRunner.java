@@ -79,7 +79,8 @@ public class MethodRunner {
 	    for (ILine l: TS.lineSequence()) {
 	        boolean alreadyAdded = false;
 	        for(Line line : copyLines){
-	            redrawIfInScene(l, line, alreadyAdded);
+	            alreadyAdded = redrawIfInScene(l, line);
+	            if(alreadyAdded) break;
 	        }
 	        if(!alreadyAdded){
 	            drawNewLine(l);
@@ -89,14 +90,17 @@ public class MethodRunner {
 	}
 
 
-	private void redrawIfInScene(ILine l, Line line, boolean alreadyAdded){
+	private boolean redrawIfInScene(ILine l, Line line){
 	    if((double) l.start().getX() == (line.getStartX() - AppConstants.INITIAL_TURTLE_X_POS) &&
 	            (double) l.end().getX() == (line.getEndX() - AppConstants.INITIAL_TURTLE_X_POS) &&
 	            (double) l.start().getY() == (line.getStartY() - AppConstants.INITIAL_TURTLE_Y_POS) &&
 	            (double) l.end().getY() == (line.getEndY() - AppConstants.INITIAL_TURTLE_Y_POS)){
 	        root.getChildren().add(line);
 	        pathList.add(line);
-	        alreadyAdded = true;
+	        return true;
+	    }
+	    else{
+	        return false;
 	    }
 	}
 
