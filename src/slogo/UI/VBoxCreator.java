@@ -1,5 +1,6 @@
 package slogo.UI;
 
+import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -21,6 +22,14 @@ private HBox hBox;
 		VBox vBox = new VBox(spacing);
 		vBox.setLayoutX(x_Coord);
 		vBox.setLayoutY(y_Coord);
+		if (root != null) root.getChildren().add(vBox);
+		else hBox.getChildren().add(vBox);
+		return vBox;
+	}
+	
+	public VBox createVBox(int spacing) {
+		VBox vBox = new VBox(spacing);
+		vBox.setAlignment(Pos.CENTER);
 		if (root != null) root.getChildren().add(vBox);
 		else hBox.getChildren().add(vBox);
 		return vBox;

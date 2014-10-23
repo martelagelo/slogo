@@ -27,6 +27,7 @@ public class SliderCreator {
 		slider.setValue(currentValue);
 		slider.setShowTickLabels(true);
 		slider.setShowTickMarks(true);
+		slider.setMaxWidth(AppConstants.ANIMATION_SLIDER_WIDTH);
 		vBox.getChildren().add(slider);
 		return slider;
 	}

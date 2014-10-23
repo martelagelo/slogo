@@ -16,12 +16,12 @@ public class AppConstants {
 		public static final Color BACKGROUND_COLOR = Color.BURLYWOOD;
 		public static final Color DEFAULT_TEXT_COLOR = Color.BLACK;
 	
-        public static final Integer STAGE_WIDTH = 1300;
+        public static final Integer STAGE_WIDTH = 1400;
         public static final Integer STAGE_HEIGHT = 750;
         public static final Integer STAGE_PADDING = 5;
         public static final Integer MODULE_PADDING = 30;
         
-        public static final Integer CANVAS_OFFSET_X_POS = 75;
+        public static final Integer CANVAS_OFFSET_X_POS = 10;
         public static final Integer CANVAS_OFFSET_Y_POS = 75;
         public static final Integer CANVAS_WIDTH = 400;
         public static final Integer CANVAS_HEIGHT = 400;
@@ -48,7 +48,7 @@ public class AppConstants {
         
         public static final Integer FIRST_ROW_BUTTON_HBOX_X_POS = CANVAS_OFFSET_X_POS + CANVAS_WIDTH + MODULE_PADDING;
         public static final Integer FIRST_ROW_BUTTON_HBOX_Y_POS = STAGE_PADDING;
-        public static final Integer FIRST_ROW_BUTTON_HBOX_WIDTH = 250;
+        public static final Integer FIRST_ROW_BUTTON_HBOX_WIDTH = 430;
     
         public static final Integer LIST_BLOCKS_X_POS = FIRST_ROW_BUTTON_HBOX_X_POS + FIRST_ROW_BUTTON_HBOX_WIDTH + MODULE_PADDING;
         public static final Integer LIST_BLOCKS_WIDTH = 200;
@@ -61,6 +61,9 @@ public class AppConstants {
         public static final Integer COMMAND_HISTORY_Y_POS = STAGE_PADDING;
         public static final Integer COMMAND_HISTORY_WIDTH = 250;
         public static final Integer COMMAND_HISTORY_HEIGHT = STAGE_HEIGHT - 50;
+        
+        public static final Integer RUNNING_STATUS_LABEL_X_POS = CANVAS_OFFSET_X_POS + CANVAS_WIDTH/2 + MODULE_PADDING;
+        public static final Integer RUNNING_STATUS_LABEL_Y_POS = STAGE_PADDING;
         
         //public static final Integer HELP_BUTTON_PREF_WIDTH = 70;
         //public static final Integer HELP_BUTTON_PREF_HEIGHT = 40;
@@ -87,6 +90,11 @@ public class AppConstants {
 
         public static final double MAX_NEW_IMAGE_WIDTH = 15;
         public static final double MAX_NEW_IMAGE_HEIGHT = 15;
+        
+        public static final Integer ANIMATION_SLIDER_MIN_VALUE = 0;
+        public static final Integer ANIMATION_SLIDER_MAX_VALUE = 20;
+        public static final Integer ANIMATION_SLIDER_DEFAULT_VALUE = 1;
+        public static final double ANIMATION_SLIDER_WIDTH = 300;
 
         public static final double GRIDLINES_SPACING = 10;
         

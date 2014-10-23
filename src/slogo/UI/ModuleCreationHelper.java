@@ -18,6 +18,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -211,7 +212,11 @@ public class ModuleCreationHelper {
 	 * 
 	 */
 	private void createPlayButton() {
-		ButtonCreator BC = new ButtonCreator(firstButtonRow);
+		VBoxCreator VBC = new VBoxCreator(firstButtonRow);
+		VBox vBox = VBC.createVBox(AppConstants.VBOX_SPACING);
+		LabelCreator LC = new LabelCreator(vBox);
+		LC.createLabel("Run Animation", AppConstants.LABEL_FONT_SIZE, AppConstants.DEFAULT_TEXT_COLOR);
+		ButtonCreator BC = new ButtonCreator(vBox);
 		Button btn = BC.createButton(new Image(getClass().getResourceAsStream("green-plain-play-button-icon-th.png")));
 		activatePlayButton(btn);
 	}
@@ -220,7 +225,11 @@ public class ModuleCreationHelper {
 	 * Creates the button that exits the application
 	 */
 	private void createStopButton() {
-		ButtonCreator BC = new ButtonCreator(firstButtonRow);
+		VBoxCreator VBC = new VBoxCreator(firstButtonRow);
+		VBox vBox = VBC.createVBox(AppConstants.VBOX_SPACING);
+		LabelCreator LC = new LabelCreator(vBox);
+		LC.createLabel("Exit Application", AppConstants.LABEL_FONT_SIZE, AppConstants.DEFAULT_TEXT_COLOR);
+		ButtonCreator BC = new ButtonCreator(vBox);
 		Button btn = BC.createButton(new Image(getClass().getResourceAsStream("red-stop-button-plain-icon-th.png")));
 		activateExitAppButton(btn);
 	}
@@ -229,7 +238,11 @@ public class ModuleCreationHelper {
 	 * Creates a button that pauses animation
 	 */
 	private void createPauseButton() {
-		ButtonCreator BC = new ButtonCreator(firstButtonRow);
+		VBoxCreator VBC = new VBoxCreator(firstButtonRow);
+		VBox vBox = VBC.createVBox(AppConstants.VBOX_SPACING);
+		LabelCreator LC = new LabelCreator(vBox);
+		LC.createLabel("Pause Animation", AppConstants.LABEL_FONT_SIZE, AppConstants.DEFAULT_TEXT_COLOR);
+		ButtonCreator BC = new ButtonCreator(vBox);
 		Button btn = BC.createButton(new Image(getClass().getResourceAsStream("Button-Pause-icon.png")));
 		activatePauseButton(btn);
 	}
@@ -238,7 +251,11 @@ public class ModuleCreationHelper {
 	 * Creates a button that resets animation
 	 */
 	private void createResetButton() {
-		ButtonCreator BC = new ButtonCreator(firstButtonRow);
+		VBoxCreator VBC = new VBoxCreator(firstButtonRow);
+		VBox vBox = VBC.createVBox(AppConstants.VBOX_SPACING);
+		LabelCreator LC = new LabelCreator(vBox);
+		LC.createLabel("Reset Animation", AppConstants.LABEL_FONT_SIZE, AppConstants.DEFAULT_TEXT_COLOR);
+		ButtonCreator BC = new ButtonCreator(vBox);
 		Button btn = BC.createButton(new Image(getClass().getResourceAsStream("reset_button.jpg")));
 		activateResetButton(btn);
 	}
@@ -249,7 +266,6 @@ public class ModuleCreationHelper {
 	private void createHelpButton(){
 		ButtonCreator BC = new ButtonCreator(mySelectorsVBox);
 		Button btn = BC.createButton("Load Help Page");
-		//btn.setPrefSize(AppConstants.HELP_BUTTON_PREF_WIDTH, AppConstants.HELP_BUTTON_PREF_HEIGHT);
 		activateHelpButton(btn);    
 	}
 
@@ -303,7 +319,7 @@ public class ModuleCreationHelper {
 		SliderCreator SC = new SliderCreator(mySelectorsVBox);
 		LC.createLabel("Animation Speed Slider", AppConstants.LABEL_FONT_SIZE, AppConstants.DEFAULT_TEXT_COLOR);
 		//GET RID OF MAGIC NUMBERS
-		animationSlider = SC.createSlider(0, 20, 1);
+		animationSlider = SC.createSlider(AppConstants.ANIMATION_SLIDER_MIN_VALUE, AppConstants.ANIMATION_SLIDER_MAX_VALUE, AppConstants.ANIMATION_SLIDER_DEFAULT_VALUE);
 	}
 
 	/**
@@ -357,8 +373,7 @@ public class ModuleCreationHelper {
 	 */
 	private void createRunningStatusLabel() {
 		LabelCreator LC = new LabelCreator(root);
-		//Replace magic numbers
-		runningStatusLabel = LC.createLabel("Running!", 300, AppConstants.STAGE_PADDING, AppConstants.TITLE_LABEL_FONT_SIZE, Color.RED);
+		runningStatusLabel = LC.createLabel("Running!", AppConstants.RUNNING_STATUS_LABEL_X_POS, AppConstants.RUNNING_STATUS_LABEL_Y_POS, AppConstants.TITLE_LABEL_FONT_SIZE, Color.RED);
 		runningStatusLabel.setVisible(false);
 	}
 
