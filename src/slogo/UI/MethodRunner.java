@@ -9,6 +9,7 @@ import slogo.CommandExecutor;
 import slogo.backend.impl.util.TurtleStatus;
 import slogo.backend.util.ILine;
 import slogo.backend.util.ITurtleStatus;
+import javafx.collections.ObservableList;
 import javafx.geometry.Point2D;
 import javafx.scene.Group;
 import javafx.scene.canvas.Canvas;
@@ -35,12 +36,14 @@ public class MethodRunner {
 	
 	private ITurtleStatus TS;
 	private String environment;
+	private ModuleCreationHelper MCH;
 	
-	public MethodRunner(Group root, Canvas canvas, Turtle turtle, List<Line> list) {
+	public MethodRunner(Group root, Canvas canvas, Turtle turtle, List<Line> list, ModuleCreationHelper MCH) {
 		this.turtle = turtle;
 		this.canvas = canvas;
 		this.root = root;
 		this.pathList = list;
+		this.MCH = MCH;
 	}
 	
 	public void changeTurtle() {
@@ -48,6 +51,7 @@ public class MethodRunner {
 		setTurtleDirection();
 		setPenState();
 		setTurtleVisibility();
+		MCH.setListViewVariables((double) TS.turtlePosition().getX(),(double) TS.turtlePosition().getY(), TS.turtleDirection().toDegrees(), true);
 	}
 	
 	public void changeEnvironment() {

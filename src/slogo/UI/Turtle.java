@@ -23,8 +23,8 @@ public class Turtle {
 	private boolean active;
 
 	public Turtle(String s, int x, int y){
-		xpos = x-7.5;
-		ypos = y-7.5;
+		xpos = x - AppConstants.MAX_NEW_IMAGE_WIDTH/2;
+		ypos = y - AppConstants.MAX_NEW_IMAGE_HEIGHT/2;
 		//myBold = true;
 		imagesMap = new HashMap<String, Node>();
 		generateSelectorMap(initialImagesMap());
@@ -41,7 +41,7 @@ public class Turtle {
 			@Override
 			public void handle(MouseEvent event){
 				active = !active;
-				System.out.println(getYPos());
+				//System.out.println(getYPos());
 			}
 		});
 

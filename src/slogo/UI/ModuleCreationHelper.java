@@ -672,5 +672,14 @@ public class ModuleCreationHelper {
 	public double getAnimationSliderValue() {
 		return animationSlider.getValue();
 	}
+	
+	protected void setListViewVariables(double x, double y, double o, boolean b){
+	    myVariables.clear();
+	    myVariables.add("Turtle X Position:     " + x);
+	    myVariables.add("Turtle Y Position:     " + y);
+	    myVariables.add("Turtle Heading:        " + o);
+	    myVariables.add("Pen Down?:     " + b);
+	    myVariablesList.setItems(myVariables);
+	}
 }
 

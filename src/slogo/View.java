@@ -66,7 +66,7 @@ public class View implements IView{
 		pathList = new ArrayList<Line>();
 		commandQueue = new LinkedList<String>();
 		this.MCH = MCH;
-		runner = new MethodRunner(root, MCH.getCanvas(), MCH.getTurtle(), pathList);
+		runner = new MethodRunner(root, MCH.getCanvas(), MCH.getTurtle(), pathList, MCH);
 		backend = new Backend();
 	}
 
