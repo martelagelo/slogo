@@ -88,9 +88,10 @@ public class View implements IView{
 					new KeyFrame(Duration.millis(1000 / MCH.getAnimationSliderValue()),
 							new EventHandler<ActionEvent>() {
 						public void handle(ActionEvent event) {
-
+							
 							IExecutionContext result = backend.execute(commandQueue.poll());
 							executeCommand(result);
+							MCH.stepThroughCommandsHistory(0);
 
 							if (commandQueue.isEmpty()) {
 								animationTimeline.stop();

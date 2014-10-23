@@ -78,18 +78,20 @@ public class ModuleCreationHelper {
 	private ObservableList<String> myUserCommands = FXCollections.observableArrayList();
 	private GraphicsContext myGraphicsContext;
 	private Slider animationSlider;
-	
+
 	private Map<String, Node> myImagesMap;
 	private int totalUserImages;
 	private TurtleImageSelector myTurtleSelector;
 
 	private List<Line> myGridLines;
-	
+
 	private VBox debugVBox;
 	private Label debugLabel;
 	private Button debugStepIntoButton;
 	private Button debugStepOverButton;
 	private Boolean isInDebugMode;
+
+	private int commandsHistoryCounter;
 
 
 	/**
@@ -104,6 +106,7 @@ public class ModuleCreationHelper {
 		configWriter = new ConfigWriter();
 		totalUserImages = 1;
 		isInDebugMode = false;
+		commandsHistoryCounter = 0;
 	}
 
 	/**
@@ -118,7 +121,7 @@ public class ModuleCreationHelper {
 		createDebugModules();
 		activateKeyEvents();
 	}
-	
+
 	private void createSelectorVBoxModules() {
 		createFirstRowButtons();
 		createTextField();
@@ -133,14 +136,14 @@ public class ModuleCreationHelper {
 		createZoomSlider();
 		createGridCheckBox();
 	}
-	
+
 	private void createFirstRowButtons() {
 		createFirstButtonRow();
 		createPlayButton();
 		createStopButton();
 		createHelpButton();
 	}
-	
+
 	private void createDebugModules() {
 		createDebugVBox();
 		createDebugLabel();
@@ -258,7 +261,7 @@ public class ModuleCreationHelper {
 		Button btn = BC.createButton("Load Extra Workspace");
 		activateExtraWorkspaceButton(btn);
 	}
-	
+
 	private void createAnimationSpeedSlider() {
 		LabelCreator LC = new LabelCreator(mySelectorsVBox);
 		SliderCreator SC = new SliderCreator(mySelectorsVBox);
@@ -267,7 +270,7 @@ public class ModuleCreationHelper {
 		animationSlider = SC.createSlider(0, 20, 1);
 		activateAnimationSliderListener(animationSlider);
 	}
-	
+
 	private void createZoomSlider() {
 		LabelCreator LC = new LabelCreator(mySelectorsVBox);
 		SliderCreator SC = new SliderCreator(mySelectorsVBox);
@@ -276,31 +279,31 @@ public class ModuleCreationHelper {
 		Slider slider = SC.createSlider(0, 10, 5);
 		activateZoomSliderListener(slider);
 	}
-	
+
 	private void createDebugButton() {
 		CheckBoxCreator cb = new CheckBoxCreator(mySelectorsVBox);
 		CheckBox CB = cb.createCheckBox("Debug Mode");
 		activateDebugCB(CB);
 	}
-	
+
 	private void createDebugVBox() {
 		VBoxCreator VBC = new VBoxCreator(root);
 		debugVBox = VBC.createVBox(AppConstants.VBOX_SPACING, AppConstants.DEBUG_LABEL_X_POS, AppConstants.DEBUG_LABEL_Y_POS);
 	}
-	
+
 	private void createDebugLabel() {
 		LabelCreator LC = new LabelCreator(debugVBox);
 		debugLabel = LC.createLabel("DEBUG MODE ON", AppConstants.TITLE_LABEL_FONT_SIZE, Color.RED);
 		debugLabel.setVisible(false);
 	}
-	
+
 	private void createDebugStepIntoButton() {
 		ButtonCreator BC = new ButtonCreator(debugVBox);
 		debugStepIntoButton = BC.createButton("Step Into Next Command");
 		debugStepIntoButton.setVisible(false);
 		activateStepIntoButton(debugStepIntoButton);
 	}
-	
+
 	private void createDebugStepOverButton() {
 		ButtonCreator BC = new ButtonCreator(debugVBox);
 		debugStepOverButton = BC.createButton("Step Over Next Command");
@@ -398,7 +401,7 @@ public class ModuleCreationHelper {
 			}
 		});
 	}
-	
+
 	public void activateDebugCB(CheckBox cb){
 		cb.setOnAction(new EventHandler<ActionEvent>(){
 			@Override
@@ -430,19 +433,19 @@ public class ModuleCreationHelper {
 			public void handle(ActionEvent event){
 				try {
 					ParameterDistributor PD = configReader.readFile();
-					
+
 					Map<String, Integer> Variables = PD.getVariableMap();
 					Map<String, Color> Colors = PD.getColorMap();
 					int numOfTurtles = PD.getNumOfTurtles();
-					
+
 					clearCertainList(myUserVariables, myUserVariablesList);
 					for (String s: Variables.keySet()) {
 						addToCertainList(myUserVariables, myUserVariablesList, s +  " = " + Variables.get(s));
 						//NEEDS BACKEND FUNCTIONALITY
 					}
-					
+
 					new MessageBox("Read from config file successful!");
-					
+
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					new MessageBox("ERROR!! Read from config unsuccessful!");
@@ -463,7 +466,7 @@ public class ModuleCreationHelper {
 			public void handle(ActionEvent event){
 				//STILL IN TESTING PHASE
 				ConfigHashMapCreator CHMC = new ConfigHashMapCreator();
-				
+
 				Map<String, String> variableMap = new HashMap<String, String>();
 				for (String str: myUserVariablesList.getItems()) {
 					variableMap.put(str.substring(0, str.indexOf(' ')), str.substring(str.indexOf('=') + 2));
@@ -472,11 +475,11 @@ public class ModuleCreationHelper {
 				}
 				CHMC.setVariableMap(variableMap);
 				CHMC.setNumOfTurtles(13);
-				
+
 				configWriter.writeToTextFile(CHMC.getConfigHashMap());
-				
+
 				new MessageBox("Write to config file successful!");
-				
+
 				//NEEDS BACKEND FUNCTIONALITY
 			}
 		});
@@ -496,21 +499,24 @@ public class ModuleCreationHelper {
 			}
 		});
 	}
-	
+
 	public void activateStepIntoButton(Button btn) {
 		btn.setOnAction(new EventHandler<ActionEvent>(){
 			@Override
 			public void handle(ActionEvent event){
 				myView.stepIntoCommand();
+				System.out.println(myCommands.size());
+				stepThroughCommandsHistory(0);
 			}
 		});
 	}
-	
+
 	public void activateStepOverButton(Button btn) {
 		btn.setOnAction(new EventHandler<ActionEvent>(){
 			@Override
 			public void handle(ActionEvent event){
 				myView.stepOverCommand();
+				stepThroughCommandsHistory(1);
 			}
 		});
 	}
@@ -551,7 +557,7 @@ public class ModuleCreationHelper {
 			}
 		});
 	}
-	
+
 	//NEEDS BACKEND FUNCTIONALITY
 	private void activateNewTurtleButton(Button btn) {
 		btn.setOnAction(new EventHandler<ActionEvent>() {
@@ -610,16 +616,16 @@ public class ModuleCreationHelper {
 			}
 		});
 	}
-	
+
 	private void activateAnimationSliderListener(Slider slider) {
 		slider.setOnMouseReleased(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
-				
+
 			}
 		});
 	}
-	
+
 	private void activateZoomSliderListener(Slider slider) {
 		slider.setOnMouseReleased(new EventHandler<MouseEvent>() {
 			@Override
@@ -628,17 +634,28 @@ public class ModuleCreationHelper {
 			}
 		});
 	}
-	
+
 	private void addToCertainList(ObservableList<String> currentList, ListViewAllSLOGO listView, String input) {
 		currentList.add(input);
 		listView.setItems(currentList);
 	}
-	
+
 	private void clearCertainList(ObservableList<String> currentList, ListViewAllSLOGO listView) {
 		currentList.clear();
 		listView.setItems(currentList);
 	}
-	
+
+	public void stepThroughCommandsHistory(int offset) {
+		if(commandsHistoryCounter <= myCommands.size()-1) {
+			myCommands.add(commandsHistoryCounter + offset, "(Executed)  " + myCommands.get(commandsHistoryCounter + offset));
+			myCommands.remove(commandsHistoryCounter + offset + 1);
+			myCommandsList.setItems(myCommands);
+			commandsHistoryCounter = commandsHistoryCounter + offset + 1;
+		}
+	}
+
+
+
 
 	/**
 	 * Returns the current turtle
@@ -668,7 +685,7 @@ public class ModuleCreationHelper {
 	public void setView(View view) {
 		this.myView = view;
 	}
-	
+
 	public double getAnimationSliderValue() {
 		return animationSlider.getValue();
 	}

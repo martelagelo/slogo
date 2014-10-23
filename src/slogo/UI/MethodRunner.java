@@ -51,24 +51,11 @@ public class MethodRunner {
 	}
 	
 	public void changeEnvironment() {
+		//NEEDS FUNCTIONALITY
 		System.out.println(environment);
 		
 	}
-
-//	private void moveTurtle(int x, int y) {
-//		Double xPos = turtle.getXPos();
-//		Double yPos = turtle.getYPos();
-//		turtle.moveTurtle(x, y);
-//		Line line = new Line();
-//		line.setStartX(xPos);
-//		line.setStartY(yPos);
-//		line.setEndX(x);
-//		line.setEndY(y);
-//
-//		root.getChildren().add(line);
-//	}
-	
-	
+		
 	private void moveTurtle() {
 	    for (Line l : pathList) {
 	        root.getChildren().remove(l);
