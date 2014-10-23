@@ -1,10 +1,13 @@
 package slogo.backend.impl.evaluation.commands;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import slogo.Constants;
 import slogo.backend.evaluation.IExecutionContext;
 import slogo.backend.evaluation.IOperation;
 import slogo.backend.evaluation.MalformedSyntaxException;
+import slogo.backend.impl.evaluation.ExecutionContext;
 import slogo.backend.parsing.IGrammarRule;
 import slogo.backend.parsing.ISyntaxNode;
 
@@ -33,6 +36,17 @@ public abstract class Operation implements IOperation {
 	}
 
 	protected abstract IExecutionContext executeRaw(List<IExecutionContext> args,IExecutionContext previous, ISyntaxNode current);
+
+	protected List<Number> generateNumericArguments(List<IExecutionContext> args) {
+		List<Number> argsNum = new ArrayList<>();
+		for (IExecutionContext context: args) {
+			argsNum.add(new Double(context.environment().get(Constants.RETURN_VALUE_ENVIRONMENT)));
+		}
+		return argsNum;
+	}
+	protected IExecutionContext mergeContexts(List<IExecutionContext> contexts){
+		return new ExecutionContext(contexts.get(0));
+	}
 
 	@Override
 	public String type() {

@@ -40,7 +40,7 @@ public class EvaluationTest {
 	@Test
 	public void testEvaluate(){
 		IEvaluator evaluator = new Evaluator();
-		IExecutionContext previous = new ExecutionContext(new HashMap<>(), new HashMap<>());
+		IExecutionContext previous = new ExecutionContext(new HashMap<>(), new HashMap<>(), new HashMap<>());
 		IExecutionContext context = null;
 		try {
 			context = evaluator.evaluate(setupTree(), previous);
