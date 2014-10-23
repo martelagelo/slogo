@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.Queue;
 import java.util.Stack;
 
+import javafx.animation.Animation.Status;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
@@ -79,8 +80,12 @@ public class View implements IView{
 	}
 
 	public void sendCommandToBackend() {
-
-		if (!commandQueue.isEmpty()) {
+		if(animationTimeline != null && animationTimeline.getStatus() == Status.PAUSED) {
+			MCH.toggleRunningStatusLabel();
+			animationTimeline.play();
+		}
+		else if (!commandQueue.isEmpty()) {
+			MCH.toggleRunningStatusLabel();
 			animationTimeline = new Timeline();
 			animationTimeline.setCycleCount(Timeline.INDEFINITE);
 
@@ -91,13 +96,23 @@ public class View implements IView{
 
 							IExecutionContext result = backend.execute(commandQueue.poll());
 							executeCommand(result);
+							MCH.stepThroughCommandsHistory(0);
 
 							if (commandQueue.isEmpty()) {
 								animationTimeline.stop();
+								animationTimeline = null;
+								MCH.toggleRunningStatusLabel();
 							}
 						}
 					}));
 			animationTimeline.play();
+		}
+	}
+
+	public void pauseAnimation() {
+		if (animationTimeline != null) {
+			animationTimeline.pause();
+			MCH.toggleRunningStatusLabel();
 		}
 	}
 
@@ -122,8 +137,8 @@ public class View implements IView{
 	}
 
 	public void stepOverCommand() {
+		commandQueue.poll();
 		if (!(commandQueue.peek() == null)) {
-			commandQueue.poll();
 			IExecutionContext result = backend.execute(commandQueue.poll());
 			executeCommand(result);
 		}
