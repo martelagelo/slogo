@@ -46,7 +46,8 @@ public class Backend implements IModel{
 		rules.add(new TokenRule.Builder(Constants.CONSTANT_LABEL, "-?[0-9]+\\.?[0-9]*").build());
 		rules.add(new TokenRule.Builder(Constants.COMMAND_LABEL, "[a-zA-z_]+(\\?)?").build());
 		rules.add(new TokenRule.Builder(Constants.VARIABLE_LABEL, ":[a-zA-Z]+").build());
-		rules.add(new TokenRule.Builder(Constants.LIST_LABEL, "\\[.*\\]").build());
+		rules.add(new TokenRule.Builder(Constants.OPENING_LIST_LABEL, "\\[").build());
+		rules.add(new TokenRule.Builder(Constants.CLOSING_LIST_LABEL, "\\]").build());
 		return rules;
 	}
 	private List<IGrammarRule> grammarRules(){
@@ -89,6 +90,42 @@ public class Backend implements IModel{
 				{"Towards","2"},
 				{"Xcor","0"},
 				{"Ycor","0"}
+		};
+		String[][][] controlRules = {
+				{{"For"}, {
+					Constants.OPENING_LIST_LABEL,
+					Constants.CONSTANT_LABEL,
+					Constants.CONSTANT_LABEL,
+					Constants.CONSTANT_LABEL,
+					Constants.CONSTANT_LABEL,
+					Constants.CLOSING_LIST_LABEL,
+					Constants.OPENING_LIST_LABEL, //[
+					Constants.CONSTANT_LABEL,
+					Constants.CLOSING_LIST_LABEL //]
+				}},
+				{{"Make"}, {
+					Constants.CONSTANT_LABEL,
+					Constants.CONSTANT_LABEL
+				}},
+				{{"Set"}, {
+					Constants.CONSTANT_LABEL,
+					Constants.CONSTANT_LABEL
+				}},
+				{{"Repeat"}, {
+					Constants.CONSTANT_LABEL,
+					Constants.OPENING_LIST_LABEL,
+					Constants.CONSTANT_LABEL,
+					Constants.CLOSING_LIST_LABEL
+				}},
+				{{"DoTimes"}, {
+					Constants.OPENING_LIST_LABEL,
+					Constants.CONSTANT_LABEL,
+					Constants.CONSTANT_LABEL,
+					Constants.CLOSING_LIST_LABEL,
+					Constants.OPENING_LIST_LABEL,
+					Constants.CONSTANT_LABEL,
+					Constants.CLOSING_LIST_LABEL
+				}}
 		};
 		List<IGrammarRule> ruleList = new ArrayList<>();
 		for (String[] rule: rules) {
