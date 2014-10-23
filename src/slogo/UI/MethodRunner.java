@@ -1,10 +1,10 @@
 package slogo.UI;
 
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Stack;
-
 import slogo.CommandExecutor;
 import slogo.backend.impl.util.TurtleStatus;
 import slogo.backend.util.ILine;
@@ -70,24 +70,52 @@ public class MethodRunner {
 	
 	
 	private void moveTurtle() {
-		for (Line l : pathList) {
-			root.getChildren().remove(l);
-		}
-		pathList.clear();
-		for (ILine l: TS.lineSequence()) {
-		    Line line = new Line();
-		    line.setStroke(turtle.getColor());
-		    line.setStartX((double) l.start().getX() + AppConstants.INITIAL_TURTLE_X_POS);
-		    line.setStartY((double) l.start().getY() + AppConstants.INITIAL_TURTLE_Y_POS);
-		    line.setEndX((double) l.end().getX() + AppConstants.INITIAL_TURTLE_X_POS);
-		    line.setEndY((double) l.end().getY() + AppConstants.INITIAL_TURTLE_Y_POS);
-		    if(turtle.isDashed()){
-		        line.getStrokeDashArray().addAll(10d);
-		    }
-			root.getChildren().add(line);
-			pathList.add(line);
-		}
-		turtle.moveTurtle((double) TS.turtlePosition().getX() + AppConstants.INITIAL_TURTLE_X_POS, (double) TS.turtlePosition().getY() + AppConstants.INITIAL_TURTLE_Y_POS); 
+	    for (Line l : pathList) {
+	        root.getChildren().remove(l);
+	    }
+	    List<Line> copyLines = new ArrayList<Line>();
+	    copyLines.addAll(pathList);
+	    pathList.clear();
+	    for (ILine l: TS.lineSequence()) {
+	        boolean alreadyAdded = false;
+	        for(Line line : copyLines){
+	            alreadyAdded = redrawIfInScene(l, line);
+	            if(alreadyAdded) break;
+	        }
+	        if(!alreadyAdded){
+	            drawNewLine(l);
+	        }
+	    }
+	    turtle.moveTurtle((double) TS.turtlePosition().getX() + AppConstants.INITIAL_TURTLE_X_POS, (double) TS.turtlePosition().getY() + AppConstants.INITIAL_TURTLE_Y_POS); 
+	}
+
+
+	private boolean redrawIfInScene(ILine l, Line line){
+	    if((double) l.start().getX() == (line.getStartX() - AppConstants.INITIAL_TURTLE_X_POS) &&
+	            (double) l.end().getX() == (line.getEndX() - AppConstants.INITIAL_TURTLE_X_POS) &&
+	            (double) l.start().getY() == (line.getStartY() - AppConstants.INITIAL_TURTLE_Y_POS) &&
+	            (double) l.end().getY() == (line.getEndY() - AppConstants.INITIAL_TURTLE_Y_POS)){
+	        root.getChildren().add(line);
+	        pathList.add(line);
+	        return true;
+	    }
+	    else{
+	        return false;
+	    }
+	}
+
+	private void drawNewLine(ILine l){
+	    Line line = new Line();
+	    line.setStroke(turtle.getColor());
+	    line.setStartX((double) l.start().getX() + AppConstants.INITIAL_TURTLE_X_POS);
+	    line.setStartY((double) l.start().getY() + AppConstants.INITIAL_TURTLE_Y_POS);
+	    line.setEndX((double) l.end().getX() + AppConstants.INITIAL_TURTLE_X_POS);
+	    line.setEndY((double) l.end().getY() + AppConstants.INITIAL_TURTLE_Y_POS);
+	    if(turtle.isDashed()){
+	        line.getStrokeDashArray().addAll(10d);
+	    }
+	    root.getChildren().add(line);
+	    pathList.add(line);
 	}
 
 	private void setTurtleDirection() {
