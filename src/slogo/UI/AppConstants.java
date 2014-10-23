@@ -37,6 +37,12 @@ public class AppConstants {
         public static final Integer TITLE_X_POS = CANVAS_OFFSET_X_POS;
         public static final Integer TITLE_Y_POS = STAGE_PADDING;
         
+        public static final Integer TEXT_BOX_VBOX_X_POS = CANVAS_OFFSET_X_POS;
+        public static final Integer TEXT_BOX_VBOX_Y_POS = CANVAS_OFFSET_Y_POS + CANVAS_HEIGHT + MODULE_PADDING;
+        
+        public static final Integer DEBUG_LABEL_X_POS = CANVAS_OFFSET_X_POS;
+        public static final Integer DEBUG_LABEL_Y_POS = TEXT_BOX_VBOX_Y_POS + 2 * MODULE_PADDING;
+        
         public static final Integer INITIAL_TURTLE_X_POS = CANVAS_OFFSET_X_POS + CANVAS_WIDTH/2;
         public static final Integer INITIAL_TURTLE_Y_POS = CANVAS_OFFSET_Y_POS + CANVAS_HEIGHT/2;
         
@@ -59,8 +65,8 @@ public class AppConstants {
         public static final Integer HELP_BUTTON_PREF_WIDTH = 100;
         public static final Integer HELP_BUTTON_PREF_HEIGHT = 50;
         
-        public static final Integer TEXT_BOX_ROW_X_POS = STAGE_PADDING;
-        public static final Integer TEXT_BOX_ROW_Y_POS = STAGE_HEIGHT - STAGE_PADDING;
+        //public static final Integer TEXT_BOX_ROW_X_POS = STAGE_PADDING;
+        //public static final Integer TEXT_BOX_ROW_Y_POS = STAGE_HEIGHT - STAGE_PADDING;
         
         public static final Integer HBOX_SPACING = STAGE_PADDING;
         

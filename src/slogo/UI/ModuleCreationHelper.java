@@ -77,12 +77,19 @@ public class ModuleCreationHelper {
 	private ObservableList<String> myUserVariables = FXCollections.observableArrayList();
 	private ObservableList<String> myUserCommands = FXCollections.observableArrayList();
 	private GraphicsContext myGraphicsContext;
-
+	private Slider animationSlider;
+	
 	private Map<String, Node> myImagesMap;
 	private int totalUserImages;
 	private TurtleImageSelector myTurtleSelector;
 
 	private List<Line> myGridLines;
+	
+	private VBox debugVBox;
+	private Label debugLabel;
+	private Button debugStepIntoButton;
+	private Button debugStepOverButton;
+	private Boolean isInDebugMode;
 
 
 	/**
@@ -96,6 +103,7 @@ public class ModuleCreationHelper {
 		configReader = new ConfigReader();
 		configWriter = new ConfigWriter();
 		totalUserImages = 1;
+		isInDebugMode = false;
 	}
 
 	/**
@@ -106,10 +114,13 @@ public class ModuleCreationHelper {
 		createTurtleCanvas();
 		createTurtle();
 		createSelectorVBox();
-		createFirstButtonRow();
-		createPlayButton();
-		createStopButton();
-		createHelpButton();
+		createSelectorVBoxModules();
+		createDebugModules();
+		activateKeyEvents();
+	}
+	
+	private void createSelectorVBoxModules() {
+		createFirstRowButtons();
 		createTextField();
 		createListViews();
 		createSelectors();
@@ -121,7 +132,21 @@ public class ModuleCreationHelper {
 		createAnimationSpeedSlider();
 		createZoomSlider();
 		createGridCheckBox();
-		activateKeyEvents();
+	}
+	
+	private void createFirstRowButtons() {
+		createFirstButtonRow();
+		createPlayButton();
+		createStopButton();
+		createHelpButton();
+	}
+	
+	private void createDebugModules() {
+		createDebugVBox();
+		createDebugLabel();
+		createDebugStepIntoButton();
+		createDebugStepOverButton();
+		createDebugButton();
 	}
 
 	/**
@@ -239,8 +264,8 @@ public class ModuleCreationHelper {
 		SliderCreator SC = new SliderCreator(mySelectorsVBox);
 		LC.createLabel("Animation Speed Slider", AppConstants.LABEL_FONT_SIZE, AppConstants.DEFAULT_TEXT_COLOR);
 		//GET RID OF MAGIC NUMBERS
-		Slider slider = SC.createSlider(0, 10, 5);
-		activateAnimationSliderListener(slider);
+		animationSlider = SC.createSlider(0, 20, 1);
+		activateAnimationSliderListener(animationSlider);
 	}
 	
 	private void createZoomSlider() {
@@ -250,6 +275,37 @@ public class ModuleCreationHelper {
 		//GET RID OF MAGIC NUMBERS
 		Slider slider = SC.createSlider(0, 10, 5);
 		activateZoomSliderListener(slider);
+	}
+	
+	private void createDebugButton() {
+		CheckBoxCreator cb = new CheckBoxCreator(mySelectorsVBox);
+		CheckBox CB = cb.createCheckBox("Debug Mode");
+		activateDebugCB(CB);
+	}
+	
+	private void createDebugVBox() {
+		VBoxCreator VBC = new VBoxCreator(root);
+		debugVBox = VBC.createVBox(AppConstants.VBOX_SPACING, AppConstants.DEBUG_LABEL_X_POS, AppConstants.DEBUG_LABEL_Y_POS);
+	}
+	
+	private void createDebugLabel() {
+		LabelCreator LC = new LabelCreator(debugVBox);
+		debugLabel = LC.createLabel("DEBUG MODE ON", AppConstants.TITLE_LABEL_FONT_SIZE, Color.RED);
+		debugLabel.setVisible(false);
+	}
+	
+	private void createDebugStepIntoButton() {
+		ButtonCreator BC = new ButtonCreator(debugVBox);
+		debugStepIntoButton = BC.createButton("Step Into Next Command");
+		debugStepIntoButton.setVisible(false);
+		activateStepIntoButton(debugStepIntoButton);
+	}
+	
+	private void createDebugStepOverButton() {
+		ButtonCreator BC = new ButtonCreator(debugVBox);
+		debugStepOverButton = BC.createButton("Step Over Next Command");
+		debugStepOverButton.setVisible(false);
+		activateStepOverButton(debugStepOverButton);
 	}
 
 	/**
@@ -323,7 +379,8 @@ public class ModuleCreationHelper {
 		btn.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				myView.sendCommandToBackend();
+				if(!isInDebugMode) myView.sendCommandToBackend();
+				else new MessageBox("Currently in Debug Mode.\n Cannot run animation.");
 			}
 		});
 	}
@@ -332,12 +389,32 @@ public class ModuleCreationHelper {
 	 * Lets the help button navigate to a help website
 	 * @param btn: The help button
 	 */
-	public void activateHelpButton(Button btn){
+	public void activateHelpButton(Button btn) {
 		btn.setOnAction(new EventHandler<ActionEvent>(){
 			@Override
 			public void handle(ActionEvent event){
 				HTMLHelpPage help = new HTMLHelpPage(AppConstants.HELP_URL);
 				help.displayPage();
+			}
+		});
+	}
+	
+	public void activateDebugCB(CheckBox cb){
+		cb.setOnAction(new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent event){
+				if(cb.isSelected()) {
+					debugLabel.setVisible(true);
+					debugStepIntoButton.setVisible(true);
+					debugStepOverButton.setVisible(true);
+					isInDebugMode = true;
+				}
+				else{
+					debugLabel.setVisible(false);
+					debugStepIntoButton.setVisible(false);
+					debugStepOverButton.setVisible(false);
+					isInDebugMode = false;
+				}
 			}
 		});
 	}
@@ -416,6 +493,24 @@ public class ModuleCreationHelper {
 				Stage newStage = new Stage();
 				Main main = new Main();
 				main.start(newStage);
+			}
+		});
+	}
+	
+	public void activateStepIntoButton(Button btn) {
+		btn.setOnAction(new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent event){
+				myView.stepIntoCommand();
+			}
+		});
+	}
+	
+	public void activateStepOverButton(Button btn) {
+		btn.setOnAction(new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent event){
+				myView.stepOverCommand();
 			}
 		});
 	}
@@ -520,7 +615,7 @@ public class ModuleCreationHelper {
 		slider.setOnMouseReleased(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
-				//NEED FUNCTONALITY
+				
 			}
 		});
 	}
@@ -572,6 +667,10 @@ public class ModuleCreationHelper {
 	 */
 	public void setView(View view) {
 		this.myView = view;
+	}
+	
+	public double getAnimationSliderValue() {
+		return animationSlider.getValue();
 	}
 }
 

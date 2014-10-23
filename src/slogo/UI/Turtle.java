@@ -19,7 +19,6 @@ public class Turtle {
 	private double orientation;
 	private Map<String, Node> imagesMap;
 	private Color color;
-	//private int turtleID;
 
 	private boolean active;
 

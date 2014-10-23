@@ -10,17 +10,24 @@ import java.util.Map;
 import java.util.Queue;
 import java.util.Stack;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import slogo.UI.MessageBox;
 import slogo.UI.MethodRunner;
+import slogo.UI.ModuleCreationHelper;
 import slogo.UI.Turtle;
 import slogo.backend.evaluation.IExecutionContext;
 import slogo.backend.impl.Backend;
@@ -45,6 +52,8 @@ public class View implements IView{
 	private IModel backend;	
 	private List<Line> pathList;
 	private Queue<String> commandQueue;
+	private Timeline animationTimeline;
+	private ModuleCreationHelper MCH;
 
 	/**
 	 * Initializes the View 
@@ -53,42 +62,46 @@ public class View implements IView{
 	 * @param canvas The canvas on which the turtle is drawn
 	 * @param turtle The moving object on the canvas
 	 */
-	public void init(Group root, Canvas canvas, Turtle turtle) {
+	public void init(Group root, ModuleCreationHelper MCH) {
 		pathList = new ArrayList<Line>();
 		commandQueue = new LinkedList<String>();
-		runner = new MethodRunner(root, canvas, turtle, pathList);
+		this.MCH = MCH;
+		runner = new MethodRunner(root, MCH.getCanvas(), MCH.getTurtle(), pathList);
 		backend = new Backend();
-
-		//		CommandExecutor CE = new CommandExecutor();
-		//		List<Line> lines = new ArrayList<Line>();
-		//		Line line = new Line(275, 275, 300, 300);
-		//		lines.add(line);
-		//		Line line2 = new Line(300, 300, 250, 350);
-		//		if(turtle.isDashed()) line2.getStrokeDashArray().add(10d);
-		//              else if (turtle.myBold == true){
-		//		    line2.setStrokeWidth(4);
-		//		}
-		//		lines.add(line2);
-		//		root.getChildren().add(line2);
-		//		Line line3 = new Line(250, 350, 200, 200);
-		//		lines.add(line3);
-		//		CE.setList(lines);
-		//		CE.setType("move");
-		//		executeInidividualCommands(CE);
 	}
 
-
+	/**
+	 * Stores the command in the queue
+	 * @param command The input from the user
+	 */
 	public void recordCommand(String command) {
 		commandQueue.add(command);
 	}
-	
+
 	public void sendCommandToBackend() {
-		while (!commandQueue.isEmpty()) {
-			IExecutionContext result = backend.execute(commandQueue.poll());
-			executeCommand(result);
+
+		if (!commandQueue.isEmpty()) {
+			animationTimeline = new Timeline();
+			animationTimeline.setCycleCount(Timeline.INDEFINITE);
+
+			animationTimeline.getKeyFrames().add(
+					new KeyFrame(Duration.millis(1000 / MCH.getAnimationSliderValue()),
+							new EventHandler<ActionEvent>() {
+						public void handle(ActionEvent event) {
+
+							IExecutionContext result = backend.execute(commandQueue.poll());
+							executeCommand(result);
+
+							if (commandQueue.isEmpty()) {
+								animationTimeline.stop();
+							}
+						}
+					}));
+			animationTimeline.play();
 		}
 	}
-	
+
+
 	/**
 	 * Sends a command to the back-end
 	 * @param command The code written by the user to be computed
@@ -96,6 +109,27 @@ public class View implements IView{
 	public void sendCommandToBackend(String command) {
 		IExecutionContext result = backend.execute(command);
 		executeCommand(result);
+	}
+
+	public void stepIntoCommand() {
+		if (!commandQueue.isEmpty()) {
+			IExecutionContext result = backend.execute(commandQueue.poll());
+			executeCommand(result);
+		}
+		else {
+			new MessageBox("No more commands to step through");
+		}
+	}
+
+	public void stepOverCommand() {
+		if (!(commandQueue.peek() == null)) {
+			commandQueue.poll();
+			IExecutionContext result = backend.execute(commandQueue.poll());
+			executeCommand(result);
+		}
+		else {
+			new MessageBox("No more commands after the next");
+		}
 	}
 
 	/**
