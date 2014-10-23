@@ -122,8 +122,8 @@ public class View implements IView{
 	}
 
 	public void stepOverCommand() {
+		commandQueue.poll();
 		if (!(commandQueue.peek() == null)) {
-			commandQueue.poll();
 			IExecutionContext result = backend.execute(commandQueue.poll());
 			executeCommand(result);
 		}
