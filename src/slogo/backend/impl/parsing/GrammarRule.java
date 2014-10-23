@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import slogo.Constants;
 import slogo.backend.evaluation.IOperation;
 import slogo.backend.evaluation.IOperationFactory;
 import slogo.backend.impl.evaluation.commands.Result;
@@ -33,10 +34,17 @@ public class GrammarRule implements IGrammarRule {
 		}
 		
 		for (int i = 0; i <= toSearch.size() - searchPattern.size(); i++){
-			if (searchPattern.equals(toSearch.subList(i, i + searchPattern.size()))){
+			if (standardMatches(searchPattern, toSearch, i)
+					|| infiniteMatches(searchPattern, toSearch, i)){
 				return i;
 			}
 		}
 		return -1;
+	}
+	private boolean standardMatches(List<String> searchPattern, List<String> toSearch, int index){
+		return searchPattern.equals(toSearch.subList(index, index + searchPattern.size()));
+	}
+	private boolean infiniteMatches(List<String> searchPattern, List<String> toSearch, int index){
+		return false;
 	}
 }

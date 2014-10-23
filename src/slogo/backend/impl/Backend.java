@@ -37,8 +37,8 @@ public class Backend implements IModel{
 
 	public Backend(){
 		Map<String, ITurtleStatus> turtles = new HashMap<>();
-		turtles.put("1", new TurtleStatus.Builder().build());
-		this.lastContext = new ExecutionContext(turtles, new HashMap<>());
+		turtles.put(Constants.DEFAULT_TURTLE_NAME, new TurtleStatus.Builder().build());
+		this.lastContext = new ExecutionContext(turtles, new HashMap<>(), new HashMap<>());
 	}
 
 	private List<ITokenRule> tokenRules(){
@@ -46,7 +46,8 @@ public class Backend implements IModel{
 		rules.add(new TokenRule.Builder(Constants.CONSTANT_LABEL, "-?[0-9]+\\.?[0-9]*").build());
 		rules.add(new TokenRule.Builder(Constants.COMMAND_LABEL, "[a-zA-z_]+(\\?)?").build());
 		rules.add(new TokenRule.Builder(Constants.VARIABLE_LABEL, ":[a-zA-Z]+").build());
-		rules.add(new TokenRule.Builder(Constants.LIST_LABEL, "\\[.*\\]").build());
+		rules.add(new TokenRule.Builder(Constants.OPENING_LIST_LABEL, "\\[").build());
+		rules.add(new TokenRule.Builder(Constants.CLOSING_LIST_LABEL, "\\]").build());
 		return rules;
 	}
 	private List<IGrammarRule> grammarRules(){
@@ -91,11 +92,47 @@ public class Backend implements IModel{
 				{"Ycor","0"},
 				
 		};
+		String[][][] controlRules = {
+				{{"For"}, {
+					Constants.OPENING_LIST_LABEL,
+					Constants.CONSTANT_LABEL,
+					Constants.CONSTANT_LABEL,
+					Constants.CONSTANT_LABEL,
+					Constants.CONSTANT_LABEL,
+					Constants.CLOSING_LIST_LABEL,
+					Constants.OPENING_LIST_LABEL, //[
+					Constants.CONSTANT_LABEL,
+					Constants.CLOSING_LIST_LABEL //]
+				}},
+				{{"Make"}, {
+					Constants.CONSTANT_LABEL,
+					Constants.CONSTANT_LABEL
+				}},
+				{{"Set"}, {
+					Constants.CONSTANT_LABEL,
+					Constants.CONSTANT_LABEL
+				}},
+				{{"Repeat"}, {
+					Constants.CONSTANT_LABEL,
+					Constants.OPENING_LIST_LABEL,
+					Constants.CONSTANT_LABEL,
+					Constants.CLOSING_LIST_LABEL
+				}},
+				{{"DoTimes"}, {
+					Constants.OPENING_LIST_LABEL,
+					Constants.CONSTANT_LABEL,
+					Constants.CONSTANT_LABEL,
+					Constants.CLOSING_LIST_LABEL,
+					Constants.OPENING_LIST_LABEL,
+					Constants.CONSTANT_LABEL,
+					Constants.CLOSING_LIST_LABEL
+				}}
+		};
 		List<IGrammarRule> ruleList = new ArrayList<>();
 		for (String[] rule: rules) {
 			List<String> repeatedConstants = new ArrayList<>();
 			for (int i = 0; i < Integer.parseInt(rule[1]); i++){
-				repeatedConstants.add("constant");
+				repeatedConstants.add(Constants.CONSTANT_LABEL);
 			}
 			ruleList.add(new GrammarRule(rule[0], repeatedConstants));
 		}
