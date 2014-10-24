@@ -16,7 +16,7 @@ public interface IModel {
 	 * 
 	 * @param string a string representing the command
 	 */
-	public IExecutionContext execute(String string);
+	public IExecutionContext execute(String string, int turtleId);
 	/**
 	 * Get requested data from the backend
 	 * 
@@ -24,4 +24,6 @@ public interface IModel {
 	 * @return The data, mapping each element to the value associated with it
 	 */
 	public Map<String,String> getData(Collection<String> elements) throws ElementUnsupportedException;
+    
+	public void addExecutionContext ();
 }
