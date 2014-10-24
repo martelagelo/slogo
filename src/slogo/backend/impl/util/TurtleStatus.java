@@ -114,4 +114,9 @@ public class TurtleStatus implements ITurtleStatus {
 	public boolean isActive() {
 		return isActive;
 	}
+    @Override
+    public void setActive (boolean b) {
+        isActive = b;
+        
+    }
 }

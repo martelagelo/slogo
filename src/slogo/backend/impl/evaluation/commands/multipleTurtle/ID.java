@@ -3,6 +3,7 @@ package slogo.backend.impl.evaluation.commands.multipleTurtle;
 import java.util.List;
 import java.util.Map;
 
+import slogo.Constants;
 import slogo.backend.evaluation.IExecutionContext;
 import slogo.backend.impl.evaluation.ExecutionContext;
 import slogo.backend.impl.evaluation.commands.Operation;
@@ -27,7 +28,7 @@ public class ID extends Operation {
                 id = s;
             }
         }
-        args.get(0).environment().put("returnValue", id);
+        args.get(0).environment().put(Constants.RETURN_VALUE_ENVIRONMENT, id);
     return new ExecutionContext(args.get(0).turtles(), args.get(0).environment(),args.get(0).userDefinedCommands());
     }
 

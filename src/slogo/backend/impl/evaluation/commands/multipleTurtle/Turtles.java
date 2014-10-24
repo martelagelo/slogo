@@ -2,6 +2,7 @@ package slogo.backend.impl.evaluation.commands.multipleTurtle;
 
 import java.util.List;
 
+import slogo.Constants;
 import slogo.backend.evaluation.IExecutionContext;
 import slogo.backend.impl.evaluation.ExecutionContext;
 import slogo.backend.impl.evaluation.commands.Operation;
@@ -19,7 +20,7 @@ public class Turtles extends Operation {
             IExecutionContext previous, ISyntaxNode current) {
         // TODO Auto-generated method stub
         String returnValue = String.valueOf(args.get(0).turtles().size());
-        args.get(0).environment().put("returnValue", returnValue);
+        args.get(0).environment().put(Constants.RETURN_VALUE_ENVIRONMENT, returnValue);
         return new ExecutionContext(args.get(0).turtles(),args.get(0).environment(), args.get(0).userDefinedCommands());
     }
 

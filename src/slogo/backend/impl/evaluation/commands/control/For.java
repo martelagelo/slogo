@@ -13,7 +13,7 @@ import slogo.backend.parsing.ISyntaxNode;
 public class For extends Operation{
 
     public For (String type, int argMin, int argMax) {
-        super(type, 5, 5);
+        super(type, 9, Integer.MAX_VALUE);
         // TODO Auto-generated constructor stub
     }
 

@@ -13,7 +13,7 @@ import slogo.backend.parsing.ISyntaxNode;
 public class IfElse extends Operation{
 
     public IfElse (String type, int argMin, int argMax) {
-        super(type, 3, 3);
+        super(type, 7, Integer.MAX_VALUE);
         // TODO Auto-generated constructor stub
     }
 
