@@ -10,7 +10,7 @@ import slogo.backend.parsing.ISyntaxNode;
 public class Turtles extends Operation {
 
     public Turtles (String type, int argMin, int argMax) {
-        super("Turtles", 1, 1);
+        super(type, 1, 1);
         // TODO Auto-generated constructor stub
     }
 

@@ -1,6 +1,7 @@
 package slogo.backend.impl.evaluation.commands.multipleTurtle;
 
 import java.util.List;
+import java.util.Map;
 
 import slogo.backend.evaluation.IExecutionContext;
 import slogo.backend.impl.evaluation.ExecutionContext;
@@ -20,9 +21,10 @@ public class ID extends Operation {
             IExecutionContext previous, ISyntaxNode current) {
         // TODO Auto-generated method stub
         String id = "";
-        for(ITurtleStatus status:args.get(0).turtles().values()){
-            if(status.isActive()){
-                id = status.getID();
+        Map<String,ITurtleStatus> map = args.get(0).turtles();
+        for(String s:map.keySet()){
+            if(map.get(s).isActive()){
+                id = s;
             }
         }
         args.get(0).environment().put("returnValue", id);
