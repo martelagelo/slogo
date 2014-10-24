@@ -2,6 +2,7 @@ package slogo.backend.impl.parsing;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 import slogo.Constants;
@@ -45,6 +46,53 @@ public class GrammarRule implements IGrammarRule {
 		return searchPattern.equals(toSearch.subList(index, index + searchPattern.size()));
 	}
 	private boolean infiniteMatches(List<String> searchPattern, List<String> toSearch, int index){
-		return false;
+		return infiniteMatchRecurse(searchPattern, toSearch);
+	}
+	public static boolean infiniteMatchRecurse(List<String> patternRemaining, List<String> searchRemaining){
+		if (patternRemaining.size() == 0 && searchRemaining.size() == 0) {
+			return true;
+		}
+		boolean infinite = false;
+		if (patternRemaining.size() > 1) {
+			if (Constants.INFINITE_MATCHING_LABEL.equals(patternRemaining.get(1))){
+				infinite=true;
+			}
+		}
+		if (infinite) {
+			if (searchRemaining.size() == 0) {
+				if (patternRemaining.size() == 2) {
+					return true;
+				}
+				else {
+					return false;
+				}
+			}
+			if (patternRemaining.get(0).equals(searchRemaining.get(0))) {
+				return true && infiniteMatchRecurse(
+						patternRemaining,
+						searchRemaining.subList(1, searchRemaining.size())
+						);
+			}
+			if ( patternRemaining.size() > 2 && patternRemaining.get(2).equals(searchRemaining.get(0)) ) {
+				return true && infiniteMatchRecurse(
+						patternRemaining.subList(2, patternRemaining.size()),
+						searchRemaining
+						);
+			}
+			else {
+				return false;
+			}
+		}
+		else {
+			if (patternRemaining.get(0).equals(searchRemaining.get(0))){
+				return true && infiniteMatchRecurse(
+						patternRemaining.subList(1, patternRemaining.size()),
+						searchRemaining.subList(1, searchRemaining.size())
+						);
+			}
+			else {
+				return false;
+			}
+		}
 	}
 }
