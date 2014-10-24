@@ -118,7 +118,7 @@ public class ModuleCreationHelper {
 	}
 
 	/**
-	 * 
+	 * Populates the scene with modules
 	 */
 	public void createMainPageModules() {
 		createTitle();
@@ -136,7 +136,7 @@ public class ModuleCreationHelper {
 	}
 
 	/**
-	 * 
+	 * Creates the modules in the first scrolling pane
 	 */
 	private void createSelectorVBoxModules() {
 		createFirstRowButtons();
@@ -154,7 +154,7 @@ public class ModuleCreationHelper {
 	}
 
 	/**
-	 * 
+	 * Creates the first row of buttons
 	 */
 	private void createFirstRowButtons() {
 		createFirstButtonRow();
@@ -163,7 +163,7 @@ public class ModuleCreationHelper {
 	}
 	
 	/**
-	 * 
+	 * Creates the second row of buttons
 	 */
 	private void createSecondRowButtons() {
 		createSecondButtonRow();
@@ -172,7 +172,7 @@ public class ModuleCreationHelper {
 	}
 
 	/**
-	 * 
+	 * Creates all the debugging modules
 	 */
 	private void createDebugModules() {
 		createDebugVBox();
@@ -182,10 +182,17 @@ public class ModuleCreationHelper {
 		createDebugButton();
 	}
 	
+	/**
+	 * Creates a Scroll Pane for the lists in the application
+	 */
 	private void createListScrollPane() {
 		ScrollPaneCreator SPC = new ScrollPaneCreator(root);
 		listScrollPane = SPC.createScrollPane(AppConstants.LIST_SCROLL_PANE_X_POS, AppConstants.LIST_SCROLL_PANE_Y_POS, AppConstants.LIST_SCROLL_PANE_WIDTH + 30, AppConstants.LIST_SCROLL_PANE_HEIGHT);
 	}
+	
+	/**
+	 * Creates a Scroll Pane for the modules in the application
+	 */
 	private void createModuleScrollPane() {
 		ScrollPaneCreator SPC = new ScrollPaneCreator(root);
 		moduleScrollPane = SPC.createScrollPane(AppConstants.FIRST_SCROLL_PANE_X_POS, AppConstants.FIRST_SCROLL_PANE_Y_POS, AppConstants.FIRST_SCROLL_PANE_WIDTH, AppConstants.FIRST_SCROLL_PANE_HEIGHT);
@@ -209,6 +216,9 @@ public class ModuleCreationHelper {
 		firstButtonRow = HBC.createHBox(AppConstants.STAGE_PADDING);
 	}
 	
+	/**
+	 * Creates a HBox for buttons below the first row of buttons
+	 */
 	private void createSecondButtonRow() {
 		HBoxCreator HBC = new HBoxCreator(mySelectorsVBox);
 		secondButtonRow = HBC.createHBox(AppConstants.STAGE_PADDING);
@@ -240,10 +250,8 @@ public class ModuleCreationHelper {
 		root.getChildren().add(myTurtleList.get(0).getImage());
 	}
 	
-
-
 	/**
-	 * 
+	 * Creates a button that runs animations
 	 */
 	private void createPlayButton() {
 		VBoxCreator VBC = new VBoxCreator(firstButtonRow);
@@ -539,6 +547,10 @@ public class ModuleCreationHelper {
 		});
 	}
 	
+	/**
+	 * Creates an event handler that shows and hides the debug modules when fired
+	 * @param cb The checkbox that fires the event
+	 */
 	public void activateDebugCB(CheckBox cb){
 		cb.setOnAction(new EventHandler<ActionEvent>(){
 			@Override
@@ -636,6 +648,10 @@ public class ModuleCreationHelper {
 		});
 	}
 
+	/**
+	 * Creates an event handler that steps through commands when fired
+	 * @param btn The button that fires the event
+	 */
 	public void activateStepIntoButton(Button btn) {
 		btn.setOnAction(new EventHandler<ActionEvent>(){
 			@Override
@@ -646,6 +662,10 @@ public class ModuleCreationHelper {
 		});
 	}
 
+	/**
+	 * Creates an event handler that steps over commands when fired
+	 * @param btn The button that fires the event
+	 */
 	public void activateStepOverButton(Button btn) {
 		btn.setOnAction(new EventHandler<ActionEvent>(){
 			@Override
@@ -656,6 +676,10 @@ public class ModuleCreationHelper {
 		});
 	}
 
+	/**
+	 * Creates an event handler that makes grid lines on the canvas when fired
+	 * @param cb The checkbox that fires the event
+	 */
 	public void activateReferenceCB(CheckBox cb){
 		cb.setOnAction(new EventHandler<ActionEvent>(){
 			@Override
@@ -683,6 +707,10 @@ public class ModuleCreationHelper {
 		});
 	}
 
+	/**
+	 * Creates an event handler that records the text in the text box when fired
+	 * @param TF The text field that fires the event
+	 */
 	public void activateTextField(TextField TF){
 		TF.setOnAction(new EventHandler<ActionEvent>(){
 			@Override
@@ -728,6 +756,9 @@ public class ModuleCreationHelper {
 		});
 	}
 
+	/**
+	 * Activates key events that move the turtle when fired
+	 */
 	private void activateKeyEvents() {
 		root.setOnKeyPressed(new EventHandler<KeyEvent>() {
 			@Override
@@ -752,16 +783,28 @@ public class ModuleCreationHelper {
 		});
 	}
 
+	/**
+	 * Adds values to a list
+	 * @param currentList The observable list
+	 * @param listView The physical list interface
+	 * @param input The values that needs to be added to the list
+	 */
 	private void addToCertainList(ObservableList<String> currentList, ListViewAllSLOGO listView, String input) {
 		currentList.add(input);
 		listView.setItems(currentList);
 	}
 
+	/**
+	 * Clears all values from a list
+	 * @param currentList The observable list
+	 * @param listView The physical list interface
+	 */
 	private void clearCertainList(ObservableList<String> currentList, ListViewAllSLOGO listView) {
 		currentList.clear();
 		listView.setItems(currentList);
 	}
 
+	
 	public void stepThroughCommandsHistory(int offset) {
 		if(commandsHistoryCounter <= myCommands.size()-1) {
 			myCommands.add(commandsHistoryCounter + offset, "(Executed) " + myCommands.get(commandsHistoryCounter + offset));
@@ -838,10 +881,16 @@ public class ModuleCreationHelper {
 		myVariablesList.setItems(myVariables);
 	}
 
+	/**
+	 * Makes the running status label visible
+	 */
 	public void turnOnRunningStatusLabel() {
 		runningStatusLabel.setVisible(true);
 	}
 	
+	/**
+	 * Makes the running status label invisible
+	 */
 	public void turnOffRunningStatusLabel() {
 		runningStatusLabel.setVisible(false);
 	}
