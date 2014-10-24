@@ -28,6 +28,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
@@ -79,6 +81,7 @@ public class ModuleCreationHelper {
 	private ObservableList<String> myUserCommands = FXCollections.observableArrayList();
 	private GraphicsContext myGraphicsContext;
 	private Slider animationSlider;
+	private ScrollPane moduleScrollPane;
 
 	private Map<String, Node> myImagesMap;
 	private int totalUserImages;
@@ -118,6 +121,7 @@ public class ModuleCreationHelper {
 		createTitle();
 		createTurtleCanvas();
 		createTurtle();
+		createModuleScrollPane();
 		createSelectorVBox();
 		createSelectorVBoxModules();
 		createDebugModules();
@@ -163,6 +167,11 @@ public class ModuleCreationHelper {
 		createDebugStepIntoButton();
 		createDebugStepOverButton();
 		createDebugButton();
+	}
+	
+	private void createModuleScrollPane() {
+		ScrollPaneCreator SPC = new ScrollPaneCreator(root);
+		moduleScrollPane = SPC.createScrollPane(AppConstants.FIRST_ROW_BUTTON_HBOX_X_POS, AppConstants.FIRST_ROW_BUTTON_HBOX_Y_POS, 250, 500);
 	}
 
 	/**
@@ -407,7 +416,9 @@ public class ModuleCreationHelper {
 	 */
 	private void createSelectorVBox(){
 		VBoxCreator VBC = new VBoxCreator(root);
-		mySelectorsVBox = VBC.createVBox(AppConstants.VBOX_SPACING, AppConstants.FIRST_ROW_BUTTON_HBOX_X_POS, AppConstants.FIRST_ROW_BUTTON_HBOX_Y_POS);
+		//mySelectorsVBox = VBC.createVBox(AppConstants.VBOX_SPACING, AppConstants.FIRST_ROW_BUTTON_HBOX_X_POS, AppConstants.FIRST_ROW_BUTTON_HBOX_Y_POS);
+		mySelectorsVBox  = VBC.createVBoxScrollable(AppConstants.VBOX_SPACING);
+		moduleScrollPane.setContent(mySelectorsVBox);
 	}
 
 	/**
