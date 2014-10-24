@@ -20,11 +20,11 @@ public class For extends Operation{
             IExecutionContext previous, ISyntaxNode current) {
         // TODO Auto-generated method stub
         
-        String variable = args.get(0).environment().get("returnValue");
-        String start = args.get(1).environment().get("returnValue");
-        String end = args.get(2).environment().get("returnValue");
-        String increment = args.get(3).environment().get("returnValue");
-        IExecutionContext context = args.get(4);
+        String variable = args.get(1).environment().get("returnValue");
+        String start = args.get(2).environment().get("returnValue");
+        String end = args.get(3).environment().get("returnValue");
+        String increment = args.get(4).environment().get("returnValue");
+        IExecutionContext context = args.get(7);
         double startNum = Double.parseDouble(start);
         double endNum = Double.parseDouble(end);
         double incrementNum = Double.parseDouble(increment);
@@ -32,7 +32,9 @@ public class For extends Operation{
         for(double i = startNum; i<=endNum; i+=incrementNum){
             context.environment().put(variable, String.valueOf(i));
             try {
-                context = e.evaluate(current.children().get(2), context);
+                for(int j = 7; j < args.size()-1; j++){
+                    context = e.evaluate(current.children().get(j), context);
+                }
             } catch (MalformedSyntaxException e1) {
                 // TODO Auto-generated catch block
                 e1.printStackTrace();
