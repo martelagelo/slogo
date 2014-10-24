@@ -233,7 +233,7 @@ public class ModuleCreationHelper {
 		Button btn = BC.createButton(new Image(getClass().getResourceAsStream("red-stop-button-plain-icon-th.png")));
 		activateExitAppButton(btn);
 	}
-	
+
 	/**
 	 * Creates a button that pauses animation
 	 */
@@ -246,7 +246,7 @@ public class ModuleCreationHelper {
 		Button btn = BC.createButton(new Image(getClass().getResourceAsStream("Button-Pause-icon.png")));
 		activatePauseButton(btn);
 	}
-	
+
 	/**
 	 * Creates a button that resets animation
 	 */
@@ -367,7 +367,7 @@ public class ModuleCreationHelper {
 		debugStepOverButton.setVisible(false);
 		activateStepOverButton(debugStepOverButton);
 	}
-	
+
 	/**
 	 * Creates a label that displays whenever an animation is running
 	 */
@@ -453,7 +453,7 @@ public class ModuleCreationHelper {
 			}
 		});
 	}
-	
+
 	public void activatePauseButton(Button btn) {
 		btn.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
@@ -462,7 +462,7 @@ public class ModuleCreationHelper {
 			}
 		});
 	}
-	
+
 	public void activateResetButton(Button btn) {
 		btn.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
@@ -718,25 +718,27 @@ public class ModuleCreationHelper {
 			commandsHistoryCounter = commandsHistoryCounter + offset + 1;
 		}
 	}
-	
+
 	public void setCommandsHistoryCounter(int value) {
 		commandsHistoryCounter = value;
 	}
-	
+
 	public int getCommandsHistoryCounter() {
 		return commandsHistoryCounter;
 	}
 
 	public void resetCommandsHistoryList(int oldCounter) {
 		while(commandsHistoryCounter <= myCommands.size() - 1) {
-			myCommands.add(commandsHistoryCounter, myCommands.get(commandsHistoryCounter).substring(myCommands.get(commandsHistoryCounter).indexOf(' ') + 1));
-			myCommands.remove(commandsHistoryCounter + 1);
+			if(myCommands.get(commandsHistoryCounter).charAt(0) == '(' ) {
+				myCommands.add(commandsHistoryCounter, myCommands.get(commandsHistoryCounter).substring(myCommands.get(commandsHistoryCounter).indexOf(' ') + 1));
+				myCommands.remove(commandsHistoryCounter + 1);
+			}
 			commandsHistoryCounter++;
 		}
 		myCommandsList.setItems(myCommands);
 		commandsHistoryCounter = oldCounter;
 	}
-	
+
 	/**
 	 * Returns the current turtle
 	 * @return The turtle
@@ -773,19 +775,22 @@ public class ModuleCreationHelper {
 	public double getAnimationSliderValue() {
 		return animationSlider.getValue();
 	}
-	
+
 	protected void setListViewVariables(double x, double y, double o, boolean b){
-	    myVariables.clear();
-	    myVariables.add("Turtle X Position:     " + x);
-	    myVariables.add("Turtle Y Position:     " + y);
-	    myVariables.add("Turtle Heading:        " + o);
-	    myVariables.add("Pen Down?:     " + b);
-	    myVariablesList.setItems(myVariables);
+		myVariables.clear();
+		myVariables.add("Turtle X Position:     " + x);
+		myVariables.add("Turtle Y Position:     " + y);
+		myVariables.add("Turtle Heading:        " + o);
+		myVariables.add("Pen Down?:     " + b);
+		myVariablesList.setItems(myVariables);
+	}
+
+	public void turnOnRunningStatusLabel() {
+		runningStatusLabel.setVisible(true);
 	}
 	
-	public void toggleRunningStatusLabel() {
-		if (runningStatusLabel.isVisible()) runningStatusLabel.setVisible(false);
-		else runningStatusLabel.setVisible(true);
+	public void turnOffRunningStatusLabel() {
+		runningStatusLabel.setVisible(false);
 	}
 }
 
