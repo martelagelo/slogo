@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.junit.Test;
 
+import slogo.Constants;
 import slogo.backend.evaluation.IEvaluator;
 import slogo.backend.evaluation.MalformedSyntaxException;
 import slogo.backend.impl.parsing.GrammarRule;
@@ -97,5 +98,27 @@ public class ParsingTest {
 		}
 		assertNotNull(root);
 		assertEquals("constant", root.type());
+	}
+	@Test(expected = MalformedSyntaxException.class)
+	public void testInvalidCommand() throws Exception{
+		Parser parser = new Parser(new ArrayList<>());
+		IToken[] tokens = {
+				new Token("foo", "fruh"),
+				new Token("ins", "bett")
+		};
+		parser.parse(Arrays.asList(tokens));
+	}
+	@Test(expected = MalformedSyntaxException.class)
+	public void testUnparseableCommand() throws Exception{
+		String[] unaryArgs1 = { "constant" };
+		IGrammarRule unaryRule = new GrammarRule("Minus", Arrays.asList(unaryArgs1));
+		List<IGrammarRule> rules = new ArrayList<>();
+		rules.add(unaryRule);
+		Parser parser = new Parser(rules);
+		IToken[] tokens = {
+				new Token("Minus", Constants.COMMAND_LABEL),
+				new Token("Minus", Constants.COMMAND_LABEL)
+		};
+		parser.parse(Arrays.asList(tokens));
 	}
 }

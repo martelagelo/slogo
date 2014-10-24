@@ -24,6 +24,11 @@ public class Tokenizer implements ITokenizer{
 		int current;
 		StringBuilder buffer = new StringBuilder();
 		List<IToken> tokens = new ArrayList<>();
+		// we use while(true) with an explicit break because token matching
+		// needs to know when we've reached the end of the string so that it
+		// can ignore the closing pattern; otherwise, if the last character of
+		// of the last token is the last character of the string, we have no
+		// way to recognize that token
 		while (true) {
 			current = input.read();
 			boolean isStart = (tokens.size() == 0) ? true : false;

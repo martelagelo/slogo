@@ -13,8 +13,8 @@ import java.lang.reflect.Field;
  */
 public class AppConstants {
 	
-		public static final Color BACKGROUND_COLOR = Color.BURLYWOOD;
-		public static final Color DEFAULT_TEXT_COLOR = Color.BLACK;
+	public static final Color BACKGROUND_COLOR = Color.BURLYWOOD;
+	public static final Color DEFAULT_TEXT_COLOR = Color.BLACK;
 	
         public static final Integer STAGE_WIDTH = 1400;
         public static final Integer STAGE_HEIGHT = 750;
@@ -97,6 +97,7 @@ public class AppConstants {
         public static final double ANIMATION_SLIDER_WIDTH = 300;
 
         public static final double GRIDLINES_SPACING = 10;
+        public static final double ROUNDING_ERROR = 0.00000001;
         
 }
 

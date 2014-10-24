@@ -5,8 +5,10 @@ import java.util.List;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.control.ComboBox;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
@@ -29,11 +31,11 @@ public class TurtleImageSelector {
         mySelector.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle (ActionEvent event){
-                    if(mySelector.getValue() != null){
+                        if(mySelector.getValue() != null){
                             root.getChildren().remove(turtle.getImage());
                             turtle.setImage(mySelector.getValue());
                             root.getChildren().add(turtle.getImage());
-                    }
+                        }
             }
         });
         VBox selectorWithLabel = sc.createSelectorWithLabel("Select a Turtle Image", AppConstants.LABEL_FONT_SIZE, Color.BLACK);

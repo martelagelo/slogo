@@ -82,12 +82,12 @@ public class MethodRunner {
 
 
 	private boolean redrawIfInScene(ILine l, Line line){
-	    if((double) l.start().getX() == (line.getStartX() - AppConstants.INITIAL_TURTLE_X_POS) &&
-	            (double) l.end().getX() == (line.getEndX() - AppConstants.INITIAL_TURTLE_X_POS) &&
-	            (double) l.start().getY() == (line.getStartY() - AppConstants.INITIAL_TURTLE_Y_POS) &&
-	            (double) l.end().getY() == (line.getEndY() - AppConstants.INITIAL_TURTLE_Y_POS)){
+	    if(Math.abs((double) l.start().getX() - (line.getStartX() - AppConstants.INITIAL_TURTLE_X_POS)) < AppConstants.ROUNDING_ERROR &&
+	            Math.abs((double) l.end().getX() - (line.getEndX() - AppConstants.INITIAL_TURTLE_X_POS)) < AppConstants.ROUNDING_ERROR &&
+	            Math.abs((double) l.start().getY() - (line.getStartY() - AppConstants.INITIAL_TURTLE_Y_POS)) < AppConstants.ROUNDING_ERROR &&
+	            Math.abs((double) l.end().getY() - (line.getEndY() - AppConstants.INITIAL_TURTLE_Y_POS)) < AppConstants.ROUNDING_ERROR){   
 	        root.getChildren().add(line);
-	        pathList.add(line);
+                pathList.add(line);
 	        return true;
 	    }
 	    else{
@@ -102,9 +102,17 @@ public class MethodRunner {
 	    line.setStartY((double) l.start().getY() + AppConstants.INITIAL_TURTLE_Y_POS);
 	    line.setEndX((double) l.end().getX() + AppConstants.INITIAL_TURTLE_X_POS);
 	    line.setEndY((double) l.end().getY() + AppConstants.INITIAL_TURTLE_Y_POS);
-	    if(turtle.isDashed()){
+	    if(turtle.getLineProperty().equals("Dashed")){
 	        line.getStrokeDashArray().addAll(10d);
 	    }
+	    if(turtle.getLineProperty().equals("Bold")){
+                line.getStrokeDashArray().clear();
+                line.setStrokeWidth(5);
+            }
+	    if(turtle.getLineProperty().equals("None")){
+                line.getStrokeDashArray().clear();
+                line.setStrokeWidth(1);
+            }
 	    root.getChildren().add(line);
 	    pathList.add(line);
 	}

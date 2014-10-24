@@ -32,6 +32,7 @@ import slogo.UI.ModuleCreationHelper;
 import slogo.UI.Turtle;
 import slogo.backend.evaluation.IExecutionContext;
 import slogo.backend.impl.Backend;
+import slogo.backend.impl.InitializationException;
 import slogo.backend.impl.evaluation.ExecutionContext;
 import slogo.backend.impl.util.TurtleStatus;
 import slogo.backend.util.ITurtleStatus;
@@ -71,7 +72,12 @@ public class View implements IView{
 		immediateHistoryQueue = new LinkedList<String>();
 		this.MCH = MCH;
 		runner = new MethodRunner(root, MCH.getCanvas(), MCH.getTurtle(), pathList, MCH);
-		backend = new Backend();
+		try {
+			backend = new Backend();
+		} catch (InitializationException e) {
+			//FIXME handle an error if the backend fails to initialize properly
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -101,7 +107,14 @@ public class View implements IView{
 							new EventHandler<ActionEvent>() {
 						public void handle(ActionEvent event) {
 
-							IExecutionContext result = backend.execute(commandQueue.poll());
+							IExecutionContext result = null;
+							try {
+								result = backend.execute(commandQueue.poll());
+							} catch (ExecutionException e) {
+								//FIXME handle if an error occurs in execution; 
+								// print this out to a UI widget maybe?
+								e.printStackTrace();
+							}
 							executeCommand(result);
 							MCH.stepThroughCommandsHistory(0);
 
@@ -149,13 +162,27 @@ public class View implements IView{
 	 * @param command The code written by the user to be computed
 	 */
 	public void sendCommandToBackend(String command) {
-		IExecutionContext result = backend.execute(command);
+		IExecutionContext result = null;
+		try {
+			result = backend.execute(command);
+		} catch (ExecutionException e) {
+			//FIXME handle if an error occurs in execution; 
+			// print this out to a UI widget maybe?
+			e.printStackTrace();
+		}
 		executeCommand(result);
 	}
 
 	public void stepIntoCommand() {
 		if (!commandQueue.isEmpty()) {
-			IExecutionContext result = backend.execute(commandQueue.poll());
+			IExecutionContext result = null;
+			try {
+				result = backend.execute(commandQueue.poll());
+			} catch (ExecutionException e) {
+				//FIXME handle if an error occurs in execution; 
+				// print this out to a UI widget maybe?
+				e.printStackTrace();
+			}
 			executeCommand(result);
 		}
 		else {
@@ -166,7 +193,14 @@ public class View implements IView{
 	public void stepOverCommand() {
 		commandQueue.poll();
 		if (!(commandQueue.peek() == null)) {
-			IExecutionContext result = backend.execute(commandQueue.poll());
+			IExecutionContext result = null;
+			try {
+				result = backend.execute(commandQueue.poll());
+			} catch (ExecutionException e) {
+				//FIXME handle if an error occurs in execution; 
+				// print this out to a UI widget maybe?
+				e.printStackTrace();
+			}
 			executeCommand(result);
 		}
 		else {

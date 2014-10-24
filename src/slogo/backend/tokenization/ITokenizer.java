@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.Reader;
 import java.util.List;
 
+import slogo.backend.evaluation.MalformedSyntaxException;
+
 /**
  * Something which converts a stream of characters to a list of tokens
  * 
@@ -15,8 +17,9 @@ public interface ITokenizer {
 	 * @param input an input stream of characters
 	 * @return a list of tokens, in order
 	 * @throws IOException 
+	 * @throws MalformedSyntaxException 
 	 */
-	public List<IToken> tokenize(Reader input) throws IOException;
+	public List<IToken> tokenize(Reader input) throws IOException, MalformedSyntaxException;
 	/**
 	 * Load rules for recognizing tokens
 	 * 

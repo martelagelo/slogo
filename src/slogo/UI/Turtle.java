@@ -21,30 +21,32 @@ public class Turtle {
 	private Color color;
 
 	private boolean active;
+        private String lineProperty;
+        private String imageName;
+    
 
-	public Turtle(String s, int x, int y){
-		xpos = x - AppConstants.MAX_NEW_IMAGE_WIDTH/2;
-		ypos = y - AppConstants.MAX_NEW_IMAGE_HEIGHT/2;
-		//myBold = true;
+	public Turtle(String s, double x, double y){
+		xpos = x;
+		ypos = y;
 		imagesMap = new HashMap<String, Node>();
 		generateSelectorMap(initialImagesMap());
 		turtleImage = imagesMap.get(s);
 		moveTurtle(xpos, ypos);
+		lineProperty = "None";
+		imageName = s;
 		active = true;
 		color = Color.BLACK;
 		setOrientation(90);
-		activateTurtle();
+		 activateTurtle();
 	}
-
-	private void activateTurtle () {
-		turtleImage.setOnMouseClicked(new EventHandler<MouseEvent>(){
-			@Override
-			public void handle(MouseEvent event){
-				active = !active;
-				//System.out.println(getYPos());
-			}
-		});
-
+	
+	private void activateTurtle() {
+	    turtleImage.setOnMouseClicked(new EventHandler<MouseEvent>(){
+	        @Override
+	        public void handle(MouseEvent event){
+	            active = !active;
+	        }
+	    });
 	}
 
     private Map<String, String> initialImagesMap(){
@@ -109,9 +111,14 @@ public class Turtle {
 	}
 
 	protected void setImage(String name){
+	        imageName = name;
 		turtleImage = imagesMap.get(name); 
 		turtleImage.setRotate(orientation);
 		moveTurtle(xpos+AppConstants.MAX_NEW_IMAGE_WIDTH/2, ypos + AppConstants.MAX_NEW_IMAGE_HEIGHT/2);
+	}
+	
+	protected String getImageName(){
+	    return imageName;
 	}
 
 	protected Node getImage(){
@@ -132,20 +139,6 @@ public class Turtle {
 		return imagesMap;
 	}
 
-	protected void dashed (boolean b) {
-		myDashed = b;
-
-	}
-
-	public boolean isDashed () {
-		return myDashed;
-	}
-
-	protected void bold (boolean b) {
-		myBold = b;
-
-	}
-
 	public boolean isActive () {
 		return active;
 	}
@@ -159,6 +152,22 @@ public class Turtle {
     public Color getColor(){
         return color;
     }
-	
+    
+    protected void activate(){
+        active = true;
+    }
+    
+    protected void deactivate(){
+        active = false;
+    }
+
+    protected String getLineProperty () {
+        return lineProperty;
+    }
+
+    public void setLineProperty (String property) {
+        lineProperty = property;
+        
+    }
 
 }
