@@ -67,10 +67,12 @@ public class ModuleCreationHelper {
 	private Group root;
 	private Scene scene;
 	private HBox firstButtonRow;
+	private HBox secondButtonRow;
 	private TurtleCanvas myCanvas;
 	private CommandsTextField myTextField;
 	private List<Turtle> myTurtleList;
 	private VBox mySelectorsVBox;
+	private VBox myListsVBox;
 	private ListViewPreviousCommands myCommandsList;
 	private ListViewSLOGOVariables myVariablesList;
 	private ListViewUserVariables myUserVariablesList;
@@ -82,6 +84,7 @@ public class ModuleCreationHelper {
 	private GraphicsContext myGraphicsContext;
 	private Slider animationSlider;
 	private ScrollPane moduleScrollPane;
+	private ScrollPane listScrollPane;
 
 	private Map<String, Node> myImagesMap;
 	private int totalUserImages;
@@ -124,6 +127,9 @@ public class ModuleCreationHelper {
 		createModuleScrollPane();
 		createSelectorVBox();
 		createSelectorVBoxModules();
+		createListScrollPane();
+		createListVBox();
+		createListViews();
 		createDebugModules();
 		activateKeyEvents();
 		createRunningStatusLabel();
@@ -134,8 +140,8 @@ public class ModuleCreationHelper {
 	 */
 	private void createSelectorVBoxModules() {
 		createFirstRowButtons();
+		createSecondRowButtons();
 		createTextField();
-		createListViews();
 		createSelectors();
 		createHelpButton();
 		createNewTurtleButton();
@@ -154,6 +160,10 @@ public class ModuleCreationHelper {
 		createFirstButtonRow();
 		createPlayButton();
 		createStopButton();
+	}
+	
+	private void createSecondRowButtons() {
+		createSecondButtonRow();
 		createPauseButton();
 		createResetButton();
 	}
@@ -169,9 +179,14 @@ public class ModuleCreationHelper {
 		createDebugButton();
 	}
 	
+	private void createListScrollPane() {
+		ScrollPaneCreator SPC = new ScrollPaneCreator(root);
+		//Fix app constants names
+		listScrollPane = SPC.createScrollPane(AppConstants.LIST_SCROLL_PANE_X_POS, AppConstants.LIST_SCROLL_PANE_Y_POS, AppConstants.LIST_SCROLL_PANE_WIDTH + 30, AppConstants.LIST_SCROLL_PANE_HEIGHT);
+	}
 	private void createModuleScrollPane() {
 		ScrollPaneCreator SPC = new ScrollPaneCreator(root);
-		moduleScrollPane = SPC.createScrollPane(AppConstants.FIRST_ROW_BUTTON_HBOX_X_POS, AppConstants.FIRST_ROW_BUTTON_HBOX_Y_POS, 250, 500);
+		moduleScrollPane = SPC.createScrollPane(AppConstants.FIRST_SCROLL_PANE_X_POS, AppConstants.FIRST_SCROLL_PANE_Y_POS, AppConstants.FIRST_SCROLL_PANE_WIDTH, AppConstants.FIRST_SCROLL_PANE_HEIGHT);
 	}
 
 	/**
@@ -190,6 +205,11 @@ public class ModuleCreationHelper {
 	private void createFirstButtonRow() {
 		HBoxCreator HBC = new HBoxCreator(mySelectorsVBox);
 		firstButtonRow = HBC.createHBox(AppConstants.STAGE_PADDING);
+	}
+	
+	private void createSecondButtonRow() {
+		HBoxCreator HBC = new HBoxCreator(mySelectorsVBox);
+		secondButtonRow = HBC.createHBox(AppConstants.STAGE_PADDING);
 	}
 
 	/**
@@ -250,7 +270,7 @@ public class ModuleCreationHelper {
 	 * Creates a button that pauses animation
 	 */
 	private void createPauseButton() {
-		VBoxCreator VBC = new VBoxCreator(firstButtonRow);
+		VBoxCreator VBC = new VBoxCreator(secondButtonRow);
 		VBox vBox = VBC.createVBox(AppConstants.VBOX_SPACING);
 		LabelCreator LC = new LabelCreator(vBox);
 		LC.createLabel("Pause Animation", AppConstants.LABEL_FONT_SIZE, AppConstants.DEFAULT_TEXT_COLOR);
@@ -263,7 +283,7 @@ public class ModuleCreationHelper {
 	 * Creates a button that resets animation
 	 */
 	private void createResetButton() {
-		VBoxCreator VBC = new VBoxCreator(firstButtonRow);
+		VBoxCreator VBC = new VBoxCreator(secondButtonRow);
 		VBox vBox = VBC.createVBox(AppConstants.VBOX_SPACING);
 		LabelCreator LC = new LabelCreator(vBox);
 		LC.createLabel("Reset Animation", AppConstants.LABEL_FONT_SIZE, AppConstants.DEFAULT_TEXT_COLOR);
@@ -401,13 +421,13 @@ public class ModuleCreationHelper {
 	 * 
 	 */
 	private void createListViews(){
-		myCommandsList = new ListViewPreviousCommands(root);
+		myCommandsList = new ListViewPreviousCommands(myListsVBox);
 		myCommandsList.create();
-		myVariablesList = new ListViewSLOGOVariables(root);
+		myVariablesList = new ListViewSLOGOVariables(myListsVBox);
 		myVariablesList.create();
-		myUserVariablesList = new ListViewUserVariables(root);
+		myUserVariablesList = new ListViewUserVariables(myListsVBox);
 		myUserVariablesList.create();
-		myUserCommandsList = new ListViewUserCommands(root);
+		myUserCommandsList = new ListViewUserCommands(myListsVBox);
 		myUserCommandsList.create();
 	}
 
@@ -419,6 +439,12 @@ public class ModuleCreationHelper {
 		//mySelectorsVBox = VBC.createVBox(AppConstants.VBOX_SPACING, AppConstants.FIRST_ROW_BUTTON_HBOX_X_POS, AppConstants.FIRST_ROW_BUTTON_HBOX_Y_POS);
 		mySelectorsVBox  = VBC.createVBoxScrollable(AppConstants.VBOX_SPACING);
 		moduleScrollPane.setContent(mySelectorsVBox);
+	}
+	
+	private void createListVBox() {
+		VBoxCreator VBC = new VBoxCreator(root);
+		myListsVBox = VBC.createVBoxScrollable(AppConstants.VBOX_SPACING);
+		listScrollPane.setContent(myListsVBox);
 	}
 
 	/**

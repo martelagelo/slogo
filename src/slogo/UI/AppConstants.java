@@ -16,14 +16,14 @@ public class AppConstants {
 	public static final Color BACKGROUND_COLOR = Color.BURLYWOOD;
 	public static final Color DEFAULT_TEXT_COLOR = Color.BLACK;
 	
-        public static final Integer STAGE_WIDTH = 1400;
+        public static final Integer STAGE_WIDTH = 1300;
         public static final Integer STAGE_HEIGHT = 750;
         public static final Integer STAGE_PADDING = 5;
         public static final Integer MODULE_PADDING = 30;
         
         public static final Integer CANVAS_OFFSET_X_POS = 10;
         public static final Integer CANVAS_OFFSET_Y_POS = 75;
-        public static final Integer CANVAS_WIDTH = 400;
+        public static final Integer CANVAS_WIDTH = 600;
         public static final Integer CANVAS_HEIGHT = 400;
         
         public static final Integer MESSAGE_BOX_WIDTH = 250;
@@ -39,6 +39,7 @@ public class AppConstants {
         
         public static final Integer TEXT_BOX_VBOX_X_POS = CANVAS_OFFSET_X_POS;
         public static final Integer TEXT_BOX_VBOX_Y_POS = CANVAS_OFFSET_Y_POS + CANVAS_HEIGHT + MODULE_PADDING;
+        public static final Integer TEXT_BOX_WIDTH = CANVAS_WIDTH;
         
         public static final Integer DEBUG_LABEL_X_POS = CANVAS_OFFSET_X_POS;
         public static final Integer DEBUG_LABEL_Y_POS = TEXT_BOX_VBOX_Y_POS + 2 * MODULE_PADDING;
@@ -46,11 +47,17 @@ public class AppConstants {
         public static final Integer INITIAL_TURTLE_X_POS = CANVAS_OFFSET_X_POS + CANVAS_WIDTH/2;
         public static final Integer INITIAL_TURTLE_Y_POS = CANVAS_OFFSET_Y_POS + CANVAS_HEIGHT/2;
         
-        public static final Integer FIRST_ROW_BUTTON_HBOX_X_POS = CANVAS_OFFSET_X_POS + CANVAS_WIDTH + MODULE_PADDING;
-        public static final Integer FIRST_ROW_BUTTON_HBOX_Y_POS = STAGE_PADDING;
-        public static final Integer FIRST_ROW_BUTTON_HBOX_WIDTH = 430;
+        public static final Integer FIRST_SCROLL_PANE_X_POS = CANVAS_OFFSET_X_POS + CANVAS_WIDTH + MODULE_PADDING;
+        public static final Integer FIRST_SCROLL_PANE_Y_POS = STAGE_PADDING;
+        public static final Integer FIRST_SCROLL_PANE_WIDTH = 260;
+        public static final Integer FIRST_SCROLL_PANE_HEIGHT = STAGE_HEIGHT - MODULE_PADDING;
+        
+        public static final Integer LIST_SCROLL_PANE_X_POS = FIRST_SCROLL_PANE_X_POS + FIRST_SCROLL_PANE_WIDTH + MODULE_PADDING;
+        public static final Integer LIST_SCROLL_PANE_Y_POS = STAGE_PADDING;
+        public static final Integer LIST_SCROLL_PANE_WIDTH = 280;
+        public static final Integer LIST_SCROLL_PANE_HEIGHT = STAGE_HEIGHT - MODULE_PADDING;
     
-        public static final Integer LIST_BLOCKS_X_POS = FIRST_ROW_BUTTON_HBOX_X_POS + FIRST_ROW_BUTTON_HBOX_WIDTH + MODULE_PADDING;
+        public static final Integer LIST_BLOCKS_X_POS = FIRST_SCROLL_PANE_X_POS + FIRST_SCROLL_PANE_WIDTH + MODULE_PADDING;
         public static final Integer LIST_BLOCKS_WIDTH = 200;
         public static final Integer LIST_BLOCKS_HEIGHT = 200;
         public static final Integer LIST_BLOCKS_Y_POS_USER_VARIABLES = STAGE_PADDING;

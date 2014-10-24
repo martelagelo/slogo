@@ -2,9 +2,11 @@ package slogo.UI;
 
 import java.util.HashMap;
 import java.util.Map;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Group;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
 public class ListViewSLOGOVariables extends ListViewAllSLOGO {
@@ -13,6 +15,10 @@ public class ListViewSLOGOVariables extends ListViewAllSLOGO {
 
     public ListViewSLOGOVariables(Group root){
         super(root);
+    }
+    
+    public ListViewSLOGOVariables(VBox vBox) {
+    	super(vBox);
     }
     
     @Override
