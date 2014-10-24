@@ -20,7 +20,7 @@ public class PathTextureSelector {
         myVbox = vbox;
     }
     
-    protected void create(Group root, List<Turtle> turtleList){
+    protected void create(Group root, Turtle t){
     	List<String> possibleTextures = new ArrayList<String>();
     	populateLineTextureList(possibleTextures);
         SelectorCreator sc = new SelectorCreator(root);
@@ -29,11 +29,7 @@ public class PathTextureSelector {
         pathTexture.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle (ActionEvent event){
-                for(Turtle t : turtleList){
-                    if(t.isActive()){
                         t.setLineProperty(pathTexture.getValue());
-                    }
-                }
             }
         });
         VBox selectorWithLabel = sc.createSelectorWithLabel("Select a Path Texture", AppConstants.LABEL_FONT_SIZE, Color.BLACK);
@@ -47,11 +43,6 @@ public class PathTextureSelector {
         list.add("Dotted");
     	list.add("Bold");
     	list.add("Dashed");
-    }
-
-    public void resetLineTexture (Turtle t) {
-        pathTexture.setValue(t.getLineProperty());
-        
     }
     
 }

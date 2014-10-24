@@ -101,7 +101,7 @@ public class View implements IView{
 							new EventHandler<ActionEvent>() {
 						public void handle(ActionEvent event) {
 
-							IExecutionContext result = backend.execute(commandQueue.poll(), MCH.getTurtle().getId());
+							IExecutionContext result = backend.execute(commandQueue.poll());
 							executeCommand(result);
 							MCH.stepThroughCommandsHistory(0);
 
@@ -149,13 +149,13 @@ public class View implements IView{
 	 * @param command The code written by the user to be computed
 	 */
 	public void sendCommandToBackend(String command) {
-		IExecutionContext result = backend.execute(command, MCH.getTurtle().getId());
+		IExecutionContext result = backend.execute(command);
 		executeCommand(result);
 	}
 
 	public void stepIntoCommand() {
 		if (!commandQueue.isEmpty()) {
-			IExecutionContext result = backend.execute(commandQueue.poll(), MCH.getTurtle().getId());
+			IExecutionContext result = backend.execute(commandQueue.poll());
 			executeCommand(result);
 		}
 		else {
@@ -166,7 +166,7 @@ public class View implements IView{
 	public void stepOverCommand() {
 		commandQueue.poll();
 		if (!(commandQueue.peek() == null)) {
-			IExecutionContext result = backend.execute(commandQueue.poll(), MCH.getTurtle().getId());
+			IExecutionContext result = backend.execute(commandQueue.poll());
 			executeCommand(result);
 		}
 		else {
@@ -209,10 +209,5 @@ public class View implements IView{
 		// TODO Auto-generated method stub
 
 	}
-
-    public void addExecutionContext () {
-        backend.addExecutionContext();
-        
-    }
 
 }

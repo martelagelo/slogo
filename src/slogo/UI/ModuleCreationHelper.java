@@ -94,10 +94,6 @@ public class ModuleCreationHelper {
 
 	private Label runningStatusLabel;
 	private int commandsHistoryCounter;
-	
-	private int turtleId;
-        private PathColorSelector myPathColorSelector;
-        private PathTextureSelector myPathTextureSelector;
 
 
 	/**
@@ -111,7 +107,6 @@ public class ModuleCreationHelper {
 		configReader = new ConfigReader();
 		configWriter = new ConfigWriter();
 		totalUserImages = 1;
-		turtleId = 1;
 		isInDebugMode = false;
 		commandsHistoryCounter = 0;
 	}
@@ -209,31 +204,12 @@ public class ModuleCreationHelper {
 	 */
 	private void createTurtle(){
 		myTurtleList = new ArrayList<Turtle>();
-		Turtle t = new Turtle("Triangle", AppConstants.INITIAL_TURTLE_X_POS, AppConstants.INITIAL_TURTLE_Y_POS, turtleId);
+		Turtle t = new Turtle("Triangle", AppConstants.INITIAL_TURTLE_X_POS, AppConstants.INITIAL_TURTLE_Y_POS);
 		myTurtleList.add(t);
 		root.getChildren().add(myTurtleList.get(0).getImage());
-	        activateTurtle(t);
-		turtleId++;
 	}
 	
-	private void activateTurtle(Turtle t){
-	    t.getImage().setOnMouseClicked(new EventHandler<MouseEvent>(){
-	        @Override
-	        public void handle(MouseEvent event){
-	            for(Turtle turtle : myTurtleList){
-	                turtle.deactivate();
-	            }
-	            t.activate();
-	            resetSelectors(t);
-	       }
-	    });
-	}
-	
-        private void resetSelectors (Turtle t) {
-            //myPathColorSelector.resetPathColor(t);
-            //myPathTextureSelector.resetLineTexture(t);
-            myTurtleSelector.resetSelectors(t, myPathColorSelector, myPathTextureSelector);
-        }
+
 
 	/**
 	 * 
@@ -442,14 +418,14 @@ public class ModuleCreationHelper {
 		BackgroundColorSelector backgroundSelect = new BackgroundColorSelector(mySelectorsVBox);
 		backgroundSelect.create(root, myGraphicsContext);
 
-		myPathColorSelector = new PathColorSelector(mySelectorsVBox);
-		myPathColorSelector.create(root, myTurtleList);
+		PathColorSelector pathSelect = new PathColorSelector(mySelectorsVBox);
+		pathSelect.create(root, myTurtleList.get(0));
 
-		myPathTextureSelector = new PathTextureSelector(mySelectorsVBox);
-		myPathTextureSelector.create(root, myTurtleList);
+		PathTextureSelector pathTexture = new PathTextureSelector(mySelectorsVBox);
+		pathTexture.create(root, myTurtleList.get(0));
 		
 	        myTurtleSelector = new TurtleImageSelector(mySelectorsVBox);
-	        myTurtleSelector.create(root, myTurtleList, myPathColorSelector, myPathTextureSelector);
+	        myTurtleSelector.create(root, myTurtleList.get(0));
 	}
 
 	/**
@@ -674,24 +650,12 @@ public class ModuleCreationHelper {
 		btn.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				Turtle newTurtle = new Turtle("Triangle", AppConstants.INITIAL_TURTLE_X_POS, AppConstants.INITIAL_TURTLE_Y_POS, turtleId);
+				Turtle newTurtle = new Turtle("Triangle", AppConstants.INITIAL_TURTLE_X_POS, AppConstants.INITIAL_TURTLE_Y_POS);
 	                        myTurtleList.add(newTurtle);
 	                        root.getChildren().add(newTurtle.getImage());
-	                        deactivateList(newTurtle);
-				activateTurtle(newTurtle);
-				resetSelectors(newTurtle);
-				turtleId++;
-				myView.addExecutionContext();
 			}
 		});	    
 
-	}
-	
-	private void deactivateList(Turtle t){
-	    for(Turtle turtle : myTurtleList){
-	        turtle.deactivate();
-	    }
-	    t.activate();
 	}
 
 	//NEEDS BACKEND FUNCTIONALITY

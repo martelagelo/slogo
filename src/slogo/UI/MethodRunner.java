@@ -33,7 +33,6 @@ public class MethodRunner {
 	private Canvas canvas;
 	private Group root;
 	private List<Line> pathList;
-	private List<ILine> allILines;
 	
 	private ITurtleStatus TS;
 	private String environment;
@@ -45,11 +44,6 @@ public class MethodRunner {
 		this.root = root;
 		this.pathList = list;
 		this.MCH = MCH;
-		allILines = new ArrayList<ILine>();
-	}
-	
-	public void updateActiveTurtle(){
-	    this.turtle = MCH.getTurtle();
 	}
 	
 	public void changeTurtle() {
@@ -67,7 +61,6 @@ public class MethodRunner {
 	}
 		
 	private void moveTurtle() {
-	    updateActiveTurtle();
 	    for (Line l : pathList) {
 	        root.getChildren().remove(l);
 	    }
@@ -75,15 +68,9 @@ public class MethodRunner {
 	    copyLines.addAll(pathList);
 	    pathList.clear();
 	    for (ILine l: TS.lineSequence()) {
-	        if(!allILines.contains(l)) allILines.add(l);
-	    }
-	    for(ILine l : allILines){
 	        boolean alreadyAdded = false;
-                System.out.println("ILINE: " + l.start().getX() + " " + l.start().getY() + " " + l.end().getX() + " " + l.end().getY());
 	        for(Line line : copyLines){
-	            System.out.println("LINE: " + (line.getStartX() - AppConstants.INITIAL_TURTLE_X_POS) + " " + (line.getStartY() - AppConstants.INITIAL_TURTLE_Y_POS) +" " + (line.getEndX() - AppConstants.INITIAL_TURTLE_X_POS) + " " + (line.getEndY() - AppConstants.INITIAL_TURTLE_Y_POS));
 	            alreadyAdded = redrawIfInScene(l, line);
-	            System.out.println(alreadyAdded);
 	            if(alreadyAdded) break;
 	        }
 	        if(!alreadyAdded){
@@ -98,11 +85,8 @@ public class MethodRunner {
 	    if(Math.abs((double) l.start().getX() - (line.getStartX() - AppConstants.INITIAL_TURTLE_X_POS)) < AppConstants.ROUNDING_ERROR &&
 	            Math.abs((double) l.end().getX() - (line.getEndX() - AppConstants.INITIAL_TURTLE_X_POS)) < AppConstants.ROUNDING_ERROR &&
 	            Math.abs((double) l.start().getY() - (line.getStartY() - AppConstants.INITIAL_TURTLE_Y_POS)) < AppConstants.ROUNDING_ERROR &&
-	            Math.abs((double) l.end().getY() - (line.getEndY() - AppConstants.INITIAL_TURTLE_Y_POS)) < AppConstants.ROUNDING_ERROR){
-	        
-	        if(!root.getChildren().contains(line)){
-	            root.getChildren().add(line);
-	        }
+	            Math.abs((double) l.end().getY() - (line.getEndY() - AppConstants.INITIAL_TURTLE_Y_POS)) < AppConstants.ROUNDING_ERROR){   
+	        root.getChildren().add(line);
                 pathList.add(line);
 	        return true;
 	    }

@@ -18,7 +18,7 @@ public class PathColorSelector {
         myVbox = vbox;
     }
     
-    protected void create(Group root, List<Turtle> turtleList){
+    protected void create(Group root, Turtle t){
         ColorSelectorCreator sc = new ColorSelectorCreator(root);
         sc.setUpSelector("Path Color", AppConstants.SELECTOR_WIDTH, AppConstants.SELECTOR_HEIGHT, AppConstants.SELECTOR_FONT_SIZE, Color.BLACK);
         pathColor = sc.getSelector();
@@ -26,11 +26,7 @@ public class PathColorSelector {
             @Override
             public void handle (ActionEvent event){
                     if(pathColor.getValue() != null){
-                        for(Turtle t: turtleList){
-                            if(t.isActive()){
                                 t.setColor(pathColor.getValue());
-                            }
-                        }
                     }
             }
         });
@@ -38,7 +34,4 @@ public class PathColorSelector {
         myVbox.getChildren().addAll(selectorWithLabel);
     }
     
-    protected void resetPathColor(Turtle t){
-        pathColor.setValue(t.getColor());
-    }
 }

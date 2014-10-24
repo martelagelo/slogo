@@ -33,16 +33,12 @@ import slogo.backend.util.ITurtleStatus;
 
 public class Backend implements IModel{
 
-	private Map<Integer, IExecutionContext> lastContext;
-	private int id;
+	private IExecutionContext lastContext;
 
 	public Backend(){
 		Map<String, ITurtleStatus> turtles = new HashMap<>();
 		turtles.put(Constants.DEFAULT_TURTLE_NAME, new TurtleStatus.Builder().build());
-		lastContext = new HashMap<Integer, IExecutionContext>();
-		id = 1;
-		this.lastContext.put(id, new ExecutionContext(turtles, new HashMap<>(), new HashMap<>()));
-		id++;
+		this.lastContext = new ExecutionContext(turtles, new HashMap<>(), new HashMap<>());
 	}      
 
 	private List<ITokenRule> tokenRules(){
@@ -146,10 +142,7 @@ public class Backend implements IModel{
 		return ruleList;
 	}
 	@Override
-	public IExecutionContext execute(String string, int turtleId) {
-	    for(int i : lastContext.keySet()){
-	        System.out.println(i + "       " + turtleId);
-	        if(i == turtleId){
+	public IExecutionContext execute(String string) {
 	            ITokenizer tokenizer = null;
 	            IParser parser = null;
 	            IEvaluator evaluator = null;
@@ -172,15 +165,12 @@ public class Backend implements IModel{
 	            try {
 	                result = evaluator.evaluate(
 	                                            parser.parse(tokenizer.tokenize(reader)),
-	                                            lastContext.get(i));
+	                                            lastContext);
 	            } catch (MalformedSyntaxException | IOException e) {
 	                e.printStackTrace();
 	            }
-	            lastContext.put(i, result);
+	            lastContext = result;
 	            return result;
-	        }
-	    }
-	    return lastContext.get(turtleId);
 	}
 
 	@Override
@@ -188,13 +178,5 @@ public class Backend implements IModel{
 			throws ElementUnsupportedException {
 		return null;
 	}
-
-    @Override
-    public void addExecutionContext () {
-        Map<String, ITurtleStatus> turtles = new HashMap<>();
-        turtles.put(Constants.DEFAULT_TURTLE_NAME, new TurtleStatus.Builder().build());
-        this.lastContext.put(id, new ExecutionContext(turtles, new HashMap<>(), new HashMap<>()));
-        id++;
-    }
 
 }

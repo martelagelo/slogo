@@ -19,26 +19,34 @@ public class Turtle {
 	private double orientation;
 	private Map<String, Node> imagesMap;
 	private Color color;
-	private int id;
 
 	private boolean active;
         private String lineProperty;
         private String imageName;
     
 
-	public Turtle(String s, double x, double y, int id){
+	public Turtle(String s, double x, double y){
 		xpos = x;
 		ypos = y;
 		imagesMap = new HashMap<String, Node>();
 		generateSelectorMap(initialImagesMap());
 		turtleImage = imagesMap.get(s);
 		moveTurtle(xpos, ypos);
-		this.id = id;
 		lineProperty = "None";
 		imageName = s;
 		active = true;
 		color = Color.BLACK;
 		setOrientation(90);
+		 activateTurtle();
+	}
+	
+	private void activateTurtle() {
+	    turtleImage.setOnMouseClicked(new EventHandler<MouseEvent>(){
+	        @Override
+	        public void handle(MouseEvent event){
+	            active = !active;
+	        }
+	    });
 	}
 
     private Map<String, String> initialImagesMap(){
@@ -143,10 +151,6 @@ public class Turtle {
     
     public Color getColor(){
         return color;
-    }
-    
-    public int getId(){
-        return id;
     }
     
     protected void activate(){
