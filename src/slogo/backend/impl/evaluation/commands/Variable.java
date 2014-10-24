@@ -26,7 +26,7 @@ public class Variable implements IOperation{
 
     @Override
     public String type () {
-        return "Variable";
+        return "Variable"; //change
     }
 
 }
