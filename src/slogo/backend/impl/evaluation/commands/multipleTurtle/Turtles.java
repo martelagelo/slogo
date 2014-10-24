@@ -20,7 +20,7 @@ public class Turtles extends Operation {
         // TODO Auto-generated method stub
         String returnValue = String.valueOf(args.get(0).turtles().size());
         args.get(0).environment().put("returnValue", returnValue);
-        return new ExecutionContext(args.get(0).turtles(),args.get(0).environment());
+        return new ExecutionContext(args.get(0).turtles(),args.get(0).environment(), args.get(0).userDefinedCommands());
     }
 
 }
