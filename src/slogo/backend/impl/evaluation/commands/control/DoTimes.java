@@ -19,15 +19,17 @@ public class DoTimes extends Operation{
     protected IExecutionContext executeRaw (List<IExecutionContext> args,
             IExecutionContext previous, ISyntaxNode current) {
         // TODO Auto-generated method stub
-        String expression = args.get(1).environment().get("returnValue");
-        String variable = args.get(0).environment().get("returnValue");
-        IExecutionContext context = args.get(2);
+        String expression = args.get(2).environment().get("returnValue");
+        String variable = args.get(1).environment().get("returnValue");
+        IExecutionContext context = args.get(5);
         int number = Integer.parseInt(expression);
         Evaluator e = new Evaluator();
         for(int i = 1; i<=number; i++){
             context.environment().put(variable, String.valueOf(i));
             try {
-                context = e.evaluate(current.children().get(2), context);
+                for(int j = 5; j < args.size()-1; j++){
+                context = e.evaluate(current.children().get(j), context);
+                }
             } catch (MalformedSyntaxException e1) {
                 // TODO Auto-generated catch block
                 e1.printStackTrace();
