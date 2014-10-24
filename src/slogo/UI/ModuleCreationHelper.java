@@ -204,9 +204,12 @@ public class ModuleCreationHelper {
 	 */
 	private void createTurtle(){
 		myTurtleList = new ArrayList<Turtle>();
-		myTurtleList.add(new Turtle("Triangle", AppConstants.INITIAL_TURTLE_X_POS, AppConstants.INITIAL_TURTLE_Y_POS));
+		Turtle t = new Turtle("Triangle", AppConstants.INITIAL_TURTLE_X_POS, AppConstants.INITIAL_TURTLE_Y_POS);
+		myTurtleList.add(t);
 		root.getChildren().add(myTurtleList.get(0).getImage());
 	}
+	
+
 
 	/**
 	 * 
@@ -411,9 +414,6 @@ public class ModuleCreationHelper {
 	 * 
 	 */
 	private void createSelectors() {
-		TurtleImageSelector turtleSelect = new TurtleImageSelector(mySelectorsVBox);
-		turtleSelect.create(root, myTurtleList.get(0));
-		myTurtleSelector = turtleSelect;
 
 		BackgroundColorSelector backgroundSelect = new BackgroundColorSelector(mySelectorsVBox);
 		backgroundSelect.create(root, myGraphicsContext);
@@ -423,6 +423,9 @@ public class ModuleCreationHelper {
 
 		PathTextureSelector pathTexture = new PathTextureSelector(mySelectorsVBox);
 		pathTexture.create(root, myTurtleList.get(0));
+		
+	        myTurtleSelector = new TurtleImageSelector(mySelectorsVBox);
+	        myTurtleSelector.create(root, myTurtleList.get(0));
 	}
 
 	/**
@@ -609,13 +612,14 @@ public class ModuleCreationHelper {
 			@Override
 			public void handle(ActionEvent event){
 				if(cb.isSelected()) {
-					for(double x = myCanvas.getCanvas().getLayoutX(); x < myCanvas.getCanvas().getHeight() + myCanvas.getCanvas().getLayoutX(); x += AppConstants.GRIDLINES_SPACING){
+					for(double x = myCanvas.getCanvas().getLayoutX(); x < myCanvas.getCanvas().getWidth() + myCanvas.getCanvas().getLayoutX(); x += AppConstants.GRIDLINES_SPACING){
 						Line line = new Line(x, myCanvas.getCanvas().getLayoutY(), x, myCanvas.getCanvas().getLayoutY() + myCanvas.getCanvas().getHeight());
-						line.setFill(Color.DARKGREY);
-
-						Line line2 = new Line(myCanvas.getCanvas().getLayoutX(), x, myCanvas.getCanvas().getLayoutX() + myCanvas.getCanvas().getWidth(), x);
-						line2.setFill(Color.DARKGREY);
+						line.setFill(Color.LIGHTGRAY);
 						myGridLines.add(line);
+					}
+					for(double y = myCanvas.getCanvas().getLayoutY(); y < myCanvas.getCanvas().getHeight() + myCanvas.getCanvas().getLayoutY(); y+= AppConstants.GRIDLINES_SPACING){
+						Line line2 = new Line(myCanvas.getCanvas().getLayoutX(), y, myCanvas.getCanvas().getLayoutX() + myCanvas.getCanvas().getWidth(), y);
+						line2.setFill(Color.LIGHTGRAY);
 						myGridLines.add(line2);
 					}
 					root.getChildren().addAll(myGridLines);
@@ -646,9 +650,9 @@ public class ModuleCreationHelper {
 		btn.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				Turtle newTurtle = new Turtle("Circle", AppConstants.INITIAL_TURTLE_X_POS, AppConstants.INITIAL_TURTLE_Y_POS);
-				root.getChildren().add(newTurtle.getImage());
-				myTurtleList.add(newTurtle);
+				Turtle newTurtle = new Turtle("Triangle", AppConstants.INITIAL_TURTLE_X_POS, AppConstants.INITIAL_TURTLE_Y_POS);
+	                        myTurtleList.add(newTurtle);
+	                        root.getChildren().add(newTurtle.getImage());
 			}
 		});	    
 
@@ -777,6 +781,7 @@ public class ModuleCreationHelper {
 	}
 
 	protected void setListViewVariables(double x, double y, double o, boolean b){
+	    //DEAL WITH ROUNDING ERRORS
 		myVariables.clear();
 		myVariables.add("Turtle X Position:     " + x);
 		myVariables.add("Turtle Y Position:     " + y);
