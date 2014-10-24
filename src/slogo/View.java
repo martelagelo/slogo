@@ -80,17 +80,19 @@ public class View implements IView{
 	 */
 	public void recordCommand(String command) {
 		commandQueue.add(command);
+		immediateHistoryQueue.add(command);
 	}
 
 	public void sendCommandToBackend() {
 		if(animationTimeline != null && animationTimeline.getStatus() == Status.PAUSED) {
-			MCH.toggleRunningStatusLabel();
+			MCH.turnOnRunningStatusLabel();
 			animationTimeline.play();
 		}
 		else if (!commandQueue.isEmpty()) {
-			MCH.toggleRunningStatusLabel();
-			immediateHistoryQueue = commandQueue;
+			MCH.turnOnRunningStatusLabel();
+
 			recordCommandHistoryCounter = MCH.getCommandsHistoryCounter();
+
 			animationTimeline = new Timeline();
 			animationTimeline.setCycleCount(Timeline.INDEFINITE);
 
@@ -106,7 +108,7 @@ public class View implements IView{
 							if (commandQueue.isEmpty()) {
 								animationTimeline.stop();
 								animationTimeline = null;
-								MCH.toggleRunningStatusLabel();
+								MCH.turnOffRunningStatusLabel();
 								immediateHistoryQueue.clear();
 								recordCommandHistoryCounter = 0;
 							}
@@ -117,19 +119,27 @@ public class View implements IView{
 	}
 
 	public void resetAnimation() {
-		if (animationTimeline != null) {
-			animationTimeline.stop();
-			animationTimeline = null;
-			commandQueue = immediateHistoryQueue;
-			MCH.setCommandsHistoryCounter(recordCommandHistoryCounter);
-			MCH.resetCommandsHistoryList(recordCommandHistoryCounter);
+		MCH.turnOffRunningStatusLabel();
+		animationTimeline.stop();
+		animationTimeline = null;
+
+		Queue<String> queue = new LinkedList<String>();
+		while (!immediateHistoryQueue.isEmpty()) {
+			commandQueue.add(immediateHistoryQueue.peek());
+			queue.add(immediateHistoryQueue.poll());
 		}
+		while (!queue.isEmpty()) {
+			immediateHistoryQueue.add(queue.poll());
+		}
+
+		MCH.setCommandsHistoryCounter(recordCommandHistoryCounter);
+		MCH.resetCommandsHistoryList(recordCommandHistoryCounter);
 	}
-	
+
 	public void pauseAnimation() {
 		if (animationTimeline != null) {
 			animationTimeline.pause();
-			MCH.toggleRunningStatusLabel();
+			MCH.turnOffRunningStatusLabel();
 		}
 	}
 
