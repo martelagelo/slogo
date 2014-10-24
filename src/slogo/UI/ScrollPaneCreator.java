@@ -1,0 +1,26 @@
+package slogo.UI;
+
+import javafx.scene.Group;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.ScrollPane.ScrollBarPolicy;
+
+public class ScrollPaneCreator {
+
+	Group root;
+	
+	public ScrollPaneCreator(Group root) {
+		this.root = root;
+	}
+	
+	public ScrollPane createScrollPane(Integer x_Coord, Integer y_Coord, Integer height, Integer width) {
+		ScrollPane moduleScrollPane = new ScrollPane();
+		moduleScrollPane.setLayoutX(x_Coord);
+		moduleScrollPane.setLayoutY(y_Coord);
+		moduleScrollPane.setPrefHeight(width);
+		moduleScrollPane.setPrefWidth(height);
+		moduleScrollPane.setHbarPolicy(ScrollBarPolicy.ALWAYS);
+		moduleScrollPane.setVbarPolicy(ScrollBarPolicy.ALWAYS);
+		root.getChildren().add(moduleScrollPane);
+		return moduleScrollPane;
+	}
+}
