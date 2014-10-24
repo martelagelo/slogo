@@ -168,6 +168,11 @@ public class ModuleCreationHelper {
 		createDebugStepOverButton();
 		createDebugButton();
 	}
+	
+	private void createModuleScrollPane() {
+		ScrollPaneCreator SPC = new ScrollPaneCreator(root);
+		moduleScrollPane = SPC.createScrollPane(AppConstants.FIRST_ROW_BUTTON_HBOX_X_POS, AppConstants.FIRST_ROW_BUTTON_HBOX_Y_POS, 250, 500);
+	}
 
 	/**
 	 * Creates a checkBox for the Grid
