@@ -162,6 +162,9 @@ public class ModuleCreationHelper {
 		createStopButton();
 	}
 	
+	/**
+	 * 
+	 */
 	private void createSecondRowButtons() {
 		createSecondButtonRow();
 		createPauseButton();
@@ -181,7 +184,6 @@ public class ModuleCreationHelper {
 	
 	private void createListScrollPane() {
 		ScrollPaneCreator SPC = new ScrollPaneCreator(root);
-		//Fix app constants names
 		listScrollPane = SPC.createScrollPane(AppConstants.LIST_SCROLL_PANE_X_POS, AppConstants.LIST_SCROLL_PANE_Y_POS, AppConstants.LIST_SCROLL_PANE_WIDTH + 30, AppConstants.LIST_SCROLL_PANE_HEIGHT);
 	}
 	private void createModuleScrollPane() {
@@ -217,7 +219,7 @@ public class ModuleCreationHelper {
 	 */
 	private void createTitle(){
 		LabelCreator LC = new LabelCreator(root);
-		Label label = LC.createLabel("SLOGO!!!", AppConstants.TITLE_X_POS, AppConstants.TITLE_Y_POS, AppConstants.TITLE_LABEL_FONT_SIZE, Color.BLACK);
+		LC.createLabel("SLOGO!!!", AppConstants.TITLE_X_POS, AppConstants.TITLE_Y_POS, AppConstants.TITLE_LABEL_FONT_SIZE, Color.BLACK);
 	}
 
 	/**
@@ -376,7 +378,7 @@ public class ModuleCreationHelper {
 	 */
 	private void createDebugLabel() {
 		LabelCreator LC = new LabelCreator(debugVBox);
-		debugLabel = LC.createLabel("DEBUG MODE ON", AppConstants.TITLE_LABEL_FONT_SIZE, Color.RED);
+		debugLabel = LC.createLabel("DEBUG MODE ON", AppConstants.DEBUG_LABEL_FONT_SIZE, Color.RED);
 		debugLabel.setVisible(false);
 	}
 
@@ -418,7 +420,7 @@ public class ModuleCreationHelper {
 	}
 
 	/**
-	 * 
+	 * Creates all the lists for each of the variables and commans
 	 */
 	private void createListViews(){
 		myCommandsList = new ListViewPreviousCommands(myListsVBox);
@@ -436,11 +438,13 @@ public class ModuleCreationHelper {
 	 */
 	private void createSelectorVBox(){
 		VBoxCreator VBC = new VBoxCreator(root);
-		//mySelectorsVBox = VBC.createVBox(AppConstants.VBOX_SPACING, AppConstants.FIRST_ROW_BUTTON_HBOX_X_POS, AppConstants.FIRST_ROW_BUTTON_HBOX_Y_POS);
 		mySelectorsVBox  = VBC.createVBoxScrollable(AppConstants.VBOX_SPACING);
 		moduleScrollPane.setContent(mySelectorsVBox);
 	}
 	
+	/**
+	 * Creates a vBox that stores all the lists
+	 */
 	private void createListVBox() {
 		VBoxCreator VBC = new VBoxCreator(root);
 		myListsVBox = VBC.createVBoxScrollable(AppConstants.VBOX_SPACING);
@@ -448,7 +452,7 @@ public class ModuleCreationHelper {
 	}
 
 	/**
-	 * 
+	 * Creates all of the selectors for the application
 	 */
 	private void createSelectors() {
 
@@ -494,6 +498,10 @@ public class ModuleCreationHelper {
 		});
 	}
 
+	/**
+	 * Creates an event handler that pauses animation when fired
+	 * @param btn The button the fires the event
+	 */
 	public void activatePauseButton(Button btn) {
 		btn.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
@@ -503,6 +511,10 @@ public class ModuleCreationHelper {
 		});
 	}
 
+	/**
+	 * Creates an event handler that resets the animation when fired
+	 * @param btn The button the fires the event
+	 */
 	public void activateResetButton(Button btn) {
 		btn.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
@@ -526,7 +538,7 @@ public class ModuleCreationHelper {
 			}
 		});
 	}
-
+	
 	public void activateDebugCB(CheckBox cb){
 		cb.setOnAction(new EventHandler<ActionEvent>(){
 			@Override
@@ -716,7 +728,6 @@ public class ModuleCreationHelper {
 		});
 	}
 
-	//NEEDS BACKEND FUNCTIONALITY
 	private void activateKeyEvents() {
 		root.setOnKeyPressed(new EventHandler<KeyEvent>() {
 			@Override

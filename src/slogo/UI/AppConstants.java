@@ -24,9 +24,9 @@ public class AppConstants {
         public static final Integer CANVAS_OFFSET_X_POS = 10;
         public static final Integer CANVAS_OFFSET_Y_POS = 75;
         public static final Integer CANVAS_WIDTH = 600;
-        public static final Integer CANVAS_HEIGHT = 400;
+        public static final Integer CANVAS_HEIGHT = 450;
         
-        public static final Integer MESSAGE_BOX_WIDTH = 250;
+        public static final Integer MESSAGE_BOX_WIDTH = 350;
         public static final Integer MESSAGE_BOX_HEIGHT = 50;
         
         public static final Integer LABEL_FONT_SIZE = 1;
@@ -43,6 +43,7 @@ public class AppConstants {
         
         public static final Integer DEBUG_LABEL_X_POS = CANVAS_OFFSET_X_POS;
         public static final Integer DEBUG_LABEL_Y_POS = TEXT_BOX_VBOX_Y_POS + 2 * MODULE_PADDING;
+        public static final Integer DEBUG_LABEL_FONT_SIZE = LABEL_FONT_SIZE * 2;
         
         public static final Integer INITIAL_TURTLE_X_POS = CANVAS_OFFSET_X_POS + CANVAS_WIDTH/2;
         public static final Integer INITIAL_TURTLE_Y_POS = CANVAS_OFFSET_Y_POS + CANVAS_HEIGHT/2;
@@ -57,15 +58,15 @@ public class AppConstants {
         public static final Integer LIST_SCROLL_PANE_WIDTH = 280;
         public static final Integer LIST_SCROLL_PANE_HEIGHT = STAGE_HEIGHT - MODULE_PADDING;
     
-        public static final Integer LIST_BLOCKS_X_POS = FIRST_SCROLL_PANE_X_POS + FIRST_SCROLL_PANE_WIDTH + MODULE_PADDING;
+        //public static final Integer LIST_BLOCKS_X_POS = FIRST_SCROLL_PANE_X_POS + FIRST_SCROLL_PANE_WIDTH + MODULE_PADDING;
         public static final Integer LIST_BLOCKS_WIDTH = 200;
         public static final Integer LIST_BLOCKS_HEIGHT = 200;
-        public static final Integer LIST_BLOCKS_Y_POS_USER_VARIABLES = STAGE_PADDING;
-        public static final Integer LIST_BLOCKS_Y_POS_USER_COMMANDS = LIST_BLOCKS_Y_POS_USER_VARIABLES + LIST_BLOCKS_HEIGHT + MODULE_PADDING;
-        public static final Integer LIST_BLOCKS_Y_POS_SLOGO_VARIABLES = LIST_BLOCKS_Y_POS_USER_COMMANDS + LIST_BLOCKS_HEIGHT + MODULE_PADDING;
+        //public static final Integer LIST_BLOCKS_Y_POS_USER_VARIABLES = STAGE_PADDING;
+        //public static final Integer LIST_BLOCKS_Y_POS_USER_COMMANDS = LIST_BLOCKS_Y_POS_USER_VARIABLES + LIST_BLOCKS_HEIGHT + MODULE_PADDING;
+        //public static final Integer LIST_BLOCKS_Y_POS_SLOGO_VARIABLES = LIST_BLOCKS_Y_POS_USER_COMMANDS + LIST_BLOCKS_HEIGHT + MODULE_PADDING;
         
-        public static final Integer COMMAND_HISTORY_X_POS = LIST_BLOCKS_X_POS + LIST_BLOCKS_WIDTH + MODULE_PADDING ;
-        public static final Integer COMMAND_HISTORY_Y_POS = STAGE_PADDING;
+        //public static final Integer COMMAND_HISTORY_X_POS = LIST_BLOCKS_X_POS + LIST_BLOCKS_WIDTH + MODULE_PADDING ;
+        //public static final Integer COMMAND_HISTORY_Y_POS = STAGE_PADDING;
         public static final Integer COMMAND_HISTORY_WIDTH = 250;
         public static final Integer COMMAND_HISTORY_HEIGHT = STAGE_HEIGHT - 50;
         
