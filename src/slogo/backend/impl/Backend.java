@@ -110,7 +110,7 @@ public class Backend implements IModel{
 		String[][][] controlRules = {
 				{{"For"}, {
 					Constants.OPENING_LIST_LABEL,
-					Constants.CONSTANT_LABEL,
+					Constants.VARIABLE_LABEL,
 					Constants.CONSTANT_LABEL,
 					Constants.CONSTANT_LABEL,
 					Constants.CONSTANT_LABEL,
@@ -121,11 +121,11 @@ public class Backend implements IModel{
 					Constants.CLOSING_LIST_LABEL
 				}},
 				{{"Make"}, {
-					Constants.CONSTANT_LABEL,
+					Constants.VARIABLE_LABEL,
 					Constants.CONSTANT_LABEL
 				}},
 				{{"Set"}, {
-					Constants.CONSTANT_LABEL,
+					Constants.VARIABLE_LABEL,
 					Constants.CONSTANT_LABEL
 				}},
 				{{"Repeat"}, {
@@ -137,8 +137,37 @@ public class Backend implements IModel{
 				}},
 				{{"DoTimes"}, {
 					Constants.OPENING_LIST_LABEL,
+					Constants.VARIABLE_LABEL,
 					Constants.CONSTANT_LABEL,
+					Constants.CLOSING_LIST_LABEL,
+					Constants.OPENING_LIST_LABEL,
 					Constants.CONSTANT_LABEL,
+					Constants.INFINITE_MATCHING_LABEL,
+					Constants.CLOSING_LIST_LABEL
+				}},
+				{{"If"}, {
+					Constants.CONSTANT_LABEL,
+					Constants.OPENING_LIST_LABEL,
+					Constants.CONSTANT_LABEL,
+					Constants.INFINITE_MATCHING_LABEL,
+					Constants.CLOSING_LIST_LABEL
+				}},
+				{{"IfElse"}, {
+					Constants.CONSTANT_LABEL,
+					Constants.OPENING_LIST_LABEL,
+					Constants.CONSTANT_LABEL,
+					Constants.INFINITE_MATCHING_LABEL,
+					Constants.CLOSING_LIST_LABEL,
+					Constants.OPENING_LIST_LABEL,
+					Constants.CONSTANT_LABEL,
+					Constants.INFINITE_MATCHING_LABEL,
+					Constants.CLOSING_LIST_LABEL
+				}},
+				{{"To"}, {
+					Constants.CONSTANT_LABEL,
+					Constants.OPENING_LIST_LABEL,
+					Constants.VARIABLE_LABEL,
+					Constants.INFINITE_MATCHING_LABEL,
 					Constants.CLOSING_LIST_LABEL,
 					Constants.OPENING_LIST_LABEL,
 					Constants.CONSTANT_LABEL,
