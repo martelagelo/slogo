@@ -183,6 +183,9 @@ public class Backend implements IModel{
 			}
 			ruleList.add(new GrammarRule(rule[0], repeatedConstants));
 		}
+		for (String[][] rule: controlRules) {
+			ruleList.add(new GrammarRule(rule[0][0], Arrays.asList(rule[1])));
+		}
 		return ruleList;
 	}
 	@Override

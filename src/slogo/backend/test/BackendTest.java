@@ -34,8 +34,8 @@ public class BackendTest {
 	}
 	@Test
 	public void testMake() throws Exception {
-		IExecutionContext result = backend.execute("Make :foo bar");
-		assertEquals("bar", result.environment().get("foo"));
+		IExecutionContext result = backend.execute("Make :foo 10");
+		assertEquals("10", result.environment().get(":foo"));
 	}
 	@Test
 	public void testRepeat() throws Exception {
