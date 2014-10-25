@@ -15,6 +15,6 @@ public class ListViewPreviousCommands extends ListViewAllSLOGO {
     }
     
     protected void create(){
-        createThings(AppConstants.COMMAND_HISTORY_HEIGHT, AppConstants.COMMAND_HISTORY_WIDTH, "Your Previously Entered Commands", 1, Color.BLACK);
+        createListView(AppConstants.COMMAND_HISTORY_HEIGHT, AppConstants.COMMAND_HISTORY_WIDTH, "Your Previously Entered Commands", 1, Color.BLACK);
     }
 }

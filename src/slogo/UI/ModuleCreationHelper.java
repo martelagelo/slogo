@@ -239,6 +239,7 @@ public class ModuleCreationHelper {
 	private void createTurtleCanvas() {
 		myCanvas = new TurtleCanvas(root);
 		myGraphicsContext = myCanvas.getGraphicsContext();
+		activateTurtleCanvas();
 	}
 
 	/**
@@ -466,6 +467,7 @@ public class ModuleCreationHelper {
 		myUserVariablesList.create();
 		myUserCommandsList = new ListViewUserCommands(myListsVBox);
 		myUserCommandsList.create();
+	        addToCertainList(myUserCommands, myUserCommandsList, "OnClick");
 	}
 
 	/**
@@ -502,6 +504,17 @@ public class ModuleCreationHelper {
 		
 	        myTurtleSelector = new TurtleImageSelector(mySelectorsVBox);
 	        myTurtleSelector.create(root, myTurtleList.get(0), myView);
+	}
+	
+	private void activateTurtleCanvas(){
+	    myCanvas.getCanvas().setOnMouseClicked(new EventHandler<MouseEvent>(){
+	        @Override
+	        public void handle(MouseEvent event){
+	            if(myUserCommandsList.getItems().contains("OnClick")){
+	                myView.sendCommandToBackend("SetXY " + (event.getX() - AppConstants.INITIAL_TURTLE_X_POS + 10) + " " + (event.getY() - AppConstants.INITIAL_TURTLE_Y_POS + 75));
+	            }
+	        }
+	    });
 	}
 
 	/**
@@ -823,7 +836,7 @@ public class ModuleCreationHelper {
 	}
 
 	/**
-	 * Returns the current turtle
+	 * Returns the current active turtle
 	 * @return The turtle
 	 */
 	public Turtle getTurtle() {
