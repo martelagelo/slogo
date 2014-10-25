@@ -1,13 +1,17 @@
 package slogo.UI;
 
 import javafx.scene.Group;
-
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
 public class ListViewPreviousCommands extends ListViewAllSLOGO {
     
     public ListViewPreviousCommands(Group root){
         super(root);
+    }
+    
+    public ListViewPreviousCommands(VBox vBox) {
+    	super(vBox);
     }
     
     protected void create(){
