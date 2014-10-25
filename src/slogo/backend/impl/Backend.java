@@ -107,7 +107,8 @@ public class Backend implements IModel{
 				{"Ycor","0"},
 				{"SetPenSize", "1"},
 				{"SetShape", "1"},
-				{"SetPenColor", "3"}
+				{"SetPenColor", "3"},
+				{"SetBackground", "3"},
 				
 		};
 		String[][][] controlRules = {

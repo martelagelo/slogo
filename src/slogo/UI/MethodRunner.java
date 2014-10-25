@@ -138,11 +138,14 @@ public class MethodRunner {
 	}
 	
 	private void setTurtleQualities () {
-	           MCH.getPathColorSelector().setValue(TS.turtleQualities().toColor());
+                   MCH.getBackgroundColorSelector().setValue(TS.turtleQualities().backgroundColor());
+                   MCH.getCanvas().getGraphicsContext2D().setFill(MCH.getBackgroundColorSelector().getValue());
+                   MCH.getCanvas().getGraphicsContext2D().fillRect(1, 1, AppConstants.CANVAS_WIDTH - 2, AppConstants.CANVAS_HEIGHT - 2);
+                   MCH.getPathColorSelector().setValue(TS.turtleQualities().toColor());
 	           turtle.setColor(MCH.getPathColorSelector().getValue());
-	           turtle.setColor(TS.turtleQualities().toColor());
 	           if(TS.turtleQualities().index() > 0 && TS.turtleQualities().index() <= MCH.getTurtleSelector().getItems().size()){
 	               MCH.getTurtleSelector().setValue((MCH.getTurtleSelector().getItems().get((TS.turtleQualities().index() - 1))));
+	               System.out.println(MCH.getTurtleSelector().getValue());
 	               turtle.setImage(MCH.getTurtleSelector().getValue());
 	           }
 	           else if (TS.turtleQualities().index() < 0 || TS.turtleQualities().index() > MCH.getTurtleSelector().getItems().size()){
@@ -150,7 +153,7 @@ public class MethodRunner {
                        TS.turtleQualities().setIndex(0);
 	           }
 	           turtle.setThickness(Math.max(1, TS.turtleQualities().thickness()));
-	           turtle.setThickness(Math.min(15, TS.turtleQualities().thickness()));
+	           turtle.setThickness(Math.min(15, turtle.getThickness()));
 	}
 
 	public void setEnvironment(String var) {

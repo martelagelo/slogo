@@ -4,14 +4,20 @@ import javafx.scene.paint.Color;
 
 public class Qualities {
     
+    private Color backgroundColor;
     private Color pathColor;
     private int myShapeIndex;
     private int myThickness;
     
-    public Qualities(Color c, int imageIndex, int thickness){
-        pathColor = c;
+    public Qualities(Color background, Color path, int imageIndex, int thickness){
+        backgroundColor = background;
+        pathColor = path;
         myShapeIndex = imageIndex;
         myThickness = thickness;
+    }
+    
+    public Color backgroundColor(){
+        return backgroundColor;
     }
     
     public Color toColor(){

@@ -23,7 +23,7 @@ public class SetShape extends Operation {
         ITurtleStatus status = args.get(0).turtles().get(Constants.DEFAULT_TURTLE_NAME);
         String imageChoice = args.get(0).environment().get(Constants.RETURN_VALUE_ENVIRONMENT);
         int choice = Integer.parseInt(imageChoice);
-        Qualities q = new Qualities(status.turtleQualities().toColor(), choice, status.turtleQualities().thickness());
+        Qualities q = new Qualities(status.turtleQualities().backgroundColor(), status.turtleQualities().toColor(), choice, status.turtleQualities().thickness());
         ITurtleStatus newStatus = new TurtleStatus(status.lineSequence(), status.turtlePosition(), status.turtleDirection(), status.penState(), status.turtleVisibility(), q);
         args.get(0).turtles().put(Constants.DEFAULT_TURTLE_NAME, newStatus);
         return new ExecutionContext(args.get(0).turtles(),args.get(0).environment(), args.get(0).userDefinedCommands());

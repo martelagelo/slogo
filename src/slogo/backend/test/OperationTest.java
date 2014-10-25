@@ -67,7 +67,7 @@ public class OperationTest {
 	    IDirection dir = new Direction(0);
 	    PenState pen = PenState.DOWN;
 	    Visibility vis = Visibility.VISIBLE;
-	    Qualities q = new Qualities(Color.BLACK, 0, 1);
+	    Qualities q = new Qualities(Color.WHITE, Color.BLACK, 0, 1);
 	    ITurtleStatus status = new TurtleStatus(list,cor,dir,pen,vis, q);
 	    Map <String, ITurtleStatus> turtles = new HashMap<String, ITurtleStatus>();
 	    turtles.put("1", status);

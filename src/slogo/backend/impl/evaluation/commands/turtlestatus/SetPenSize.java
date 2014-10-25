@@ -24,7 +24,7 @@ public class SetPenSize extends Operation {
         ITurtleStatus status = args.get(0).turtles().get(Constants.DEFAULT_TURTLE_NAME);
         String thick = args.get(0).environment().get(Constants.RETURN_VALUE_ENVIRONMENT);
         int thickness = Integer.parseInt(thick);
-        Qualities q = new Qualities(status.turtleQualities().toColor(), status.turtleQualities().index(), thickness);
+        Qualities q = new Qualities(status.turtleQualities().backgroundColor(), status.turtleQualities().toColor(), status.turtleQualities().index(), thickness);
         ITurtleStatus newStatus = new TurtleStatus(status.lineSequence(), status.turtlePosition(), status.turtleDirection(), status.penState(), status.turtleVisibility(), q);
         args.get(0).turtles().put(Constants.DEFAULT_TURTLE_NAME, newStatus);
         return new ExecutionContext(args.get(0).turtles(),args.get(0).environment(), args.get(0).userDefinedCommands());

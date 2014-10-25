@@ -35,7 +35,7 @@ public class TurtleStatus implements ITurtleStatus {
 			this.penState = PenState.DOWN;
 			this.turtleVisibility = Visibility.VISIBLE;
 			this.isActive = true;
-			this.turtleQualities = new Qualities(Color.BLACK, 0, 1);
+			this.turtleQualities = new Qualities(Color.WHITE, Color.BLACK, 0, 1);
 		}
 		public Builder(ITurtleStatus status) {
 			this.lineSequence = status.lineSequence();

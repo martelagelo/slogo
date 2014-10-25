@@ -101,6 +101,7 @@ public class ModuleCreationHelper {
 	private Label runningStatusLabel;
 	private int commandsHistoryCounter;
         private PathColorSelector myPathColorSelector;
+        private BackgroundColorSelector myBackgroundColorSelector;
 
 
 	/**
@@ -324,25 +325,25 @@ public class ModuleCreationHelper {
 	    ButtonCreator BC = new ButtonCreator(hb);
 	    Button btn = BC.createButton("Inc.");
 	    Button btn2 = BC.createButton("Dec");
-	    activateIncreaseDecreaseButtons(btn, btn2);
+	    activateIncreaseDecreaseButtons(btn, btn2, myView);
 	    mySelectorsVBox.getChildren().add(hb);   
 	}
 	
-	private void activateIncreaseDecreaseButtons(Button incbtn, Button decbtn){
+	private void activateIncreaseDecreaseButtons(Button incbtn, Button decbtn, View view){
 	    incbtn.setOnAction(new EventHandler<ActionEvent>(){
 	        @Override
 	        public void handle(ActionEvent event){
 	            Turtle t = getTurtle();
-	            t.setThickness(Math.min(15, t.getThickness() + 1));
-                    setListViewVariables(t.getImageXPos(), t.getImageYPos(), t.getOrientation() - 90, true, t.getThickness());
+	            view.sendCommandToBackend("SetPenSize " + (t.getThickness() + 1));
+                    //setListViewVariables(t.getImageXPos(), t.getImageYPos(), t.getOrientation() - 90, true, t.getThickness());
 	        }
 	    });
 	    decbtn.setOnAction(new EventHandler<ActionEvent>(){
 	        @Override
 	        public void handle(ActionEvent event){
 	            Turtle t = getTurtle();
-	            t.setThickness(Math.max(1, t.getThickness() - 1));
-                    setListViewVariables(t.getImageXPos(), t.getImageYPos(), t.getOrientation() - 90, true, t.getThickness());
+	            view.sendCommandToBackend("SetPenSize " + (t.getThickness() - 1));
+                    //setListViewVariables(t.getImageXPos(), t.getImageYPos(), t.getOrientation() - 90, true, t.getThickness());
 
 	        }
 	    });
@@ -495,17 +496,17 @@ public class ModuleCreationHelper {
 	 */
 	private void createSelectors() {
 
-		BackgroundColorSelector backgroundSelect = new BackgroundColorSelector(mySelectorsVBox);
-		backgroundSelect.create(root, myGraphicsContext);
+		myBackgroundColorSelector = new BackgroundColorSelector(mySelectorsVBox);
+		myBackgroundColorSelector.create(root, myGraphicsContext, myView);
 
 		myPathColorSelector = new PathColorSelector(mySelectorsVBox);
-		myPathColorSelector.create(root, myTurtleList.get(0));
+		myPathColorSelector.create(root, myTurtleList.get(0), myView);
 
 		PathTextureSelector pathTexture = new PathTextureSelector(mySelectorsVBox);
 		pathTexture.create(root, myTurtleList.get(0));
 		
 	        myTurtleSelector = new TurtleImageSelector(mySelectorsVBox);
-	        myTurtleSelector.create(root, myTurtleList.get(0));
+	        myTurtleSelector.create(root, myTurtleList.get(0), myView);
 	}
 
 	/**
@@ -933,6 +934,10 @@ public class ModuleCreationHelper {
 
     public PathColorSelector getPathColorSelector () {
         return myPathColorSelector;
+    }
+
+    public BackgroundColorSelector getBackgroundColorSelector () {
+        return myBackgroundColorSelector;
     }
 }
 

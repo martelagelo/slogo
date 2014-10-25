@@ -1,6 +1,7 @@
 package slogo.UI;
 
 import java.util.List;
+import slogo.View;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
@@ -18,15 +19,16 @@ public class PathColorSelector {
         myVbox = vbox;
     }
     
-    protected void create(Group root, Turtle t){
+    protected void create(Group root, Turtle t, View view){
         ColorSelectorCreator sc = new ColorSelectorCreator(root);
         sc.setUpSelector("Path Color", AppConstants.SELECTOR_WIDTH, AppConstants.SELECTOR_HEIGHT, AppConstants.SELECTOR_FONT_SIZE, Color.BLACK);
         pathColor = sc.getSelector();
         pathColor.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle (ActionEvent event){
-                    if(pathColor.getValue() != null){
-                                t.setColor(pathColor.getValue());
+                Color c = pathColor.getValue();
+                    if(c != null){
+                                view.sendCommandToBackend("SetPenColor " + (int) 255*c.getRed() + " " + (int) 255*c.getGreen() + " " + (int) 255*c.getBlue());
                     }
             }
         });

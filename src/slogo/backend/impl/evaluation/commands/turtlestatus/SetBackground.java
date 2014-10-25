@@ -11,10 +11,11 @@ import slogo.backend.impl.util.TurtleStatus;
 import slogo.backend.parsing.ISyntaxNode;
 import slogo.backend.util.ITurtleStatus;
 
-public class SetPenColor extends Operation {
+public class SetBackground extends Operation {
 
-    public SetPenColor(){
-        super("SetPenColor", 3, 3);
+    
+    public SetBackground(){
+        super("SetBackground", 3, 3);
     }
 
     @Override
@@ -30,11 +31,12 @@ public class SetPenColor extends Operation {
             c = Color.rgb(red, green, blue);
         }
         catch (Exception e){
-            c = status.turtleQualities().toColor();
+            c = status.turtleQualities().backgroundColor();
         }
-        Qualities q = new Qualities(status.turtleQualities().backgroundColor(), c, status.turtleQualities().index(), status.turtleQualities().thickness());
+        Qualities q = new Qualities(c, status.turtleQualities().toColor(), status.turtleQualities().index(), status.turtleQualities().thickness());
         ITurtleStatus newStatus = new TurtleStatus(status.lineSequence(), status.turtlePosition(), status.turtleDirection(), status.penState(), status.turtleVisibility(), q);
         args.get(0).turtles().put(Constants.DEFAULT_TURTLE_NAME, newStatus);
         return new ExecutionContext(args.get(0).turtles(),args.get(0).environment(), args.get(0).userDefinedCommands());
     }
+    
 }
