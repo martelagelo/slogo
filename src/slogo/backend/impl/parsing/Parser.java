@@ -68,6 +68,11 @@ public class Parser implements IParser {
 				operation = new Constant(token.text());
 				type = token.type();
 			}
+			else if (token.type() == Constants.OPENING_LIST_LABEL
+					|| token.type() == Constants.CLOSING_LIST_LABEL) {
+				operation = new Result();
+				type = token.type();
+			}
 			else {
 				try {
 					operation =  operationFactory.makeElement(token.text());

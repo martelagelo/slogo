@@ -12,30 +12,21 @@ import slogo.backend.parsing.ISyntaxNode;
 
 public class Repeat extends Operation{
 
-    public Repeat (String type, int argMin, int argMax) {
-        super(type, 4, Integer.MAX_VALUE);
-        // TODO Auto-generated constructor stub
+    public Repeat () {
+        super("Repeat", 4, -1);
     }
 
     @Override
-    protected IExecutionContext executeRaw (List<IExecutionContext> args, IExecutionContext previous, ISyntaxNode current) {
-        // TODO Auto-generated method stub
+    protected IExecutionContext executeRaw (List<IExecutionContext> args, IExecutionContext previous, ISyntaxNode current) throws MalformedSyntaxException {
         String expression = args.get(0).environment().get(Constants.RETURN_VALUE_ENVIRONMENT);
         int times = Integer.parseInt(expression);
         //Error check times > 1
         Evaluator e = new Evaluator();
         IExecutionContext context = previous;
         for (int i = 0 ; i<times-1; i++){
-            try {
-                for(int k = 2; k < args.size()-1; k++){
-                    
-                
-                context = e.evaluate(current.children().get(k), context);
-                }
-            } catch (MalformedSyntaxException e1) {
-                // TODO Auto-generated catch block
-                e1.printStackTrace();
-            }
+        	for(int k = 2; k < args.size()-1; k++){
+        		context = e.evaluate(current.children().get(k), context);
+        	}
         }
         return new ExecutionContext(context.turtles(),context.environment(),context.userDefinedCommands());
     }
