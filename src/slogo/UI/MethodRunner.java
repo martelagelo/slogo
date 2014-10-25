@@ -87,7 +87,9 @@ public class MethodRunner {
 	            Math.abs((double) l.end().getX() - (line.getEndX() - AppConstants.INITIAL_TURTLE_X_POS)) < AppConstants.ROUNDING_ERROR &&
 	            Math.abs((double) l.start().getY() - (line.getStartY() - AppConstants.INITIAL_TURTLE_Y_POS)) < AppConstants.ROUNDING_ERROR &&
 	            Math.abs((double) l.end().getY() - (line.getEndY() - AppConstants.INITIAL_TURTLE_Y_POS)) < AppConstants.ROUNDING_ERROR){   
-	        root.getChildren().add(line);
+	        if(!root.getChildren().contains(line)){
+	            root.getChildren().add(line);
+	        }
                 pathList.add(line);
 	        return true;
 	    }
@@ -124,13 +126,13 @@ public class MethodRunner {
 	}
 	
 	private void setPenState() {
-		
+
 	}
 	
 	private void setTurtleVisibility() { 
-		if (TS.turtleVisibility().VISIBLE != null) {
-			//TODO
-		}
+            if (TS.turtleVisibility().VISIBLE != null) {
+                //TODO
+            }
 	}
 	
 	public void setTurtleStatus(ITurtleStatus TS) {
