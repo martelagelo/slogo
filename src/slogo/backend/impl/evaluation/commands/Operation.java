@@ -35,7 +35,7 @@ public abstract class Operation implements IOperation {
 		return executeRaw(args, previous, current);
 	}
 
-	protected abstract IExecutionContext executeRaw(List<IExecutionContext> args,IExecutionContext previous, ISyntaxNode current);
+	protected abstract IExecutionContext executeRaw(List<IExecutionContext> args,IExecutionContext previous, ISyntaxNode current) throws MalformedSyntaxException;
 
 	protected List<Number> generateNumericArguments(List<IExecutionContext> args) {
 		List<Number> argsNum = new ArrayList<>();

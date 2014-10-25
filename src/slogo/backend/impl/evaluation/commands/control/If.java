@@ -12,15 +12,13 @@ import slogo.backend.parsing.ISyntaxNode;
 
 public class If extends Operation{
 
-    public If (String type, int argMin, int argMax) {
-        super(type, 4, Integer.MAX_VALUE);
-        // TODO Auto-generated constructor stub
+    public If () {
+        super("If", 4, -1);
     }
 
     @Override
     protected IExecutionContext executeRaw (List<IExecutionContext> args,
-            IExecutionContext previous, ISyntaxNode current) {
-        // TODO Auto-generated method stub
+            IExecutionContext previous, ISyntaxNode current) throws MalformedSyntaxException {
         String expression = args.get(0).environment().get(Constants.RETURN_VALUE_ENVIRONMENT);
         if(expression.equals("0")){
             return previous;
@@ -28,12 +26,7 @@ public class If extends Operation{
         Evaluator e = new Evaluator();
         IExecutionContext context = previous;
         for(int j = 2; j < args.size()-1; j++){
-            try {
-                context = e.evaluate(current.children().get(j), context);
-            } catch (MalformedSyntaxException e1) {
-                // TODO Auto-generated catch block
-                e1.printStackTrace();
-            }
+        	context = e.evaluate(current.children().get(j), context);
         }
         return new ExecutionContext(context.turtles(),context.environment(),context.userDefinedCommands());
     }

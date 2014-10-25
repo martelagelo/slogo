@@ -46,9 +46,9 @@ public class GrammarRule implements IGrammarRule {
 		return searchPattern.equals(toSearch.subList(index, index + searchPattern.size()));
 	}
 	private boolean infiniteMatches(List<String> searchPattern, List<String> toSearch, int index){
-		return infiniteMatchRecurse(searchPattern, toSearch);
+		return infiniteMatchRecurse(searchPattern, toSearch.subList(index, toSearch.size()));
 	}
-	public static boolean infiniteMatchRecurse(List<String> patternRemaining, List<String> searchRemaining){
+	public boolean infiniteMatchRecurse(List<String> patternRemaining, List<String> searchRemaining){
 		if (searchRemaining.size() == 0){
 			if (patternRemaining.size() == 0 || patternRemaining.size() == 2){
 				return true;

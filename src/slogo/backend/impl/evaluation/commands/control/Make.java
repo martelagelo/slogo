@@ -10,21 +10,18 @@ import slogo.backend.parsing.ISyntaxNode;
 
 public class Make extends Operation{
 
-    public Make (String type, int argMin, int argMax) {
-        super(type, 2, 2);
-        // TODO Auto-generated constructor stub
+    public Make () {
+        super("Make", 2, 2);
     }
 
     @Override
     protected IExecutionContext executeRaw (List<IExecutionContext> args,
             IExecutionContext previous, ISyntaxNode current) {
-        // TODO Auto-generated method stub
         String expression = args.get(1).environment().get(Constants.RETURN_VALUE_ENVIRONMENT);
         String variable = args.get(0).environment().get(Constants.RETURN_VALUE_ENVIRONMENT);
         IExecutionContext context = args.get(1);
         context.environment().put(variable, expression);
         return new ExecutionContext(context.turtles(),context.environment(),context.userDefinedCommands());
-        
     }
 
 }

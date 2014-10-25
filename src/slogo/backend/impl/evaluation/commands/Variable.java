@@ -11,22 +11,18 @@ import slogo.backend.evaluation.MalformedSyntaxException;
 import slogo.backend.impl.evaluation.ExecutionContext;
 import slogo.backend.parsing.ISyntaxNode;
 
-public class Variable implements IOperation{
+public class Variable extends Operation{
     private String name;
     public Variable (String name){
+    	super("Variable", 1, 1);
         this.name = name;
     }
     @Override
-    public IExecutionContext execute (List<IExecutionContext> args, IExecutionContext previous,
+    public IExecutionContext executeRaw (List<IExecutionContext> args, IExecutionContext previous,
             ISyntaxNode current) throws MalformedSyntaxException {
         Map<String, String> newEnvironment = new HashMap<>(args.get(0).environment());
         newEnvironment.put(Constants.RETURN_VALUE_ENVIRONMENT, args.get(0).environment().get(name));
         return new ExecutionContext(args.get(0).turtles(), newEnvironment, args.get(0).userDefinedCommands());
-    }
-
-    @Override
-    public String type () {
-        return "Variable"; //change
     }
 
 }
