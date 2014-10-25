@@ -737,18 +737,9 @@ public class ModuleCreationHelper {
 		btn.setOnAction(new EventHandler<ActionEvent>(){
 			@Override
 			public void handle(ActionEvent event){
-				FileChooser fileChooser = new FileChooser();
-				fileChooser.setTitle("Load in a New Turtle Image");
-				fileChooser.getExtensionFilters().addAll(new ExtensionFilter("Images", "*.jpg", "*.png"));
-				File selectedFile = fileChooser.showOpenDialog(stage);
-				if (selectedFile != null) {
-					Image i = new Image((selectedFile.toURI().toString()), AppConstants.MAX_NEW_IMAGE_WIDTH, AppConstants.MAX_NEW_IMAGE_HEIGHT, true, true);
-					myTurtleSelector.updateMap("User Image #" + totalUserImages, new ImageView(i), myTurtleList.get(0));
-					totalUserImages +=1;
-				}
-				else{
-					System.out.println("No File Selected");
-				}
+			    ImageLoader IL = new ImageLoader(getTurtle(), totalUserImages);
+			    IL.chooseNewImage(stage, myTurtleSelector);
+			    totalUserImages +=1;
 			}
 		});
 	}
