@@ -323,8 +323,8 @@ public class ModuleCreationHelper {
 	private void createIncreaseDecreaseButtons(){
 	    HBox hb = new HBox();
 	    ButtonCreator BC = new ButtonCreator(hb);
-	    Button btn = BC.createButton("Inc.");
-	    Button btn2 = BC.createButton("Dec");
+	    Button btn = BC.createButton("Inc. Pen Size");
+	    Button btn2 = BC.createButton("Dec. Pen Size");
 	    activateIncreaseDecreaseButtons(btn, btn2, myView);
 	    mySelectorsVBox.getChildren().add(hb);   
 	}
@@ -335,7 +335,6 @@ public class ModuleCreationHelper {
 	        public void handle(ActionEvent event){
 	            Turtle t = getTurtle();
 	            view.sendCommandToBackend("SetPenSize " + (t.getThickness() + 1));
-                    //setListViewVariables(t.getImageXPos(), t.getImageYPos(), t.getOrientation() - 90, true, t.getThickness());
 	        }
 	    });
 	    decbtn.setOnAction(new EventHandler<ActionEvent>(){
@@ -343,7 +342,6 @@ public class ModuleCreationHelper {
 	        public void handle(ActionEvent event){
 	            Turtle t = getTurtle();
 	            view.sendCommandToBackend("SetPenSize " + (t.getThickness() - 1));
-                    //setListViewVariables(t.getImageXPos(), t.getImageYPos(), t.getOrientation() - 90, true, t.getThickness());
 
 	        }
 	    });
@@ -392,7 +390,6 @@ public class ModuleCreationHelper {
 		LabelCreator LC = new LabelCreator(mySelectorsVBox);
 		SliderCreator SC = new SliderCreator(mySelectorsVBox);
 		LC.createLabel("Animation Speed Slider", AppConstants.LABEL_FONT_SIZE, AppConstants.DEFAULT_TEXT_COLOR);
-		//GET RID OF MAGIC NUMBERS
 		animationSlider = SC.createSlider(AppConstants.ANIMATION_SLIDER_MIN_VALUE, AppConstants.ANIMATION_SLIDER_MAX_VALUE, AppConstants.ANIMATION_SLIDER_DEFAULT_VALUE);
 	}
 

@@ -105,11 +105,11 @@ public class MethodRunner {
 	    line.setEndY((double) l.end().getY() + AppConstants.INITIAL_TURTLE_Y_POS);
 	    if(turtle.getLineProperty().equals("Dashed")){
 	        line.setStrokeWidth(turtle.getThickness());
-	        line.getStrokeDashArray().addAll(10d);
+	        line.getStrokeDashArray().addAll(AppConstants.DASH_SIZE);
 	    }
 	    if(turtle.getLineProperty().equals("Bold")){
                 line.getStrokeDashArray().clear();
-                line.setStrokeWidth(turtle.getThickness() + 5);
+                line.setStrokeWidth(Math.min(AppConstants.MAX_PATH_WIDTH, (turtle.getThickness() + AppConstants.BOLD_SIZE)));
             }
 	    if(turtle.getLineProperty().equals("None")){
                 line.getStrokeDashArray().clear();
@@ -120,14 +120,14 @@ public class MethodRunner {
 	}
 
 	private void setTurtleDirection() {
-		turtle.setOrientation(TS.turtleDirection().toDegrees() + 90);
+		turtle.setOrientation(TS.turtleDirection().toDegrees() + AppConstants.ORIENTATION_OFFSET);
 	}
 	
 	private void setPenState() {
 		
 	}
 	
-	private void setTurtleVisibility() {
+	private void setTurtleVisibility() { 
 		if (TS.turtleVisibility().VISIBLE != null) {
 			//TODO
 		}
@@ -153,7 +153,7 @@ public class MethodRunner {
                        TS.turtleQualities().setIndex(0);
 	           }
 	           turtle.setThickness(Math.max(1, TS.turtleQualities().thickness()));
-	           turtle.setThickness(Math.min(15, turtle.getThickness()));
+	           turtle.setThickness(Math.min(AppConstants.MAX_PATH_WIDTH, turtle.getThickness()));
 	}
 
 	public void setEnvironment(String var) {

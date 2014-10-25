@@ -1,9 +1,7 @@
 package slogo.UI;
 
 import java.util.Map;
-
 import javafx.scene.paint.Color;
-
 import java.lang.reflect.Field;
 
 /**
@@ -106,6 +104,10 @@ public class AppConstants {
 
         public static final double GRIDLINES_SPACING = 10;
         public static final double ROUNDING_ERROR = 0.00000001;
+        public static final double DASH_SIZE = 10;
+        public static final int  MAX_PATH_WIDTH = 15;
+        public static final int BOLD_SIZE = 5;
+        public static final double ORIENTATION_OFFSET = 90;
         
 }
 
