@@ -28,6 +28,7 @@ public class Back extends Operation{
     protected IExecutionContext executeRaw (List<IExecutionContext> args, IExecutionContext previous, ISyntaxNode current) {
         String backward = args.get(0).environment().get(Constants.RETURN_VALUE_ENVIRONMENT);
         double backwardValue = Double.parseDouble(backward);
+
         Map <String,ITurtleStatus> turtles = args.get(0).turtles();
 
         for(String name: turtles.keySet()){
@@ -52,6 +53,7 @@ public class Back extends Operation{
                 turtles.put(name, newStatus);
             }
         }
+
         return new ExecutionContext(args.get(0).turtles(),args.get(0).environment(), args.get(0).userDefinedCommands());
     }
 

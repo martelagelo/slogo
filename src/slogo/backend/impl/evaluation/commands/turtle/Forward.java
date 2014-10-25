@@ -37,17 +37,14 @@ public class Forward  extends Operation{
         ICoordinates pos = status.turtlePosition();
         IDirection dir = status.turtleDirection();
         PenState pen = status.penState();
-        Visibility vis = Visibility.VISIBLE;
-      
-        if(pen.equals(PenState.UP)){
-            vis = Visibility.INVISIBLE;
-        }
+        Visibility vis = status.turtleVisibility();
         double newX = pos.getX().doubleValue()+ forwardValue*Math.cos(dir.toRadians());
         double newY = pos.getY().doubleValue()+ forwardValue*Math.sin(dir.toRadians());
         ICoordinates newPos = new Coordinates(newX,newY);
-        
-        ILine newLine = new Line(pos, newPos, vis);
-        status.lineSequence().add(newLine);
+        if(pen.equals(PenState.DOWN)){
+            ILine newLine = new Line(pos, newPos, vis);
+            status.lineSequence().add(newLine);
+        }
         ITurtleStatus newStatus = new TurtleStatus(status.lineSequence(),newPos,dir,pen,status.turtleVisibility(), status.turtleQualities());
         turtles.put(name, newStatus);
         }

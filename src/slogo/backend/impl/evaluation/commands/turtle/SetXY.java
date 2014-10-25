@@ -33,17 +33,14 @@ public class SetXY extends Operation{
         ICoordinates pos = status.turtlePosition();
         IDirection dir = status.turtleDirection();
         PenState pen = status.penState();
-        Visibility vis = Visibility.VISIBLE;
-
-        if(pen.equals(PenState.UP)){
-            vis = Visibility.INVISIBLE;
+        Visibility vis = status.turtleVisibility();
+        ICoordinates newPos = new Coordinates(newXValue, newYValue);
+        if(pen.equals(PenState.DOWN)){
+            ILine newLine = new Line(pos, newPos, vis);
+            status.lineSequence().add(newLine);
         }
-
-        ICoordinates newPos = new Coordinates(newXValue,newYValue);
         String distance = String.valueOf(newPos.getDistance(pos).doubleValue());
         args.get(0).environment().put(Constants.RETURN_VALUE_ENVIRONMENT, distance);
-        ILine newLine = new Line(pos, newPos, vis);
-        status.lineSequence().add(newLine);
         ITurtleStatus newStatus = new TurtleStatus(status.lineSequence(),newPos,dir,pen,status.turtleVisibility(), status.turtleQualities());
         args.get(0).turtles().put(Constants.DEFAULT_TURTLE_NAME, newStatus);
         return new ExecutionContext(args.get(0).turtles(),args.get(0).environment(), args.get(0).userDefinedCommands());
