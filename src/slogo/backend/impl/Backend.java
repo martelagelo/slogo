@@ -59,7 +59,7 @@ public class Backend implements IModel{
 	private List<ITokenRule> tokenRules(){
 		List<ITokenRule> rules = new ArrayList<>();
 		rules.add(new TokenRule.Builder(Constants.CONSTANT_LABEL, "-?[0-9]+\\.?[0-9]*").build());
-		rules.add(new TokenRule.Builder(Constants.COMMAND_LABEL, "[a-zA-z_]+(\\?)?").build());
+		rules.add(new TokenRule.Builder(Constants.COMMAND_LABEL, "[a-zA-Z_]+(\\?)?").build());
 		rules.add(new TokenRule.Builder(Constants.VARIABLE_LABEL, ":[a-zA-Z]+").build());
 		rules.add(new TokenRule.Builder(Constants.OPENING_LIST_LABEL, "\\[").build());
 		rules.add(new TokenRule.Builder(Constants.CLOSING_LIST_LABEL, "\\]").build());
