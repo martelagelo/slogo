@@ -109,7 +109,6 @@ public class Backend implements IModel{
 				{"SetShape", "1"},
 				{"SetPenColor", "3"},
 				{"SetBackground", "3"},
-				{Constants.VARIABLE_LABEL, "0"}
 		};
 		String[][][] controlRules = {
 				{{"For"}, {
@@ -181,11 +180,16 @@ public class Backend implements IModel{
 		};
 		List<IGrammarRule> ruleList = new ArrayList<>();
 		for (String[] rule: rules) {
-			List<String> repeatedConstants = new ArrayList<>();
-			for (int i = 0; i < Integer.parseInt(rule[1]); i++){
-				repeatedConstants.add(Constants.CONSTANT_LABEL);
+			int numRepeats = Integer.parseInt(rule[1]);
+			String[][] repeatedConstants = new String[numRepeats][2];
+			for (int i = 0; i < numRepeats; i++) {
+				repeatedConstants[i][0] = Constants.CONSTANT_LABEL;
+				repeatedConstants[i][1] = Constants.VARIABLE_LABEL;
 			}
-			ruleList.add(new GrammarRule(rule[0], repeatedConstants));
+			String[] wrappedCommandName = { rule[0] };
+			ruleList.add(new GrammarRule(
+					wrappedCommandName,
+					repeatedConstants));
 		}
 		for (String[][] rule: controlRules) {
 			ruleList.add(new GrammarRule(rule[0][0], Arrays.asList(rule[1])));
