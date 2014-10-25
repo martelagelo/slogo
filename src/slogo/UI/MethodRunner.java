@@ -9,6 +9,8 @@ import slogo.CommandExecutor;
 import slogo.backend.impl.util.TurtleStatus;
 import slogo.backend.util.ILine;
 import slogo.backend.util.ITurtleStatus;
+import slogo.backend.util.PenState;
+import slogo.backend.util.Visibility;
 import javafx.collections.ObservableList;
 import javafx.geometry.Point2D;
 import javafx.scene.Group;
@@ -47,6 +49,7 @@ public class MethodRunner {
 	}
 	
 	public void changeTurtle() {
+	        showTurtle();
 		moveTurtle();
 		setTurtleDirection();
 		setPenState();
@@ -57,11 +60,23 @@ public class MethodRunner {
 
     public void changeEnvironment() {
 		//NEEDS FUNCTIONALITY
-		System.out.println(environment);
+		System.out.println("Environment:      " + environment);
 		
 	}
+    
+        private void showTurtle(){
+            if(TS.turtleVisibility().equals(Visibility.VISIBLE) && !root.getChildren().contains(turtle.getImage())){
+                root.getChildren().add(turtle.getImage());
+            }
+            if(TS.turtleVisibility().equals(Visibility.INVISIBLE) && root.getChildren().contains(turtle.getImage())){
+                root.getChildren().remove(turtle.getImage());
+            }
+            
+        }
 		
 	private void moveTurtle() {
+	    System.out.println(TS.penState().toString());
+	    if(TS.penState().equals(PenState.DOWN)){
 	    for (Line l : pathList) {
 	        root.getChildren().remove(l);
 	    }
@@ -77,6 +92,7 @@ public class MethodRunner {
 	        if(!alreadyAdded){
 	            drawNewLine(l);
 	        }
+	    }
 	    }
 	    turtle.moveTurtle((double) TS.turtlePosition().getX() + AppConstants.INITIAL_TURTLE_X_POS, (double) TS.turtlePosition().getY() + AppConstants.INITIAL_TURTLE_Y_POS); 
 	}
