@@ -40,7 +40,6 @@ public class PathTextureSelector {
   //TODO: List needs to be populated with different line textures
     private void populateLineTextureList(List<String> list) {
     	list.add("None");
-        list.add("Dotted");
     	list.add("Bold");
     	list.add("Dashed");
     }

@@ -1,35 +1,12 @@
 package slogo.backend.test;
 
 import static org.junit.Assert.*;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+import javafx.scene.paint.Color;
 import org.junit.Test;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import slogo.backend.evaluation.IExecutionContext;
 import slogo.backend.evaluation.IOperation;
 import slogo.backend.evaluation.IOperationFactory;
@@ -50,6 +27,7 @@ import slogo.backend.impl.parsing.SyntaxNode;
 import slogo.backend.impl.util.Coordinates;
 import slogo.backend.impl.util.Direction;
 import slogo.backend.impl.util.Line;
+import slogo.backend.impl.util.Qualities;
 import slogo.backend.impl.util.TurtleStatus;
 import slogo.backend.parsing.ISyntaxNode;
 import slogo.backend.util.ICoordinates;
@@ -89,7 +67,8 @@ public class OperationTest {
 	    IDirection dir = new Direction(0);
 	    PenState pen = PenState.DOWN;
 	    Visibility vis = Visibility.VISIBLE;
-	    ITurtleStatus status = new TurtleStatus(list,cor,dir,pen,vis);
+	    Qualities q = new Qualities(Color.BLACK, 0, 1);
+	    ITurtleStatus status = new TurtleStatus(list,cor,dir,pen,vis, q);
 	    Map <String, ITurtleStatus> turtles = new HashMap<String, ITurtleStatus>();
 	    turtles.put("1", status);
 	    Map<String, String> environment = new HashMap<String, String>();

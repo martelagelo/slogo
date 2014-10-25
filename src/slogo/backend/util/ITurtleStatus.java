@@ -1,6 +1,7 @@
 package slogo.backend.util;
 
 import java.util.List;
+import slogo.backend.impl.util.Qualities;
 
 /**
  * The status of one turtle
@@ -37,10 +38,15 @@ public interface ITurtleStatus {
 	 * @return the state of the turtle
 	 */
 	public Visibility turtleVisibility();
+	
+	public Qualities turtleQualities ();
 	/**
 	 * Get whether the turtle is currently active, i.e. will respond to commands
 	 * 
 	 * @return Whether the turtle will respond to commands
 	 */
 	public boolean isActive();
+	
+	
+
 }

@@ -94,6 +94,7 @@ public class ModuleCreationHelper {
 
 	private Label runningStatusLabel;
 	private int commandsHistoryCounter;
+        private PathColorSelector myPathColorSelector;
 
 
 	/**
@@ -139,6 +140,7 @@ public class ModuleCreationHelper {
 		createLoadButton();
 		createSaveButton();
 		createExtraWorkspaceButton();
+	        createIncreaseDecreaseButtons();
 		createAnimationSpeedSlider();
 		createGridCheckBox();
 	}
@@ -276,6 +278,35 @@ public class ModuleCreationHelper {
 		ButtonCreator BC = new ButtonCreator(mySelectorsVBox);
 		Button btn = BC.createButton("Load New Turtle Image");
 		activateTurtleImageLoaderButton(btn);
+	}
+	
+	private void createIncreaseDecreaseButtons(){
+	    HBox hb = new HBox();
+	    ButtonCreator BC = new ButtonCreator(hb);
+	    Button btn = BC.createButton("Inc.");
+	    Button btn2 = BC.createButton("Dec");
+	    activateIncreaseDecreaseButtons(btn, btn2);
+	    mySelectorsVBox.getChildren().add(hb);   
+	}
+	
+	private void activateIncreaseDecreaseButtons(Button incbtn, Button decbtn){
+	    incbtn.setOnAction(new EventHandler<ActionEvent>(){
+	        @Override
+	        public void handle(ActionEvent event){
+	            Turtle t = getTurtle();
+	            t.setThickness(Math.min(15, t.getThickness() + 1));
+                    setListViewVariables(t.getImageXPos(), t.getImageYPos(), t.getOrientation() - 90, true, t.getThickness());
+	        }
+	    });
+	    decbtn.setOnAction(new EventHandler<ActionEvent>(){
+	        @Override
+	        public void handle(ActionEvent event){
+	            Turtle t = getTurtle();
+	            t.setThickness(Math.max(1, t.getThickness() - 1));
+                    setListViewVariables(t.getImageXPos(), t.getImageYPos(), t.getOrientation() - 90, true, t.getThickness());
+
+	        }
+	    });
 	}
 
 	/**
@@ -418,8 +449,8 @@ public class ModuleCreationHelper {
 		BackgroundColorSelector backgroundSelect = new BackgroundColorSelector(mySelectorsVBox);
 		backgroundSelect.create(root, myGraphicsContext);
 
-		PathColorSelector pathSelect = new PathColorSelector(mySelectorsVBox);
-		pathSelect.create(root, myTurtleList.get(0));
+		myPathColorSelector = new PathColorSelector(mySelectorsVBox);
+		myPathColorSelector.create(root, myTurtleList.get(0));
 
 		PathTextureSelector pathTexture = new PathTextureSelector(mySelectorsVBox);
 		pathTexture.create(root, myTurtleList.get(0));
@@ -780,13 +811,14 @@ public class ModuleCreationHelper {
 		return animationSlider.getValue();
 	}
 
-	protected void setListViewVariables(double x, double y, double o, boolean b){
+	protected void setListViewVariables(double x, double y, double o, boolean b, int t){
 	    //DEAL WITH ROUNDING ERRORS
 		myVariables.clear();
 		myVariables.add("Turtle X Position:     " + x);
 		myVariables.add("Turtle Y Position:     " + y);
 		myVariables.add("Turtle Heading:        " + o);
-		myVariables.add("Pen Down?:     " + b);
+		myVariables.add("Pen Down?:             " + b);
+		myVariables.add("Pen Thickness:         " + t);
 		myVariablesList.setItems(myVariables);
 	}
 
@@ -797,5 +829,13 @@ public class ModuleCreationHelper {
 	public void turnOffRunningStatusLabel() {
 		runningStatusLabel.setVisible(false);
 	}
+
+    protected TurtleImageSelector getTurtleSelector(){
+        return myTurtleSelector;
+    }
+
+    public PathColorSelector getPathColorSelector () {
+        return myPathColorSelector;
+    }
 }
 

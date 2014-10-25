@@ -33,5 +33,14 @@ public class PathColorSelector {
         VBox selectorWithLabel = sc.createSelectorWithLabel("Select a Path Color", AppConstants.TITLE_LABEL_FONT_SIZE/3, Color.BLACK);
         myVbox.getChildren().addAll(selectorWithLabel);
     }
+
+    public void setValue (Color color) {
+        pathColor.setValue(color);
+        
+    }
+
+    public Color getValue () {
+        return pathColor.getValue();
+    }
     
 }

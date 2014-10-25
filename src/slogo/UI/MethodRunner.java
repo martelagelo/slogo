@@ -51,10 +51,11 @@ public class MethodRunner {
 		setTurtleDirection();
 		setPenState();
 		setTurtleVisibility();
-		MCH.setListViewVariables((double) TS.turtlePosition().getX(),(double) TS.turtlePosition().getY(), TS.turtleDirection().toDegrees(), true);
+		setTurtleQualities();
+		MCH.setListViewVariables((double) TS.turtlePosition().getX(),(double) TS.turtlePosition().getY(), TS.turtleDirection().toDegrees(), true, turtle.getThickness());
 	}
-	
-	public void changeEnvironment() {
+
+    public void changeEnvironment() {
 		//NEEDS FUNCTIONALITY
 		System.out.println(environment);
 		
@@ -103,15 +104,16 @@ public class MethodRunner {
 	    line.setEndX((double) l.end().getX() + AppConstants.INITIAL_TURTLE_X_POS);
 	    line.setEndY((double) l.end().getY() + AppConstants.INITIAL_TURTLE_Y_POS);
 	    if(turtle.getLineProperty().equals("Dashed")){
+	        line.setStrokeWidth(turtle.getThickness());
 	        line.getStrokeDashArray().addAll(10d);
 	    }
 	    if(turtle.getLineProperty().equals("Bold")){
                 line.getStrokeDashArray().clear();
-                line.setStrokeWidth(5);
+                line.setStrokeWidth(turtle.getThickness() + 5);
             }
 	    if(turtle.getLineProperty().equals("None")){
                 line.getStrokeDashArray().clear();
-                line.setStrokeWidth(1);
+                line.setStrokeWidth(turtle.getThickness());
             }
 	    root.getChildren().add(line);
 	    pathList.add(line);
@@ -133,6 +135,22 @@ public class MethodRunner {
 	
 	public void setTurtleStatus(ITurtleStatus TS) {
 		this.TS = TS;
+	}
+	
+	private void setTurtleQualities () {
+	           MCH.getPathColorSelector().setValue(TS.turtleQualities().toColor());
+	           turtle.setColor(MCH.getPathColorSelector().getValue());
+	           turtle.setColor(TS.turtleQualities().toColor());
+	           if(TS.turtleQualities().index() > 0 && TS.turtleQualities().index() <= MCH.getTurtleSelector().getItems().size()){
+	               MCH.getTurtleSelector().setValue((MCH.getTurtleSelector().getItems().get((TS.turtleQualities().index() - 1))));
+	               turtle.setImage(MCH.getTurtleSelector().getValue());
+	           }
+	           else if (TS.turtleQualities().index() < 0 || TS.turtleQualities().index() > MCH.getTurtleSelector().getItems().size()){
+                       new MessageBox("Not a Valid Number!");
+                       TS.turtleQualities().setIndex(0);
+	           }
+	           turtle.setThickness(Math.max(1, TS.turtleQualities().thickness()));
+	           turtle.setThickness(Math.min(15, TS.turtleQualities().thickness()));
 	}
 
 	public void setEnvironment(String var) {

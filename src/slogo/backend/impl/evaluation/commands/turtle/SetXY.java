@@ -44,7 +44,7 @@ public class SetXY extends Operation{
         args.get(0).environment().put(Constants.RETURN_VALUE_ENVIRONMENT, distance);
         ILine newLine = new Line(pos, newPos, vis);
         status.lineSequence().add(newLine);
-        ITurtleStatus newStatus = new TurtleStatus(status.lineSequence(),newPos,dir,pen,status.turtleVisibility());
+        ITurtleStatus newStatus = new TurtleStatus(status.lineSequence(),newPos,dir,pen,status.turtleVisibility(), status.turtleQualities());
         args.get(0).turtles().put(Constants.DEFAULT_TURTLE_NAME, newStatus);
         return new ExecutionContext(args.get(0).turtles(),args.get(0).environment(), args.get(0).userDefinedCommands());
     }

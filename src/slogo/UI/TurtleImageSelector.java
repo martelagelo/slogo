@@ -2,6 +2,7 @@ package slogo.UI;
 
 import java.util.ArrayList;
 import java.util.List;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
@@ -45,5 +46,17 @@ public class TurtleImageSelector {
     protected void updateMap(String s, ImageView iv, Turtle t){
         mySelector.getItems().add(s);
         t.getShapesMap().put(s, iv);
+    }
+
+    public ObservableList<String> getItems () {
+        return mySelector.getItems();
+    }
+    
+    public void setValue(String s){
+        mySelector.setValue(s);
+    }
+    
+    public String getValue(){
+        return mySelector.getValue();
     }
 }

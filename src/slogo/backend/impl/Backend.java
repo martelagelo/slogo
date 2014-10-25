@@ -90,6 +90,9 @@ public class Backend implements IModel{
 				{"Towards","2"},
 				{"Xcor","0"},
 				{"Ycor","0"},
+				{"SetPenSize", "1"},
+				{"SetShape", "1"},
+				{"SetPenColor", "3"}
 				
 		};
 		String[][][] controlRules = {

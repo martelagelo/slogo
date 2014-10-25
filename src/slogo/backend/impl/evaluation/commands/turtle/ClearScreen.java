@@ -37,7 +37,7 @@ protected IExecutionContext executeRaw (List<IExecutionContext> args, IExecution
         args.get(0).environment().put(Constants.RETURN_VALUE_ENVIRONMENT, distance);
         
       
-        ITurtleStatus newStatus = new TurtleStatus(new ArrayList<ILine>(),newPos,dir,pen,status.turtleVisibility());
+        ITurtleStatus newStatus = new TurtleStatus(new ArrayList<ILine>(),newPos,dir,pen,status.turtleVisibility(), status.turtleQualities());
         args.get(0).turtles().put(Constants.DEFAULT_TURTLE_NAME, newStatus);
         return new ExecutionContext(args.get(0).turtles(),args.get(0).environment(), args.get(0).userDefinedCommands());
     }
