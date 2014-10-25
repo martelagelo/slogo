@@ -205,10 +205,8 @@ public class ModuleCreationHelper {
 	 * Creates a checkBox for the Grid
 	 */
 	private void createGridCheckBox() {
-		CheckBoxCreator cb = new CheckBoxCreator(mySelectorsVBox);
-		CheckBox CB = cb.createCheckBox("Toggle Grid");
-		myGridLines = new ArrayList<Line>();
-		activateReferenceCB(CB);
+	        GridLinesToggler GLT = new GridLinesToggler(mySelectorsVBox);
+		GLT.activate(myCanvas, root);
 	}
 
 	/**
@@ -705,36 +703,6 @@ public class ModuleCreationHelper {
 		});
 	}
 
-	/**
-	 * Creates an event handler that makes grid lines on the canvas when fired
-	 * @param cb The checkbox that fires the event
-	 */
-	public void activateReferenceCB(CheckBox cb){
-		cb.setOnAction(new EventHandler<ActionEvent>(){
-			@Override
-			public void handle(ActionEvent event){
-				if(cb.isSelected()) {
-					for(double x = myCanvas.getCanvas().getLayoutX(); x < myCanvas.getCanvas().getWidth() + myCanvas.getCanvas().getLayoutX(); x += AppConstants.GRIDLINES_SPACING){
-						Line line = new Line(x, myCanvas.getCanvas().getLayoutY(), x, myCanvas.getCanvas().getLayoutY() + myCanvas.getCanvas().getHeight());
-						line.setFill(Color.LIGHTGRAY);
-						myGridLines.add(line);
-					}
-					for(double y = myCanvas.getCanvas().getLayoutY(); y < myCanvas.getCanvas().getHeight() + myCanvas.getCanvas().getLayoutY(); y+= AppConstants.GRIDLINES_SPACING){
-						Line line2 = new Line(myCanvas.getCanvas().getLayoutX(), y, myCanvas.getCanvas().getLayoutX() + myCanvas.getCanvas().getWidth(), y);
-						line2.setFill(Color.LIGHTGRAY);
-						myGridLines.add(line2);
-					}
-					root.getChildren().addAll(myGridLines);
-				}
-				else{
-					for(Line l : myGridLines){
-						root.getChildren().remove(l);
-					}
-					myGridLines.clear();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Creates an event handler that records the text in the text box when fired
@@ -901,11 +869,10 @@ public class ModuleCreationHelper {
 	}
 
 	protected void setListViewVariables(double x, double y, double o, boolean b, int t){
-	    //DEAL WITH ROUNDING ERRORS
 		myVariables.clear();
-		myVariables.add("Turtle X Position:     " + x);
-		myVariables.add("Turtle Y Position:     " + y);
-		myVariables.add("Turtle Heading:        " + o);
+		myVariables.add("Turtle X Position:     " + String.format("%.5g%n", x));
+		myVariables.add("Turtle Y Position:     " + String.format("%.5g%n", y));
+		myVariables.add("Turtle Heading:        " + String.format("%.5g%n", o));
 		myVariables.add("Pen Down?:             " + b);
 		myVariables.add("Pen Thickness:         " + t);
 		myVariablesList.setItems(myVariables);
@@ -929,11 +896,11 @@ public class ModuleCreationHelper {
         return myTurtleSelector;
     }
 
-    public PathColorSelector getPathColorSelector () {
+    protected PathColorSelector getPathColorSelector () {
         return myPathColorSelector;
     }
 
-    public BackgroundColorSelector getBackgroundColorSelector () {
+    protected BackgroundColorSelector getBackgroundColorSelector () {
         return myBackgroundColorSelector;
     }
 }
