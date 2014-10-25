@@ -20,4 +20,8 @@ public class Token implements IToken{
 	public String type() {
 		return type;
 	}
+	@Override
+	public String toString(){
+		return type + ": " + text;
+	}
 }

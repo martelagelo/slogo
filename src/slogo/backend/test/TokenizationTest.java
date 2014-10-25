@@ -13,6 +13,7 @@ import java.util.regex.Matcher;
 import org.junit.Test;
 
 import slogo.Constants;
+import slogo.backend.evaluation.MalformedSyntaxException;
 import slogo.backend.impl.tokenization.TokenRule;
 import slogo.backend.impl.tokenization.Tokenizer;
 import slogo.backend.tokenization.IToken;
@@ -73,7 +74,7 @@ public class TokenizationTest {
 		List<IToken> tokens = new ArrayList<>();
 		try {
 			tokens = tokenizer.tokenize(input);
-		} catch (IOException e) {
+		} catch (IOException | MalformedSyntaxException e) {
 			fail();
 		}
 		String[][] blah = {

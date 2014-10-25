@@ -32,7 +32,7 @@ public class Parser implements IParser {
 			this.rules = rules;
 		}
 		else {
-			throw new InvalidGrammarRuleException();
+			throw new InvalidGrammarRuleException("The rules supplied are null");
 		}
 	}
 
@@ -53,10 +53,9 @@ public class Parser implements IParser {
 			return nodeStack.get(0);
 		}
 		else {
-			throw new MalformedSyntaxException("Unable to parse tokens");
+			throw new MalformedSyntaxException(generateParseErrorMessage(nodes, nodeStack));
 		}
 	}
-
 
 	public List<ISyntaxNode> tokensToNodes(List<IToken> tokens) throws MalformedSyntaxException {
 		List<ISyntaxNode> nodes = new ArrayList<>();
@@ -112,5 +111,8 @@ public class Parser implements IParser {
 		resultChildren.add(operation);
 		result.setChildren(resultChildren);
 		return result;
+	}
+	private String generateParseErrorMessage(List<ISyntaxNode> all, List<ISyntaxNode> remaining) {
+		return "Reducing " + all + " failed, creating " + remaining + " instead";
 	}
 }

@@ -8,6 +8,7 @@ import slogo.backend.impl.util.Qualities;
  *
  */
 public interface ITurtleStatus {
+
 	/**
 	 * Get the sequence of lines that have been drawn so far
 	 * 
@@ -46,7 +47,11 @@ public interface ITurtleStatus {
 	 * @return Whether the turtle will respond to commands
 	 */
 	public boolean isActive();
-	
-	
 
+	/**
+	 * Set the turtle to be active or inactive
+	 * 
+	 * @param true for active, false for inactive
+	 */
+	public void setActive(boolean b);
 }

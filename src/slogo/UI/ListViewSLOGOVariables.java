@@ -2,9 +2,11 @@ package slogo.UI;
 
 import java.util.HashMap;
 import java.util.Map;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Group;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
 public class ListViewSLOGOVariables extends ListViewAllSLOGO {
@@ -15,9 +17,13 @@ public class ListViewSLOGOVariables extends ListViewAllSLOGO {
         super(root);
     }
     
+    public ListViewSLOGOVariables(VBox vBox) {
+    	super(vBox);
+    }
+    
     @Override
     protected void create(){
-        createThings(AppConstants.LIST_BLOCKS_HEIGHT, AppConstants.LIST_BLOCKS_WIDTH, AppConstants.LIST_BLOCKS_X_POS, AppConstants.LIST_BLOCKS_Y_POS_SLOGO_VARIABLES, 
+        createThings(AppConstants.LIST_BLOCKS_HEIGHT, AppConstants.LIST_BLOCKS_WIDTH,  
                                            "SLOGO Variables", 1, Color.BLACK);
         initializeVariablesMap();
         myListViewCreator.getListView().setItems(myList);

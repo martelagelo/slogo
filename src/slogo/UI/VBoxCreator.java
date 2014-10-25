@@ -34,4 +34,9 @@ private HBox hBox;
 		else hBox.getChildren().add(vBox);
 		return vBox;
 	}
+	
+	public VBox createVBoxScrollable(int spacing) {
+		VBox vBox = new VBox(spacing);
+		return vBox;
+	}
 }

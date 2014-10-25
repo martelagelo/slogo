@@ -10,8 +10,8 @@ import java.util.List;
 import java.util.Map;
 
 import slogo.Constants;
+import slogo.ExecutionException;
 import slogo.IModel;
-import slogo.backend.evaluation.ElementUnsupportedException;
 import slogo.backend.evaluation.IEvaluator;
 import slogo.backend.evaluation.IExecutionContext;
 import slogo.backend.evaluation.MalformedSyntaxException;
@@ -34,12 +34,27 @@ import slogo.backend.util.ITurtleStatus;
 public class Backend implements IModel{
 
 	private IExecutionContext lastContext;
+	private Tokenizer tokenizer;
+	private Parser parser;
+	private Evaluator evaluator;
 
-	public Backend(){
+	public Backend() throws InitializationException{
 		Map<String, ITurtleStatus> turtles = new HashMap<>();
 		turtles.put(Constants.DEFAULT_TURTLE_NAME, new TurtleStatus.Builder().build());
 		this.lastContext = new ExecutionContext(turtles, new HashMap<>(), new HashMap<>());
-	}      
+
+		try {
+			tokenizer = new Tokenizer(tokenRules());
+		} catch (InvalidTokenRulesException e) {
+			throw new InitializationException(e.getMessage());
+		}
+		try {
+			parser = new Parser(grammarRules());
+		} catch (InvalidGrammarRuleException e) {
+			throw new InitializationException(e.getMessage());
+		}
+		evaluator = new Evaluator();		
+	}
 
 	private List<ITokenRule> tokenRules(){
 		List<ITokenRule> rules = new ArrayList<>();
@@ -98,7 +113,7 @@ public class Backend implements IModel{
 		String[][][] controlRules = {
 				{{"For"}, {
 					Constants.OPENING_LIST_LABEL,
-					Constants.CONSTANT_LABEL,
+					Constants.VARIABLE_LABEL,
 					Constants.CONSTANT_LABEL,
 					Constants.CONSTANT_LABEL,
 					Constants.CONSTANT_LABEL,
@@ -109,11 +124,11 @@ public class Backend implements IModel{
 					Constants.CLOSING_LIST_LABEL
 				}},
 				{{"Make"}, {
-					Constants.CONSTANT_LABEL,
+					Constants.VARIABLE_LABEL,
 					Constants.CONSTANT_LABEL
 				}},
 				{{"Set"}, {
-					Constants.CONSTANT_LABEL,
+					Constants.VARIABLE_LABEL,
 					Constants.CONSTANT_LABEL
 				}},
 				{{"Repeat"}, {
@@ -125,8 +140,37 @@ public class Backend implements IModel{
 				}},
 				{{"DoTimes"}, {
 					Constants.OPENING_LIST_LABEL,
+					Constants.VARIABLE_LABEL,
 					Constants.CONSTANT_LABEL,
+					Constants.CLOSING_LIST_LABEL,
+					Constants.OPENING_LIST_LABEL,
 					Constants.CONSTANT_LABEL,
+					Constants.INFINITE_MATCHING_LABEL,
+					Constants.CLOSING_LIST_LABEL
+				}},
+				{{"If"}, {
+					Constants.CONSTANT_LABEL,
+					Constants.OPENING_LIST_LABEL,
+					Constants.CONSTANT_LABEL,
+					Constants.INFINITE_MATCHING_LABEL,
+					Constants.CLOSING_LIST_LABEL
+				}},
+				{{"IfElse"}, {
+					Constants.CONSTANT_LABEL,
+					Constants.OPENING_LIST_LABEL,
+					Constants.CONSTANT_LABEL,
+					Constants.INFINITE_MATCHING_LABEL,
+					Constants.CLOSING_LIST_LABEL,
+					Constants.OPENING_LIST_LABEL,
+					Constants.CONSTANT_LABEL,
+					Constants.INFINITE_MATCHING_LABEL,
+					Constants.CLOSING_LIST_LABEL
+				}},
+				{{"To"}, {
+					Constants.CONSTANT_LABEL,
+					Constants.OPENING_LIST_LABEL,
+					Constants.VARIABLE_LABEL,
+					Constants.INFINITE_MATCHING_LABEL,
 					Constants.CLOSING_LIST_LABEL,
 					Constants.OPENING_LIST_LABEL,
 					Constants.CONSTANT_LABEL,
@@ -145,41 +189,24 @@ public class Backend implements IModel{
 		return ruleList;
 	}
 	@Override
-	public IExecutionContext execute(String string) {
-	            ITokenizer tokenizer = null;
-	            IParser parser = null;
-	            IEvaluator evaluator = null;
-	            try {
-	                tokenizer = new Tokenizer(tokenRules());
-	            } catch (InvalidTokenRulesException e) {
-	                //FIXME
-	                e.printStackTrace();
-	            }
-	            try {
-	                parser = new Parser(grammarRules());
-	            } catch (InvalidGrammarRuleException e) {
-	                //FIXME
-	                e.printStackTrace();
-	            }
-	            evaluator = new Evaluator();		
-
-	            StringReader reader = new StringReader(string);
-	            IExecutionContext result = null;
-	            try {
-	                result = evaluator.evaluate(
-	                                            parser.parse(tokenizer.tokenize(reader)),
-	                                            lastContext);
-	            } catch (MalformedSyntaxException | IOException e) {
-	                e.printStackTrace();
-	            }
-	            lastContext = result;
-	            return result;
-	}
-
-	@Override
-	public Map<String, String> getData(Collection<String> elements)
-			throws ElementUnsupportedException {
-		return null;
+	public IExecutionContext execute(String string) throws ExecutionException{
+		StringReader reader = new StringReader(string);
+		IExecutionContext result = null;
+		try {
+			result = evaluator.evaluate(
+					parser.parse(tokenizer.tokenize(reader)),
+					lastContext);
+		} catch (MalformedSyntaxException | IOException e) {
+			throw new ExecutionException(e.getMessage());
+		}
+		if (result != null) {
+			lastContext = result;
+			return result;
+		}
+		else {
+			throw new ExecutionException("Executing " + string
+					+ " resulted in a invalid (null) result being returned");
+		}
 	}
 
 }

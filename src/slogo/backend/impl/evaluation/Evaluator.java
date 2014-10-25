@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 import slogo.Constants;
-import slogo.backend.evaluation.ElementUnsupportedException;
 import slogo.backend.evaluation.IEvaluator;
 import slogo.backend.evaluation.IExecutionContext;
 import slogo.backend.evaluation.MalformedSyntaxException;

@@ -21,13 +21,10 @@ public class TextFieldCreator {
 	public TextField createTextField() {
 		TextField TF = new TextField();
 		
-		TF.setMinWidth(500);
+		TF.setMinWidth(700.0);
 		TF.setPromptText("Enter code here");
-		if (root != null) {
-			root.getChildren().add(TF);
-		} else {
-			hBox.getChildren().add(TF);
-		}
+		if (root != null) root.getChildren().add(TF);
+		else hBox.getChildren().add(TF);
 		return TF;
 	}
 }

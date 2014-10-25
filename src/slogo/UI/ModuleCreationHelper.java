@@ -28,6 +28,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
@@ -65,10 +67,12 @@ public class ModuleCreationHelper {
 	private Group root;
 	private Scene scene;
 	private HBox firstButtonRow;
+	private HBox secondButtonRow;
 	private TurtleCanvas myCanvas;
 	private CommandsTextField myTextField;
 	private List<Turtle> myTurtleList;
 	private VBox mySelectorsVBox;
+	private VBox myListsVBox;
 	private ListViewPreviousCommands myCommandsList;
 	private ListViewSLOGOVariables myVariablesList;
 	private ListViewUserVariables myUserVariablesList;
@@ -79,6 +83,8 @@ public class ModuleCreationHelper {
 	private ObservableList<String> myUserCommands = FXCollections.observableArrayList();
 	private GraphicsContext myGraphicsContext;
 	private Slider animationSlider;
+	private ScrollPane moduleScrollPane;
+	private ScrollPane listScrollPane;
 
 	private Map<String, Node> myImagesMap;
 	private int totalUserImages;
@@ -113,26 +119,30 @@ public class ModuleCreationHelper {
 	}
 
 	/**
-	 * 
+	 * Populates the scene with modules
 	 */
 	public void createMainPageModules() {
 		createTitle();
 		createTurtleCanvas();
 		createTurtle();
+		createModuleScrollPane();
 		createSelectorVBox();
 		createSelectorVBoxModules();
+		createListScrollPane();
+		createListVBox();
+		createListViews();
 		createDebugModules();
 		activateKeyEvents();
 		createRunningStatusLabel();
 	}
 
 	/**
-	 * 
+	 * Creates the modules in the first scrolling pane
 	 */
 	private void createSelectorVBoxModules() {
 		createFirstRowButtons();
+		createSecondRowButtons();
 		createTextField();
-		createListViews();
 		createSelectors();
 		createHelpButton();
 		createNewTurtleButton();
@@ -146,18 +156,25 @@ public class ModuleCreationHelper {
 	}
 
 	/**
-	 * 
+	 * Creates the first row of buttons
 	 */
 	private void createFirstRowButtons() {
 		createFirstButtonRow();
 		createPlayButton();
 		createStopButton();
+	}
+	
+	/**
+	 * Creates the second row of buttons
+	 */
+	private void createSecondRowButtons() {
+		createSecondButtonRow();
 		createPauseButton();
 		createResetButton();
 	}
 
 	/**
-	 * 
+	 * Creates all the debugging modules
 	 */
 	private void createDebugModules() {
 		createDebugVBox();
@@ -165,6 +182,22 @@ public class ModuleCreationHelper {
 		createDebugStepIntoButton();
 		createDebugStepOverButton();
 		createDebugButton();
+	}
+	
+	/**
+	 * Creates a Scroll Pane for the lists in the application
+	 */
+	private void createListScrollPane() {
+		ScrollPaneCreator SPC = new ScrollPaneCreator(root);
+		listScrollPane = SPC.createScrollPane(AppConstants.LIST_SCROLL_PANE_X_POS, AppConstants.LIST_SCROLL_PANE_Y_POS, AppConstants.LIST_SCROLL_PANE_WIDTH + 30, AppConstants.LIST_SCROLL_PANE_HEIGHT);
+	}
+	
+	/**
+	 * Creates a Scroll Pane for the modules in the application
+	 */
+	private void createModuleScrollPane() {
+		ScrollPaneCreator SPC = new ScrollPaneCreator(root);
+		moduleScrollPane = SPC.createScrollPane(AppConstants.FIRST_SCROLL_PANE_X_POS, AppConstants.FIRST_SCROLL_PANE_Y_POS, AppConstants.FIRST_SCROLL_PANE_WIDTH, AppConstants.FIRST_SCROLL_PANE_HEIGHT);
 	}
 
 	/**
@@ -184,13 +217,21 @@ public class ModuleCreationHelper {
 		HBoxCreator HBC = new HBoxCreator(mySelectorsVBox);
 		firstButtonRow = HBC.createHBox(AppConstants.STAGE_PADDING);
 	}
+	
+	/**
+	 * Creates a HBox for buttons below the first row of buttons
+	 */
+	private void createSecondButtonRow() {
+		HBoxCreator HBC = new HBoxCreator(mySelectorsVBox);
+		secondButtonRow = HBC.createHBox(AppConstants.STAGE_PADDING);
+	}
 
 	/**
 	 * Creates the title for our application
 	 */
 	private void createTitle(){
 		LabelCreator LC = new LabelCreator(root);
-		Label label = LC.createLabel("SLOGO!!!", AppConstants.TITLE_X_POS, AppConstants.TITLE_Y_POS, AppConstants.TITLE_LABEL_FONT_SIZE, Color.BLACK);
+		LC.createLabel("SLOGO!!!", AppConstants.TITLE_X_POS, AppConstants.TITLE_Y_POS, AppConstants.TITLE_LABEL_FONT_SIZE, Color.BLACK);
 	}
 
 	/**
@@ -211,10 +252,8 @@ public class ModuleCreationHelper {
 		root.getChildren().add(myTurtleList.get(0).getImage());
 	}
 	
-
-
 	/**
-	 * 
+	 * Creates a button that runs animations
 	 */
 	private void createPlayButton() {
 		VBoxCreator VBC = new VBoxCreator(firstButtonRow);
@@ -243,7 +282,7 @@ public class ModuleCreationHelper {
 	 * Creates a button that pauses animation
 	 */
 	private void createPauseButton() {
-		VBoxCreator VBC = new VBoxCreator(firstButtonRow);
+		VBoxCreator VBC = new VBoxCreator(secondButtonRow);
 		VBox vBox = VBC.createVBox(AppConstants.VBOX_SPACING);
 		LabelCreator LC = new LabelCreator(vBox);
 		LC.createLabel("Pause Animation", AppConstants.LABEL_FONT_SIZE, AppConstants.DEFAULT_TEXT_COLOR);
@@ -256,7 +295,7 @@ public class ModuleCreationHelper {
 	 * Creates a button that resets animation
 	 */
 	private void createResetButton() {
-		VBoxCreator VBC = new VBoxCreator(firstButtonRow);
+		VBoxCreator VBC = new VBoxCreator(secondButtonRow);
 		VBox vBox = VBC.createVBox(AppConstants.VBOX_SPACING);
 		LabelCreator LC = new LabelCreator(vBox);
 		LC.createLabel("Reset Animation", AppConstants.LABEL_FONT_SIZE, AppConstants.DEFAULT_TEXT_COLOR);
@@ -378,7 +417,7 @@ public class ModuleCreationHelper {
 	 */
 	private void createDebugLabel() {
 		LabelCreator LC = new LabelCreator(debugVBox);
-		debugLabel = LC.createLabel("DEBUG MODE ON", AppConstants.TITLE_LABEL_FONT_SIZE, Color.RED);
+		debugLabel = LC.createLabel("DEBUG MODE ON", AppConstants.DEBUG_LABEL_FONT_SIZE, Color.RED);
 		debugLabel.setVisible(false);
 	}
 
@@ -420,16 +459,16 @@ public class ModuleCreationHelper {
 	}
 
 	/**
-	 * 
+	 * Creates all the lists for each of the variables and commans
 	 */
 	private void createListViews(){
-		myCommandsList = new ListViewPreviousCommands(root);
+		myCommandsList = new ListViewPreviousCommands(myListsVBox);
 		myCommandsList.create();
-		myVariablesList = new ListViewSLOGOVariables(root);
+		myVariablesList = new ListViewSLOGOVariables(myListsVBox);
 		myVariablesList.create();
-		myUserVariablesList = new ListViewUserVariables(root);
+		myUserVariablesList = new ListViewUserVariables(myListsVBox);
 		myUserVariablesList.create();
-		myUserCommandsList = new ListViewUserCommands(root);
+		myUserCommandsList = new ListViewUserCommands(myListsVBox);
 		myUserCommandsList.create();
 	}
 
@@ -438,11 +477,21 @@ public class ModuleCreationHelper {
 	 */
 	private void createSelectorVBox(){
 		VBoxCreator VBC = new VBoxCreator(root);
-		mySelectorsVBox = VBC.createVBox(AppConstants.VBOX_SPACING, AppConstants.FIRST_ROW_BUTTON_HBOX_X_POS, AppConstants.FIRST_ROW_BUTTON_HBOX_Y_POS);
+		mySelectorsVBox  = VBC.createVBoxScrollable(AppConstants.VBOX_SPACING);
+		moduleScrollPane.setContent(mySelectorsVBox);
+	}
+	
+	/**
+	 * Creates a vBox that stores all the lists
+	 */
+	private void createListVBox() {
+		VBoxCreator VBC = new VBoxCreator(root);
+		myListsVBox = VBC.createVBoxScrollable(AppConstants.VBOX_SPACING);
+		listScrollPane.setContent(myListsVBox);
 	}
 
 	/**
-	 * 
+	 * Creates all of the selectors for the application
 	 */
 	private void createSelectors() {
 
@@ -488,6 +537,10 @@ public class ModuleCreationHelper {
 		});
 	}
 
+	/**
+	 * Creates an event handler that pauses animation when fired
+	 * @param btn The button the fires the event
+	 */
 	public void activatePauseButton(Button btn) {
 		btn.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
@@ -497,6 +550,10 @@ public class ModuleCreationHelper {
 		});
 	}
 
+	/**
+	 * Creates an event handler that resets the animation when fired
+	 * @param btn The button the fires the event
+	 */
 	public void activateResetButton(Button btn) {
 		btn.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
@@ -520,7 +577,11 @@ public class ModuleCreationHelper {
 			}
 		});
 	}
-
+	
+	/**
+	 * Creates an event handler that shows and hides the debug modules when fired
+	 * @param cb The checkbox that fires the event
+	 */
 	public void activateDebugCB(CheckBox cb){
 		cb.setOnAction(new EventHandler<ActionEvent>(){
 			@Override
@@ -618,6 +679,10 @@ public class ModuleCreationHelper {
 		});
 	}
 
+	/**
+	 * Creates an event handler that steps through commands when fired
+	 * @param btn The button that fires the event
+	 */
 	public void activateStepIntoButton(Button btn) {
 		btn.setOnAction(new EventHandler<ActionEvent>(){
 			@Override
@@ -628,6 +693,10 @@ public class ModuleCreationHelper {
 		});
 	}
 
+	/**
+	 * Creates an event handler that steps over commands when fired
+	 * @param btn The button that fires the event
+	 */
 	public void activateStepOverButton(Button btn) {
 		btn.setOnAction(new EventHandler<ActionEvent>(){
 			@Override
@@ -638,6 +707,10 @@ public class ModuleCreationHelper {
 		});
 	}
 
+	/**
+	 * Creates an event handler that makes grid lines on the canvas when fired
+	 * @param cb The checkbox that fires the event
+	 */
 	public void activateReferenceCB(CheckBox cb){
 		cb.setOnAction(new EventHandler<ActionEvent>(){
 			@Override
@@ -665,6 +738,10 @@ public class ModuleCreationHelper {
 		});
 	}
 
+	/**
+	 * Creates an event handler that records the text in the text box when fired
+	 * @param TF The text field that fires the event
+	 */
 	public void activateTextField(TextField TF){
 		TF.setOnAction(new EventHandler<ActionEvent>(){
 			@Override
@@ -710,7 +787,9 @@ public class ModuleCreationHelper {
 		});
 	}
 
-	//NEEDS BACKEND FUNCTIONALITY
+	/**
+	 * Activates key events that move the turtle when fired
+	 */
 	private void activateKeyEvents() {
 		root.setOnKeyPressed(new EventHandler<KeyEvent>() {
 			@Override
@@ -735,16 +814,28 @@ public class ModuleCreationHelper {
 		});
 	}
 
+	/**
+	 * Adds values to a list
+	 * @param currentList The observable list
+	 * @param listView The physical list interface
+	 * @param input The values that needs to be added to the list
+	 */
 	private void addToCertainList(ObservableList<String> currentList, ListViewAllSLOGO listView, String input) {
 		currentList.add(input);
 		listView.setItems(currentList);
 	}
 
+	/**
+	 * Clears all values from a list
+	 * @param currentList The observable list
+	 * @param listView The physical list interface
+	 */
 	private void clearCertainList(ObservableList<String> currentList, ListViewAllSLOGO listView) {
 		currentList.clear();
 		listView.setItems(currentList);
 	}
 
+	
 	public void stepThroughCommandsHistory(int offset) {
 		if(commandsHistoryCounter <= myCommands.size()-1) {
 			myCommands.add(commandsHistoryCounter + offset, "(Executed) " + myCommands.get(commandsHistoryCounter + offset));
@@ -822,10 +913,16 @@ public class ModuleCreationHelper {
 		myVariablesList.setItems(myVariables);
 	}
 
+	/**
+	 * Makes the running status label visible
+	 */
 	public void turnOnRunningStatusLabel() {
 		runningStatusLabel.setVisible(true);
 	}
 	
+	/**
+	 * Makes the running status label invisible
+	 */
 	public void turnOffRunningStatusLabel() {
 		runningStatusLabel.setVisible(false);
 	}

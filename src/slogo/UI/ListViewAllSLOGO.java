@@ -21,11 +21,16 @@ import javafx.scene.paint.Color;
 public abstract class ListViewAllSLOGO {
 
 	private Group myRoot;
+	private VBox vBox;
 	protected ListViewCreator myListViewCreator;
 
 	public ListViewAllSLOGO(Group root){
 		myRoot = root;
 		myListViewCreator = new ListViewCreator();
+	}
+	
+	public ListViewAllSLOGO(VBox vBox) {
+		this.vBox = vBox;
 	}
 
 	public ListViewAllSLOGO createThings(int listViewHeight, int listViewWidth,
@@ -35,7 +40,8 @@ public abstract class ListViewAllSLOGO {
 		VBox vbox = myListViewCreator.createListViewWithLabel(labelName, fontSize, color);
 		vbox.setLayoutX(vboxXpos);
 		vbox.setLayoutY(vboxYpos);
-		myRoot.getChildren().add(vbox);
+		if (myRoot != null) myRoot.getChildren().add(vbox);
+		else this.vBox.getChildren().add(vbox);
 		return this;
 	}
 
@@ -44,7 +50,8 @@ public abstract class ListViewAllSLOGO {
 			int fontSize, Color color){
 		myListViewCreator= new ListViewCreator(listViewHeight, listViewWidth);
 		VBox vbox = myListViewCreator.createListViewWithLabel(labelName, fontSize, color);
-		myRoot.getChildren().add(vbox);
+		if (myRoot != null) myRoot.getChildren().add(vbox);
+		else this.vBox.getChildren().add(vbox);
 		return this;
 	}
 
