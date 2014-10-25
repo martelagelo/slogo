@@ -21,10 +21,10 @@ public class IfElse extends Operation{
 			IExecutionContext previous, ISyntaxNode current) throws MalformedSyntaxException {
 		String expression = args.get(0).environment().get(Constants.RETURN_VALUE_ENVIRONMENT);
 		List<ISyntaxNode> children = current.children();
-		int secondListOpen = 3;
+		int secondListOpen = 4;
 
 		//Need error checking?
-		for(int i = 4; i<children.size()-1; i++){
+		for(int i = 4; i<children.size()-2; i++){
 			if(children.get(i).type().equals(Constants.OPENING_LIST_LABEL)){
 				secondListOpen = i; 
 			}
