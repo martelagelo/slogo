@@ -257,11 +257,11 @@ public class OperationTest {
 	    ISyntaxNode constant = new SyntaxNode("Constant",new Constant("3"), new ArrayList<ISyntaxNode>());
 	    List<ISyntaxNode> repeatList = new ArrayList<ISyntaxNode>();
 	    repeatList.add(constant); repeatList.add(forward);
-	    ISyntaxNode cur = new SyntaxNode("Repeat", new Repeat("Repeat", 2, 2), repeatList);
+	    ISyntaxNode cur = new SyntaxNode("Repeat", new Repeat(), repeatList);
 	    IExecutionContext expression = buildContext();
 	    expression.environment().put("returnValue", "4");
 	    IExecutionContext context = buildContext();
-	   Repeat re = new Repeat("Repeat", 2, 2);
+	   Repeat re = new Repeat();
 	   List<IExecutionContext> contextList = new ArrayList<IExecutionContext>();
 	   contextList.add(expression); contextList.add(context);
 	   IExecutionContext result = context;
