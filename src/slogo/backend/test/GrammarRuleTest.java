@@ -2,16 +2,22 @@ package slogo.backend.test;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import org.junit.Test;
 
 import slogo.Constants;
 import slogo.backend.impl.parsing.GrammarRule;
+import slogo.backend.impl.parsing.SyntaxNode;
+import slogo.backend.parsing.IGrammarRule;
+import slogo.backend.parsing.ISyntaxNode;
 
 public class GrammarRuleTest {
 	public void testInfiniteMatchRecurse(boolean expected, String[] pattern, String[] search){
-		boolean result = GrammarRule.infiniteMatchRecurse(Arrays.asList(pattern),
+		GrammarRule rule = new GrammarRule("", new ArrayList<>());
+		boolean result = rule.infiniteMatchRecurse(Arrays.asList(pattern),
 				Arrays.asList(search));
 		assertEquals(expected, result);
 	}
@@ -20,7 +26,7 @@ public class GrammarRuleTest {
 		boolean sunnyResult = true;
 		String[][] sunny = {
 				{"hi", "there", Constants.INFINITE_MATCHING_LABEL, "foo" },
-				{ "hi", "there", "there", "foo" }};
+				{ "hi", "there", "there", "there", "there", "foo" }};
 		testInfiniteMatchRecurse(sunnyResult, sunny[0], sunny[1]);
 	}
 	@Test
@@ -55,5 +61,16 @@ public class GrammarRuleTest {
 				{"hi", "there", Constants.INFINITE_MATCHING_LABEL },
 				{"hi", "there"}};
 		testInfiniteMatchRecurse(justOneRepeatResult, justOneRepeat[0], justOneRepeat[1]);
+	}
+	@Test
+	public void testMatches() {
+		String[] args = { "there", Constants.INFINITE_MATCHING_LABEL, "blah" };
+		IGrammarRule rule = new GrammarRule("hi", Arrays.asList(args));
+		String[] tokens = {"o", "hai", "hi", "there", "there", "there", "blah"};
+		List<ISyntaxNode> nodes = new ArrayList<>();
+		for (String token: tokens) {
+			nodes.add(new SyntaxNode(token, null, null));
+		}
+		assertEquals(2, rule.matches(nodes));
 	}
 }

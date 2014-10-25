@@ -109,7 +109,7 @@ public class Backend implements IModel{
 				{"SetShape", "1"},
 				{"SetPenColor", "3"},
 				{"SetBackground", "3"},
-				
+				{Constants.VARIABLE_LABEL, "0"}
 		};
 		String[][][] controlRules = {
 				{{"For"}, {
