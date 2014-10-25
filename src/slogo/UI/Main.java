@@ -34,11 +34,10 @@ public class Main extends Application {
 		view = new View();
 		scene.setFill(AppConstants.BACKGROUND_COLOR);
 		//scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-
+	        view.init(root, ModulePopulator);
+	        ModulePopulator.setView(view);
 		ModulePopulator.createMainPageModules();
-		view.init(root, ModulePopulator);
-		ModulePopulator.setView(view);
-		
+		view.initRunner(root, ModulePopulator);
 		primaryStage.setTitle("SLogo!");
 		primaryStage.setScene(scene);
 		primaryStage.show();

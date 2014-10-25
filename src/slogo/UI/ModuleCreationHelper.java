@@ -100,6 +100,8 @@ public class ModuleCreationHelper {
 
 	private Label runningStatusLabel;
 	private int commandsHistoryCounter;
+        private PathColorSelector myPathColorSelector;
+        private BackgroundColorSelector myBackgroundColorSelector;
 
 
 	/**
@@ -149,6 +151,7 @@ public class ModuleCreationHelper {
 		createLoadButton();
 		createSaveButton();
 		createExtraWorkspaceButton();
+	        createIncreaseDecreaseButtons();
 		createAnimationSpeedSlider();
 		createGridCheckBox();
 	}
@@ -316,6 +319,33 @@ public class ModuleCreationHelper {
 		Button btn = BC.createButton("Load New Turtle Image");
 		activateTurtleImageLoaderButton(btn);
 	}
+	
+	private void createIncreaseDecreaseButtons(){
+	    HBox hb = new HBox();
+	    ButtonCreator BC = new ButtonCreator(hb);
+	    Button btn = BC.createButton("Inc. Pen Size");
+	    Button btn2 = BC.createButton("Dec. Pen Size");
+	    activateIncreaseDecreaseButtons(btn, btn2, myView);
+	    mySelectorsVBox.getChildren().add(hb);   
+	}
+	
+	private void activateIncreaseDecreaseButtons(Button incbtn, Button decbtn, View view){
+	    incbtn.setOnAction(new EventHandler<ActionEvent>(){
+	        @Override
+	        public void handle(ActionEvent event){
+	            Turtle t = getTurtle();
+	            view.sendCommandToBackend("SetPenSize " + (t.getThickness() + 1));
+	        }
+	    });
+	    decbtn.setOnAction(new EventHandler<ActionEvent>(){
+	        @Override
+	        public void handle(ActionEvent event){
+	            Turtle t = getTurtle();
+	            view.sendCommandToBackend("SetPenSize " + (t.getThickness() - 1));
+
+	        }
+	    });
+	}
 
 	/**
 	 * Add another turtle to scene
@@ -360,7 +390,6 @@ public class ModuleCreationHelper {
 		LabelCreator LC = new LabelCreator(mySelectorsVBox);
 		SliderCreator SC = new SliderCreator(mySelectorsVBox);
 		LC.createLabel("Animation Speed Slider", AppConstants.LABEL_FONT_SIZE, AppConstants.DEFAULT_TEXT_COLOR);
-		//GET RID OF MAGIC NUMBERS
 		animationSlider = SC.createSlider(AppConstants.ANIMATION_SLIDER_MIN_VALUE, AppConstants.ANIMATION_SLIDER_MAX_VALUE, AppConstants.ANIMATION_SLIDER_DEFAULT_VALUE);
 	}
 
@@ -464,17 +493,17 @@ public class ModuleCreationHelper {
 	 */
 	private void createSelectors() {
 
-		BackgroundColorSelector backgroundSelect = new BackgroundColorSelector(mySelectorsVBox);
-		backgroundSelect.create(root, myGraphicsContext);
+		myBackgroundColorSelector = new BackgroundColorSelector(mySelectorsVBox);
+		myBackgroundColorSelector.create(root, myGraphicsContext, myView);
 
-		PathColorSelector pathSelect = new PathColorSelector(mySelectorsVBox);
-		pathSelect.create(root, myTurtleList.get(0));
+		myPathColorSelector = new PathColorSelector(mySelectorsVBox);
+		myPathColorSelector.create(root, myTurtleList.get(0), myView);
 
 		PathTextureSelector pathTexture = new PathTextureSelector(mySelectorsVBox);
 		pathTexture.create(root, myTurtleList.get(0));
 		
 	        myTurtleSelector = new TurtleImageSelector(mySelectorsVBox);
-	        myTurtleSelector.create(root, myTurtleList.get(0));
+	        myTurtleSelector.create(root, myTurtleList.get(0), myView);
 	}
 
 	/**
@@ -871,13 +900,14 @@ public class ModuleCreationHelper {
 		return animationSlider.getValue();
 	}
 
-	protected void setListViewVariables(double x, double y, double o, boolean b){
+	protected void setListViewVariables(double x, double y, double o, boolean b, int t){
 	    //DEAL WITH ROUNDING ERRORS
 		myVariables.clear();
 		myVariables.add("Turtle X Position:     " + x);
 		myVariables.add("Turtle Y Position:     " + y);
 		myVariables.add("Turtle Heading:        " + o);
-		myVariables.add("Pen Down?:     " + b);
+		myVariables.add("Pen Down?:             " + b);
+		myVariables.add("Pen Thickness:         " + t);
 		myVariablesList.setItems(myVariables);
 	}
 
@@ -894,5 +924,17 @@ public class ModuleCreationHelper {
 	public void turnOffRunningStatusLabel() {
 		runningStatusLabel.setVisible(false);
 	}
+
+    protected TurtleImageSelector getTurtleSelector(){
+        return myTurtleSelector;
+    }
+
+    public PathColorSelector getPathColorSelector () {
+        return myPathColorSelector;
+    }
+
+    public BackgroundColorSelector getBackgroundColorSelector () {
+        return myBackgroundColorSelector;
+    }
 }
 

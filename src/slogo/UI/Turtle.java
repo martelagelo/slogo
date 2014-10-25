@@ -19,6 +19,7 @@ public class Turtle {
 	private double orientation;
 	private Map<String, Node> imagesMap;
 	private Color color;
+	private int thickness;
 
 	private boolean active;
         private String lineProperty;
@@ -34,6 +35,7 @@ public class Turtle {
 		moveTurtle(xpos, ypos);
 		lineProperty = "None";
 		imageName = s;
+		thickness = 1;
 		active = true;
 		color = Color.BLACK;
 		setOrientation(90);
@@ -79,11 +81,11 @@ public class Turtle {
 	}
 	
 	protected double getImageXPos(){
-	    return turtleImage.getLayoutX();
+	    return xpos - AppConstants.INITIAL_TURTLE_X_POS + 7.5;
 	}
 	
 	protected double getImageYPos(){
-	    return turtleImage.getLayoutY();
+	    return ypos - AppConstants.INITIAL_TURTLE_Y_POS + 7.5;
 	}
 
 	private void setYPos(double e){
@@ -167,6 +169,15 @@ public class Turtle {
 
     public void setLineProperty (String property) {
         lineProperty = property;
+        
+    }
+    
+    protected int getThickness(){
+        return thickness;
+    }
+
+    public void setThickness (int i) {
+        thickness = i;
         
     }
 

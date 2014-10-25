@@ -32,7 +32,7 @@ public class ShowTurtle extends Operation{
         args.get(0).environment().put(Constants.RETURN_VALUE_ENVIRONMENT, Constants.DEFAULT_TURTLE_NAME);
 
 
-        ITurtleStatus newStatus = new TurtleStatus(list,cor,dir,pen,Visibility.VISIBLE);
+        ITurtleStatus newStatus = new TurtleStatus(list,cor,dir,pen,Visibility.VISIBLE, status.turtleQualities());
         args.get(0).turtles().put("1", newStatus);
         return new ExecutionContext(args.get(0).turtles(),args.get(0).environment(), args.get(0).userDefinedCommands());
     }

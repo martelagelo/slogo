@@ -4,6 +4,7 @@ import java.util.List;
 
 import slogo.Constants;
 import slogo.backend.evaluation.IExecutionContext;
+import slogo.backend.impl.evaluation.ExecutionContext;
 import slogo.backend.impl.evaluation.commands.Operation;
 import slogo.backend.parsing.ISyntaxNode;
 
@@ -20,7 +21,7 @@ public class Make extends Operation{
         String variable = args.get(0).environment().get(Constants.RETURN_VALUE_ENVIRONMENT);
         IExecutionContext context = args.get(1);
         context.environment().put(variable, expression);
-        return context;
+        return new ExecutionContext(context.turtles(),context.environment(),context.userDefinedCommands());
     }
 
 }

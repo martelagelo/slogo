@@ -2,6 +2,8 @@ package slogo.UI;
 
 import java.util.ArrayList;
 import java.util.List;
+import slogo.View;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
@@ -23,7 +25,7 @@ public class TurtleImageSelector {
         myPossibleImages = new ArrayList<String>();
     }
     
-    protected void create(Group root, Turtle turtle){
+    protected void create(Group root, Turtle turtle, View view){
         myPossibleImages.addAll(turtle.getShapesMap().keySet());
         SelectorCreator sc = new SelectorCreator(root);
         sc.setUpSelector("Turtle Image", AppConstants.SELECTOR_WIDTH, AppConstants.SELECTOR_HEIGHT, AppConstants.SELECTOR_FONT_SIZE, myPossibleImages);
@@ -33,7 +35,7 @@ public class TurtleImageSelector {
             public void handle (ActionEvent event){
                         if(mySelector.getValue() != null){
                             root.getChildren().remove(turtle.getImage());
-                            turtle.setImage(mySelector.getValue());
+                            view.sendCommandToBackend("SetShape " + (mySelector.getItems().indexOf(mySelector.getValue()) + 1));
                             root.getChildren().add(turtle.getImage());
                         }
             }
@@ -45,5 +47,17 @@ public class TurtleImageSelector {
     protected void updateMap(String s, ImageView iv, Turtle t){
         mySelector.getItems().add(s);
         t.getShapesMap().put(s, iv);
+    }
+
+    public ObservableList<String> getItems () {
+        return mySelector.getItems();
+    }
+    
+    public void setValue(String s){
+        mySelector.setValue(s);
+    }
+    
+    public String getValue(){
+        return mySelector.getValue();
     }
 }
