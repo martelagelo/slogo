@@ -13,7 +13,7 @@ import slogo.backend.parsing.ISyntaxNode;
 public class Repeat extends Operation{
     private static final String COMMAND_NAME = "Repeat";
     private static final int MIN_NUM_CONTEXT = 4;
-    private static final int MAX_NUM_CONTEXT = Integer.MAX_VALUE;
+    private static final int MAX_NUM_CONTEXT = Constants.INFINITE_ARGUMENTS;
     public Repeat () {
         super(COMMAND_NAME, MIN_NUM_CONTEXT, MAX_NUM_CONTEXT);
     }
@@ -25,7 +25,8 @@ public class Repeat extends Operation{
         //Error check times > 1
         Evaluator e = new Evaluator();
         IExecutionContext context = previous;
-        for (int i = 0 ; i<times-1; i++){
+        for (int i = 1 ; i <= times; i++){
+        	context.environment().put(Constants.DEFAULT_COUNTER_VARIABLE_NAME, Integer.toString(i));
         	for(int k = 2; k < args.size()-1; k++){
         		context = e.evaluate(current.children().get(k), context);
         	}

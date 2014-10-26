@@ -16,8 +16,9 @@ import slogo.backend.util.ITurtleStatus;
 public class Tell extends Operation {
     private static final String COMMAND_NAME = "Tell";
     private static final int MIN_NUM_CONTEXT = 3;
-    private static final int MAX_NUM_CONTEXT = Integer.MAX_VALUE;
-    public Tell () {
+    private static final int MAX_NUM_CONTEXT = Constants.INFINITE_ARGUMENTS;
+    
+    public Tell (String type, int argMin, int argMax) {
         super(COMMAND_NAME, MIN_NUM_CONTEXT, MAX_NUM_CONTEXT);
     }
 
