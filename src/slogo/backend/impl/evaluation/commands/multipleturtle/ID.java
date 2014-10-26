@@ -16,13 +16,13 @@ public class ID extends Operation {
     private static final int MAX_NUM_CONTEXT = 1;
     public ID (String type, int argMin, int argMax) {
         super(COMMAND_NAME, MIN_NUM_CONTEXT, MAX_NUM_CONTEXT);
-        // TODO Auto-generated constructor stub
+      
     }
 
     @Override
     protected IExecutionContext executeRaw (List<IExecutionContext> args,
             IExecutionContext previous, ISyntaxNode current) {
-        // TODO Auto-generated method stub
+        
         String id = "";
         Map<String,ITurtleStatus> map = args.get(0).turtles();
         for(String s:map.keySet()){

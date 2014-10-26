@@ -17,9 +17,11 @@ import slogo.backend.util.PenState;
 import slogo.backend.util.Visibility;
 
 public class HideTurtle extends Operation{
-
+    private static final String COMMAND_NAME = "HideTurtle";
+    private static final int MIN_NUM_CONTEXT = 1;
+    private static final int MAX_NUM_CONTEXT = 1;
     public HideTurtle () {
-        super("HideTurtle", 1, 1);
+        super(COMMAND_NAME, MIN_NUM_CONTEXT, MAX_NUM_CONTEXT);
     }
 
     @Override

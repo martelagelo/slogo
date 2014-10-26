@@ -19,9 +19,11 @@ import slogo.backend.util.PenState;
 import slogo.backend.util.Visibility;
 
 public class SetXY extends Operation{
-
+    private static final String COMMAND_NAME = "SetXY";
+    private static final int MIN_NUM_CONTEXT = 2;
+    private static final int MAX_NUM_CONTEXT = 2;
     public SetXY () {
-        super("SetXY", 2, 2);
+        super(COMMAND_NAME, MIN_NUM_CONTEXT, MAX_NUM_CONTEXT);
     }
 
     @Override

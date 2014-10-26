@@ -19,13 +19,13 @@ public class Tell extends Operation {
     private static final int MAX_NUM_CONTEXT = Integer.MAX_VALUE;
     public Tell (String type, int argMin, int argMax) {
         super(COMMAND_NAME, MIN_NUM_CONTEXT, MAX_NUM_CONTEXT);
-        // TODO Auto-generated constructor stub
+       
     }
 
     @Override
     protected IExecutionContext executeRaw (List<IExecutionContext> args,
             IExecutionContext previous, ISyntaxNode current) {
-        // TODO Auto-generated method stub
+     
         Set<String> activeTurtle = new HashSet<String>();
         IExecutionContext context = previous;
         Map<String, ITurtleStatus> map = context.turtles();

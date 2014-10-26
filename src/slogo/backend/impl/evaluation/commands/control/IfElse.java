@@ -25,7 +25,7 @@ public class IfElse extends Operation{
 		List<ISyntaxNode> children = current.children();
 		int secondListOpen = 4;
 
-		//Need error checking?
+		
 		for(int i = 4; i<children.size()-2; i++){
 			if(children.get(i).type().equals(Constants.OPENING_LIST_LABEL)){
 				secondListOpen = i; 

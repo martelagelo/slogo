@@ -11,9 +11,11 @@ import slogo.backend.parsing.ISyntaxNode;
 import slogo.backend.util.ITurtleStatus;
 
 public class Xcor extends Operation{
-
+    private static final String COMMAND_NAME = "Xcor";
+    private static final int MIN_NUM_CONTEXT = 1;
+    private static final int MAX_NUM_CONTEXT = 1;
     public Xcor () {
-        super("Xcor", 1, 1);
+        super(COMMAND_NAME, MIN_NUM_CONTEXT, MAX_NUM_CONTEXT);
     }
 
     @Override
@@ -25,10 +27,7 @@ public class Xcor extends Operation{
                 lastActive = name;
             }
         }
-        if (lastActive==null)
-        {
-            //throw no active turtle exception?}
-        }
+       
         ITurtleStatus status = turtles.get(lastActive);
         double x = status.turtlePosition().getX().doubleValue();
         String returnString = String.valueOf(x);

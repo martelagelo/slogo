@@ -22,7 +22,7 @@ public class Repeat extends Operation{
     protected IExecutionContext executeRaw (List<IExecutionContext> args, IExecutionContext previous, ISyntaxNode current) throws MalformedSyntaxException {
         String expression = args.get(0).environment().get(Constants.RETURN_VALUE_ENVIRONMENT);
         int times = Integer.parseInt(expression);
-        //Error check times > 1
+        
         Evaluator e = new Evaluator();
         IExecutionContext context = previous;
         for (int i = 0 ; i<times-1; i++){

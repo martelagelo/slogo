@@ -12,9 +12,11 @@ import slogo.backend.util.ITurtleStatus;
 import slogo.backend.util.Visibility;
 
 public class IsShowing extends Operation{
-
+    private static final String COMMAND_NAME = "IsShowing";
+    private static final int MIN_NUM_CONTEXT = 1;
+    private static final int MAX_NUM_CONTEXT = 1;
     public IsShowing () {
-        super("IsShowing", 1, 1);
+        super(COMMAND_NAME, MIN_NUM_CONTEXT, MAX_NUM_CONTEXT);
     }
 
     @Override
@@ -26,10 +28,7 @@ public class IsShowing extends Operation{
                 lastActive = name;
             }
         }
-        if (lastActive==null)
-        {
-            //throw no active turtle exception?}
-        }
+      
         ITurtleStatus status = turtles.get(lastActive);
         Visibility vis = status.turtleVisibility();
         String returnString = vis.equals(Visibility.VISIBLE)?  Constants.TRUE_STRING : Constants.FALSE_STRING;

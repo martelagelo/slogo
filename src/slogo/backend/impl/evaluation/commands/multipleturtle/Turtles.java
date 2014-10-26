@@ -14,13 +14,13 @@ public class Turtles extends Operation {
     private static final int MAX_NUM_CONTEXT = 1;
     public Turtles (String type, int argMin, int argMax) {
         super(COMMAND_NAME, MIN_NUM_CONTEXT, MAX_NUM_CONTEXT);
-        // TODO Auto-generated constructor stub
+    
     }
 
     @Override
     protected IExecutionContext executeRaw (List<IExecutionContext> args,
             IExecutionContext previous, ISyntaxNode current) {
-        // TODO Auto-generated method stub
+    
         String returnValue = String.valueOf(args.get(0).turtles().size());
         args.get(0).environment().put(Constants.RETURN_VALUE_ENVIRONMENT, returnValue);
         return new ExecutionContext(args.get(0).turtles(),args.get(0).environment(), args.get(0).userDefinedCommands());

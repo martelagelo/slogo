@@ -19,9 +19,11 @@ import slogo.backend.util.PenState;
 import slogo.backend.util.Visibility;
 
 public class Forward  extends Operation{
-
+    private static final String COMMAND_NAME = "Forward";
+    private static final int MIN_NUM_CONTEXT = 1;
+    private static final int MAX_NUM_CONTEXT = 1;
     public Forward () {
-        super("Forward", 1, 1);
+        super(COMMAND_NAME, MIN_NUM_CONTEXT, MAX_NUM_CONTEXT);
     }
 
     @Override

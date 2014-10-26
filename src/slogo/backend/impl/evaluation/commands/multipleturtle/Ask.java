@@ -30,7 +30,6 @@ public class Ask extends Operation{
         List<ISyntaxNode> children = current.children();
         int secondListOpen = 3;
 
-        //Need error checking?
         for(int i = 3; i<children.size()-2; i++){
             if(children.get(i).type().equals(Constants.OPENING_LIST_LABEL)){
                 secondListOpen = i; 

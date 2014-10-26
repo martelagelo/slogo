@@ -18,9 +18,11 @@ import slogo.backend.util.ITurtleStatus;
 import slogo.backend.util.PenState;
 
 public class ClearScreen extends Operation{
-
+    private static final String COMMAND_NAME = "ClearScreen";
+    private static final int MIN_NUM_CONTEXT = 1;
+    private static final int MAX_NUM_CONTEXT = 1;
     public ClearScreen () {
-        super("ClearScreen", 1, 1);
+        super(COMMAND_NAME, MIN_NUM_CONTEXT, MAX_NUM_CONTEXT);
     }
 
     @Override

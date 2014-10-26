@@ -1,6 +1,7 @@
 package slogo.backend.impl.evaluation.commands.turtlestatus;
 
 import java.util.List;
+
 import slogo.Constants;
 import slogo.backend.evaluation.IExecutionContext;
 import slogo.backend.impl.evaluation.ExecutionContext;
@@ -12,9 +13,12 @@ import slogo.backend.util.ITurtleStatus;
 
 public class SetPenSize extends Operation {
 
-    public SetPenSize () {
-        super("SetPenSize", 1, 1);
-        // TODO Auto-generated constructor stub
+    private static final String COMMAND_NAME = "SetPenSize";
+    private static final int MIN_NUM_CONTEXT = 1;
+    private static final int MAX_NUM_CONTEXT = 1;
+    
+    public SetPenSize(){
+        super(COMMAND_NAME, MIN_NUM_CONTEXT, MAX_NUM_CONTEXT);
     }
 
     @Override
