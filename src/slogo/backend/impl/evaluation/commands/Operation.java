@@ -48,6 +48,22 @@ public abstract class Operation implements IOperation {
 		return new ExecutionContext(contexts.get(0));
 	}
 
+	protected String getContextReturnValue(IExecutionContext context) {
+		if (context.environment().containsKey(Constants.RETURN_VALUE_ENVIRONMENT)){
+			return context.environment().get(Constants.RETURN_VALUE_ENVIRONMENT);
+		}
+		else {
+			return "";
+		}
+	}
+	protected String getContextReturnedVariableName(IExecutionContext context) {
+		if (context.environment().containsKey(Constants.RETURNED_VARIABLE_NAME)) {
+			return context.environment().get(Constants.RETURNED_VARIABLE_NAME);
+		}
+		else {
+			return "";
+		}
+	}
 	@Override
 	public String type() {
 		return type;
