@@ -33,7 +33,7 @@ public class IsPenDown extends Operation{
         ITurtleStatus status = turtles.get(lastActive);
       
         PenState pen = status.penState();
-        String returnString = pen.equals(PenState.DOWN)? "1":"0";
+        String returnString = pen.equals(PenState.DOWN)? Constants.TRUE_STRING : Constants.FALSE_STRING;
         args.get(0).environment().put(Constants.RETURN_VALUE_ENVIRONMENT, returnString);
         return new ExecutionContext(args.get(0).turtles(),args.get(0).environment(), args.get(0).userDefinedCommands());
     }

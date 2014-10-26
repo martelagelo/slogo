@@ -20,7 +20,7 @@ public class If extends Operation{
     protected IExecutionContext executeRaw (List<IExecutionContext> args,
             IExecutionContext previous, ISyntaxNode current) throws MalformedSyntaxException {
         String expression = args.get(0).environment().get(Constants.RETURN_VALUE_ENVIRONMENT);
-        if(expression.equals("0")){
+        if(expression.equals(Constants.FALSE_STRING)){
             return previous;
         }
         Evaluator e = new Evaluator();

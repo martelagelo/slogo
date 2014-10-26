@@ -39,7 +39,7 @@ public class PenUp extends Operation{
         turtles.put(name, newStatus);
             }
             }
-        args.get(0).environment().put(Constants.RETURN_VALUE_ENVIRONMENT, "0");
+        args.get(0).environment().put(Constants.RETURN_VALUE_ENVIRONMENT, Constants.FALSE_STRING);
         return new ExecutionContext(args.get(0).turtles(),args.get(0).environment(), args.get(0).userDefinedCommands());
     }
 

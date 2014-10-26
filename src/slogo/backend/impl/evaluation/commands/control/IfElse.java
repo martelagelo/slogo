@@ -31,7 +31,7 @@ public class IfElse extends Operation{
 		}
 		Evaluator e = new Evaluator();
 		IExecutionContext context = previous;
-		if(expression.equals("0")){
+		if(expression.equals(Constants.FALSE_STRING)){
 			for(int j = 2; j < secondListOpen-1; j++){
 				context = e.evaluate(current.children().get(j), context);
 			}

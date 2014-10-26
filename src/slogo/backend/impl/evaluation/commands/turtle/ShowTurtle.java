@@ -42,7 +42,7 @@ public class ShowTurtle extends Operation{
         turtles.put(name, newStatus);
                 }
         }
-        args.get(0).environment().put(Constants.RETURN_VALUE_ENVIRONMENT, "1");
+        args.get(0).environment().put(Constants.RETURN_VALUE_ENVIRONMENT, Constants.TRUE_STRING);
         return new ExecutionContext(args.get(0).turtles(),args.get(0).environment(), args.get(0).userDefinedCommands());
     }
 

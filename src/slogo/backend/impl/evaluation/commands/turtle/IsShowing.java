@@ -32,7 +32,7 @@ public class IsShowing extends Operation{
         }
         ITurtleStatus status = turtles.get(lastActive);
         Visibility vis = status.turtleVisibility();
-        String returnString = vis.equals(Visibility.VISIBLE)? "1":"0";
+        String returnString = vis.equals(Visibility.VISIBLE)?  Constants.TRUE_STRING : Constants.FALSE_STRING;
         args.get(0).environment().put(Constants.RETURN_VALUE_ENVIRONMENT, returnString);
         return new ExecutionContext(args.get(0).turtles(),args.get(0).environment(), args.get(0).userDefinedCommands());
     }
