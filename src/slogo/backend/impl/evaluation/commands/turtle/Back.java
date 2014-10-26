@@ -33,7 +33,7 @@ public class Back extends Operation{
 
         for(String name: turtles.keySet()){
 
-            ITurtleStatus status = args.get(0).turtles().get(name);
+            ITurtleStatus status = turtles.get(name);
             if(status.isActive()){
                 ICoordinates pos = status.turtlePosition();
                 IDirection dir = status.turtleDirection();

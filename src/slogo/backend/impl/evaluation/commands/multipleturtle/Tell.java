@@ -1,4 +1,4 @@
-package slogo.backend.impl.evaluation.commands.multipleTurtle;
+package slogo.backend.impl.evaluation.commands.multipleturtle;
 
 import java.util.HashSet;
 import java.util.List;
@@ -14,9 +14,11 @@ import slogo.backend.parsing.ISyntaxNode;
 import slogo.backend.util.ITurtleStatus;
 
 public class Tell extends Operation {
-
+    private static final String COMMAND_NAME = "Tell";
+    private static final int MIN_NUM_CONTEXT = 3;
+    private static final int MAX_NUM_CONTEXT = Integer.MAX_VALUE;
     public Tell (String type, int argMin, int argMax) {
-        super(type, 3, Integer.MAX_VALUE);
+        super(COMMAND_NAME, MIN_NUM_CONTEXT, MAX_NUM_CONTEXT);
         // TODO Auto-generated constructor stub
     }
 

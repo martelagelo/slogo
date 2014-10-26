@@ -46,7 +46,7 @@ public class BackendTest {
 	}
 	@Test
 	public void testDoTimes() throws Exception {
-		IExecutionContext result = backend.execute("DoTimes [ :foo 3 ] [ Sum :foo :foo]");
+		IExecutionContext result = backend.execute("DoTimes [ :foo 3 ] [ Sum :foo :foo ]");
 		assertEquals("12.0", result.environment().get(Constants.RETURN_VALUE_ENVIRONMENT));
 	}
 	@Test

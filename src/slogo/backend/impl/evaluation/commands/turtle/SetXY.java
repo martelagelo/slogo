@@ -1,6 +1,7 @@
 package slogo.backend.impl.evaluation.commands.turtle;
 
 import java.util.List;
+import java.util.Map;
 
 import slogo.Constants;
 import slogo.backend.evaluation.IExecutionContext;
@@ -25,16 +26,24 @@ public class SetXY extends Operation{
 
     @Override
 	protected IExecutionContext executeRaw (List<IExecutionContext> args, IExecutionContext previous, ISyntaxNode current) {
-        ITurtleStatus status = args.get(0).turtles().get(Constants.DEFAULT_TURTLE_NAME);
         String newX = args.get(0).environment().get(Constants.RETURN_VALUE_ENVIRONMENT);
         String newY = args.get(1).environment().get(Constants.RETURN_VALUE_ENVIRONMENT);
         double newXValue = Double.parseDouble(newX);
         double newYValue = Double.parseDouble(newY);
+        ICoordinates newPos = new Coordinates(newXValue, newYValue);
+        
+        Map <String,ITurtleStatus> turtles = args.get(0).turtles();
+
+        for(String name: turtles.keySet()){
+
+            ITurtleStatus status = turtles.get(name);
+            if(status.isActive()){
+      
         ICoordinates pos = status.turtlePosition();
         IDirection dir = status.turtleDirection();
         PenState pen = status.penState();
         Visibility vis = status.turtleVisibility();
-        ICoordinates newPos = new Coordinates(newXValue, newYValue);
+        
         if(pen.equals(PenState.DOWN)){
             ILine newLine = new Line(pos, newPos, vis);
             status.lineSequence().add(newLine);
@@ -42,7 +51,9 @@ public class SetXY extends Operation{
         String distance = String.valueOf(newPos.getDistance(pos).doubleValue());
         args.get(0).environment().put(Constants.RETURN_VALUE_ENVIRONMENT, distance);
         ITurtleStatus newStatus = new TurtleStatus(status.lineSequence(),newPos,dir,pen,status.turtleVisibility(), status.turtleQualities());
-        args.get(0).turtles().put(Constants.DEFAULT_TURTLE_NAME, newStatus);
+        turtles.put(name, newStatus);
+            }
+        }
         return new ExecutionContext(args.get(0).turtles(),args.get(0).environment(), args.get(0).userDefinedCommands());
     }
 

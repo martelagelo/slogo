@@ -95,4 +95,33 @@ public class GrammarRuleTest {
 			assertEquals(2, rule.matches(nodes));
 		}
 	}
+	@Test
+	public void testDoTimes() {
+		String[][] doTimes = {{"DoTimes"}, {
+			Constants.OPENING_LIST_LABEL,
+			Constants.VARIABLE_LABEL,
+			Constants.CONSTANT_LABEL,
+			Constants.CLOSING_LIST_LABEL,
+			Constants.OPENING_LIST_LABEL,
+			Constants.CONSTANT_LABEL,
+			Constants.INFINITE_MATCHING_LABEL,
+			Constants.CLOSING_LIST_LABEL
+		}};
+		IGrammarRule doTimesRule = new GrammarRule(doTimes[0][0], doTimes[1]);
+		String[] expression = {
+				"DoTimes",
+				Constants.OPENING_LIST_LABEL,
+				Constants.VARIABLE_LABEL,
+				Constants.CONSTANT_LABEL,
+				Constants.CLOSING_LIST_LABEL,
+				Constants.OPENING_LIST_LABEL,
+				Constants.CONSTANT_LABEL,
+				Constants.CLOSING_LIST_LABEL
+		};
+		List<ISyntaxNode> tokens = new ArrayList<>();
+		for (String string: expression) {
+			tokens.add(new SyntaxNode(string, null, null));
+		}
+		assertEquals(0, doTimesRule.matches(tokens));
+	}
 }

@@ -1,4 +1,4 @@
-package slogo.backend.impl.evaluation.commands.multipleTurtle;
+package slogo.backend.impl.evaluation.commands.multipleturtle;
 
 import java.util.HashSet;
 import java.util.List;
@@ -15,9 +15,11 @@ import slogo.backend.parsing.ISyntaxNode;
 import slogo.backend.util.ITurtleStatus;
 
 public class Ask extends Operation{
-
+    private static final String COMMAND_NAME = "Ask";
+    private static final int MIN_NUM_CONTEXT = 6;
+    private static final int MAX_NUM_CONTEXT = Integer.MAX_VALUE;
     public Ask (String type, int argMin, int argMax) {
-        super(type, 6, Integer.MAX_VALUE);
+        super(COMMAND_NAME, MIN_NUM_CONTEXT, MAX_NUM_CONTEXT);
         
     }
 

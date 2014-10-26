@@ -8,9 +8,11 @@ import slogo.backend.impl.evaluation.ExecutionContext;
 import slogo.backend.impl.evaluation.commands.MathOperation;
 
 public class Product extends MathOperation{
-
+    private static final String COMMAND_NAME = "Product";
+    private static final int MIN_NUM_CONTEXT = 2;
+    private static final int MAX_NUM_CONTEXT = Integer.MAX_VALUE;
     public Product() {
-		super("Product", 2, -1);
+		super(COMMAND_NAME, MIN_NUM_CONTEXT, MAX_NUM_CONTEXT);
 	}
 
 	@Override

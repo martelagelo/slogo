@@ -8,9 +8,11 @@ import slogo.backend.impl.evaluation.ExecutionContext;
 import slogo.backend.impl.evaluation.commands.MathOperation;
 
 public class Cos extends MathOperation{
-
+    private static final String COMMAND_NAME = "Cos";
+    private static final int MIN_NUM_CONTEXT = 1;
+    private static final int MAX_NUM_CONTEXT = 1;
     public Cos() {
-		super("Cos", 1, 1);
+		super(COMMAND_NAME, MIN_NUM_CONTEXT, MAX_NUM_CONTEXT);
 	}
 
 	@Override

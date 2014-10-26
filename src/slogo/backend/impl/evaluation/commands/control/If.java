@@ -11,16 +11,18 @@ import slogo.backend.impl.evaluation.commands.Operation;
 import slogo.backend.parsing.ISyntaxNode;
 
 public class If extends Operation{
-
+    private static final String COMMAND_NAME = "If";
+    private static final int MIN_NUM_CONTEXT = 4;
+    private static final int MAX_NUM_CONTEXT = Integer.MAX_VALUE;
     public If () {
-        super("If", 4, -1);
+        super(COMMAND_NAME, MIN_NUM_CONTEXT, MAX_NUM_CONTEXT);
     }
 
     @Override
     protected IExecutionContext executeRaw (List<IExecutionContext> args,
             IExecutionContext previous, ISyntaxNode current) throws MalformedSyntaxException {
         String expression = args.get(0).environment().get(Constants.RETURN_VALUE_ENVIRONMENT);
-        if(expression.equals("0")){
+        if(expression.equals(Constants.FALSE_STRING)){
             return previous;
         }
         Evaluator e = new Evaluator();
