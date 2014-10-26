@@ -1,4 +1,4 @@
-package slogo.backend.impl.evaluation.commands.multipleturtle;
+package slogo.backend.impl.evaluation.commands.multipleTurtle;
 
 import java.util.List;
 import java.util.Map;
