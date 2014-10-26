@@ -114,9 +114,7 @@ public class View implements IView{
 							try {
 								result = backend.execute(commandQueue.poll());
 							} catch (ExecutionException e) {
-								//FIXME handle if an error occurs in execution; 
-								// print this out to a UI widget maybe?
-								e.printStackTrace();
+								new MessageBox(e.getMessage());
 							}
 							executeCommand(result);
 							MCH.stepThroughCommandsHistory(0);
