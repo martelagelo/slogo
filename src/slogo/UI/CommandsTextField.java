@@ -1,26 +1,27 @@
 package slogo.UI;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
+
 public class CommandsTextField {
 
     private Group myRoot;
     private TextField myTextField;
 
-    public CommandsTextField(Group root){
+    public CommandsTextField (Group root) {
         myRoot = root;
         myTextField = new TextField();
     }
-    
-    protected CommandsTextField createTextField(){
+
+    protected CommandsTextField createTextField () {
         LabelCreator LC = new LabelCreator(myRoot);
-        Label l = LC.createLabel("Enter your commands here! Hit Enter to see them displayed!", AppConstants.LABEL_FONT_SIZE, Color.BLACK);
+        Label l =
+                LC.createLabel("Enter your commands here! Hit Enter to see them displayed!",
+                               AppConstants.LABEL_FONT_SIZE, Color.BLACK);
         myTextField.setPromptText("Enter Command");
         myTextField.setPrefHeight(20);
         myTextField.setPrefWidth(400);
@@ -31,16 +32,16 @@ public class CommandsTextField {
         myRoot.getChildren().add(vbox);
         return this;
     }
-    
-    protected TextField getTextField(){
+
+    protected TextField getTextField () {
         return myTextField;
     }
-    
-    protected String getText(){
+
+    protected String getText () {
         return myTextField.getText();
     }
-    
-    protected void setText(String s){
+
+    protected void setText (String s) {
         myTextField.setText(s);
     }
 }
