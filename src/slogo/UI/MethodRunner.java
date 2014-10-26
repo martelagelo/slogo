@@ -142,7 +142,8 @@ public class MethodRunner {
 			}
 			drawLinesUsingToroidal();
 		}
-		turtle.moveTurtle((double) TS.turtlePosition().getX() + AppConstants.INITIAL_TURTLE_X_POS, (double) TS.turtlePosition().getY() + AppConstants.INITIAL_TURTLE_Y_POS); 
+		//turtle.moveTurtle((double) TS.turtlePosition().getX() + AppConstants.INITIAL_TURTLE_X_POS, (double) TS.turtlePosition().getY() + AppConstants.INITIAL_TURTLE_Y_POS); 
+		turtle.moveTurtle(pathList.get(pathList.size() - 1).getEndX(), pathList.get(pathList.size() - 1).getEndY());
 	}
 
 
