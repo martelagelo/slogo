@@ -63,9 +63,12 @@ public class Parser implements IParser {
 		for (IToken token: tokens){
 			IOperation operation;
 			String type;
-			if (token.type() == Constants.CONSTANT_LABEL
-					|| token.type() == Constants.VARIABLE_LABEL) {
+			if (token.type() == Constants.CONSTANT_LABEL) {
 				operation = new Constant(token.text());
+				type = token.type();
+			}
+			else if (token.type() == Constants.VARIABLE_LABEL) {
+				operation = new Variable(token.text());
 				type = token.type();
 			}
 			else if (token.type() == Constants.OPENING_LIST_LABEL

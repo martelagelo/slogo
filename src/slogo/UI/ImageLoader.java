@@ -1,6 +1,7 @@
 package slogo.UI;
 
 import java.io.File;
+import java.util.List;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
@@ -8,11 +9,11 @@ import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 
 public class ImageLoader {
-    private Turtle myTurtle;
+    private List<Turtle> myTurtleList;
     private int totalUserImages;
 
-    public ImageLoader(Turtle t, int i){
-        myTurtle = t;
+    public ImageLoader(List<Turtle> t, int i){
+        myTurtleList = t;
         totalUserImages = i;
     }
     
@@ -23,7 +24,7 @@ public class ImageLoader {
         File selectedFile = fileChooser.showOpenDialog(stage);
         if (selectedFile != null) {
                 Image i = new Image((selectedFile.toURI().toString()), AppConstants.MAX_NEW_IMAGE_WIDTH, AppConstants.MAX_NEW_IMAGE_HEIGHT, true, true);
-                turtleSelector.updateMap("User Image #" + totalUserImages, new ImageView(i), myTurtle);
+                turtleSelector.updateMap("User Image #" + totalUserImages, new ImageView(i), myTurtleList);
                 totalUserImages +=1;
         }
         else{

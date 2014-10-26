@@ -9,16 +9,18 @@ import slogo.backend.impl.evaluation.commands.Operation;
 import slogo.backend.parsing.ISyntaxNode;
 
 public class Turtles extends Operation {
-
-    public Turtles (String type, int argMin, int argMax) {
-        super(type, 1, 1);
-        // TODO Auto-generated constructor stub
+    private static final String COMMAND_NAME = "Turtles";
+    private static final int MIN_NUM_CONTEXT = 1;
+    private static final int MAX_NUM_CONTEXT = 1;
+    public Turtles () {
+        super(COMMAND_NAME, MIN_NUM_CONTEXT, MAX_NUM_CONTEXT);
+    
     }
 
     @Override
     protected IExecutionContext executeRaw (List<IExecutionContext> args,
             IExecutionContext previous, ISyntaxNode current) {
-        // TODO Auto-generated method stub
+    
         String returnValue = String.valueOf(args.get(0).turtles().size());
         args.get(0).environment().put(Constants.RETURN_VALUE_ENVIRONMENT, returnValue);
         return new ExecutionContext(args.get(0).turtles(),args.get(0).environment(), args.get(0).userDefinedCommands());

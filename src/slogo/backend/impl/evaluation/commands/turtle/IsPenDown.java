@@ -1,6 +1,7 @@
 package slogo.backend.impl.evaluation.commands.turtle;
 
 import java.util.List;
+import java.util.Map;
 
 import slogo.Constants;
 import slogo.backend.evaluation.IExecutionContext;
@@ -11,16 +12,27 @@ import slogo.backend.util.ITurtleStatus;
 import slogo.backend.util.PenState;
 
 public class IsPenDown extends Operation{
-
+    private static final String COMMAND_NAME = "IsPenDown";
+    private static final int MIN_NUM_CONTEXT = 1;
+    private static final int MAX_NUM_CONTEXT = 1;
     public IsPenDown () {
-        super("IsPenDown", 1, 1);
+        super(COMMAND_NAME, MIN_NUM_CONTEXT, MAX_NUM_CONTEXT);
     }
 
     @Override
 	protected IExecutionContext executeRaw (List<IExecutionContext> args, IExecutionContext previous, ISyntaxNode current) {
-        ITurtleStatus status = args.get(0).turtles().get(Constants.DEFAULT_TURTLE_NAME);
+        Map <String,ITurtleStatus> turtles = args.get(0).turtles();
+        String lastActive = null;
+        for(String name : turtles.keySet()){
+            if(turtles.get(name).isActive()){
+                lastActive = name;
+            }
+        }
+       
+        ITurtleStatus status = turtles.get(lastActive);
+      
         PenState pen = status.penState();
-        String returnString = pen.equals(PenState.DOWN)? "1":"0";
+        String returnString = pen.equals(PenState.DOWN)? Constants.TRUE_STRING : Constants.FALSE_STRING;
         args.get(0).environment().put(Constants.RETURN_VALUE_ENVIRONMENT, returnString);
         return new ExecutionContext(args.get(0).turtles(),args.get(0).environment(), args.get(0).userDefinedCommands());
     }

@@ -15,9 +15,11 @@ import slogo.backend.parsing.ISyntaxNode;
 import slogo.backend.util.ITurtleStatus;
 
 public class Ask extends Operation{
-
-    public Ask (String type, int argMin, int argMax) {
-        super(type, 6, Integer.MAX_VALUE);
+    private static final String COMMAND_NAME = "Ask";
+    private static final int MIN_NUM_CONTEXT = 6;
+    private static final int MAX_NUM_CONTEXT = Constants.INFINITE_ARGUMENTS;
+    public Ask () {
+        super(COMMAND_NAME, MIN_NUM_CONTEXT, MAX_NUM_CONTEXT);
         
     }
 
@@ -28,7 +30,6 @@ public class Ask extends Operation{
         List<ISyntaxNode> children = current.children();
         int secondListOpen = 3;
 
-        //Need error checking?
         for(int i = 3; i<children.size()-2; i++){
             if(children.get(i).type().equals(Constants.OPENING_LIST_LABEL)){
                 secondListOpen = i; 
@@ -39,7 +40,7 @@ public class Ask extends Operation{
         Set<String> previousActive = new HashSet<String>();
         IExecutionContext context = previous;
         Map<String, ITurtleStatus> map = context.turtles();
-        for(int i = 1; i < secondListOpen-2; i++){
+        for(int i = 1; i < secondListOpen-1; i++){
             tempActive.add(args.get(i).environment().get(Constants.RETURN_VALUE_ENVIRONMENT));
         }
         

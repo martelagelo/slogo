@@ -3,10 +3,13 @@ package slogo.UI;
 import java.util.HashMap;
 import java.util.Map;
 import javafx.event.EventHandler;
+import javafx.scene.Group;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
 public class Turtle {
@@ -14,8 +17,6 @@ public class Turtle {
 	private Node turtleImage;
 	private double xpos;
 	private double ypos;
-	private boolean myDashed;
-	private boolean myBold;
 	private double orientation;
 	private Map<String, Node> imagesMap;
 	private Color color;
@@ -24,22 +25,27 @@ public class Turtle {
 	private boolean active;
         private String lineProperty;
         private String imageName;
+        private String myId;
+        private Label myLabel;
+        private VBox myVBox;
     
 
-	public Turtle(String s, double x, double y){
+	public Turtle(String s, double x, double y, String id){
 		xpos = x;
 		ypos = y;
 		imagesMap = new HashMap<String, Node>();
 		generateSelectorMap(initialImagesMap());
 		turtleImage = imagesMap.get(s);
+	        myLabel = new Label(id);
 		moveTurtle(xpos, ypos);
 		lineProperty = "None";
 		imageName = s;
 		thickness = 1;
+		myId = id;
 		active = true;
 		color = Color.BLACK;
 		setOrientation(90);
-		 activateTurtle();
+		activateTurtle();
 	}
 	
 	private void activateTurtle() {
@@ -74,6 +80,7 @@ public class Turtle {
 	        d -= AppConstants.MAX_NEW_IMAGE_WIDTH/2;
 		turtleImage.setLayoutX(d);
 	        xpos = d;
+	        myLabel.setLayoutX(d);
 	}
 
 	protected double getXPos(){
@@ -92,6 +99,7 @@ public class Turtle {
 	        e -= AppConstants.MAX_NEW_IMAGE_HEIGHT/2;
 		turtleImage.setLayoutY(e);
 	        ypos = e;
+	        myLabel.setLayoutY(e - 15);
 	}
 
 	protected double getYPos(){
@@ -112,11 +120,13 @@ public class Turtle {
 		return orientation;
 	}
 
-	protected void setImage(String name){
+	protected void setImage(String name, Group root){
+	        root.getChildren().remove(turtleImage);
 	        imageName = name;
 		turtleImage = imagesMap.get(name); 
 		turtleImage.setRotate(orientation);
 		moveTurtle(xpos+AppConstants.MAX_NEW_IMAGE_WIDTH/2, ypos + AppConstants.MAX_NEW_IMAGE_HEIGHT/2);
+		root.getChildren().add(turtleImage);
 	}
 	
 	protected String getImageName(){
@@ -176,9 +186,21 @@ public class Turtle {
         return thickness;
     }
 
-    public void setThickness (int i) {
+    protected void setThickness (int i) {
         thickness = i;
         
+    }
+    
+    protected String getId(){
+        return myId;
+    }
+    
+    protected void addLabel(Group root){
+        root.getChildren().add(myLabel);
+    }
+    
+    protected void removeLabel(Group root){
+        root.getChildren().remove(myLabel);
     }
 
 }

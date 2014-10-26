@@ -25,7 +25,7 @@ public abstract class Operation implements IOperation {
 		if (args.size() < argMin){
 			throw new MalformedSyntaxException("Arg size is below " + argMin);
 		}
-		if (args.size() > argMax && argMax != -1){
+		if (args.size() > argMax && argMax != Constants.INFINITE_ARGUMENTS){
 		    throw new MalformedSyntaxException("Arg size is above " + argMax);
 		}
 	}
@@ -48,6 +48,22 @@ public abstract class Operation implements IOperation {
 		return new ExecutionContext(contexts.get(0));
 	}
 
+	protected String getContextReturnValue(IExecutionContext context) {
+		if (context.environment().containsKey(Constants.RETURN_VALUE_ENVIRONMENT)){
+			return context.environment().get(Constants.RETURN_VALUE_ENVIRONMENT);
+		}
+		else {
+			return "";
+		}
+	}
+	protected String getContextReturnedVariableName(IExecutionContext context) {
+		if (context.environment().containsKey(Constants.RETURNED_VARIABLE_NAME)) {
+			return context.environment().get(Constants.RETURNED_VARIABLE_NAME);
+		}
+		else {
+			return "";
+		}
+	}
 	@Override
 	public String type() {
 		return type;

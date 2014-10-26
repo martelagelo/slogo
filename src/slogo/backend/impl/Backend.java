@@ -109,6 +109,8 @@ public class Backend implements IModel{
 				{"SetShape", "1"},
 				{"SetPenColor", "3"},
 				{"SetBackground", "3"},
+				{"ID", "0"},
+				{"Turtles","0"}
 		};
 		String[][][] controlRules = {
 				{{"For"}, {
@@ -176,8 +178,26 @@ public class Backend implements IModel{
 					Constants.CONSTANT_LABEL,
 					Constants.INFINITE_MATCHING_LABEL,
 					Constants.CLOSING_LIST_LABEL
-				}}
+				}},
+				{{"Tell"}, {
+				        Constants.OPENING_LIST_LABEL,
+				        Constants.CONSTANT_LABEL,
+				        Constants.INFINITE_MATCHING_LABEL,
+				        Constants.CLOSING_LIST_LABEL
+				}},
+				{{"Ask"}, {
+                    Constants.OPENING_LIST_LABEL,
+                    Constants.CONSTANT_LABEL,
+                    Constants.INFINITE_MATCHING_LABEL,
+                    Constants.CLOSING_LIST_LABEL,
+                    Constants.OPENING_LIST_LABEL,
+                    Constants.CONSTANT_LABEL,
+                    Constants.INFINITE_MATCHING_LABEL,
+                    Constants.CLOSING_LIST_LABEL
+                    
+            }}
 		};
+		
 		List<IGrammarRule> ruleList = new ArrayList<>();
 		for (String[] rule: rules) {
 			int numRepeats = Integer.parseInt(rule[1]);

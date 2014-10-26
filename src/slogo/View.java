@@ -80,7 +80,7 @@ public class View implements IView{
 	}
 
 	public void initRunner(Group root, ModuleCreationHelper MCH){
-		runner = new MethodRunner(root, MCH.getCanvas(), MCH.getTurtle(), pathList, MCH);
+		runner = new MethodRunner(root, MCH.getCanvas(), MCH.getTurtleList(), pathList, MCH);
 	}
 
 	/**
@@ -217,8 +217,9 @@ public class View implements IView{
 	 * Executes the command returned from the back-end
 	 * @param str 
 	 */
-	private void executeTurtleCommands(ITurtleStatus iTurtleStatus){
-		runner.setTurtleStatus(iTurtleStatus);
+	private void executeTurtleCommands(String k, ITurtleStatus iTurtleStatus){
+		System.out.println("This is k: " + k);
+		runner.setTurtleStatus(k, iTurtleStatus);
 		runner.changeTurtle();
 	}
 
@@ -229,7 +230,7 @@ public class View implements IView{
 
 	private void executeCommand(IExecutionContext result) {
 		for(String k: result.turtles().keySet()) {
-			executeTurtleCommands(result.turtles().get(k));
+			executeTurtleCommands(k, result.turtles().get(k));
 		}
 		for(String k: result.environment().keySet()) {
 			executeEnvironmentCommands(result.environment().get("returnValue"));

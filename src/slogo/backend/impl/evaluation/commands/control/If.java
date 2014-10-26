@@ -10,25 +10,18 @@ import slogo.backend.impl.evaluation.ExecutionContext;
 import slogo.backend.impl.evaluation.commands.Operation;
 import slogo.backend.parsing.ISyntaxNode;
 
-public class If extends Operation{
-
+public class If extends ConditionalOperation{
+    private static final String COMMAND_NAME = "If";
+    private static final int MIN_NUM_CONTEXT = 4;
+    private static final int MAX_NUM_CONTEXT = Constants.INFINITE_ARGUMENTS;
     public If () {
-        super("If", 4, -1);
+        super(COMMAND_NAME, MIN_NUM_CONTEXT, MAX_NUM_CONTEXT);
     }
-
-    @Override
-    protected IExecutionContext executeRaw (List<IExecutionContext> args,
-            IExecutionContext previous, ISyntaxNode current) throws MalformedSyntaxException {
-        String expression = args.get(0).environment().get(Constants.RETURN_VALUE_ENVIRONMENT);
-        if(expression.equals("0")){
-            return previous;
-        }
-        Evaluator e = new Evaluator();
-        IExecutionContext context = previous;
-        for(int j = 2; j < args.size()-1; j++){
-        	context = e.evaluate(current.children().get(j), context);
-        }
-        return new ExecutionContext(context.turtles(),context.environment(),context.userDefinedCommands());
-    }
+	@Override
+	protected IExecutionContext executeRaw(List<IExecutionContext> args,
+			IExecutionContext previous, ISyntaxNode current)
+			throws MalformedSyntaxException {
+		return kipling(args, previous, current, 0, 2);
+	}
 
 }
