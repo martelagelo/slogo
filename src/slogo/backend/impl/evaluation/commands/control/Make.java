@@ -17,8 +17,8 @@ public class Make extends Operation{
     @Override
     protected IExecutionContext executeRaw (List<IExecutionContext> args,
             IExecutionContext previous, ISyntaxNode current) {
+        String variable = args.get(0).environment().get(Constants.RETURNED_VARIABLE_NAME);
         String expression = args.get(1).environment().get(Constants.RETURN_VALUE_ENVIRONMENT);
-        String variable = args.get(0).environment().get(Constants.RETURN_VALUE_ENVIRONMENT);
         IExecutionContext context = args.get(1);
         context.environment().put(variable, expression);
         return new ExecutionContext(context.turtles(),context.environment(),context.userDefinedCommands());

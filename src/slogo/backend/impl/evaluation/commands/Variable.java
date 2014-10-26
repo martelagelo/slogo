@@ -20,8 +20,12 @@ public class Variable extends Operation{
     @Override
     public IExecutionContext executeRaw (List<IExecutionContext> args, IExecutionContext previous,
             ISyntaxNode current) throws MalformedSyntaxException {
-        Map<String, String> newEnvironment = new HashMap<>(args.get(0).environment());
-        newEnvironment.put(Constants.RETURN_VALUE_ENVIRONMENT, args.get(0).environment().get(name));
+    	IExecutionContext childContext = args.get(0);
+        Map<String, String> newEnvironment = new HashMap<>(childContext.environment());
+        if (childContext.environment().containsKey(name)){
+            newEnvironment.put(Constants.RETURN_VALUE_ENVIRONMENT, childContext.environment().get(name));
+        }
+        newEnvironment.put(Constants.RETURNED_VARIABLE_NAME, name);
         return new ExecutionContext(args.get(0).turtles(), newEnvironment, args.get(0).userDefinedCommands());
     }
 
