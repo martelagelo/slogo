@@ -62,16 +62,16 @@ public class Backend implements IModel {
     }
 
     private List<IGrammarRule> grammarRules () {
-        String[][] rules = { { "And", "2" }, { "Equal", "2" }, { "Greater", "2" }, { "Less", "2" },
-                { "Not", "1" }, { "NotEqual", "2" }, { "Or", "2" }, { "Atan", "1" },
-                { "Cos", "1" }, { "Difference", "2" }, { "Log", "1" }, { "Minus", "1" },
-                { "Pow", "2" }, { "Product", "2" }, { "Quotient", "2" }, { "RandomNumber", "1" },
-                { "Remainder", "2" }, { "Sin", "1" }, { "Sum", "2" }, { "Tan", "1" },
-                { "Back", "1" }, { "ClearScreen", "0" }, { "Forward", "1" }, { "Heading", "0" },
+        String[][] rules = { { "And", "2" }, { "Equal", "2" }, { "GreaterThan", "2" }, { "LessThan", "2" },
+                { "Not", "1" }, { "NotEqual", "2" }, { "Or", "2" }, { "ArcTangent", "1" },
+                { "Cosine", "1" }, { "Difference", "2" }, { "NaturalLog", "1" }, { "Minus", "1" },
+                { "Power", "2" }, { "Product", "2" }, { "Quotient", "2" }, { "RandomNumber", "1" },
+                { "Remainder", "2" }, { "Sine", "1" }, { "Sum", "2" }, { "Tangent", "1" },
+                { "Backward", "1" }, { "ClearScreen", "0" }, { "Forward", "1" }, { "Heading", "0" },
                 { "HideTurtle", "0" }, { "Home", "0" }, { "IsPenDown", "0" }, { "IsShowing", "0" },
                 { "Left", "1" }, { "PenDown", "0" }, { "PenUp", "0" }, { "Right", "1" },
-                { "SetHeading", "1" }, { "SetXY", "2" }, { "ShowTurtle", "0" }, { "Towards", "2" },
-                { "Xcor", "0" }, { "Ycor", "0" }, { "SetPenSize", "1" }, { "SetShape", "1" },
+                { "SetHeading", "1" }, { "SetPosition", "2" }, { "ShowTurtle", "0" }, { "SetTowards", "2" },
+                { "XCoordinate", "0" }, { "YCoordinate", "0" }, { "SetPenSize", "1" }, { "SetShape", "1" },
                 { "SetPenColor", "3" }, { "SetBackground", "3" }, { "ID", "0" }, { "Turtles", "0" } };
         String[][][] controlRules = {
                 {
@@ -107,7 +107,7 @@ public class Backend implements IModel {
                                 Constants.CONSTANT_LABEL, Constants.INFINITE_MATCHING_LABEL,
                                 Constants.CLOSING_LIST_LABEL } },
                 {
-                        { "To" },
+                        { "MakeUserInstruction" },
                         { Constants.CONSTANT_LABEL, Constants.OPENING_LIST_LABEL,
                                 Constants.VARIABLE_LABEL, Constants.INFINITE_MATCHING_LABEL,
                                 Constants.CLOSING_LIST_LABEL, Constants.OPENING_LIST_LABEL,

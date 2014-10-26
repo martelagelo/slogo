@@ -11,7 +11,7 @@ import slogo.backend.parsing.ISyntaxNode;
 import slogo.backend.util.ITurtleStatus;
 
 public class XCoordinate extends Operation {
-    private static final String COMMAND_NAME = "Xcoordinate";
+    private static final String COMMAND_NAME = "XCoordinate";
     private static final int MIN_NUM_CONTEXT = 1;
     private static final int MAX_NUM_CONTEXT = 1;
 
