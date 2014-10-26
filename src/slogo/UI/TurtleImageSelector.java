@@ -9,6 +9,7 @@ import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.control.ComboBox;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
@@ -66,10 +67,10 @@ public class TurtleImageSelector {
      * @param iv The image view
      * @param turtleList The list of turtles
      */
-    protected void updateMap(String s, ImageView iv, List<Turtle> turtleList){
+    protected void updateMap(String s, Image i, List<Turtle> turtleList){
         mySelector.getItems().add(s);
         for(Turtle t : turtleList){
-            t.getShapesMap().put(s, iv);
+            t.getShapesMap().put(s, i);
         }
     }
 

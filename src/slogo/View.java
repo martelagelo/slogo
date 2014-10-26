@@ -38,9 +38,11 @@ import slogo.backend.impl.util.TurtleStatus;
 import slogo.backend.util.ITurtleStatus;
 
 /**
- * October 5th, 2014
- * 
- * Version 1
+ * This class connects our user interface to the back end
+ * Our modulecreationhelper sets a view which allows the user controls
+ * to send commands to the back end when they are clicked on
+ * the view then sends these to the backend, which processes them and returns
+ * them for the method runner to use to update all the user interface commands
  * 
  * @author Michael Deng
  * @author Nick Widmaier
@@ -48,6 +50,7 @@ import slogo.backend.util.ITurtleStatus;
  * @author Eric Chen
  *
  */
+
 public class View implements IView{
 
 	private MethodRunner runner;
@@ -74,11 +77,15 @@ public class View implements IView{
 		try {
 			backend = new Backend();
 		} catch (InitializationException e) {
-			//FIXME handle an error if the backend fails to initialize properly
-			e.printStackTrace();
+			new MessageBox(e.getMessage());
 		}
 	}
-
+	
+	/**
+	 * initialize the runner so that it can use update all the modules correctly 
+	 * @param root the root we add UI elements to 
+	 * @param MCH the class that creates all the modules
+	 */
 	public void initRunner(Group root, ModuleCreationHelper MCH){
 		runner = new MethodRunner(root, MCH.getCanvas(), MCH.getTurtleList(), pathList, MCH);
 	}
@@ -92,6 +99,11 @@ public class View implements IView{
 		immediateHistoryQueue.add(command);
 	}
 
+	/**
+	 * sends the string to the backend for evaluation
+	 * will do so based on the animation timeline - if active, it will evaluate the command
+	 * and then display the animation
+	 */
 	public void sendCommandToBackend() {
 		if(animationTimeline != null && animationTimeline.getStatus() == Status.PAUSED) {
 			MCH.turnOnRunningStatusLabel();
@@ -101,7 +113,7 @@ public class View implements IView{
 			MCH.turnOnRunningStatusLabel();
 
 			recordCommandHistoryCounter = MCH.getCommandsHistoryCounter();
-
+			//setting up the timeline
 			animationTimeline = new Timeline();
 			animationTimeline.setCycleCount(Timeline.INDEFINITE);
 
@@ -111,14 +123,16 @@ public class View implements IView{
 						public void handle(ActionEvent event) {
 
 							IExecutionContext result = null;
+							//try to send to backend and obtain result
 							try {
 								result = backend.execute(commandQueue.poll());
 							} catch (ExecutionException e) {
 								new MessageBox(e.getMessage());
 							}
+							//execute result
 							executeCommand(result);
 							MCH.stepThroughCommandsHistory(0);
-
+							//stop animation once no more commands in the list
 							if (commandQueue.isEmpty()) {
 								animationTimeline.stop();
 								animationTimeline = null;
@@ -131,7 +145,11 @@ public class View implements IView{
 			animationTimeline.play();
 		}
 	}
-
+	
+	/**
+	 * resets the animation, stopping it from playing 
+	 * commands list is reset and user would have to enter more commands to run it
+	 */
 	public void resetAnimation() {
 		if (animationTimeline != null) {
 			MCH.turnOffRunningStatusLabel();
@@ -152,6 +170,10 @@ public class View implements IView{
 		}
 	}
 
+	/**
+	 * pauses the animation while in the middle of running through commands
+	 * can be resumed to run through the rest of the commands
+	 */
 	public void pauseAnimation() {
 		if (animationTimeline != null) {
 			animationTimeline.pause();
@@ -175,16 +197,17 @@ public class View implements IView{
 		}
 		executeCommand(result);
 	}
-
+	
+	/**
+	 * steps into a command for debugging
+	 * easy to go through one command at a time
+	 */
 	public void stepIntoCommand() {
 		if (!commandQueue.isEmpty()) {
 			IExecutionContext result = null;
 			try {
 				result = backend.execute(commandQueue.poll());
 			} catch (ExecutionException e) {
-				//FIXME handle if an error occurs in execution; 
-				// print this out to a UI widget maybe?
-				e.printStackTrace();
 				new MessageBox(e.getMessage());
 			}
 			executeCommand(result);
@@ -193,7 +216,10 @@ public class View implements IView{
 			new MessageBox("No more commands to step through");
 		}
 	}
-
+	
+	/**
+	 * steps over a particular command, also for debugging
+	 */
 	public void stepOverCommand() {
 		commandQueue.poll();
 		if (!(commandQueue.peek() == null)) {
@@ -201,9 +227,7 @@ public class View implements IView{
 			try {
 				result = backend.execute(commandQueue.poll());
 			} catch (ExecutionException e) {
-				//FIXME handle if an error occurs in execution; 
-				// print this out to a UI widget maybe?
-				e.printStackTrace();
+				new MessageBox(e.getMessage());
 			}
 			executeCommand(result);
 		}
@@ -213,20 +237,31 @@ public class View implements IView{
 	}
 
 	/**
-	 * Executes the command returned from the back-end
+	 * Executes the command based off status returned from the backend
 	 * @param str 
+	 * @param iTurtleStatus the status of the turtle from the backend
 	 */
 	private void executeTurtleCommands(String k, ITurtleStatus iTurtleStatus){
 		System.out.println("This is k: " + k);
 		runner.setTurtleStatus(k, iTurtleStatus);
 		runner.changeTurtle();
 	}
-
+	
+	/**
+	 * Executes the command based off the status returned from backend
+	 * to update the variables
+	 * @param var string representing variables
+	 */
 	private void executeEnvironmentCommands(String var) {
 		runner.setEnvironment(var);
 		runner.changeEnvironment();
 	}
-
+	
+	/**
+	 * goes through the returns from the backend and executes the commands for each turtle, as
+	 * well as the environment
+	 * @param result the context returned by the backend
+	 */
 	private void executeCommand(IExecutionContext result) {
 		for(String k: result.turtles().keySet()) {
 			executeTurtleCommands(k, result.turtles().get(k));
@@ -234,13 +269,6 @@ public class View implements IView{
 		for(String k: result.environment().keySet()) {
 			executeEnvironmentCommands(result.environment().get("returnValue"));
 		}
-	}
-
-	/**
-	 * Creates and displays an error pop-up
-	 */
-	public void error(String message) {
-		new MessageBox(message);
 	}
 
 	@Override

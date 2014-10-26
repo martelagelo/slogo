@@ -26,7 +26,7 @@ public class Turtle {
 	private double xpos;
 	private double ypos;
 	private double orientation;
-	private Map<String, Node> imagesMap;
+	private Map<String, Image> imagesMap;
 	private Color color;
 	private int thickness;
 
@@ -35,7 +35,6 @@ public class Turtle {
 	private String imageName;
 	private String myId;
 	private Label myLabel;
-	private VBox myVBox;
 
 
 	/**
@@ -48,10 +47,10 @@ public class Turtle {
 	public Turtle(String s, double x, double y, String id){
 		xpos = x;
 		ypos = y;
-		imagesMap = new HashMap<String, Node>();
+		imagesMap = new HashMap<String, Image>();
 		generateSelectorMap(initialImagesMap());
-		turtleImage = imagesMap.get(s);
-		myLabel = new Label(id);
+		turtleImage = new ImageView(imagesMap.get(s));
+	        myLabel = new Label(id);
 		moveTurtle(xpos, ypos);
 		lineProperty = "None";
 		imageName = s;
@@ -67,40 +66,37 @@ public class Turtle {
 	 * Activates the event handler on the turtle
 	 */
 	private void activateTurtle() {
-		turtleImage.setOnMouseClicked(new EventHandler<MouseEvent>(){
-			@Override
-			public void handle(MouseEvent event){
-				active = !active;
-			}
-		});
-	}
-	
-	/**
-	 * Creates a map of images for the turtle
-	 * @return The map of images
-	 */
-	private Map<String, String> initialImagesMap(){
-		Map<String, String> map = new HashMap<String, String>();
-		map.put("Turtle", "Turtle");
-		map.put("circle.png", "Circle");
-		map.put("triangle.png", "Triangle");
-		map.put("rectangle.png", "Rectangle");
-		return map;
+	    turtleImage.setOnMouseClicked(new EventHandler<MouseEvent>(){
+	        @Override
+	        public void handle(MouseEvent event){
+	            active = !active;
+	        }
+	    });
 	}
 
-	/**
-	 * Generates the map for the turtle's images
-	 * @param fileList The list of files for the images
-	 */
-	private void generateSelectorMap (Map<String, String> fileList) {
-		for(String file : fileList.keySet()){
-			Image I = new Image(getClass().getResourceAsStream(file), AppConstants.MAX_NEW_IMAGE_WIDTH, AppConstants.MAX_NEW_IMAGE_HEIGHT, true, true);
-			ImageView IV = new ImageView(I);
-			IV.setLayoutX(xpos);
-			IV.setLayoutY(ypos);
-			imagesMap.put(fileList.get(file), IV); 
-		}
-	}
+    /**
+    * Creates a map of images for the turtle
+    * @return The map of images
+    */
+    private Map<String, String> initialImagesMap(){
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("Turtle", "Turtle");
+        map.put("circle.png", "Circle");
+        map.put("triangle.png", "Triangle");
+        map.put("rectangle.png", "Rectangle");
+        return map;
+    }
+
+    /**
+     * Generates the map for the turtle's images
+     * @param fileList The list of files for the images
+     */
+    private void generateSelectorMap (Map<String, String> fileList) {
+        for(String file : fileList.keySet()){
+            Image I = new Image(getClass().getResourceAsStream(file), AppConstants.MAX_NEW_IMAGE_WIDTH, AppConstants.MAX_NEW_IMAGE_HEIGHT, true, true);
+            imagesMap.put(fileList.get(file), I); 
+        }
+    }
 
 	/**
 	 * Sets the x position of the turtle
@@ -188,9 +184,9 @@ public class Turtle {
 	 * @param root The group the image belongs to
 	 */
 	protected void setImage(String name, Group root){
-		root.getChildren().remove(turtleImage);
-		imageName = name;
-		turtleImage = imagesMap.get(name); 
+	        root.getChildren().remove(turtleImage);
+	        imageName = name;
+		turtleImage = new ImageView(imagesMap.get(name)); 
 		turtleImage.setRotate(orientation);
 		moveTurtle(xpos+AppConstants.MAX_NEW_IMAGE_WIDTH/2, ypos + AppConstants.MAX_NEW_IMAGE_HEIGHT/2);
 		root.getChildren().add(turtleImage);
@@ -223,7 +219,7 @@ public class Turtle {
 	}
 
 	/**
-	 * Gets the turtle itsself
+	 * Gets the turtle itself
 	 * @return The turtle
 	 */
 	protected Turtle getTurtle() {
@@ -234,7 +230,7 @@ public class Turtle {
 	 * Gets the shape map of the turtle
 	 * @return The shape map
 	 */
-	protected Map<String, Node> getShapesMap () {
+	protected Map<String, Image> getShapesMap () {
 		return imagesMap;
 	}
 
@@ -247,6 +243,12 @@ public class Turtle {
 	}
 
 
+    
+    protected void setShapesMap(Map<String, Image> map){
+        imagesMap = map;
+    }
+    
+    
 	/**
 	 * Sets the color of the turtle lines
 	 * @param value The color
