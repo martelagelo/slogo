@@ -3,6 +3,7 @@ package slogo.UI;
 import java.util.HashMap;
 import java.util.Map;
 import javafx.event.EventHandler;
+import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -112,11 +113,13 @@ public class Turtle {
 		return orientation;
 	}
 
-	protected void setImage(String name){
+	protected void setImage(String name, Group root){
+	        root.getChildren().remove(turtleImage);
 	        imageName = name;
 		turtleImage = imagesMap.get(name); 
 		turtleImage.setRotate(orientation);
 		moveTurtle(xpos+AppConstants.MAX_NEW_IMAGE_WIDTH/2, ypos + AppConstants.MAX_NEW_IMAGE_HEIGHT/2);
+		root.getChildren().add(turtleImage);
 	}
 	
 	protected String getImageName(){

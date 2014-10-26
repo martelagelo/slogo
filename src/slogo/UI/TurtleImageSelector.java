@@ -34,9 +34,7 @@ public class TurtleImageSelector {
             @Override
             public void handle (ActionEvent event){
                         if(mySelector.getValue() != null){
-                            root.getChildren().remove(turtle.getImage());
                             view.sendCommandToBackend("SetShape " + (mySelector.getItems().indexOf(mySelector.getValue()) + 1));
-                            root.getChildren().add(turtle.getImage());
                         }
             }
         });
