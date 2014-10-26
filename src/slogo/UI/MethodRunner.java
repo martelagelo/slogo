@@ -31,24 +31,39 @@ import javafx.scene.shape.Line;
  */
 public class MethodRunner {
 
-	private Turtle turtle;
+	private List<Turtle> turtleList;
 	private Canvas canvas;
 	private Group root;
 	private List<Line> pathList;
-	
+	private Turtle turtle;
+	private List<ILine> allILines;
+	private String ID;
 	private ITurtleStatus TS;
 	private String environment;
 	private ModuleCreationHelper MCH;
 	
-	public MethodRunner(Group root, Canvas canvas, Turtle turtle, List<Line> list, ModuleCreationHelper MCH) {
-		this.turtle = turtle;
+	public MethodRunner(Group root, Canvas canvas, List<Turtle> turtleList, List<Line> list, ModuleCreationHelper MCH) {
+		this.turtleList = turtleList;
 		this.canvas = canvas;
 		this.root = root;
 		this.pathList = list;
 		this.MCH = MCH;
+		this.allILines = new ArrayList<ILine>();
 	}
 	
 	public void changeTurtle() {
+	    boolean found = false;
+	    for(Turtle t : turtleList){
+	        if (t.getId().equals(ID)){
+	            turtle = t;
+	            found = true;
+	            break;
+	        }
+	    }
+	    if(!found){
+	        turtle = new Turtle("Triangle", AppConstants.INITIAL_TURTLE_X_POS, AppConstants.INITIAL_TURTLE_Y_POS, ID);
+	        MCH.getTurtleList().add(turtle);
+	    }
 	        setTurtleVisibility();
 		moveTurtle();
 		setTurtleDirection();
@@ -77,7 +92,6 @@ public class MethodRunner {
 	 * Moves turtle to the appropriate position based on turtle status	
 	 */
         private void moveTurtle() {
-            System.out.println(TS.penState().toString());
             if(TS.penState().equals(PenState.DOWN)){
                 for (Line l : pathList) {
                     root.getChildren().remove(l);
@@ -85,7 +99,10 @@ public class MethodRunner {
                 List<Line> copyLines = new ArrayList<Line>();
                 copyLines.addAll(pathList);
                 pathList.clear();
-                for (ILine l: TS.lineSequence()) {
+                for (ILine l : TS.lineSequence()){
+                    allILines.add(l);
+                }
+                for (ILine l : allILines) {
                     boolean alreadyAdded = false;
                     for(Line line : copyLines){
                         alreadyAdded = redrawIfInScene(l, line);
@@ -164,8 +181,9 @@ public class MethodRunner {
 	    return TS.penState().equals(PenState.DOWN);
 	}
 	
-	public void setTurtleStatus(ITurtleStatus TS) {
+	public void setTurtleStatus(String id, ITurtleStatus TS) {
 		this.TS = TS;
+		this.ID = id;
 	}
 	
 	/**

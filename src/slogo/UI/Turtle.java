@@ -15,8 +15,6 @@ public class Turtle {
 	private Node turtleImage;
 	private double xpos;
 	private double ypos;
-	private boolean myDashed;
-	private boolean myBold;
 	private double orientation;
 	private Map<String, Node> imagesMap;
 	private Color color;
@@ -25,9 +23,10 @@ public class Turtle {
 	private boolean active;
         private String lineProperty;
         private String imageName;
+        private String myId;
     
 
-	public Turtle(String s, double x, double y){
+	public Turtle(String s, double x, double y, String id){
 		xpos = x;
 		ypos = y;
 		imagesMap = new HashMap<String, Node>();
@@ -37,6 +36,7 @@ public class Turtle {
 		lineProperty = "None";
 		imageName = s;
 		thickness = 1;
+		myId = id;
 		active = true;
 		color = Color.BLACK;
 		setOrientation(90);
@@ -179,9 +179,13 @@ public class Turtle {
         return thickness;
     }
 
-    public void setThickness (int i) {
+    protected void setThickness (int i) {
         thickness = i;
         
+    }
+    
+    protected String getId(){
+        return myId;
     }
 
 }
