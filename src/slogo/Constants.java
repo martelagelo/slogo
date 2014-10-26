@@ -14,4 +14,6 @@ public class Constants {
 	public static final String DEFAULT_TURTLE_NAME = "1";
 	public static final String INFINITE_MATCHING_LABEL = "_infinite";
 	public static final String RETURNED_VARIABLE_NAME = "_RETURNED_VARIABLE_NAME";
+	public static final String DEFAULT_COUNTER_VARIABLE_NAME = ":repcount";
+	public static final String UNDEFINED_RETURN_VALUE = "-1";
 }

@@ -23,7 +23,8 @@ public class Repeat extends Operation{
         //Error check times > 1
         Evaluator e = new Evaluator();
         IExecutionContext context = previous;
-        for (int i = 0 ; i<times-1; i++){
+        for (int i = 1 ; i <= times; i++){
+        	context.environment().put(Constants.DEFAULT_COUNTER_VARIABLE_NAME, Integer.toString(i));
         	for(int k = 2; k < args.size()-1; k++){
         		context = e.evaluate(current.children().get(k), context);
         	}
