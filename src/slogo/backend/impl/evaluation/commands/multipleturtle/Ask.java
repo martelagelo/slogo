@@ -1,4 +1,4 @@
-package slogo.backend.impl.evaluation.commands.multipleTurtle;
+package slogo.backend.impl.evaluation.commands.multipleturtle;
 
 import java.util.HashSet;
 import java.util.List;

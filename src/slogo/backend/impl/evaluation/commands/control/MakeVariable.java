@@ -8,11 +8,11 @@ import slogo.backend.impl.evaluation.ExecutionContext;
 import slogo.backend.impl.evaluation.commands.Operation;
 import slogo.backend.parsing.ISyntaxNode;
 
-public class Make extends Operation{
+public class MakeVariable extends Operation{
     private static final String COMMAND_NAME = "Make";
     private static final int MIN_NUM_CONTEXT = 2;
     private static final int MAX_NUM_CONTEXT = 2;
-    public Make () {
+    public MakeVariable () {
         super(COMMAND_NAME, MIN_NUM_CONTEXT, MAX_NUM_CONTEXT);
     }
 

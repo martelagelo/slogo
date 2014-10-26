@@ -10,11 +10,11 @@ import slogo.backend.impl.evaluation.commands.Operation;
 import slogo.backend.parsing.ISyntaxNode;
 import slogo.backend.util.ITurtleStatus;
 
-public class Xcor extends Operation{
+public class XCoordinate extends Operation{
     private static final String COMMAND_NAME = "Xcor";
     private static final int MIN_NUM_CONTEXT = 1;
     private static final int MAX_NUM_CONTEXT = 1;
-    public Xcor () {
+    public XCoordinate () {
         super(COMMAND_NAME, MIN_NUM_CONTEXT, MAX_NUM_CONTEXT);
     }
 

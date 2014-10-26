@@ -8,9 +8,9 @@ import slogo.backend.impl.evaluation.ExecutionContext;
 import slogo.backend.impl.evaluation.commands.Operation;
 import slogo.backend.parsing.ISyntaxNode;
 
-public class To extends Operation {
+public class MakeUserInstruction extends Operation {
 
-	public To() {
+	public MakeUserInstruction() {
 		super("To", 7, -1);
 	}
 
