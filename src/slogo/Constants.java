@@ -20,4 +20,5 @@ public class Constants {
 	public static final String FALSE_STRING = "0";
 	public static final int TRUE_INT = 1;
 	public static final int FALSE_INT = 0;
+	public static final int INFINITE_ARGUMENTS = -1;
 }

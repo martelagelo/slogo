@@ -25,7 +25,7 @@ public abstract class Operation implements IOperation {
 		if (args.size() < argMin){
 			throw new MalformedSyntaxException("Arg size is below " + argMin);
 		}
-		if (args.size() > argMax && argMax != -1){
+		if (args.size() > argMax && argMax != Constants.INFINITE_ARGUMENTS){
 		    throw new MalformedSyntaxException("Arg size is above " + argMax);
 		}
 	}
