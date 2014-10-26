@@ -1,12 +1,15 @@
 package slogo.backend.impl.parsing;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import slogo.Constants;
 import slogo.backend.evaluation.IOperation;
 import slogo.backend.evaluation.IOperationFactory;
 import slogo.backend.evaluation.MalformedSyntaxException;
+import slogo.backend.impl.Languages;
 import slogo.backend.impl.evaluation.OperationFactory;
 import slogo.backend.impl.evaluation.commands.Constant;
 import slogo.backend.impl.evaluation.commands.Result;
@@ -77,17 +80,34 @@ public class Parser implements IParser {
 				type = token.type();
 			}
 			else {
+				String className = dereference(token.text());
 				try {
-					operation =  operationFactory.makeElement(token.text());
+					operation =  operationFactory.makeElement(className);
 				} catch (ClassNotFoundException e) {
 					throw new MalformedSyntaxException(e.getMessage());
 				}
-				type = token.text();
+				type = className;
 			}
 			ISyntaxNode newNode = new SyntaxNode(type, operation, new ArrayList<>());
 			nodes.add(newNode);
 		}
 		return nodes;
+	}
+	private String dereference(String element) {
+		Languages languages = null;
+		String operation = element;
+		try {
+			languages = new Languages();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		if (languages != null){
+			Map<String, String> languageMap = languages.returnMap();
+			if (languageMap.containsKey(element)){
+				operation = languageMap.get(element);
+			}
+		}
+		return operation;
 	}
 
 	private int hasProduction(List<ISyntaxNode> nodeStack) {
