@@ -18,7 +18,7 @@ public class Turtle {
 	private double xpos;
 	private double ypos;
 	private double orientation;
-	private Map<String, Node> imagesMap;
+	private Map<String, Image> imagesMap;
 	private Color color;
 	private int thickness;
 
@@ -33,9 +33,9 @@ public class Turtle {
 	public Turtle(String s, double x, double y, String id){
 		xpos = x;
 		ypos = y;
-		imagesMap = new HashMap<String, Node>();
+		imagesMap = new HashMap<String, Image>();
 		generateSelectorMap(initialImagesMap());
-		turtleImage = imagesMap.get(s);
+		turtleImage = new ImageView(imagesMap.get(s));
 	        myLabel = new Label(id);
 		moveTurtle(xpos, ypos);
 		lineProperty = "None";
@@ -69,10 +69,10 @@ public class Turtle {
     private void generateSelectorMap (Map<String, String> fileList) {
         for(String file : fileList.keySet()){
             Image I = new Image(getClass().getResourceAsStream(file), AppConstants.MAX_NEW_IMAGE_WIDTH, AppConstants.MAX_NEW_IMAGE_HEIGHT, true, true);
-            ImageView IV = new ImageView(I);
-            IV.setLayoutX(xpos);
-            IV.setLayoutY(ypos);
-            imagesMap.put(fileList.get(file), IV); 
+            //ImageView IV = new ImageView(I);
+            //IV.setLayoutX(xpos);
+            //IV.setLayoutY(ypos);
+            imagesMap.put(fileList.get(file), I); 
         }
     }
 
@@ -123,7 +123,7 @@ public class Turtle {
 	protected void setImage(String name, Group root){
 	        root.getChildren().remove(turtleImage);
 	        imageName = name;
-		turtleImage = imagesMap.get(name); 
+		turtleImage = new ImageView(imagesMap.get(name)); 
 		turtleImage.setRotate(orientation);
 		moveTurtle(xpos+AppConstants.MAX_NEW_IMAGE_WIDTH/2, ypos + AppConstants.MAX_NEW_IMAGE_HEIGHT/2);
 		root.getChildren().add(turtleImage);
@@ -147,7 +147,7 @@ public class Turtle {
 	}
 
 
-	protected Map<String, Node> getShapesMap () {
+	protected Map<String, Image> getShapesMap () {
 		return imagesMap;
 	}
 
@@ -202,5 +202,11 @@ public class Turtle {
     protected void removeLabel(Group root){
         root.getChildren().remove(myLabel);
     }
+    
+    protected void setShapesMap(Map<String, Image> map){
+        imagesMap = map;
+    }
+    
+    
 
 }

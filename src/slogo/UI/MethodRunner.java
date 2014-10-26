@@ -19,9 +19,11 @@ import javafx.scene.layout.Pane;
 import javafx.scene.shape.Line;
 
 /**
- * 10/7/2014
  * 
- * Version 1
+ * 
+ * This class takes the returns from the backend and updates the user display, including the turtles
+ * and the variables that the user sees
+ * 
  * 
  * @author Eric Chen
  * @author Michael Deng
@@ -34,14 +36,26 @@ public class MethodRunner {
 	private List<Turtle> turtleList;
 	private Canvas canvas;
 	private Group root;
+	//list of lines in the root
 	private List<Line> pathList;
 	private Turtle turtle;
+	//list of all lines from backend
 	private List<ILine> allILines;
+	//the turtle id
 	private String ID;
+	//the turtlestatus from the backend
 	private ITurtleStatus TS;
 	private String environment;
 	private ModuleCreationHelper MCH;
 	
+	/**
+	 * construct a new methodrunner to update our gui
+	 * @param root the root
+	 * @param canvas the canvas where the turtle lies
+	 * @param turtleList list of all our turtles created
+	 * @param list list of all lines drawn on the seen
+	 * @param MCH our class holding all our ui elements
+	 */
 	public MethodRunner(Group root, Canvas canvas, List<Turtle> turtleList, List<Line> list, ModuleCreationHelper MCH) {
 		this.turtleList = turtleList;
 		this.canvas = canvas;
@@ -51,6 +65,13 @@ public class MethodRunner {
 		this.allILines = new ArrayList<ILine>();
 	}
 	
+	/**
+	 * updates the appropriate turtle
+	 * takes the turtlestatus and checks if any turtles have the same id,
+	 * otherwise makes a new turtle
+	 * then sets all the turtle attributes from the backend returns
+	 * 
+	 */
 	public void changeTurtle() {
 	    boolean found = false;
 	    for(Turtle t : turtleList){
@@ -60,26 +81,27 @@ public class MethodRunner {
 	            break;
 	        }
 	    }
+	    //make new turtle if not found
 	    if(!found){
 	        turtle = new Turtle("Triangle", AppConstants.INITIAL_TURTLE_X_POS, AppConstants.INITIAL_TURTLE_Y_POS, ID);
 	        MCH.getTurtleList().add(turtle);
+	        turtle.setShapesMap(MCH.getTurtleList().get(0).getShapesMap());
 	    }
+	    //change attributes
 	    if(TS.isActive()){
 	        setTurtleVisibility();
 		moveTurtle();
 		setTurtleDirection();
+		setPenState();
 		setPenAttributes();
 		setBackgroundColor();
 		MCH.setListViewVariables((double) TS.turtlePosition().getX(), -1*(double) TS.turtlePosition().getY(), -1*TS.turtleDirection().toDegrees(), setPenState(), turtle.getThickness());
 	    }
 	}
-
-    public void changeEnvironment() {
-		//NEEDS FUNCTIONALITY
-		System.out.println("Environment:      " + environment);
-		
-	}
-    
+        
+	/**
+	 * show or hide the turtle based on its visibility status
+	 */
         private void setTurtleVisibility(){
             if(TS.turtleVisibility().equals(Visibility.VISIBLE) && !root.getChildren().contains(turtle.getImage())){
                 root.getChildren().add(turtle.getImage());
@@ -90,7 +112,8 @@ public class MethodRunner {
             
         }
 	/**
-	 * Moves turtle to the appropriate position based on turtle status	
+	 * Moves turtle to the appropriate position based on turtle status
+	 * draws the lines behind it if the pen is down	
 	 */
         private void moveTurtle() {
             if(TS.penState().equals(PenState.DOWN)){
@@ -104,6 +127,7 @@ public class MethodRunner {
                     allILines.add(l);
                 }
                 for (ILine l : allILines) {
+                    //check if it is already in the scene
                     boolean alreadyAdded = false;
                     for(Line line : copyLines){
                         alreadyAdded = redrawIfInScene(l, line);
@@ -148,12 +172,14 @@ public class MethodRunner {
 	 */
 	private void drawNewLine(ILine l){
 	    Line line = new Line();
+	    //set color
 	    line.setStroke(TS.turtleQualities().toColor());
+	    //set start and end
 	    line.setStartX((double) l.start().getX() + AppConstants.INITIAL_TURTLE_X_POS);
 	    line.setStartY((double) l.start().getY() + AppConstants.INITIAL_TURTLE_Y_POS);
 	    line.setEndX((double) l.end().getX() + AppConstants.INITIAL_TURTLE_X_POS);
 	    line.setEndY((double) l.end().getY() + AppConstants.INITIAL_TURTLE_Y_POS);
-	    //PATH PROPERTY SHOULD BE MOVED OR MADE A COMMAND
+	    //set path texture
 	    if(turtle.getLineProperty().equals("Dashed")){
 	        line.setStrokeWidth(turtle.getThickness());
 	        line.getStrokeDashArray().addAll(AppConstants.DASH_SIZE);
@@ -169,7 +195,10 @@ public class MethodRunner {
 	    root.getChildren().add(line);
 	    pathList.add(line);
 	}
-
+	
+	/**
+	 * set the turtle orientation
+	 */
 	private void setTurtleDirection() {
 		turtle.setOrientation(TS.turtleDirection().toDegrees() + AppConstants.ORIENTATION_OFFSET);
 	}
@@ -182,6 +211,11 @@ public class MethodRunner {
 	    return TS.penState().equals(PenState.DOWN);
 	}
 	
+	/**
+	 * set the turtle status
+	 * @param id - the turtle id that should be updated
+	 * @param TS - the turtle status corresponding to this id
+	 */
 	public void setTurtleStatus(String id, ITurtleStatus TS) {
 		this.TS = TS;
 		this.ID = id;
@@ -243,10 +277,16 @@ public class MethodRunner {
             MCH.getCanvas().getGraphicsContext2D().setFill(MCH.getBackgroundColorSelector().getValue());
             MCH.getCanvas().getGraphicsContext2D().fillRect(1, 1, AppConstants.CANVAS_WIDTH - 2, AppConstants.CANVAS_HEIGHT - 2);
 	}
+	
 
 	public void setEnvironment(String var) {
 		this.environment = var;
 	}
+
+    public void changeEnvironment () {
+        // TODO Auto-generated method stub
+        
+    }
 
 }
 

@@ -24,7 +24,7 @@ public class ImageLoader {
         File selectedFile = fileChooser.showOpenDialog(stage);
         if (selectedFile != null) {
                 Image i = new Image((selectedFile.toURI().toString()), AppConstants.MAX_NEW_IMAGE_WIDTH, AppConstants.MAX_NEW_IMAGE_HEIGHT, true, true);
-                turtleSelector.updateMap("User Image #" + totalUserImages, new ImageView(i), myTurtleList);
+                turtleSelector.updateMap("User Image #" + totalUserImages, i, myTurtleList);
                 totalUserImages +=1;
         }
         else{
