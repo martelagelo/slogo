@@ -5,12 +5,24 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
+/**
+ * 10/10/2014
+ * 
+ * Version 1
+ * 
+ * @author Michael Deng
+ *
+ */
 public class TurtleCanvas {
     
     private Group myRoot;
     private GraphicsContext myGraphicsContext;
     private Canvas myCanvas;
     
+    /**
+     * The constructor
+     * @param root The group the turtle canvas belongs to
+     */
     public TurtleCanvas (Group root){
         myRoot = root;
         myCanvas = new Canvas(AppConstants.CANVAS_WIDTH, AppConstants.CANVAS_HEIGHT);
@@ -25,10 +37,18 @@ public class TurtleCanvas {
         myRoot.getChildren().add(myCanvas);
     }
     
+    /**
+     * Gets the graphics context
+     * @return The graphics context
+     */
     protected GraphicsContext getGraphicsContext(){
         return myGraphicsContext;
     }
     
+    /**
+     * Gets the canvas
+     * @return The canvas
+     */
     protected Canvas getCanvas(){
         return myCanvas;
     }

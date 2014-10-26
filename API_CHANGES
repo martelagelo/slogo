@@ -1,0 +1,54 @@
+commit f3c2c5d9f9e9ec47a5e74941382fcaadcc97abf3
+Author: Michael Ren <michael.ren@duke.edu>
+Date:   Fri Oct 24 03:38:41 2014 -0400
+
+    implement more informative error handling and document tokenizer ugliness
+
+diff --git a/src/slogo/IModel.java b/src/slogo/IModel.java
+index f49bdf9..7bb0e6b 100644
+--- a/src/slogo/IModel.java
++++ b/src/slogo/IModel.java
+@@ -3,7 +3,6 @@ package slogo;
+ import java.util.Collection;
+ import java.util.Map;
+ 
+-import slogo.backend.evaluation.ElementUnsupportedException;
+ import slogo.backend.evaluation.IExecutionContext;
+ 
+ /**
+@@ -16,12 +15,12 @@ public interface IModel {
+ 	 * 
+ 	 * @param string a string representing the command
+ 	 */
+-	public IExecutionContext execute(String string);
++	public IExecutionContext execute(String string) throws ExecutionException;
+ 	/**
+ 	 * Get requested data from the backend
+ 	 * 
+ 	 * @param elements The elements requested
+ 	 * @return The data, mapping each element to the value associated with it
+ 	 */
+-	public Map<String,String> getData(Collection<String> elements) throws ElementUnsupportedException;
++	//public Map<String,String> getData(Collection<String> elements) throws ElementUnsupportedException;
+ }
+
+commit bcc16f4e8b17223b2c2ff248efe6b3dfaad9e8bb
+Author: Michael Ren <michael.ren@duke.edu>
+Date:   Sat Oct 18 16:22:47 2014 -0400
+
+    get IModel/Backend working
+
+diff --git a/src/slogo/IModel.java b/src/slogo/IModel.java
+index 59ae5b7..f49bdf9 100644
+--- a/src/slogo/IModel.java
++++ b/src/slogo/IModel.java
+@@ -16,7 +16,7 @@ public interface IModel {
+ 	 * 
+ 	 * @param string a string representing the command
+ 	 */
+-	public void execute(String string);
++	public IExecutionContext execute(String string);
+ 	/**
+ 	 * Get requested data from the backend
+ 	 * 
+
