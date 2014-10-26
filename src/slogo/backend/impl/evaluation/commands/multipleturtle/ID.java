@@ -14,7 +14,7 @@ public class ID extends Operation {
     private static final String COMMAND_NAME = "ID";
     private static final int MIN_NUM_CONTEXT = 1;
     private static final int MAX_NUM_CONTEXT = 1;
-    public ID (String type, int argMin, int argMax) {
+    public ID () {
         super(COMMAND_NAME, MIN_NUM_CONTEXT, MAX_NUM_CONTEXT);
       
     }
