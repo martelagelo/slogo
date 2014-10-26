@@ -64,7 +64,7 @@ public class GrammarRule implements IGrammarRule {
 		if (searchRemaining.size() == 0){
 			if (searchPattern.size() == 0
 					|| (searchPattern.size() == 2
-					&& searchPattern.get(1).equals(Constants.INFINITE_MATCHING_LABEL))
+						&& searchPattern.get(1).contains(Constants.INFINITE_MATCHING_LABEL))
 					){
 				return true;
 			}
