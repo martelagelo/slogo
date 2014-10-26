@@ -185,6 +185,7 @@ public class View implements IView{
 				//FIXME handle if an error occurs in execution; 
 				// print this out to a UI widget maybe?
 				e.printStackTrace();
+				new MessageBox(e.getMessage());
 			}
 			executeCommand(result);
 		}

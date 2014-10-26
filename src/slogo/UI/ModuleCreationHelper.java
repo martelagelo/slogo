@@ -101,9 +101,9 @@ public class ModuleCreationHelper {
 
 	private Label runningStatusLabel;
 	private int commandsHistoryCounter;
-        private PathColorSelector myPathColorSelector;
-        private BackgroundColorSelector myBackgroundColorSelector;
-        private CheckBox labelsCheckBox;
+	private PathColorSelector myPathColorSelector;
+	private BackgroundColorSelector myBackgroundColorSelector;
+	private CheckBox labelsCheckBox;
 
 
 	/**
@@ -155,10 +155,10 @@ public class ModuleCreationHelper {
 		createLoadButton();
 		createSaveButton();
 		createExtraWorkspaceButton();
-	        createIncreaseDecreaseButtons();
+		createIncreaseDecreaseButtons();
 		createAnimationSpeedSlider();
 		createGridCheckBox();
-	        createLabelsCheckBox();
+		createLabelsCheckBox();
 	}
 
 	/**
@@ -169,7 +169,7 @@ public class ModuleCreationHelper {
 		createPlayButton();
 		createStopButton();
 	}
-	
+
 	/**
 	 * Creates the second row of buttons
 	 */
@@ -189,7 +189,7 @@ public class ModuleCreationHelper {
 		createDebugStepOverButton();
 		createDebugButton();
 	}
-	
+
 	/**
 	 * Creates a Scroll Pane for the lists in the application
 	 */
@@ -197,7 +197,7 @@ public class ModuleCreationHelper {
 		ScrollPaneCreator SPC = new ScrollPaneCreator(root);
 		listScrollPane = SPC.createScrollPane(AppConstants.LIST_SCROLL_PANE_X_POS, AppConstants.LIST_SCROLL_PANE_Y_POS, AppConstants.LIST_SCROLL_PANE_WIDTH + 30, AppConstants.LIST_SCROLL_PANE_HEIGHT);
 	}
-	
+
 	/**
 	 * Creates a Scroll Pane for the modules in the application
 	 */
@@ -210,7 +210,7 @@ public class ModuleCreationHelper {
 	 * Creates a checkBox for the Grid
 	 */
 	private void createGridCheckBox() {
-	        GridLinesToggler GLT = new GridLinesToggler(mySelectorsVBox);
+		GridLinesToggler GLT = new GridLinesToggler(mySelectorsVBox);
 		GLT.activate(myCanvas, root);
 	}
 
@@ -221,7 +221,7 @@ public class ModuleCreationHelper {
 		HBoxCreator HBC = new HBoxCreator(mySelectorsVBox);
 		firstButtonRow = HBC.createHBox(AppConstants.STAGE_PADDING);
 	}
-	
+
 	/**
 	 * Creates a HBox for buttons below the first row of buttons
 	 */
@@ -256,32 +256,10 @@ public class ModuleCreationHelper {
 		myTurtleList.add(t);
 		root.getChildren().addAll(myTurtleList.get(0).getImage());
 		if (labelsCheckBox.isSelected()){
-		    myTurtleList.get(0).addLabel(root);
+			myTurtleList.get(0).addLabel(root);
 		}
 	}
-	
-	private void createLabelsCheckBox(){
-	    CheckBoxCreator cb = new CheckBoxCreator(mySelectorsVBox);
-	    labelsCheckBox = cb.createCheckBox("Toggle Turtle IDs");
-	    labelsCheckBox.setOnAction(new EventHandler<ActionEvent>(){
-	        @Override
-	        public void handle(ActionEvent event){
-	            if(labelsCheckBox.isSelected()){
-	                for(Turtle t : myTurtleList){
-	                    if(root.getChildren().contains(t.getImage())){
-	                        t.addLabel(root);
-	                    }
-	                }
-	            }
-	            else{
-                        for(Turtle t : myTurtleList){
-                            t.removeLabel(root);
-                        }
-	            }
-	        }
-	    });
-	}
-	
+
 	/**
 	 * Creates a button that runs animations
 	 */
@@ -343,38 +321,25 @@ public class ModuleCreationHelper {
 		activateHelpButton(btn);    
 	}
 
+	/**
+	 * Creates a button that loads an image for the turtle
+	 */
 	private void createTurtleImageLoaderButton(){
 		ButtonCreator BC = new ButtonCreator(mySelectorsVBox);
 		Button btn = BC.createButton("Load New Turtle Image");
 		activateTurtleImageLoaderButton(btn);
 	}
-	
+
+	/**
+	 * Creates the buttons that increase and decrease stroke width
+	 */
 	private void createIncreaseDecreaseButtons(){
-	    HBox hb = new HBox();
-	    ButtonCreator BC = new ButtonCreator(hb);
-	    Button btn = BC.createButton("Inc. Pen Size");
-	    Button btn2 = BC.createButton("Dec. Pen Size");
-	    activateIncreaseDecreaseButtons(btn, btn2, myView);
-	    mySelectorsVBox.getChildren().add(hb);   
-	}
-	
-	private void activateIncreaseDecreaseButtons(Button incbtn, Button decbtn, View view){
-	    incbtn.setOnAction(new EventHandler<ActionEvent>(){
-	        @Override
-	        public void handle(ActionEvent event){
-	            Turtle t = getActiveTurtles().get(0);
-	            t.setThickness(t.getThickness() + 1);
-	            view.sendCommandToBackend("SetPenSize " + t.getThickness());
-	        }
-	    });
-	    decbtn.setOnAction(new EventHandler<ActionEvent>(){
-	        @Override
-	        public void handle(ActionEvent event){
-	               Turtle t = getActiveTurtles().get(0);
-	               t.setThickness(t.getThickness() + 1);
-	               view.sendCommandToBackend("SetPenSize " + t.getThickness());
-	        }
-	    });
+		HBox hb = new HBox();
+		ButtonCreator BC = new ButtonCreator(hb);
+		Button btn = BC.createButton("Inc. Pen Size");
+		Button btn2 = BC.createButton("Dec. Pen Size");
+		activateIncreaseDecreaseButtons(btn, btn2, myView);
+		mySelectorsVBox.getChildren().add(hb);   
 	}
 
 	/**
@@ -485,6 +450,15 @@ public class ModuleCreationHelper {
 		myTextField = new CommandsTextField(root).createTextField();
 		activateTextField(myTextField.getTextField());
 	}
+	
+	/**
+	 * Creates the label checkbox for activating the turtles' labels
+	 */
+	private void createLabelsCheckBox(){
+		CheckBoxCreator cb = new CheckBoxCreator(mySelectorsVBox);
+		labelsCheckBox = cb.createCheckBox("Toggle Turtle IDs");
+		activateCheckBoxCreator(labelsCheckBox);
+	}
 
 	/**
 	 * Creates all the lists for each of the variables and commans
@@ -498,7 +472,7 @@ public class ModuleCreationHelper {
 		myUserVariablesList.create();
 		myUserCommandsList = new ListViewUserCommands(myListsVBox);
 		myUserCommandsList.create();
-	        addToCertainList(myUserCommands, myUserCommandsList, "OnClick");
+		addToCertainList(myUserCommands, myUserCommandsList, "OnClick");
 	}
 
 	/**
@@ -509,7 +483,7 @@ public class ModuleCreationHelper {
 		mySelectorsVBox  = VBC.createVBoxScrollable(AppConstants.VBOX_SPACING);
 		moduleScrollPane.setContent(mySelectorsVBox);
 	}
-	
+
 	/**
 	 * Creates a vBox that stores all the lists
 	 */
@@ -532,20 +506,23 @@ public class ModuleCreationHelper {
 
 		PathTextureSelector pathTexture = new PathTextureSelector(mySelectorsVBox);
 		pathTexture.create(root, myTurtleList.get(0));
-		
-	        myTurtleSelector = new TurtleImageSelector(mySelectorsVBox);
-	        myTurtleSelector.create(root, myTurtleList.get(0), myView);
+
+		myTurtleSelector = new TurtleImageSelector(mySelectorsVBox);
+		myTurtleSelector.create(root, myTurtleList.get(0), myView);
 	}
-	
+
+	/**
+	 * Creates the turtle canvas
+	 */
 	private void activateTurtleCanvas(){
-	    myCanvas.getCanvas().setOnMouseClicked(new EventHandler<MouseEvent>(){
-	        @Override
-	        public void handle(MouseEvent event){
-	            if(myUserCommandsList.getItems().contains("OnClick")){
-	                myView.sendCommandToBackend("SetXY " + (event.getX() - AppConstants.INITIAL_TURTLE_X_POS + 10) + " " + (event.getY() - AppConstants.INITIAL_TURTLE_Y_POS + 75));
-	            }
-	        }
-	    });
+		myCanvas.getCanvas().setOnMouseClicked(new EventHandler<MouseEvent>(){
+			@Override
+			public void handle(MouseEvent event){
+				if(myUserCommandsList.getItems().contains("OnClick")){
+					myView.sendCommandToBackend("SetXY " + (event.getX() - AppConstants.INITIAL_TURTLE_X_POS + 10) + " " + (event.getY() - AppConstants.INITIAL_TURTLE_Y_POS + 75));
+				}
+			}
+		});
 	}
 
 	/**
@@ -564,8 +541,8 @@ public class ModuleCreationHelper {
 	}
 
 	/**
-	 * 
-	 * @param btn
+	 * Creates an event handler that plays the animation whenever the event is fired
+	 * @param btn The button that fires the event
 	 */
 	public void activatePlayButton(Button btn) {
 		btn.setOnAction(new EventHandler<ActionEvent>() {
@@ -617,7 +594,7 @@ public class ModuleCreationHelper {
 			}
 		});
 	}
-	
+
 	/**
 	 * Creates an event handler that shows and hides the debug modules when fired
 	 * @param cb The checkbox that fires the event
@@ -698,15 +675,13 @@ public class ModuleCreationHelper {
 				configWriter.writeToTextFile(CHMC.getConfigHashMap());
 
 				new MessageBox("Write to config file successful!");
-
-				//NEEDS BACKEND FUNCTIONALITY
 			}
 		});
 	}
 
 	/**
-	 * 
-	 * @param btn
+	 * Creates an event handler that creates a new window when fired
+	 * @param btn The button that fires the event
 	 */
 	public void activateExtraWorkspaceButton(Button btn){
 		btn.setOnAction(new EventHandler<ActionEvent>(){
@@ -763,34 +738,89 @@ public class ModuleCreationHelper {
 		});
 	}
 
-	//NEEDS BACKEND FUNCTIONALITY
+	/**
+	 * Creates an event handler that generates a new turtle when fired
+	 * @param btn The button that fires the event
+	 */
 	private void activateNewTurtleButton(Button btn) {
 		btn.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-			    List<Turtle> l = (List<Turtle>) getActiveTurtles();
-			    String s = "";
-			    for(Turtle t : getActiveTurtles()){ 
-			        s += t.getId() + " ";
-			    }
-			        myView.sendCommandToBackend("Tell [ " + s + " " + totalTurtles + " ]");
+				List<Turtle> l = (List<Turtle>) getActiveTurtles();
+				String s = "";
+				for(Turtle t : getActiveTurtles()){ 
+					s += t.getId() + " ";
+				}
+				myView.sendCommandToBackend("Tell [ " + s + " " + totalTurtles + " ]");
 				//Turtle newTurtle = new Turtle("Triangle", AppConstants.INITIAL_TURTLE_X_POS, AppConstants.INITIAL_TURTLE_Y_POS, "Turtle" + totalTurtles);
-	                        //myTurtleList.add(newTurtle);
-	                        //root.getChildren().add(newTurtle.getImage());
-	                        totalTurtles += 1;
+				//myTurtleList.add(newTurtle);
+				//root.getChildren().add(newTurtle.getImage());
+				totalTurtles += 1;
 			}
 		});	    
 
 	}
 
-	//NEEDS BACKEND FUNCTIONALITY
+	/**
+	 * Activates an event handler that opens up a file directory when fired
+	 * @param btn The button that fires the event
+	 */
 	private void activateTurtleImageLoaderButton(Button btn){
 		btn.setOnAction(new EventHandler<ActionEvent>(){
 			@Override
 			public void handle(ActionEvent event){
-			    ImageLoader IL = new ImageLoader(myTurtleList, totalUserImages);
-			    IL.chooseNewImage(stage, myTurtleSelector);
-			    totalUserImages += 1;
+				ImageLoader IL = new ImageLoader(myTurtleList, totalUserImages);
+				IL.chooseNewImage(stage, myTurtleSelector);
+				totalUserImages += 1;
+			}
+		});
+	}
+	
+	/**
+	 * Activates an event handler that creates labels for the turtles when fired
+	 * @param cb The checkbox that fires the event
+	 */
+	private void activateCheckBoxCreator(CheckBox cb){
+		cb.setOnAction(new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent event){
+				if(labelsCheckBox.isSelected()){
+					for(Turtle t : myTurtleList){
+						if(root.getChildren().contains(t.getImage())){
+							t.addLabel(root);
+						}
+					}
+				}
+				else{
+					for(Turtle t : myTurtleList){
+						t.removeLabel(root);
+					}
+				}
+			}
+		});
+	}
+	
+	/**
+	 * Creates an event handler that increases or decreases stroke width based on what button is pressed
+	 * @param incbtn The button that increases width
+	 * @param decbtn The button that decreases width
+	 * @param view The view
+	 */
+	private void activateIncreaseDecreaseButtons(Button incbtn, Button decbtn, View view){
+		incbtn.setOnAction(new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent event){
+				Turtle t = getActiveTurtles().get(0);
+				t.setThickness(t.getThickness() + 1);
+				view.sendCommandToBackend("SetPenSize " + t.getThickness());
+			}
+		});
+		decbtn.setOnAction(new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent event){
+				Turtle t = getActiveTurtles().get(0);
+				t.setThickness(t.getThickness() + 1);
+				view.sendCommandToBackend("SetPenSize " + t.getThickness());
 			}
 		});
 	}
@@ -802,18 +832,18 @@ public class ModuleCreationHelper {
 		root.setOnKeyPressed(new EventHandler<KeyEvent>() {
 			@Override
 			public void handle(KeyEvent event) {
-						if (event.getCode() == KeyCode.A) {
-							myView.sendCommandToBackend("Right 10");
-						}
-						if (event.getCode() == KeyCode.D) {
-							myView.sendCommandToBackend("Left 10");
-						}
-						if (event.getCode() == KeyCode.W) {
-							myView.sendCommandToBackend("Forward 10");		
-						}
-						if (event.getCode() == KeyCode.S) {
-							myView.sendCommandToBackend("Back 10");
-						}
+				if (event.getCode() == KeyCode.A) {
+					myView.sendCommandToBackend("Right 10");
+				}
+				if (event.getCode() == KeyCode.D) {
+					myView.sendCommandToBackend("Left 10");
+				}
+				if (event.getCode() == KeyCode.W) {
+					myView.sendCommandToBackend("Forward 10");		
+				}
+				if (event.getCode() == KeyCode.S) {
+					myView.sendCommandToBackend("Back 10");
+				}
 			}
 		});
 	}
@@ -839,7 +869,10 @@ public class ModuleCreationHelper {
 		listView.setItems(currentList);
 	}
 
-	
+	/**
+	 * Steps through or over commands, depending on the offset
+	 * @param offset The offset of stepping
+	 */
 	public void stepThroughCommandsHistory(int offset) {
 		if(commandsHistoryCounter <= myCommands.size()-1) {
 			myCommands.add(commandsHistoryCounter + offset, "(Executed) " + myCommands.get(commandsHistoryCounter + offset));
@@ -849,14 +882,26 @@ public class ModuleCreationHelper {
 		}
 	}
 
+	/**
+	 * Sets the value of the command history counter
+	 * @param value The value
+	 */
 	public void setCommandsHistoryCounter(int value) {
 		commandsHistoryCounter = value;
 	}
 
+	/**
+	 * Gets the value of the command history counter
+	 * @return The command history counter
+	 */
 	public int getCommandsHistoryCounter() {
 		return commandsHistoryCounter;
 	}
 
+	/**
+	 * Resets the command history counter to an old state
+	 * @param oldCounter The old state of the command history counter
+	 */
 	public void resetCommandsHistoryList(int oldCounter) {
 		while(commandsHistoryCounter <= myCommands.size() - 1) {
 			if(myCommands.get(commandsHistoryCounter).charAt(0) == '(' ) {
@@ -874,10 +919,10 @@ public class ModuleCreationHelper {
 	 * @return The turtle
 	 */
 	public List<Turtle> getActiveTurtles() {
-	    List<Turtle> activeTurtles = new ArrayList<Turtle>();
+		List<Turtle> activeTurtles = new ArrayList<Turtle>();
 		for(Turtle t : myTurtleList){
 			if(t.isActive()){
-			    activeTurtles.add(t);
+				activeTurtles.add(t);
 			}
 		}
 		return activeTurtles;
@@ -907,6 +952,14 @@ public class ModuleCreationHelper {
 		return animationSlider.getValue();
 	}
 
+	/**
+	 * Sets the values of the variables in the list
+	 * @param x The turtle's x position
+	 * @param y The turtle's y position
+	 * @param o The orientation of the turtle
+	 * @param b The boolean representing the pen down or pen up
+	 * @param t The thickness of the pen
+	 */
 	protected void setListViewVariables(double x, double y, double o, boolean b, int t){
 		myVariables.clear();
 		myVariables.add("Turtle X Position:     " + String.format("%.5g%n", x));
@@ -923,7 +976,7 @@ public class ModuleCreationHelper {
 	public void turnOnRunningStatusLabel() {
 		runningStatusLabel.setVisible(true);
 	}
-	
+
 	/**
 	 * Makes the running status label invisible
 	 */
@@ -931,20 +984,36 @@ public class ModuleCreationHelper {
 		runningStatusLabel.setVisible(false);
 	}
 
-    protected TurtleImageSelector getTurtleSelector(){
-        return myTurtleSelector;
-    }
+	/**
+	 * Gets the turtles image
+	 * @return The turtle's image
+	 */
+	protected TurtleImageSelector getTurtleSelector(){
+		return myTurtleSelector;
+	}
 
-    protected PathColorSelector getPathColorSelector () {
-        return myPathColorSelector;
-    }
+	/**
+	 * Gets the line color selector
+	 * @return The color selector for the lines
+	 */
+	protected PathColorSelector getPathColorSelector () {
+		return myPathColorSelector;
+	}
 
-    protected BackgroundColorSelector getBackgroundColorSelector () {
-        return myBackgroundColorSelector;
-    }
-    
-    public List<Turtle> getTurtleList(){
-        return myTurtleList;
-    }
+	/**
+	 * Gets the background color selector
+	 * @return The background color selector
+	 */
+	protected BackgroundColorSelector getBackgroundColorSelector () {
+		return myBackgroundColorSelector;
+	}
+
+	/**
+	 * Gets the list of turtles
+	 * @return The list of turtles
+	 */
+	public List<Turtle> getTurtleList(){
+		return myTurtleList;
+	}
 }
 

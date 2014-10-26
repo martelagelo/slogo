@@ -5,6 +5,13 @@ import java.util.Map;
 
 import javafx.scene.paint.Color;
 
+/**
+ * NOT FULLY IMPLEMENTED OR COMPLETED.
+ * NOT REPRESENTATIVE OF THE REST OF THE PROJECT
+ * 
+ * @author Michael Deng
+ *
+ */
 public class ConfigHashMapCreator {
 	
 	private Map<String, String> configMap;
