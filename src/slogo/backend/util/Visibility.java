@@ -5,12 +5,12 @@ package slogo.backend.util;
  *
  */
 public enum Visibility {
-	/**
-	 * The object is visible to the UI
-	 */
-	VISIBLE,
-	/**
-	 * The object is invisible to the UI
-	 */
-	INVISIBLE
+    /**
+     * The object is visible to the UI
+     */
+    VISIBLE,
+    /**
+     * The object is invisible to the UI
+     */
+    INVISIBLE
 }

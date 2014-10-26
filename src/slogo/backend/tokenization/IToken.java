@@ -5,16 +5,17 @@ package slogo.backend.tokenization;
  *
  */
 public interface IToken {
-	/**
-	 * Get the text associated with the token
-	 * 
-	 * @return the text of the token
-	 */
-	public String text();
-	/**
-	 * Get the type of token
-	 * 
-	 * @return the type
-	 */
-	public String type();
+    /**
+     * Get the text associated with the token
+     * 
+     * @return the text of the token
+     */
+    public String text ();
+
+    /**
+     * Get the type of token
+     * 
+     * @return the type
+     */
+    public String type ();
 }
