@@ -216,7 +216,8 @@ public class View implements IView{
 	 * @param str 
 	 */
 	private void executeTurtleCommands(String k, ITurtleStatus iTurtleStatus){
-		runner.setTurtleStatus(k, iTurtleStatus);
+		System.out.println("This is k: " + k);
+	        runner.setTurtleStatus(k, iTurtleStatus);
 		runner.changeTurtle();
 	}
 

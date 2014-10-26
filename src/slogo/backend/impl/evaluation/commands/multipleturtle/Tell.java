@@ -18,7 +18,7 @@ public class Tell extends Operation {
     private static final int MIN_NUM_CONTEXT = 3;
     private static final int MAX_NUM_CONTEXT = Constants.INFINITE_ARGUMENTS;
     
-    public Tell (String type, int argMin, int argMax) {
+    public Tell () {
         super(COMMAND_NAME, MIN_NUM_CONTEXT, MAX_NUM_CONTEXT);
     }
 

@@ -42,9 +42,11 @@ public class TurtleImageSelector {
         mySelectorsVBox.getChildren().add(selectorWithLabel);
     }
     
-    protected void updateMap(String s, ImageView iv, Turtle t){
+    protected void updateMap(String s, ImageView iv, List<Turtle> turtleList){
         mySelector.getItems().add(s);
-        t.getShapesMap().put(s, iv);
+        for(Turtle t : turtleList){
+            t.getShapesMap().put(s, iv);
+        }
     }
 
     public ObservableList<String> getItems () {

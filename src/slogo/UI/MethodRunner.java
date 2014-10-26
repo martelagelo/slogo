@@ -64,13 +64,14 @@ public class MethodRunner {
 	        turtle = new Turtle("Triangle", AppConstants.INITIAL_TURTLE_X_POS, AppConstants.INITIAL_TURTLE_Y_POS, ID);
 	        MCH.getTurtleList().add(turtle);
 	    }
+	    if(TS.isActive()){
 	        setTurtleVisibility();
 		moveTurtle();
 		setTurtleDirection();
-		setPenState();
 		setPenAttributes();
 		setBackgroundColor();
 		MCH.setListViewVariables((double) TS.turtlePosition().getX(), -1*(double) TS.turtlePosition().getY(), -1*TS.turtleDirection().toDegrees(), setPenState(), turtle.getThickness());
+	    }
 	}
 
     public void changeEnvironment() {

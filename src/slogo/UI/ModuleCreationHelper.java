@@ -103,6 +103,7 @@ public class ModuleCreationHelper {
 	private int commandsHistoryCounter;
         private PathColorSelector myPathColorSelector;
         private BackgroundColorSelector myBackgroundColorSelector;
+        private CheckBox labelsCheckBox;
 
 
 	/**
@@ -119,6 +120,7 @@ public class ModuleCreationHelper {
 		isInDebugMode = false;
 		commandsHistoryCounter = 0;
 		totalTurtles = 2;
+		labelsCheckBox = new CheckBox();
 	}
 
 	/**
@@ -156,6 +158,7 @@ public class ModuleCreationHelper {
 	        createIncreaseDecreaseButtons();
 		createAnimationSpeedSlider();
 		createGridCheckBox();
+	        createLabelsCheckBox();
 	}
 
 	/**
@@ -251,7 +254,32 @@ public class ModuleCreationHelper {
 		myTurtleList = new ArrayList<Turtle>();
 		Turtle t = new Turtle("Triangle", AppConstants.INITIAL_TURTLE_X_POS, AppConstants.INITIAL_TURTLE_Y_POS, "1");
 		myTurtleList.add(t);
-		root.getChildren().add(myTurtleList.get(0).getImage());
+		root.getChildren().addAll(myTurtleList.get(0).getImage());
+		if (labelsCheckBox.isSelected()){
+		    myTurtleList.get(0).addLabel(root);
+		}
+	}
+	
+	private void createLabelsCheckBox(){
+	    CheckBoxCreator cb = new CheckBoxCreator(mySelectorsVBox);
+	    labelsCheckBox = cb.createCheckBox("Toggle Turtle IDs");
+	    labelsCheckBox.setOnAction(new EventHandler<ActionEvent>(){
+	        @Override
+	        public void handle(ActionEvent event){
+	            if(labelsCheckBox.isSelected()){
+	                for(Turtle t : myTurtleList){
+	                    if(root.getChildren().contains(t.getImage())){
+	                        t.addLabel(root);
+	                    }
+	                }
+	            }
+	            else{
+                        for(Turtle t : myTurtleList){
+                            t.removeLabel(root);
+                        }
+	            }
+	        }
+	    });
 	}
 	
 	/**
@@ -334,16 +362,17 @@ public class ModuleCreationHelper {
 	    incbtn.setOnAction(new EventHandler<ActionEvent>(){
 	        @Override
 	        public void handle(ActionEvent event){
-	            Turtle t = getActiveTurtles();
-	            view.sendCommandToBackend("SetPenSize " + (t.getThickness() + 1));
+	            Turtle t = getActiveTurtles().get(0);
+	            t.setThickness(t.getThickness() + 1);
+	            view.sendCommandToBackend("SetPenSize " + t.getThickness());
 	        }
 	    });
 	    decbtn.setOnAction(new EventHandler<ActionEvent>(){
 	        @Override
 	        public void handle(ActionEvent event){
-	            Turtle t = getActiveTurtles();
-	            view.sendCommandToBackend("SetPenSize " + (t.getThickness() - 1));
-
+	               Turtle t = getActiveTurtles().get(0);
+	               t.setThickness(t.getThickness() + 1);
+	               view.sendCommandToBackend("SetPenSize " + t.getThickness());
 	        }
 	    });
 	}
@@ -739,9 +768,15 @@ public class ModuleCreationHelper {
 		btn.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				Turtle newTurtle = new Turtle("Triangle", AppConstants.INITIAL_TURTLE_X_POS, AppConstants.INITIAL_TURTLE_Y_POS, "Turtle " + totalTurtles);
-	                        myTurtleList.add(newTurtle);
-	                        root.getChildren().add(newTurtle.getImage());
+			    List<Turtle> l = (List<Turtle>) getActiveTurtles();
+			    String s = "";
+			    for(Turtle t : getActiveTurtles()){ 
+			        s += t.getId() + " ";
+			    }
+			        myView.sendCommandToBackend("Tell [ " + s + " " + totalTurtles + " ]");
+				//Turtle newTurtle = new Turtle("Triangle", AppConstants.INITIAL_TURTLE_X_POS, AppConstants.INITIAL_TURTLE_Y_POS, "Turtle" + totalTurtles);
+	                        //myTurtleList.add(newTurtle);
+	                        //root.getChildren().add(newTurtle.getImage());
 	                        totalTurtles += 1;
 			}
 		});	    
@@ -753,9 +788,9 @@ public class ModuleCreationHelper {
 		btn.setOnAction(new EventHandler<ActionEvent>(){
 			@Override
 			public void handle(ActionEvent event){
-			    ImageLoader IL = new ImageLoader(getActiveTurtles(), totalUserImages);
+			    ImageLoader IL = new ImageLoader(myTurtleList, totalUserImages);
 			    IL.chooseNewImage(stage, myTurtleSelector);
-			    totalUserImages +=1;
+			    totalUserImages += 1;
 			}
 		});
 	}
@@ -767,8 +802,6 @@ public class ModuleCreationHelper {
 		root.setOnKeyPressed(new EventHandler<KeyEvent>() {
 			@Override
 			public void handle(KeyEvent event) {
-				for(Turtle t : myTurtleList){
-					if(t.isActive()){
 						if (event.getCode() == KeyCode.A) {
 							myView.sendCommandToBackend("Right 10");
 						}
@@ -781,8 +814,6 @@ public class ModuleCreationHelper {
 						if (event.getCode() == KeyCode.S) {
 							myView.sendCommandToBackend("Back 10");
 						}
-					}
-				}
 			}
 		});
 	}
@@ -842,13 +873,14 @@ public class ModuleCreationHelper {
 	 * Returns the current active turtle
 	 * @return The turtle
 	 */
-	public Turtle getActiveTurtles() {
+	public List<Turtle> getActiveTurtles() {
+	    List<Turtle> activeTurtles = new ArrayList<Turtle>();
 		for(Turtle t : myTurtleList){
 			if(t.isActive()){
-				return t;
+			    activeTurtles.add(t);
 			}
 		}
-		return null;
+		return activeTurtles;
 	}
 
 	/**

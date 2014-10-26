@@ -5,9 +5,11 @@ import java.util.Map;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
 public class Turtle {
@@ -24,6 +26,8 @@ public class Turtle {
         private String lineProperty;
         private String imageName;
         private String myId;
+        private Label myLabel;
+        private VBox myVBox;
     
 
 	public Turtle(String s, double x, double y, String id){
@@ -32,6 +36,7 @@ public class Turtle {
 		imagesMap = new HashMap<String, Node>();
 		generateSelectorMap(initialImagesMap());
 		turtleImage = imagesMap.get(s);
+	        myLabel = new Label(id);
 		moveTurtle(xpos, ypos);
 		lineProperty = "None";
 		imageName = s;
@@ -40,7 +45,7 @@ public class Turtle {
 		active = true;
 		color = Color.BLACK;
 		setOrientation(90);
-		 activateTurtle();
+		activateTurtle();
 	}
 	
 	private void activateTurtle() {
@@ -75,6 +80,7 @@ public class Turtle {
 	        d -= AppConstants.MAX_NEW_IMAGE_WIDTH/2;
 		turtleImage.setLayoutX(d);
 	        xpos = d;
+	        myLabel.setLayoutX(d);
 	}
 
 	protected double getXPos(){
@@ -93,6 +99,7 @@ public class Turtle {
 	        e -= AppConstants.MAX_NEW_IMAGE_HEIGHT/2;
 		turtleImage.setLayoutY(e);
 	        ypos = e;
+	        myLabel.setLayoutY(e - 15);
 	}
 
 	protected double getYPos(){
@@ -186,6 +193,14 @@ public class Turtle {
     
     protected String getId(){
         return myId;
+    }
+    
+    protected void addLabel(Group root){
+        root.getChildren().add(myLabel);
+    }
+    
+    protected void removeLabel(Group root){
+        root.getChildren().remove(myLabel);
     }
 
 }
