@@ -36,6 +36,8 @@ public class BackendTest {
 	public void testMake() throws Exception {
 		IExecutionContext result = backend.execute("Make :foo 10");
 		assertEquals("10", result.environment().get(":foo"));
+		result = backend.execute("Minus :foo");
+		assertEquals("-10.0", result.environment().get(Constants.RETURN_VALUE_ENVIRONMENT));
 	}
 	@Test
 	public void testRepeat() throws Exception {
