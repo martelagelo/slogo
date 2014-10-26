@@ -6,5 +6,5 @@ import slogo.backend.parsing.ISyntaxNode;
 
 public interface ISerializer {
 
-	public Reader serialize(ISyntaxNode root);
+    public Reader serialize (ISyntaxNode root);
 }

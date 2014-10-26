@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
 import javafx.scene.paint.Color;
 import slogo.Constants;
 import slogo.backend.evaluation.IExecutionContext;
@@ -20,7 +21,6 @@ public class Tell extends Operation {
 
     public Tell () {
         super(COMMAND_NAME, MIN_NUM_CONTEXT, MAX_NUM_CONTEXT);
-       
 
     }
 
@@ -32,25 +32,25 @@ public class Tell extends Operation {
         IExecutionContext context = previous;
         Map<String, ITurtleStatus> map = context.turtles();
         Color c = Color.WHITE;
-        for(int i = 1; i < args.size()-1; i++){
+        for (int i = 1; i < args.size() - 1; i++) {
             activeTurtle.add(args.get(i).environment().get(Constants.RETURN_VALUE_ENVIRONMENT));
         }
-        for(String s: previous.turtles().keySet()){
-            if(activeTurtle.contains(s)){
+        for (String s : previous.turtles().keySet()) {
+            if (activeTurtle.contains(s)) {
                 map.get(s).setActive(true);
                 activeTurtle.remove(s);
                 c = map.get(s).turtleQualities().backgroundColor();
-            }
-            else{
+            } else {
                 map.get(s).setActive(false);
             }
         }
-        for(String str: activeTurtle){
+        for (String str : activeTurtle) {
             TurtleStatus TS = new TurtleStatus.Builder().build();
             TS.turtleQualities().setBackground(c);
             map.put(str, TS);
         }
-        return new ExecutionContext(context.turtles(),context.environment(),context.userDefinedCommands());
+        return new ExecutionContext(context.turtles(), context.environment(),
+                context.userDefinedCommands());
     }
 
 }

@@ -10,15 +10,14 @@ import slogo.backend.parsing.ISyntaxNode;
 
 public class MakeUserInstruction extends Operation {
 
-	public MakeUserInstruction() {
-		super("To", 7, -1);
-	}
+    public MakeUserInstruction () {
+        super("To", 7, -1);
+    }
 
-	@Override
-	protected IExecutionContext executeRaw(List<IExecutionContext> args,
-			IExecutionContext previous, ISyntaxNode current)
-			throws MalformedSyntaxException {
-		return new ExecutionContext(previous);
-	}
+    @Override
+    protected IExecutionContext executeRaw (List<IExecutionContext> args,
+            IExecutionContext previous, ISyntaxNode current) throws MalformedSyntaxException {
+        return new ExecutionContext(previous);
+    }
 
 }
