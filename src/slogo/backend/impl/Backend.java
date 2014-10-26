@@ -125,7 +125,7 @@ public class Backend implements IModel{
 					Constants.INFINITE_MATCHING_LABEL,
 					Constants.CLOSING_LIST_LABEL
 				}},
-				{{"Make"}, {
+				{{"MakeVariable"}, {
 					Constants.VARIABLE_LABEL,
 					Constants.CONSTANT_LABEL
 				}},

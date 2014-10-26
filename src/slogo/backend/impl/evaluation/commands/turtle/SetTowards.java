@@ -15,11 +15,11 @@ import slogo.backend.util.IDirection;
 import slogo.backend.util.ITurtleStatus;
 import slogo.backend.util.PenState;
 
-public class Towards extends Operation{
+public class SetTowards extends Operation{
     private static final String COMMAND_NAME = "Towards";
     private static final int MIN_NUM_CONTEXT = 2;
     private static final int MAX_NUM_CONTEXT = 2;
-    public Towards () {
+    public SetTowards () {
         super(COMMAND_NAME, MIN_NUM_CONTEXT, MAX_NUM_CONTEXT);
     }
 

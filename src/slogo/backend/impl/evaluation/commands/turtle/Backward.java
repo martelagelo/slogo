@@ -18,11 +18,11 @@ import slogo.backend.util.ITurtleStatus;
 import slogo.backend.util.PenState;
 import slogo.backend.util.Visibility;
 
-public class Back extends Operation{
+public class Backward extends Operation{
     private static final String COMMAND_NAME = "Back";
     private static final int MIN_NUM_CONTEXT = 1;
     private static final int MAX_NUM_CONTEXT = 1;
-    public Back () {
+    public Backward () {
         super(COMMAND_NAME, MIN_NUM_CONTEXT, MAX_NUM_CONTEXT);
     }
 

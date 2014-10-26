@@ -37,7 +37,7 @@ public class BackendTest {
 	}
 	@Test
 	public void testMake() throws Exception {
-		IExecutionContext result = backend.execute("Make :foo 10");
+		IExecutionContext result = backend.execute("MakeVariable :foo 10");
 		assertEquals("10", result.environment().get(":foo"));
 		result = backend.execute("Minus :foo");
 		assertEquals("-10.0", result.environment().get(Constants.RETURN_VALUE_ENVIRONMENT));
@@ -97,18 +97,18 @@ public class BackendTest {
 	    IModel back = new Backend();
 	    IExecutionContext result = back.execute("Tell [ 2 3 4 5 6 ]");
 	    result = back.execute("Tell [ 2 5 6 ]");
-	    result = back.execute("Ask [ 1 4 5 ] [ Forward 24 ]");
+	    result = back.execute("Ask [ 1 4 5 ] [ Forward 24 Forward 26 ]");
 	    assertTrue(!result.turtles().get("1").isActive());
 	    assertTrue( result.turtles().get("2").isActive());
 	    assertTrue( !result.turtles().get("3").isActive());
 	    assertTrue( !result.turtles().get("4").isActive());
 	    assertTrue( result.turtles().get("5").isActive());
 	    assertTrue( result.turtles().get("6").isActive());
-	    assertEquals(24, result.turtles().get("1").turtlePosition().getX().doubleValue(),0.001);
+	    assertEquals(50, result.turtles().get("1").turtlePosition().getX().doubleValue(),0.001);
 	    assertEquals(0, result.turtles().get("2").turtlePosition().getX().doubleValue(),0.001);
 	    assertEquals(0, result.turtles().get("3").turtlePosition().getX().doubleValue(),0.001);
-	    assertEquals(24, result.turtles().get("4").turtlePosition().getX().doubleValue(),0.001);
-	    assertEquals(24, result.turtles().get("5").turtlePosition().getX().doubleValue(),0.001);
+	    assertEquals(50, result.turtles().get("4").turtlePosition().getX().doubleValue(),0.001);
+	    assertEquals(50, result.turtles().get("5").turtlePosition().getX().doubleValue(),0.001);
 	    assertEquals(0, result.turtles().get("6").turtlePosition().getX().doubleValue(),0.001);
 	    
 	    

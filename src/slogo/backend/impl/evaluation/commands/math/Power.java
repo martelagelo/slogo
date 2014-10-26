@@ -7,18 +7,16 @@ import slogo.backend.evaluation.IOperation;
 import slogo.backend.impl.evaluation.ExecutionContext;
 import slogo.backend.impl.evaluation.commands.MathOperation;
 
-public class Cos extends MathOperation{
-    private static final String COMMAND_NAME = "Cos";
-    private static final int MIN_NUM_CONTEXT = 1;
-    private static final int MAX_NUM_CONTEXT = 1;
-    public Cos() {
+public class Power extends MathOperation{
+    private static final String COMMAND_NAME = "Pow";
+    private static final int MIN_NUM_CONTEXT = 2;
+    private static final int MAX_NUM_CONTEXT = 2;
+    public Power() {
 		super(COMMAND_NAME, MIN_NUM_CONTEXT, MAX_NUM_CONTEXT);
 	}
 
 	@Override
 	protected Number executeMath(List<Number> args) {
-		double argument = Math.toRadians(args.get(0).doubleValue());
-        double result = Math.cos(argument);
-        return Math.toDegrees(result);
+		return Math.pow(args.get(0).doubleValue(), args.get(1).doubleValue());
 	}
 }
