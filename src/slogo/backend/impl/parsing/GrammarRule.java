@@ -47,7 +47,7 @@ public class GrammarRule implements IGrammarRule {
 			toSearch.add(node.type());
 		}
 		
-		for (int i = 0; i <= toSearch.size() - searchPattern.size(); i++){
+		for (int i = 0; i < toSearch.size(); i++) {
 			if (infiniteMatches(searchPattern, toSearch, i)) {
 				return i;
 			}
@@ -62,7 +62,10 @@ public class GrammarRule implements IGrammarRule {
 	}
 	public boolean infiniteMatchRecurse(List<List<String>> searchPattern, List<String> searchRemaining){
 		if (searchRemaining.size() == 0){
-			if (searchPattern.size() == 0 || searchPattern.size() == 2){
+			if (searchPattern.size() == 0
+					|| (searchPattern.size() == 2
+					&& searchPattern.get(1).equals(Constants.INFINITE_MATCHING_LABEL))
+					){
 				return true;
 			}
 			return false;
@@ -113,5 +116,9 @@ public class GrammarRule implements IGrammarRule {
 				return true;
 		}
 		return false;
+	}
+	@Override
+	public String toString(){
+		return command.toString();
 	}
 }
