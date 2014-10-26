@@ -35,5 +35,9 @@ public class Qualities {
     public void setIndex(int i){
         myShapeIndex = i;
     }
+    
+    public void setBackground(Color c){
+        backgroundColor = c;
+    }
 
 }

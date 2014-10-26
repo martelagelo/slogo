@@ -180,7 +180,7 @@ public class Backend implements IModel{
 				{{"Tell"}, {
 				        Constants.OPENING_LIST_LABEL,
 				        Constants.CONSTANT_LABEL,
-				        Constants.CONSTANT_LABEL,
+				        Constants.INFINITE_MATCHING_LABEL,
 				        Constants.CLOSING_LIST_LABEL
 				}}
 		};

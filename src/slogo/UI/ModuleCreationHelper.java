@@ -334,14 +334,14 @@ public class ModuleCreationHelper {
 	    incbtn.setOnAction(new EventHandler<ActionEvent>(){
 	        @Override
 	        public void handle(ActionEvent event){
-	            Turtle t = getTurtle();
+	            Turtle t = getActiveTurtles();
 	            view.sendCommandToBackend("SetPenSize " + (t.getThickness() + 1));
 	        }
 	    });
 	    decbtn.setOnAction(new EventHandler<ActionEvent>(){
 	        @Override
 	        public void handle(ActionEvent event){
-	            Turtle t = getTurtle();
+	            Turtle t = getActiveTurtles();
 	            view.sendCommandToBackend("SetPenSize " + (t.getThickness() - 1));
 
 	        }
@@ -753,7 +753,7 @@ public class ModuleCreationHelper {
 		btn.setOnAction(new EventHandler<ActionEvent>(){
 			@Override
 			public void handle(ActionEvent event){
-			    ImageLoader IL = new ImageLoader(getTurtle(), totalUserImages);
+			    ImageLoader IL = new ImageLoader(getActiveTurtles(), totalUserImages);
 			    IL.chooseNewImage(stage, myTurtleSelector);
 			    totalUserImages +=1;
 			}
@@ -842,7 +842,7 @@ public class ModuleCreationHelper {
 	 * Returns the current active turtle
 	 * @return The turtle
 	 */
-	public Turtle getTurtle() {
+	public Turtle getActiveTurtles() {
 		for(Turtle t : myTurtleList){
 			if(t.isActive()){
 				return t;
