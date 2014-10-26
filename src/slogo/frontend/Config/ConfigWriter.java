@@ -6,6 +6,13 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * NOT FULLY IMPLEMENTED OR COMPLETED.
+ * NOT REPRESENTATIVE OF THE REST OF THE PROJECT
+ * 
+ * @author Michael Deng
+ *
+ */
 public class ConfigWriter {
 
 	private String path = "src/slogo/frontend/Config/Config.txt";	

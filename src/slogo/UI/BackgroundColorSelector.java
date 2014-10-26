@@ -9,6 +9,14 @@ import javafx.scene.control.ColorPicker;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
+/**
+ * 10/15/2014
+ * 
+ * Version 1
+ * 
+ * @author Michael Deng
+ *
+ */
 public class BackgroundColorSelector {
     private VBox myVbox;
     private ColorPicker bgColor;

@@ -6,6 +6,13 @@ import java.lang.reflect.Field;
 
 import javafx.scene.paint.Color;
 
+/**
+ * NOT FULLY IMPLEMENTED OR COMPLETED.
+ * NOT REPRESENTATIVE OF THE REST OF THE PROJECT
+ * 
+ * @author Michael Deng
+ *
+ */
 public class ParameterDistributor {
 	
 	Map<String, String> configMap = new HashMap<String, String>();
