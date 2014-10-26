@@ -27,9 +27,9 @@ public class HideTurtle extends Operation{
         Map <String,ITurtleStatus> turtles = args.get(0).turtles();
         for(String name:turtles.keySet()){
 
-            if(turtles.get(name).isActive()){
+            
                 ITurtleStatus status = turtles.get(name);
-
+                if(status.isActive()){
                 ICoordinates cor = status.turtlePosition();
                 IDirection dir = status.turtleDirection();
                 List<ILine> list = status.lineSequence();

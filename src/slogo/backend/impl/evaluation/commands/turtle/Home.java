@@ -26,9 +26,9 @@ public class Home extends Operation{
         Map <String,ITurtleStatus> turtles = args.get(0).turtles();
         for(String name : turtles.keySet()){
             
-        if(turtles.get(name).isActive()){
+       
         ITurtleStatus status = turtles.get(name);
-
+        if(status.isActive()){
         ICoordinates pos = status.turtlePosition();
         IDirection dir = status.turtleDirection();
         PenState pen = status.penState();
