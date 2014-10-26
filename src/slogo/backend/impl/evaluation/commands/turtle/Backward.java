@@ -19,7 +19,7 @@ import slogo.backend.util.PenState;
 import slogo.backend.util.Visibility;
 
 public class Backward extends Operation {
-    private static final String COMMAND_NAME = "Back";
+    private static final String COMMAND_NAME = "Backward";
     private static final int MIN_NUM_CONTEXT = 1;
     private static final int MAX_NUM_CONTEXT = 1;
 

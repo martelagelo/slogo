@@ -5,7 +5,7 @@ import java.util.List;
 import slogo.backend.impl.evaluation.commands.MathOperation;
 
 public class Cosine extends MathOperation {
-    private static final String COMMAND_NAME = "Cos";
+    private static final String COMMAND_NAME = "Cosine";
     private static final int MIN_NUM_CONTEXT = 1;
     private static final int MAX_NUM_CONTEXT = 1;
 

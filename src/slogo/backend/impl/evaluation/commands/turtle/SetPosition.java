@@ -19,7 +19,7 @@ import slogo.backend.util.PenState;
 import slogo.backend.util.Visibility;
 
 public class SetPosition extends Operation {
-    private static final String COMMAND_NAME = "SetXY";
+    private static final String COMMAND_NAME = "SetPosition";
     private static final int MIN_NUM_CONTEXT = 2;
     private static final int MAX_NUM_CONTEXT = 2;
 

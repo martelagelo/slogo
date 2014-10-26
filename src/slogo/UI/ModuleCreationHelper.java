@@ -519,7 +519,7 @@ public class ModuleCreationHelper {
 			@Override
 			public void handle(MouseEvent event){
 				if(myUserCommandsList.getItems().contains("OnClick")){
-					myView.sendCommandToBackend("SetXY " + (event.getX() - AppConstants.INITIAL_TURTLE_X_POS + 10) + " " + (event.getY() - AppConstants.INITIAL_TURTLE_Y_POS + 75));
+					myView.sendCommandToBackend("SetPosition " + (event.getX() - AppConstants.INITIAL_TURTLE_X_POS + 10) + " " + (event.getY() - AppConstants.INITIAL_TURTLE_Y_POS + 75));
 				}
 			}
 		});

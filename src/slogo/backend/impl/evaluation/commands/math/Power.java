@@ -5,7 +5,7 @@ import java.util.List;
 import slogo.backend.impl.evaluation.commands.MathOperation;
 
 public class Power extends MathOperation {
-    private static final String COMMAND_NAME = "Pow";
+    private static final String COMMAND_NAME = "Power";
     private static final int MIN_NUM_CONTEXT = 2;
     private static final int MAX_NUM_CONTEXT = 2;
 

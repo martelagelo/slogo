@@ -16,7 +16,7 @@ import slogo.backend.util.ITurtleStatus;
 import slogo.backend.util.PenState;
 
 public class SetTowards extends Operation {
-    private static final String COMMAND_NAME = "Towards";
+    private static final String COMMAND_NAME = "SetTowards";
     private static final int MIN_NUM_CONTEXT = 2;
     private static final int MAX_NUM_CONTEXT = 2;
 

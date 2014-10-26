@@ -5,7 +5,7 @@ import java.util.List;
 import slogo.backend.impl.evaluation.commands.MathOperation;
 
 public class Sine extends MathOperation {
-    private static final String COMMAND_NAME = "Sin";
+    private static final String COMMAND_NAME = "Sine";
     private static final int MIN_NUM_CONTEXT = 1;
     private static final int MAX_NUM_CONTEXT = 1;
 

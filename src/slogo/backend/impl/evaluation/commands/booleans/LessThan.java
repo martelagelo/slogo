@@ -6,7 +6,7 @@ import slogo.Constants;
 import slogo.backend.impl.evaluation.commands.MathOperation;
 
 public class LessThan extends MathOperation {
-    private static final String COMMAND_NAME = "Less";
+    private static final String COMMAND_NAME = "LessThan";
     private static final int MIN_NUM_CONTEXT = 2;
     private static final int MAX_NUM_CONTEXT = 2;
 

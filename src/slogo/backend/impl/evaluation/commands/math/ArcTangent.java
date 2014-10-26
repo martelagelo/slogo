@@ -5,7 +5,7 @@ import java.util.List;
 import slogo.backend.impl.evaluation.commands.MathOperation;
 
 public class ArcTangent extends MathOperation {
-    private static final String COMMAND_NAME = "Atan";
+    private static final String COMMAND_NAME = "ArcTangent";
     private static final int MIN_NUM_CONTEXT = 1;
     private static final int MAX_NUM_CONTEXT = 1;
 
