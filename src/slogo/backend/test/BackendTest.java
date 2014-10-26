@@ -143,7 +143,7 @@ public class BackendTest {
 	@Test
 	public void testLanguages() throws Exception {
 	    Languages lan = new Languages();
-	    lan.buildMap("src/resources/languages/Chinese.properties");
+	    lan.buildMap("Chinese");
 	    Map<String,String> map = lan.returnMap();
 	    assertEquals("Forward",map.get("qianjin"));
 	    assertEquals("Forward",map.get("qj"));
