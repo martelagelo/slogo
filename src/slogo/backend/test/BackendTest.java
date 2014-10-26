@@ -144,9 +144,10 @@ public class BackendTest {
 	public void testLanguages() throws Exception {
 	    Languages lan = new Languages();
 	    lan.buildMap("Chinese");
+	    lan.buildMap("English");
 	    Map<String,String> map = lan.returnMap();
 	    assertEquals("Forward",map.get("qianjin"));
 	    assertEquals("Forward",map.get("qj"));
-	    assertEquals("Home",map.get("jia"));
+	    assertEquals("Forward",map.get("fd"));
 	}
 }
