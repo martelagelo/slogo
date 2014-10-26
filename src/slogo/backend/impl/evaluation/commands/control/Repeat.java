@@ -11,9 +11,11 @@ import slogo.backend.impl.evaluation.commands.Operation;
 import slogo.backend.parsing.ISyntaxNode;
 
 public class Repeat extends Operation{
-
+    private static final String COMMAND_NAME = "Repeat";
+    private static final int MIN_NUM_CONTEXT = 4;
+    private static final int MAX_NUM_CONTEXT = Integer.MAX_VALUE;
     public Repeat () {
-        super("Repeat", 4, -1);
+        super(COMMAND_NAME, MIN_NUM_CONTEXT, MAX_NUM_CONTEXT);
     }
 
     @Override
