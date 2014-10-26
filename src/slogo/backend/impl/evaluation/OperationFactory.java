@@ -12,7 +12,7 @@ public class OperationFactory implements IOperationFactory {
 	private String root;
 	public OperationFactory(){
 		this.root = "slogo.backend.impl.evaluation.commands";
-		String[] searchPath = { "booleans", "control", "math", "turtle", "turtlestatus", "multipleTurtle" };
+		String[] searchPath = { "booleans", "control", "math", "turtle", "turtlestatus", "multipleturtle" };
 		this.searchPath = searchPath;
 	}
 	@Override
