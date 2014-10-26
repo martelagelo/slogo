@@ -23,10 +23,25 @@ public abstract class LoopOperation extends Operation {
 			int countStartIndex, int countEndIndex, int incrementIndex,
 			int counterNameIndex,
 			int startOfCommands) throws MalformedSyntaxException{
+		int countStart = handleCountStart(countStartIndex, args);
+		int countEnd = Integer.parseInt(
+				getContextReturnValue(args.get(countEndIndex)));
+		int increment = handleIncrement(incrementIndex, args);
+		String counterName = handleCounterName(counterNameIndex, args);
+
+        Evaluator e = new Evaluator();
+        IExecutionContext context = previous;
+        for (int i = countStart ; i <= countEnd; i += increment){
+        	context.environment().put(counterName, Integer.toString(i));
+        	for(int k = startOfCommands; k < args.size()-1; k++){
+        		context = e.evaluate(current.children().get(k), context);
+        	}
+        }
+        return new ExecutionContext(context.turtles(),context.environment(),context.userDefinedCommands());
+	}
+
+	private int handleCountStart(int countStartIndex, List<IExecutionContext> args) throws MalformedSyntaxException {
 		int countStart = 1;
-		int countEnd;
-		int increment = 1;
-		String counterName = Constants.DEFAULT_COUNTER_VARIABLE_NAME;
 		if (countStartIndex != -1) {
 			String retVal = getContextReturnValue(args.get(countStartIndex));
 			if (retVal.length() != 0) {
@@ -37,8 +52,25 @@ public abstract class LoopOperation extends Operation {
 						"The starting index for the loop could not be found at position: " + countStartIndex);
 			}
 		}
-		countEnd = Integer.parseInt(
-					getContextReturnValue(args.get(countEndIndex)));
+		return countStart;
+	}
+	private int handleIncrement(int incrementIndex, List<IExecutionContext> args) throws MalformedSyntaxException {
+		int increment = 1;
+		if (incrementIndex != -1) {
+			String retVal = getContextReturnValue(args.get(incrementIndex));
+			if (retVal.length() != 0) {
+				increment = Integer.parseInt(retVal);
+			}
+			else {
+				throw new MalformedSyntaxException(
+						"The increment index for the loop could not be found at position: " + incrementIndex);
+			}
+		}
+		return increment;
+	}
+	private String handleCounterName(int counterNameIndex,
+			List<IExecutionContext> args) throws MalformedSyntaxException {
+		String counterName = Constants.DEFAULT_COUNTER_VARIABLE_NAME;
 		if (counterNameIndex != -1) {
 			// we don't want return value
 			String varName = getContextReturnedVariableName(args.get(counterNameIndex));
@@ -50,27 +82,6 @@ public abstract class LoopOperation extends Operation {
 						"The counter variable name for the loop could not be found at position: " + counterNameIndex);
 			}
 		}
-		if (incrementIndex != -1) {
-			String retVal = getContextReturnValue(args.get(incrementIndex));
-			if (retVal.length() != 0) {
-				increment = Integer.parseInt(retVal);
-			}
-			else {
-				throw new MalformedSyntaxException(
-						"The increment index for the loop could not be found at position: " + incrementIndex);
-			}
-		}
-        Evaluator e = new Evaluator();
-        IExecutionContext context = previous;
-        for (int i = countStart ; i <= countEnd; i += increment){
-        	context.environment().put(counterName, Integer.toString(i));
-        	for(int k = startOfCommands; k < args.size()-1; k++){
-        		context = e.evaluate(current.children().get(k), context);
-        	}
-        }
-        return new ExecutionContext(context.turtles(),context.environment(),context.userDefinedCommands());
+		return counterName;
 	}
-	//FOR [ variable start end increment ]
-	//[ command(s) ]
-	//REPEAT expr [ command(s) ]
 }
