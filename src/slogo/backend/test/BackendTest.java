@@ -41,8 +41,8 @@ public class BackendTest {
 	}
 	@Test
 	public void testRepeat() throws Exception {
-		IExecutionContext result = backend.execute("Repeat 3 [ Sum 1 1 ]");
-		assertEquals("6.0", result.environment().get(Constants.RETURN_VALUE_ENVIRONMENT));
+		IExecutionContext result = backend.execute("Repeat 3 [ Forward :repcount ]");
+		assertEquals(6.0, result.turtles().get(Constants.DEFAULT_TURTLE_NAME).turtlePosition().getX());
 	}
 	@Test
 	public void testDoTimes() throws Exception {

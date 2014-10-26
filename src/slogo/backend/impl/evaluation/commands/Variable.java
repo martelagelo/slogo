@@ -25,6 +25,9 @@ public class Variable extends Operation{
         if (childContext.environment().containsKey(name)){
             newEnvironment.put(Constants.RETURN_VALUE_ENVIRONMENT, childContext.environment().get(name));
         }
+        else {
+        	newEnvironment.put(Constants.RETURN_VALUE_ENVIRONMENT, Constants.UNDEFINED_RETURN_VALUE);
+        }
         newEnvironment.put(Constants.RETURNED_VARIABLE_NAME, name);
         return new ExecutionContext(args.get(0).turtles(), newEnvironment, args.get(0).userDefinedCommands());
     }

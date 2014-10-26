@@ -13,7 +13,7 @@ import slogo.backend.parsing.ISyntaxNode;
 public class For extends Operation{
     private static final String COMMAND_NAME = "For";
     private static final int MIN_NUM_CONTEXT = 9;
-    private static final int MAX_NUM_CONTEXT = Integer.MAX_VALUE;
+    private static final int MAX_NUM_CONTEXT = Constants.INFINITE_ARGUMENTS;
 	public For () {
 		super(COMMAND_NAME, MIN_NUM_CONTEXT, MAX_NUM_CONTEXT);
 	}

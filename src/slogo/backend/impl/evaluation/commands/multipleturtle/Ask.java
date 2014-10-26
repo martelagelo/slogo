@@ -17,7 +17,7 @@ import slogo.backend.util.ITurtleStatus;
 public class Ask extends Operation{
     private static final String COMMAND_NAME = "Ask";
     private static final int MIN_NUM_CONTEXT = 6;
-    private static final int MAX_NUM_CONTEXT = Integer.MAX_VALUE;
+    private static final int MAX_NUM_CONTEXT = Constants.INFINITE_ARGUMENTS;
     public Ask (String type, int argMin, int argMax) {
         super(COMMAND_NAME, MIN_NUM_CONTEXT, MAX_NUM_CONTEXT);
         
