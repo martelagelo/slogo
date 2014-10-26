@@ -78,9 +78,9 @@ public class View implements IView{
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void initRunner(Group root, ModuleCreationHelper MCH){
-	      runner = new MethodRunner(root, MCH.getCanvas(), MCH.getTurtle(), pathList, MCH);
+		runner = new MethodRunner(root, MCH.getCanvas(), MCH.getTurtle(), pathList, MCH);
 	}
 
 	/**
@@ -135,21 +135,23 @@ public class View implements IView{
 	}
 
 	public void resetAnimation() {
-		MCH.turnOffRunningStatusLabel();
-		animationTimeline.stop();
-		animationTimeline = null;
+		if (animationTimeline != null) {
+			MCH.turnOffRunningStatusLabel();
+			animationTimeline.stop();
+			animationTimeline = null;
 
-		Queue<String> queue = new LinkedList<String>();
-		while (!immediateHistoryQueue.isEmpty()) {
-			commandQueue.add(immediateHistoryQueue.peek());
-			queue.add(immediateHistoryQueue.poll());
-		}
-		while (!queue.isEmpty()) {
-			immediateHistoryQueue.add(queue.poll());
-		}
+			Queue<String> queue = new LinkedList<String>();
+			while (!immediateHistoryQueue.isEmpty()) {
+				commandQueue.add(immediateHistoryQueue.peek());
+				queue.add(immediateHistoryQueue.poll());
+			}
+			while (!queue.isEmpty()) {
+				immediateHistoryQueue.add(queue.poll());
+			}
 
-		MCH.setCommandsHistoryCounter(recordCommandHistoryCounter);
-		MCH.resetCommandsHistoryList(recordCommandHistoryCounter);
+			MCH.setCommandsHistoryCounter(recordCommandHistoryCounter);
+			MCH.resetCommandsHistoryList(recordCommandHistoryCounter);
+		}
 	}
 
 	public void pauseAnimation() {
