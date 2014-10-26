@@ -46,13 +46,13 @@ public class BackendTest {
 	}
 	@Test
 	public void testDoTimes() throws Exception {
-		IExecutionContext result = backend.execute("DoTimes [ :foo 3 ] [ Sum :foo :foo ]");
-		assertEquals("12.0", result.environment().get(Constants.RETURN_VALUE_ENVIRONMENT));
+		IExecutionContext result = backend.execute("DoTimes [ :foo 3 ] [ Forward :foo ]");
+		assertEquals(6.0, result.turtles().get(Constants.DEFAULT_TURTLE_NAME).turtlePosition().getX());
 	}
 	@Test
 	public void testFor() throws Exception {
-		IExecutionContext result = backend.execute("For [ :foo 3 6 2 ] [ Sum :foo :foo ]");
-		assertEquals("16.0", result.environment().get(Constants.RETURN_VALUE_ENVIRONMENT));
+		IExecutionContext result = backend.execute("For [ :foo 3 6 2 ] [ Forward :foo ]");
+		assertEquals(8.0, result.turtles().get(Constants.DEFAULT_TURTLE_NAME).turtlePosition().getX());
 	}
 	@Test
 	public void testIf() throws Exception {
