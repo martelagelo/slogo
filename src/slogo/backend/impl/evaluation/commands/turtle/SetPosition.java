@@ -18,45 +18,49 @@ import slogo.backend.util.ITurtleStatus;
 import slogo.backend.util.PenState;
 import slogo.backend.util.Visibility;
 
-public class SetXY extends Operation{
+public class SetPosition extends Operation {
     private static final String COMMAND_NAME = "SetXY";
     private static final int MIN_NUM_CONTEXT = 2;
     private static final int MAX_NUM_CONTEXT = 2;
-    public SetXY () {
+
+    public SetPosition () {
         super(COMMAND_NAME, MIN_NUM_CONTEXT, MAX_NUM_CONTEXT);
     }
 
     @Override
-	protected IExecutionContext executeRaw (List<IExecutionContext> args, IExecutionContext previous, ISyntaxNode current) {
+    protected IExecutionContext executeRaw (List<IExecutionContext> args,
+            IExecutionContext previous, ISyntaxNode current) {
         String newX = args.get(0).environment().get(Constants.RETURN_VALUE_ENVIRONMENT);
         String newY = args.get(1).environment().get(Constants.RETURN_VALUE_ENVIRONMENT);
         double newXValue = Double.parseDouble(newX);
         double newYValue = Double.parseDouble(newY);
         ICoordinates newPos = new Coordinates(newXValue, newYValue);
-        
-        Map <String,ITurtleStatus> turtles = args.get(0).turtles();
 
-        for(String name: turtles.keySet()){
+        Map<String, ITurtleStatus> turtles = args.get(0).turtles();
+
+        for (String name : turtles.keySet()) {
 
             ITurtleStatus status = turtles.get(name);
-            if(status.isActive()){
-      
-        ICoordinates pos = status.turtlePosition();
-        IDirection dir = status.turtleDirection();
-        PenState pen = status.penState();
-        Visibility vis = status.turtleVisibility();
-        
-        if(pen.equals(PenState.DOWN)){
-            ILine newLine = new Line(pos, newPos, vis);
-            status.lineSequence().add(newLine);
-        }
-        String distance = String.valueOf(newPos.getDistance(pos).doubleValue());
-        args.get(0).environment().put(Constants.RETURN_VALUE_ENVIRONMENT, distance);
-        ITurtleStatus newStatus = new TurtleStatus(status.lineSequence(),newPos,dir,pen,status.turtleVisibility(), status.turtleQualities());
-        turtles.put(name, newStatus);
+            if (status.isActive()) {
+
+                ICoordinates pos = status.turtlePosition();
+                IDirection dir = status.turtleDirection();
+                PenState pen = status.penState();
+                Visibility vis = status.turtleVisibility();
+
+                if (pen.equals(PenState.DOWN)) {
+                    ILine newLine = new Line(pos, newPos, vis);
+                    status.lineSequence().add(newLine);
+                }
+                String distance = String.valueOf(newPos.getDistance(pos).doubleValue());
+                args.get(0).environment().put(Constants.RETURN_VALUE_ENVIRONMENT, distance);
+                ITurtleStatus newStatus = new TurtleStatus(status.lineSequence(), newPos, dir, pen,
+                        status.turtleVisibility(), status.turtleQualities());
+                turtles.put(name, newStatus);
             }
         }
-        return new ExecutionContext(args.get(0).turtles(),args.get(0).environment(), args.get(0).userDefinedCommands());
+        return new ExecutionContext(args.get(0).turtles(), args.get(0).environment(), args.get(0)
+                .userDefinedCommands());
     }
 
 }

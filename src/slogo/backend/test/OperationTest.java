@@ -15,11 +15,11 @@ import slogo.backend.impl.evaluation.ExecutionContext;
 import slogo.backend.impl.evaluation.OperationFactory;
 import slogo.backend.impl.evaluation.commands.Constant;
 import slogo.backend.impl.evaluation.commands.booleans.And;
-import slogo.backend.impl.evaluation.commands.booleans.Less;
+import slogo.backend.impl.evaluation.commands.booleans.LessThan;
 import slogo.backend.impl.evaluation.commands.booleans.Not;
 import slogo.backend.impl.evaluation.commands.booleans.Or;
 import slogo.backend.impl.evaluation.commands.control.Repeat;
-import slogo.backend.impl.evaluation.commands.math.Atan;
+import slogo.backend.impl.evaluation.commands.math.ArcTangent;
 import slogo.backend.impl.evaluation.commands.math.Sum;
 import slogo.backend.impl.evaluation.commands.turtle.Forward;
 import slogo.backend.impl.evaluation.commands.turtle.HideTurtle;
@@ -137,7 +137,7 @@ public class OperationTest {
     }
 	@Test
     public void testLess(){
-        Less less = new Less();
+        LessThan less = new LessThan();
         String s1 = operate (2,less, "20", "100");
         String s2 = operate (2,less, "1", "1");
         String s3 = operate (2,less, "0", "0.1");
@@ -165,7 +165,7 @@ public class OperationTest {
     }
 	@Test
     public void testAtan(){
-        Atan atan = new Atan();
+        ArcTangent atan = new ArcTangent();
         String s1 = operate (1,atan, "1", "");
         String s2 = operate (1,atan, "2.2", "");
         String s3 = operate (1,atan, "1.2", "");

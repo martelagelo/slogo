@@ -11,6 +11,8 @@ import slogo.UI.AppConstants;
 
 
 /**
+ * NOT FULLY IMPLEMENTED OR COMPLETED.
+ * NOT REPRESENTATIVE OF THE REST OF THE PROJECT
  * 
  * @author Michael Deng
  *

@@ -6,8 +6,18 @@ import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+/**
+ * 10/26/2014
+ * 
+ * @author Michael
+ *
+ */
 public class MessageBox {
 
+	/**
+	 * Constructor
+	 * @param message The message in the message box
+	 */
 	public MessageBox(String message) {
 		final Stage dialog = new Stage();
         dialog.initModality(Modality.APPLICATION_MODAL);

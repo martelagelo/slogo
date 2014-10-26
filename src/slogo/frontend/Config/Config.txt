@@ -1,4 +1,3 @@
+13 turtles
 4 variable b
 3 variable a
-YELLOW color BackgroundColor
-BLACK color PenColor

@@ -15,33 +15,35 @@ import slogo.backend.util.ITurtleStatus;
 
 public class SetPenSize extends Operation {
 
-
     private static final String COMMAND_NAME = "SetPenSize";
     private static final int MIN_NUM_CONTEXT = 1;
     private static final int MAX_NUM_CONTEXT = 1;
-    
-    public SetPenSize(){
+
+    public SetPenSize () {
         super(COMMAND_NAME, MIN_NUM_CONTEXT, MAX_NUM_CONTEXT);
 
     }
 
     @Override
     protected IExecutionContext executeRaw (List<IExecutionContext> args,
-                                            IExecutionContext previous,
-                                            ISyntaxNode current) {
-        Map <String,ITurtleStatus> turtles = args.get(0).turtles();
+            IExecutionContext previous, ISyntaxNode current) {
+        Map<String, ITurtleStatus> turtles = args.get(0).turtles();
 
-        for(String name: turtles.keySet()){
+        for (String name : turtles.keySet()) {
             ITurtleStatus status = turtles.get(name);
-            if(status.isActive()){
-            String thick = args.get(0).environment().get(Constants.RETURN_VALUE_ENVIRONMENT);
-            int thickness = Integer.parseInt(thick);
-            Qualities q = new Qualities(status.turtleQualities().backgroundColor(), status.turtleQualities().toColor(), status.turtleQualities().index(), thickness);
-            ITurtleStatus newStatus = new TurtleStatus(status.lineSequence(), status.turtlePosition(), status.turtleDirection(), status.penState(), status.turtleVisibility(), q);
-            turtles.put(name, newStatus);
+            if (status.isActive()) {
+                String thick = args.get(0).environment().get(Constants.RETURN_VALUE_ENVIRONMENT);
+                int thickness = Integer.parseInt(thick);
+                Qualities q = new Qualities(status.turtleQualities().backgroundColor(), status
+                        .turtleQualities().toColor(), status.turtleQualities().index(), thickness);
+                ITurtleStatus newStatus = new TurtleStatus(status.lineSequence(),
+                        status.turtlePosition(), status.turtleDirection(), status.penState(),
+                        status.turtleVisibility(), q);
+                turtles.put(name, newStatus);
             }
         }
-        return new ExecutionContext(args.get(0).turtles(),args.get(0).environment(), args.get(0).userDefinedCommands());
+        return new ExecutionContext(args.get(0).turtles(), args.get(0).environment(), args.get(0)
+                .userDefinedCommands());
     }
 
 }

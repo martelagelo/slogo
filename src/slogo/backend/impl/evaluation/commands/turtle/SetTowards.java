@@ -15,20 +15,22 @@ import slogo.backend.util.IDirection;
 import slogo.backend.util.ITurtleStatus;
 import slogo.backend.util.PenState;
 
-public class Right extends Operation {
-    private static final String COMMAND_NAME = "Right";
-    private static final int MIN_NUM_CONTEXT = 1;
-    private static final int MAX_NUM_CONTEXT = 1;
+public class SetTowards extends Operation {
+    private static final String COMMAND_NAME = "Towards";
+    private static final int MIN_NUM_CONTEXT = 2;
+    private static final int MAX_NUM_CONTEXT = 2;
 
-    public Right () {
+    public SetTowards () {
         super(COMMAND_NAME, MIN_NUM_CONTEXT, MAX_NUM_CONTEXT);
     }
 
     @Override
     protected IExecutionContext executeRaw (List<IExecutionContext> args,
             IExecutionContext previous, ISyntaxNode current) {
-        String right = args.get(0).environment().get(Constants.RETURN_VALUE_ENVIRONMENT);
-        double rightValue = Double.parseDouble(right);
+        String xString = args.get(0).environment().get(Constants.RETURN_VALUE_ENVIRONMENT);
+        double faceXValue = Double.parseDouble(xString);
+        String yString = args.get(1).environment().get(Constants.RETURN_VALUE_ENVIRONMENT);
+        double faceYValue = Double.parseDouble(yString);
 
         Map<String, ITurtleStatus> turtles = args.get(0).turtles();
 
@@ -38,10 +40,17 @@ public class Right extends Operation {
             if (status.isActive()) {
 
                 ICoordinates pos = status.turtlePosition();
-                IDirection dir = status.turtleDirection();
-                PenState pen = status.penState();
-                IDirection newDir = new Direction(dir.toDegrees() - rightValue);
+                double xValue = pos.getX().doubleValue();
+                double yValue = pos.getY().doubleValue();
+                double newRad = Math.atan((faceYValue - yValue) / (faceXValue - xValue));
+                double newDegree = Math.toDegrees(newRad);
 
+                PenState pen = status.penState();
+                IDirection newDir = new Direction(newDegree);
+                IDirection dir = status.turtleDirection();
+                double degreeTurned = Math.abs(newDir.toDegrees() - dir.toDegrees());
+                String degreeString = String.valueOf(degreeTurned);
+                args.get(0).environment().put(Constants.RETURN_VALUE_ENVIRONMENT, degreeString);
                 ITurtleStatus newStatus = new TurtleStatus(status.lineSequence(), pos, newDir, pen,
                         status.turtleVisibility(), status.turtleQualities());
                 turtles.put(name, newStatus);

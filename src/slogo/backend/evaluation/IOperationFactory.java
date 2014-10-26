@@ -5,12 +5,13 @@ package slogo.backend.evaluation;
  *
  */
 public interface IOperationFactory {
-	/**
-	 * Create a new element of a certain type
-	 * 
-	 * @param element The type of element to create
-	 * @return The newly created UI element
-	 * @throws ClassNotFoundException 
-	 */
-	public IOperation makeElement(String element) throws ClassNotFoundException;
+    /**
+     * Create a new element of a certain type
+     * 
+     * @param element
+     *            The type of element to create
+     * @return The newly created UI element
+     * @throws ClassNotFoundException
+     */
+    public IOperation makeElement (String element) throws ClassNotFoundException;
 }

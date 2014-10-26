@@ -83,11 +83,11 @@ public class View implements IView{
 	
 	/**
 	 * initialize the runner so that it can use update all the modules correctly 
-	 * @param root
-	 * @param MCH
+	 * @param root the root we add UI elements to 
+	 * @param MCH the class that creates all the modules
 	 */
 	public void initRunner(Group root, ModuleCreationHelper MCH){
-	      runner = new MethodRunner(root, MCH.getCanvas(), MCH.getTurtleList(), pathList, MCH);
+		runner = new MethodRunner(root, MCH.getCanvas(), MCH.getTurtleList(), pathList, MCH);
 	}
 
 	/**
@@ -151,21 +151,23 @@ public class View implements IView{
 	 * commands list is reset and user would have to enter more commands to run it
 	 */
 	public void resetAnimation() {
-		MCH.turnOffRunningStatusLabel();
-		animationTimeline.stop();
-		animationTimeline = null;
+		if (animationTimeline != null) {
+			MCH.turnOffRunningStatusLabel();
+			animationTimeline.stop();
+			animationTimeline = null;
 
-		Queue<String> queue = new LinkedList<String>();
-		while (!immediateHistoryQueue.isEmpty()) {
-			commandQueue.add(immediateHistoryQueue.peek());
-			queue.add(immediateHistoryQueue.poll());
-		}
-		while (!queue.isEmpty()) {
-			immediateHistoryQueue.add(queue.poll());
-		}
+			Queue<String> queue = new LinkedList<String>();
+			while (!immediateHistoryQueue.isEmpty()) {
+				commandQueue.add(immediateHistoryQueue.peek());
+				queue.add(immediateHistoryQueue.poll());
+			}
+			while (!queue.isEmpty()) {
+				immediateHistoryQueue.add(queue.poll());
+			}
 
-		MCH.setCommandsHistoryCounter(recordCommandHistoryCounter);
-		MCH.resetCommandsHistoryList(recordCommandHistoryCounter);
+			MCH.setCommandsHistoryCounter(recordCommandHistoryCounter);
+			MCH.resetCommandsHistoryList(recordCommandHistoryCounter);
+		}
 	}
 
 	/**
@@ -241,7 +243,7 @@ public class View implements IView{
 	 */
 	private void executeTurtleCommands(String k, ITurtleStatus iTurtleStatus){
 		System.out.println("This is k: " + k);
-	        runner.setTurtleStatus(k, iTurtleStatus);
+		runner.setTurtleStatus(k, iTurtleStatus);
 		runner.changeTurtle();
 	}
 	
