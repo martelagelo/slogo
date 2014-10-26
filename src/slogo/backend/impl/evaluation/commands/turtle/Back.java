@@ -19,9 +19,11 @@ import slogo.backend.util.PenState;
 import slogo.backend.util.Visibility;
 
 public class Back extends Operation{
-
+    private static final String COMMAND_NAME = "Back";
+    private static final int MIN_NUM_CONTEXT = 1;
+    private static final int MAX_NUM_CONTEXT = 1;
     public Back () {
-        super("Back", 1, 1);
+        super(COMMAND_NAME, MIN_NUM_CONTEXT, MAX_NUM_CONTEXT);
     }
 
     @Override

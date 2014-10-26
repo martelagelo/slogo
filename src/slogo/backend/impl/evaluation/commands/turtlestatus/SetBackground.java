@@ -1,7 +1,9 @@
 package slogo.backend.impl.evaluation.commands.turtlestatus;
 
 import java.util.List;
+
 import java.util.Map;
+
 import javafx.scene.paint.Color;
 import slogo.Constants;
 import slogo.backend.evaluation.IExecutionContext;
@@ -13,10 +15,12 @@ import slogo.backend.parsing.ISyntaxNode;
 import slogo.backend.util.ITurtleStatus;
 
 public class SetBackground extends Operation {
-
+    private static final String COMMAND_NAME = "SetBackground";
+    private static final int MIN_NUM_CONTEXT = 3;
+    private static final int MAX_NUM_CONTEXT = 3;
     
     public SetBackground(){
-        super("SetBackground", 3, 3);
+        super(COMMAND_NAME, MIN_NUM_CONTEXT, MAX_NUM_CONTEXT);
     }
 
     @Override

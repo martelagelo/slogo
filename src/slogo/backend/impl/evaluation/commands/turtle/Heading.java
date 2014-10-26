@@ -12,9 +12,11 @@ import slogo.backend.util.IDirection;
 import slogo.backend.util.ITurtleStatus;
 
 public class Heading extends Operation{
-
+    private static final String COMMAND_NAME = "Heading";
+    private static final int MIN_NUM_CONTEXT = 1;
+    private static final int MAX_NUM_CONTEXT = 1;
     public Heading () {
-        super("Heading", 1, 1);
+        super(COMMAND_NAME, MIN_NUM_CONTEXT, MAX_NUM_CONTEXT);
     }
 
     @Override
@@ -26,10 +28,7 @@ public class Heading extends Operation{
                 lastActive = name;
             }
         }
-        if (lastActive==null)
-        {
-            //throw no active turtle exception?}
-        }
+      
         ITurtleStatus status = turtles.get(lastActive);
         
         

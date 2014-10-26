@@ -15,9 +15,11 @@ import slogo.backend.util.ITurtleStatus;
 import slogo.backend.util.PenState;
 
 public class PenUp extends Operation{
-
+    private static final String COMMAND_NAME = "PenUp";
+    private static final int MIN_NUM_CONTEXT = 1;
+    private static final int MAX_NUM_CONTEXT = 1;
     public PenUp () {
-        super("PenUp", 1, 1);
+        super(COMMAND_NAME, MIN_NUM_CONTEXT, MAX_NUM_CONTEXT);
     }
 
     @Override

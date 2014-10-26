@@ -12,9 +12,11 @@ import slogo.backend.util.ITurtleStatus;
 import slogo.backend.util.PenState;
 
 public class IsPenDown extends Operation{
-
+    private static final String COMMAND_NAME = "IsPenDown";
+    private static final int MIN_NUM_CONTEXT = 1;
+    private static final int MAX_NUM_CONTEXT = 1;
     public IsPenDown () {
-        super("IsPenDown", 1, 1);
+        super(COMMAND_NAME, MIN_NUM_CONTEXT, MAX_NUM_CONTEXT);
     }
 
     @Override
@@ -26,10 +28,7 @@ public class IsPenDown extends Operation{
                 lastActive = name;
             }
         }
-        if (lastActive==null)
-        {
-            //throw no active turtle exception?}
-        }
+       
         ITurtleStatus status = turtles.get(lastActive);
       
         PenState pen = status.penState();

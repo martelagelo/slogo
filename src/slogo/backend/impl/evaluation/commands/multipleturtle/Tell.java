@@ -17,14 +17,17 @@ public class Tell extends Operation {
     private static final String COMMAND_NAME = "Tell";
     private static final int MIN_NUM_CONTEXT = 3;
     private static final int MAX_NUM_CONTEXT = Constants.INFINITE_ARGUMENTS;
-    
+
     public Tell () {
         super(COMMAND_NAME, MIN_NUM_CONTEXT, MAX_NUM_CONTEXT);
+       
+
     }
 
     @Override
     protected IExecutionContext executeRaw (List<IExecutionContext> args,
             IExecutionContext previous, ISyntaxNode current) {
+
         Set<String> activeTurtle = new HashSet<String>();
         IExecutionContext context = previous;
         Map<String, ITurtleStatus> map = context.turtles();
