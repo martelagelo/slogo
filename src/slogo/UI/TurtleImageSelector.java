@@ -15,17 +15,35 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
+/**
+ * 10/13/2014
+ * 
+ * Version 1
+ * 
+ * @author Michael Deng
+ *
+ */
 public class TurtleImageSelector {
     
     private VBox mySelectorsVBox;
     private List<String> myPossibleImages;
     private ComboBox<String> mySelector;
     
+    /**
+     * The constructor
+     * @param selectorsVBox The vBox the selector will belong to
+     */
     public TurtleImageSelector(VBox selectorsVBox){
         mySelectorsVBox = selectorsVBox;    
         myPossibleImages = new ArrayList<String>();
     }
     
+    /**
+     * Creates a VBox 
+     * @param root The group the VBox will belong to
+     * @param turtle The turtle 
+     * @param view The view
+     */
     protected void create(Group root, Turtle turtle, View view){
         myPossibleImages.addAll(turtle.getShapesMap().keySet());
         SelectorCreator sc = new SelectorCreator(root);
@@ -43,6 +61,12 @@ public class TurtleImageSelector {
         mySelectorsVBox.getChildren().add(selectorWithLabel);
     }
     
+    /**
+     * Populates the map of turtle images
+     * @param s The new key
+     * @param iv The image view
+     * @param turtleList The list of turtles
+     */
     protected void updateMap(String s, Image i, List<Turtle> turtleList){
         mySelector.getItems().add(s);
         for(Turtle t : turtleList){
@@ -50,14 +74,26 @@ public class TurtleImageSelector {
         }
     }
 
+    /**
+     * Gets the items from the list of images
+     * @return The list of images
+     */
     public ObservableList<String> getItems () {
         return mySelector.getItems();
     }
     
+    /**
+     * Sets the value of the selector
+     * @param s The value
+     */
     public void setValue(String s){
         mySelector.setValue(s);
     }
     
+    /**
+     * Gets the value of the selector
+     * @return The value
+     */
     public String getValue(){
         return mySelector.getValue();
     }

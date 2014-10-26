@@ -9,11 +9,13 @@ public class Line implements ILine {
     private ICoordinates start;
     private ICoordinates end;
     private Visibility visibility;
-    public Line(ICoordinates s, ICoordinates e, Visibility v){
+
+    public Line (ICoordinates s, ICoordinates e, Visibility v) {
         start = s;
         end = e;
         visibility = v;
     }
+
     @Override
     public ICoordinates start () {
         return start;

@@ -5,16 +5,17 @@ package slogo.backend.util;
  *
  */
 public interface IDirection {
-	/**
-	 * Get the direction in degrees
-	 * 
-	 * @return the direction in degrees
-	 */
-	public double toDegrees();
-	/**
-	 * Get the direction in radians
-	 * 
-	 * @return the direction in radians
-	 */
-	public double toRadians();
+    /**
+     * Get the direction in degrees
+     * 
+     * @return the direction in degrees
+     */
+    public double toDegrees ();
+
+    /**
+     * Get the direction in radians
+     * 
+     * @return the direction in radians
+     */
+    public double toRadians ();
 }
