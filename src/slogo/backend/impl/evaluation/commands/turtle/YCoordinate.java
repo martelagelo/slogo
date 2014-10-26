@@ -10,29 +10,32 @@ import slogo.backend.impl.evaluation.commands.Operation;
 import slogo.backend.parsing.ISyntaxNode;
 import slogo.backend.util.ITurtleStatus;
 
-public class YCoordinate extends Operation{
+public class YCoordinate extends Operation {
     private static final String COMMAND_NAME = "Ycor";
     private static final int MIN_NUM_CONTEXT = 1;
     private static final int MAX_NUM_CONTEXT = 1;
+
     public YCoordinate () {
         super(COMMAND_NAME, MIN_NUM_CONTEXT, MAX_NUM_CONTEXT);
     }
 
     @Override
-	protected IExecutionContext executeRaw (List<IExecutionContext> args, IExecutionContext previous, ISyntaxNode current) {
-        Map <String,ITurtleStatus> turtles = args.get(0).turtles();
+    protected IExecutionContext executeRaw (List<IExecutionContext> args,
+            IExecutionContext previous, ISyntaxNode current) {
+        Map<String, ITurtleStatus> turtles = args.get(0).turtles();
         String lastActive = null;
-        for(String name : turtles.keySet()){
-            if(turtles.get(name).isActive()){
+        for (String name : turtles.keySet()) {
+            if (turtles.get(name).isActive()) {
                 lastActive = name;
             }
         }
-       
+
         ITurtleStatus status = turtles.get(lastActive);
         double y = status.turtlePosition().getY().doubleValue();
         String returnString = String.valueOf(y);
         args.get(0).environment().put(Constants.RETURN_VALUE_ENVIRONMENT, returnString);
-        return new ExecutionContext(args.get(0).turtles(),args.get(0).environment(), args.get(0).userDefinedCommands());
+        return new ExecutionContext(args.get(0).turtles(), args.get(0).environment(), args.get(0)
+                .userDefinedCommands());
     }
 
 }
