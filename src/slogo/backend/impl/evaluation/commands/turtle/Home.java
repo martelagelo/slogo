@@ -1,6 +1,7 @@
 package slogo.backend.impl.evaluation.commands.turtle;
 
 import java.util.List;
+import java.util.Map;
 
 import slogo.Constants;
 import slogo.backend.evaluation.IExecutionContext;
@@ -22,7 +23,11 @@ public class Home extends Operation{
 
     @Override
 	protected IExecutionContext executeRaw (List<IExecutionContext> args, IExecutionContext previous, ISyntaxNode current) {
-        ITurtleStatus status = args.get(0).turtles().get(Constants.DEFAULT_TURTLE_NAME);
+        Map <String,ITurtleStatus> turtles = args.get(0).turtles();
+        for(String name : turtles.keySet()){
+            
+        if(turtles.get(name).isActive()){
+        ITurtleStatus status = turtles.get(name);
 
         ICoordinates pos = status.turtlePosition();
         IDirection dir = status.turtleDirection();
@@ -36,7 +41,9 @@ public class Home extends Operation{
 
 
         ITurtleStatus newStatus = new TurtleStatus(status.lineSequence(),newPos,dir,pen,status.turtleVisibility(), status.turtleQualities());
-        args.get(0).turtles().put(Constants.DEFAULT_TURTLE_NAME, newStatus);
+        turtles.put(name, newStatus);
+        }
+        }
         return new ExecutionContext(args.get(0).turtles(),args.get(0).environment(), args.get(0).userDefinedCommands());
     }
 
