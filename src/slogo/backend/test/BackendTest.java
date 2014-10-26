@@ -2,6 +2,8 @@ package slogo.backend.test;
 
 import static org.junit.Assert.*;
 
+import java.util.Map;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -11,6 +13,7 @@ import slogo.IModel;
 import slogo.backend.evaluation.IExecutionContext;
 import slogo.backend.impl.Backend;
 import slogo.backend.impl.InitializationException;
+import slogo.backend.impl.Languages;
 
 public class BackendTest {
 	private IModel backend;
@@ -136,5 +139,14 @@ public class BackendTest {
 	    String s2 = result.environment().get(Constants.RETURN_VALUE_ENVIRONMENT);
 	    assertEquals("6", s1);
 	    assertEquals("6", s2);
+	}
+	@Test
+	public void testLanguages() throws Exception {
+	    Languages lan = new Languages();
+	    lan.buildMap("src/resources/languages/Chinese.properties");
+	    Map<String,String> map = lan.returnMap();
+	    assertEquals("Forward",map.get("qianjin"));
+	    assertEquals("Forward",map.get("qj"));
+	    assertEquals("Home",map.get("jia"));
 	}
 }
