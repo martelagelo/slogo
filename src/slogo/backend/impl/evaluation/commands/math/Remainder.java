@@ -8,9 +8,11 @@ import slogo.backend.impl.evaluation.ExecutionContext;
 import slogo.backend.impl.evaluation.commands.MathOperation;
 
 public class Remainder extends MathOperation{
-
+    private static final String COMMAND_NAME = "Remainder";
+    private static final int MIN_NUM_CONTEXT = 2;
+    private static final int MAX_NUM_CONTEXT = 2;
     public Remainder() {
-		super("Remainder", 2, 2);
+		super(COMMAND_NAME, MIN_NUM_CONTEXT, MAX_NUM_CONTEXT);
 	}
 
 	@Override

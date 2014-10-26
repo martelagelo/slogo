@@ -9,9 +9,11 @@ import slogo.backend.impl.evaluation.ExecutionContext;
 import slogo.backend.impl.evaluation.commands.MathOperation;
 
 public class RandomNumber extends MathOperation{
-
+    private static final String COMMAND_NAME = "RandomNumber";
+    private static final int MIN_NUM_CONTEXT = 1;
+    private static final int MAX_NUM_CONTEXT = 1;
     public RandomNumber() {
-		super("RandomNumber", 1, 1);
+		super(COMMAND_NAME, MIN_NUM_CONTEXT, MAX_NUM_CONTEXT);
 	}
 
 	@Override

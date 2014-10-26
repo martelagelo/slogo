@@ -9,9 +9,11 @@ import slogo.backend.impl.evaluation.commands.Operation;
 import slogo.backend.parsing.ISyntaxNode;
 
 public class Turtles extends Operation {
-
+    private static final String COMMAND_NAME = "Turtles";
+    private static final int MIN_NUM_CONTEXT = 1;
+    private static final int MAX_NUM_CONTEXT = 1;
     public Turtles (String type, int argMin, int argMax) {
-        super(type, 1, 1);
+        super(COMMAND_NAME, MIN_NUM_CONTEXT, MAX_NUM_CONTEXT);
         // TODO Auto-generated constructor stub
     }
 

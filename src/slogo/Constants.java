@@ -16,4 +16,8 @@ public class Constants {
 	public static final String RETURNED_VARIABLE_NAME = "_RETURNED_VARIABLE_NAME";
 	public static final String DEFAULT_COUNTER_VARIABLE_NAME = ":repcount";
 	public static final String UNDEFINED_RETURN_VALUE = "-1";
+	public static final String TRUE_STRING = "1";
+	public static final String FALSE_STRING = "0";
+	public static final int TRUE_INT = 1;
+	public static final int FALSE_INT = 0;
 }

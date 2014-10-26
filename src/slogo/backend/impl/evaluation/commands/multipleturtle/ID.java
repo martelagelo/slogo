@@ -11,9 +11,11 @@ import slogo.backend.parsing.ISyntaxNode;
 import slogo.backend.util.ITurtleStatus;
 
 public class ID extends Operation {
-
+    private static final String COMMAND_NAME = "ID";
+    private static final int MIN_NUM_CONTEXT = 1;
+    private static final int MAX_NUM_CONTEXT = 1;
     public ID (String type, int argMin, int argMax) {
-        super(type, 1, 1);
+        super(COMMAND_NAME, MIN_NUM_CONTEXT, MAX_NUM_CONTEXT);
         // TODO Auto-generated constructor stub
     }
 
