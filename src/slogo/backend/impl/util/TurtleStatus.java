@@ -2,7 +2,8 @@ package slogo.backend.impl.util;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import javafx.scene.Node;
+import javafx.scene.paint.Color;
 import slogo.backend.util.ICoordinates;
 import slogo.backend.util.IDirection;
 import slogo.backend.util.ILine;
@@ -17,6 +18,7 @@ public class TurtleStatus implements ITurtleStatus {
 	private PenState penState;
 	private Visibility turtleVisibility;
 	private boolean isActive;
+	private Qualities turtleQualities;
 
 	public static class Builder {
 		private List<ILine> lineSequence;
@@ -25,6 +27,7 @@ public class TurtleStatus implements ITurtleStatus {
 		private PenState penState;
 		private Visibility turtleVisibility;
 		private boolean isActive;
+		private Qualities turtleQualities;
 		public Builder() {
 			this.lineSequence = new ArrayList<>();
 			this.turtlePosition = new Coordinates(0, 0);
@@ -32,6 +35,7 @@ public class TurtleStatus implements ITurtleStatus {
 			this.penState = PenState.DOWN;
 			this.turtleVisibility = Visibility.VISIBLE;
 			this.isActive = true;
+			this.turtleQualities = new Qualities(Color.WHITE, Color.BLACK, 0, 1);
 		}
 		public Builder(ITurtleStatus status) {
 			this.lineSequence = status.lineSequence();
@@ -40,6 +44,7 @@ public class TurtleStatus implements ITurtleStatus {
 			this.penState = status.penState();
 			this.turtleVisibility = status.turtleVisibility();
 			this.isActive = status.isActive();
+			this.turtleQualities = status.turtleQualities();
 		}
 		public Builder lineSequence(List<ILine> lines){
 			this.lineSequence = lines;
@@ -65,25 +70,32 @@ public class TurtleStatus implements ITurtleStatus {
 			this.isActive = isActive;
 			return this;
 		}
+		
+		public Builder turtleQualities(Qualities qualities){
+		    this.turtleQualities = qualities;
+		    return this;
+		}
 		public TurtleStatus build() {
 			return new TurtleStatus(this);
 		}
 	}
-	public TurtleStatus(List<ILine> l, ICoordinates p, IDirection d, PenState s, Visibility v){
+	public TurtleStatus(List<ILine> l, ICoordinates p, IDirection d, PenState s, Visibility v, Qualities q){
 		lineSequence = l;
 		turtlePosition = p;
 		turtleDirection = d;
 		penState = s;
 		turtleVisibility = v;
+		turtleQualities = q;
 		this.isActive = true;
 	}
-	private TurtleStatus(Builder builder) {
+	public TurtleStatus(Builder builder) {
 		this.lineSequence = builder.lineSequence;
 		this.turtlePosition = builder.turtlePosition;
 		this.turtleDirection = builder.turtleDirection;
 		this.penState = builder.penState;
 		this.turtleVisibility = builder.turtleVisibility;
 		this.isActive = builder.isActive;
+		this.turtleQualities = builder.turtleQualities;
 	}
 
 	@Override
@@ -114,4 +126,16 @@ public class TurtleStatus implements ITurtleStatus {
 	public boolean isActive() {
 		return isActive;
 	}
+	
+	@Override
+	public Qualities turtleQualities(){
+	    return turtleQualities;
+	
+	}
+    
+	@Override
+        public void setActive (boolean b) {
+            isActive = b;
+        
+        }
 }

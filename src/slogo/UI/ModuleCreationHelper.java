@@ -100,6 +100,8 @@ public class ModuleCreationHelper {
 
 	private Label runningStatusLabel;
 	private int commandsHistoryCounter;
+        private PathColorSelector myPathColorSelector;
+        private BackgroundColorSelector myBackgroundColorSelector;
 
 
 	/**
@@ -149,6 +151,7 @@ public class ModuleCreationHelper {
 		createLoadButton();
 		createSaveButton();
 		createExtraWorkspaceButton();
+	        createIncreaseDecreaseButtons();
 		createAnimationSpeedSlider();
 		createGridCheckBox();
 	}
@@ -202,10 +205,8 @@ public class ModuleCreationHelper {
 	 * Creates a checkBox for the Grid
 	 */
 	private void createGridCheckBox() {
-		CheckBoxCreator cb = new CheckBoxCreator(mySelectorsVBox);
-		CheckBox CB = cb.createCheckBox("Toggle Grid");
-		myGridLines = new ArrayList<Line>();
-		activateReferenceCB(CB);
+	        GridLinesToggler GLT = new GridLinesToggler(mySelectorsVBox);
+		GLT.activate(myCanvas, root);
 	}
 
 	/**
@@ -238,6 +239,7 @@ public class ModuleCreationHelper {
 	private void createTurtleCanvas() {
 		myCanvas = new TurtleCanvas(root);
 		myGraphicsContext = myCanvas.getGraphicsContext();
+		activateTurtleCanvas();
 	}
 
 	/**
@@ -316,6 +318,33 @@ public class ModuleCreationHelper {
 		Button btn = BC.createButton("Load New Turtle Image");
 		activateTurtleImageLoaderButton(btn);
 	}
+	
+	private void createIncreaseDecreaseButtons(){
+	    HBox hb = new HBox();
+	    ButtonCreator BC = new ButtonCreator(hb);
+	    Button btn = BC.createButton("Inc. Pen Size");
+	    Button btn2 = BC.createButton("Dec. Pen Size");
+	    activateIncreaseDecreaseButtons(btn, btn2, myView);
+	    mySelectorsVBox.getChildren().add(hb);   
+	}
+	
+	private void activateIncreaseDecreaseButtons(Button incbtn, Button decbtn, View view){
+	    incbtn.setOnAction(new EventHandler<ActionEvent>(){
+	        @Override
+	        public void handle(ActionEvent event){
+	            Turtle t = getTurtle();
+	            view.sendCommandToBackend("SetPenSize " + (t.getThickness() + 1));
+	        }
+	    });
+	    decbtn.setOnAction(new EventHandler<ActionEvent>(){
+	        @Override
+	        public void handle(ActionEvent event){
+	            Turtle t = getTurtle();
+	            view.sendCommandToBackend("SetPenSize " + (t.getThickness() - 1));
+
+	        }
+	    });
+	}
 
 	/**
 	 * Add another turtle to scene
@@ -360,7 +389,6 @@ public class ModuleCreationHelper {
 		LabelCreator LC = new LabelCreator(mySelectorsVBox);
 		SliderCreator SC = new SliderCreator(mySelectorsVBox);
 		LC.createLabel("Animation Speed Slider", AppConstants.LABEL_FONT_SIZE, AppConstants.DEFAULT_TEXT_COLOR);
-		//GET RID OF MAGIC NUMBERS
 		animationSlider = SC.createSlider(AppConstants.ANIMATION_SLIDER_MIN_VALUE, AppConstants.ANIMATION_SLIDER_MAX_VALUE, AppConstants.ANIMATION_SLIDER_DEFAULT_VALUE);
 	}
 
@@ -439,6 +467,7 @@ public class ModuleCreationHelper {
 		myUserVariablesList.create();
 		myUserCommandsList = new ListViewUserCommands(myListsVBox);
 		myUserCommandsList.create();
+	        addToCertainList(myUserCommands, myUserCommandsList, "OnClick");
 	}
 
 	/**
@@ -464,17 +493,28 @@ public class ModuleCreationHelper {
 	 */
 	private void createSelectors() {
 
-		BackgroundColorSelector backgroundSelect = new BackgroundColorSelector(mySelectorsVBox);
-		backgroundSelect.create(root, myGraphicsContext);
+		myBackgroundColorSelector = new BackgroundColorSelector(mySelectorsVBox);
+		myBackgroundColorSelector.create(root, myGraphicsContext, myView);
 
-		PathColorSelector pathSelect = new PathColorSelector(mySelectorsVBox);
-		pathSelect.create(root, myTurtleList.get(0));
+		myPathColorSelector = new PathColorSelector(mySelectorsVBox);
+		myPathColorSelector.create(root, myTurtleList.get(0), myView);
 
 		PathTextureSelector pathTexture = new PathTextureSelector(mySelectorsVBox);
 		pathTexture.create(root, myTurtleList.get(0));
 		
 	        myTurtleSelector = new TurtleImageSelector(mySelectorsVBox);
-	        myTurtleSelector.create(root, myTurtleList.get(0));
+	        myTurtleSelector.create(root, myTurtleList.get(0), myView);
+	}
+	
+	private void activateTurtleCanvas(){
+	    myCanvas.getCanvas().setOnMouseClicked(new EventHandler<MouseEvent>(){
+	        @Override
+	        public void handle(MouseEvent event){
+	            if(myUserCommandsList.getItems().contains("OnClick")){
+	                myView.sendCommandToBackend("SetXY " + (event.getX() - AppConstants.INITIAL_TURTLE_X_POS + 10) + " " + (event.getY() - AppConstants.INITIAL_TURTLE_Y_POS + 75));
+	            }
+	        }
+	    });
 	}
 
 	/**
@@ -676,36 +716,6 @@ public class ModuleCreationHelper {
 		});
 	}
 
-	/**
-	 * Creates an event handler that makes grid lines on the canvas when fired
-	 * @param cb The checkbox that fires the event
-	 */
-	public void activateReferenceCB(CheckBox cb){
-		cb.setOnAction(new EventHandler<ActionEvent>(){
-			@Override
-			public void handle(ActionEvent event){
-				if(cb.isSelected()) {
-					for(double x = myCanvas.getCanvas().getLayoutX(); x < myCanvas.getCanvas().getWidth() + myCanvas.getCanvas().getLayoutX(); x += AppConstants.GRIDLINES_SPACING){
-						Line line = new Line(x, myCanvas.getCanvas().getLayoutY(), x, myCanvas.getCanvas().getLayoutY() + myCanvas.getCanvas().getHeight());
-						line.setFill(Color.LIGHTGRAY);
-						myGridLines.add(line);
-					}
-					for(double y = myCanvas.getCanvas().getLayoutY(); y < myCanvas.getCanvas().getHeight() + myCanvas.getCanvas().getLayoutY(); y+= AppConstants.GRIDLINES_SPACING){
-						Line line2 = new Line(myCanvas.getCanvas().getLayoutX(), y, myCanvas.getCanvas().getLayoutX() + myCanvas.getCanvas().getWidth(), y);
-						line2.setFill(Color.LIGHTGRAY);
-						myGridLines.add(line2);
-					}
-					root.getChildren().addAll(myGridLines);
-				}
-				else{
-					for(Line l : myGridLines){
-						root.getChildren().remove(l);
-					}
-					myGridLines.clear();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Creates an event handler that records the text in the text box when fired
@@ -740,18 +750,9 @@ public class ModuleCreationHelper {
 		btn.setOnAction(new EventHandler<ActionEvent>(){
 			@Override
 			public void handle(ActionEvent event){
-				FileChooser fileChooser = new FileChooser();
-				fileChooser.setTitle("Load in a New Turtle Image");
-				fileChooser.getExtensionFilters().addAll(new ExtensionFilter("Images", "*.jpg", "*.png"));
-				File selectedFile = fileChooser.showOpenDialog(stage);
-				if (selectedFile != null) {
-					Image i = new Image((selectedFile.toURI().toString()), AppConstants.MAX_NEW_IMAGE_WIDTH, AppConstants.MAX_NEW_IMAGE_HEIGHT, true, true);
-					myTurtleSelector.updateMap("User Image #" + totalUserImages, new ImageView(i), myTurtleList.get(0));
-					totalUserImages +=1;
-				}
-				else{
-					System.out.println("No File Selected");
-				}
+			    ImageLoader IL = new ImageLoader(getTurtle(), totalUserImages);
+			    IL.chooseNewImage(stage, myTurtleSelector);
+			    totalUserImages +=1;
 			}
 		});
 	}
@@ -835,7 +836,7 @@ public class ModuleCreationHelper {
 	}
 
 	/**
-	 * Returns the current turtle
+	 * Returns the current active turtle
 	 * @return The turtle
 	 */
 	public Turtle getTurtle() {
@@ -871,13 +872,13 @@ public class ModuleCreationHelper {
 		return animationSlider.getValue();
 	}
 
-	protected void setListViewVariables(double x, double y, double o, boolean b){
-	    //DEAL WITH ROUNDING ERRORS
+	protected void setListViewVariables(double x, double y, double o, boolean b, int t){
 		myVariables.clear();
-		myVariables.add("Turtle X Position:     " + x);
-		myVariables.add("Turtle Y Position:     " + y);
-		myVariables.add("Turtle Heading:        " + o);
-		myVariables.add("Pen Down?:     " + b);
+		myVariables.add("Turtle X Position:     " + String.format("%.5g%n", x));
+		myVariables.add("Turtle Y Position:     " + String.format("%.5g%n", y));
+		myVariables.add("Turtle Heading:        " + String.format("%.5g%n", o));
+		myVariables.add("Pen Down?:             " + b);
+		myVariables.add("Pen Thickness:         " + t);
 		myVariablesList.setItems(myVariables);
 	}
 
@@ -894,5 +895,17 @@ public class ModuleCreationHelper {
 	public void turnOffRunningStatusLabel() {
 		runningStatusLabel.setVisible(false);
 	}
+
+    protected TurtleImageSelector getTurtleSelector(){
+        return myTurtleSelector;
+    }
+
+    protected PathColorSelector getPathColorSelector () {
+        return myPathColorSelector;
+    }
+
+    protected BackgroundColorSelector getBackgroundColorSelector () {
+        return myBackgroundColorSelector;
+    }
 }
 

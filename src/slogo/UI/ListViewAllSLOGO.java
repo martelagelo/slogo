@@ -33,7 +33,7 @@ public abstract class ListViewAllSLOGO {
 		this.vBox = vBox;
 	}
 
-	public ListViewAllSLOGO createThings(int listViewHeight, int listViewWidth,
+	public ListViewAllSLOGO createListView(int listViewHeight, int listViewWidth,
 			int vboxXpos, int vboxYpos, String labelName,
 			int fontSize, Color color){
 		myListViewCreator= new ListViewCreator(listViewHeight, listViewWidth);
@@ -45,7 +45,7 @@ public abstract class ListViewAllSLOGO {
 		return this;
 	}
 
-	public ListViewAllSLOGO createThings(int listViewHeight, int listViewWidth,
+	public ListViewAllSLOGO createListView(int listViewHeight, int listViewWidth,
 			String labelName,
 			int fontSize, Color color){
 		myListViewCreator= new ListViewCreator(listViewHeight, listViewWidth);

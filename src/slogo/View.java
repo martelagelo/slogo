@@ -71,13 +71,16 @@ public class View implements IView{
 		commandQueue = new LinkedList<String>();
 		immediateHistoryQueue = new LinkedList<String>();
 		this.MCH = MCH;
-		runner = new MethodRunner(root, MCH.getCanvas(), MCH.getTurtle(), pathList, MCH);
 		try {
 			backend = new Backend();
 		} catch (InitializationException e) {
 			//FIXME handle an error if the backend fails to initialize properly
 			e.printStackTrace();
 		}
+	}
+	
+	public void initRunner(Group root, ModuleCreationHelper MCH){
+	      runner = new MethodRunner(root, MCH.getCanvas(), MCH.getTurtle(), pathList, MCH);
 	}
 
 	/**

@@ -10,6 +10,7 @@ import slogo.backend.evaluation.MalformedSyntaxException;
 import slogo.backend.impl.evaluation.OperationFactory;
 import slogo.backend.impl.evaluation.commands.Constant;
 import slogo.backend.impl.evaluation.commands.Result;
+import slogo.backend.impl.evaluation.commands.Variable;
 import slogo.backend.parsing.IGrammarRule;
 import slogo.backend.parsing.IParser;
 import slogo.backend.parsing.ISyntaxNode;
@@ -62,8 +63,14 @@ public class Parser implements IParser {
 		for (IToken token: tokens){
 			IOperation operation;
 			String type;
-			if (token.type() == Constants.CONSTANT_LABEL) {
+			if (token.type() == Constants.CONSTANT_LABEL
+					|| token.type() == Constants.VARIABLE_LABEL) {
 				operation = new Constant(token.text());
+				type = token.type();
+			}
+			else if (token.type() == Constants.OPENING_LIST_LABEL
+					|| token.type() == Constants.CLOSING_LIST_LABEL) {
+				operation = new Result();
 				type = token.type();
 			}
 			else {

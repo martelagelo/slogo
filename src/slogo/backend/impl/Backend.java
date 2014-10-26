@@ -59,7 +59,7 @@ public class Backend implements IModel{
 	private List<ITokenRule> tokenRules(){
 		List<ITokenRule> rules = new ArrayList<>();
 		rules.add(new TokenRule.Builder(Constants.CONSTANT_LABEL, "-?[0-9]+\\.?[0-9]*").build());
-		rules.add(new TokenRule.Builder(Constants.COMMAND_LABEL, "[a-zA-z_]+(\\?)?").build());
+		rules.add(new TokenRule.Builder(Constants.COMMAND_LABEL, "[a-zA-Z_]+(\\?)?").build());
 		rules.add(new TokenRule.Builder(Constants.VARIABLE_LABEL, ":[a-zA-Z]+").build());
 		rules.add(new TokenRule.Builder(Constants.OPENING_LIST_LABEL, "\\[").build());
 		rules.add(new TokenRule.Builder(Constants.CLOSING_LIST_LABEL, "\\]").build());
@@ -105,7 +105,10 @@ public class Backend implements IModel{
 				{"Towards","2"},
 				{"Xcor","0"},
 				{"Ycor","0"},
-				
+				{"SetPenSize", "1"},
+				{"SetShape", "1"},
+				{"SetPenColor", "3"},
+				{"SetBackground", "3"},
 		};
 		String[][][] controlRules = {
 				{{"For"}, {
@@ -177,11 +180,19 @@ public class Backend implements IModel{
 		};
 		List<IGrammarRule> ruleList = new ArrayList<>();
 		for (String[] rule: rules) {
-			List<String> repeatedConstants = new ArrayList<>();
-			for (int i = 0; i < Integer.parseInt(rule[1]); i++){
-				repeatedConstants.add(Constants.CONSTANT_LABEL);
+			int numRepeats = Integer.parseInt(rule[1]);
+			String[][] repeatedConstants = new String[numRepeats][2];
+			for (int i = 0; i < numRepeats; i++) {
+				repeatedConstants[i][0] = Constants.CONSTANT_LABEL;
+				repeatedConstants[i][1] = Constants.VARIABLE_LABEL;
 			}
-			ruleList.add(new GrammarRule(rule[0], repeatedConstants));
+			String[] wrappedCommandName = { rule[0] };
+			ruleList.add(new GrammarRule(
+					wrappedCommandName,
+					repeatedConstants));
+		}
+		for (String[][] rule: controlRules) {
+			ruleList.add(new GrammarRule(rule[0][0], Arrays.asList(rule[1])));
 		}
 		return ruleList;
 	}

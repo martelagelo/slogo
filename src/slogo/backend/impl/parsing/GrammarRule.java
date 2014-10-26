@@ -14,18 +14,31 @@ import slogo.backend.parsing.ISyntaxNode;
 import slogo.backend.tokenization.IToken;
 
 public class GrammarRule implements IGrammarRule {
-	private String command;
-	private List<String> args;
+	private List<String> command;
+	private List<List<String>> args;
 	public GrammarRule(String command, String[] args){
 		this(command, Arrays.asList(args));
 	}
 	public GrammarRule(String command, List<String> args){
-		this.command = command;
-		this.args = args;
+		this.command = new ArrayList<>();
+		this.command.add(command);
+		this.args = new ArrayList<>();
+		for (String arg: args){
+			List<String> argChoices = new ArrayList<>();
+			argChoices.add(arg);
+			this.args.add(argChoices);
+		}
+	}
+	public GrammarRule(String command[], String[][] args){
+		this.command = Arrays.asList(command);
+		this.args = new ArrayList<>();
+		for (String[] arg: args) {
+			this.args.add(Arrays.asList(arg));
+		}
 	}
 	@Override
 	public int matches(List<ISyntaxNode> nodes) {
-		List<String> searchPattern = new ArrayList<>();
+		List<List<String>> searchPattern = new ArrayList<>();
 		searchPattern.add(command);
 		searchPattern.addAll(args);
 		
@@ -35,8 +48,7 @@ public class GrammarRule implements IGrammarRule {
 		}
 		
 		for (int i = 0; i <= toSearch.size() - searchPattern.size(); i++){
-			if (standardMatches(searchPattern, toSearch, i)
-					|| infiniteMatches(searchPattern, toSearch, i)){
+			if (infiniteMatches(searchPattern, toSearch, i)) {
 				return i;
 			}
 		}
@@ -45,24 +57,24 @@ public class GrammarRule implements IGrammarRule {
 	private boolean standardMatches(List<String> searchPattern, List<String> toSearch, int index){
 		return searchPattern.equals(toSearch.subList(index, index + searchPattern.size()));
 	}
-	private boolean infiniteMatches(List<String> searchPattern, List<String> toSearch, int index){
-		return infiniteMatchRecurse(searchPattern, toSearch);
+	private boolean infiniteMatches(List<List<String>> searchPattern, List<String> toSearch, int index){
+		return infiniteMatchRecurse(searchPattern, toSearch.subList(index, toSearch.size()));
 	}
-	public static boolean infiniteMatchRecurse(List<String> patternRemaining, List<String> searchRemaining){
+	public boolean infiniteMatchRecurse(List<List<String>> searchPattern, List<String> searchRemaining){
 		if (searchRemaining.size() == 0){
-			if (patternRemaining.size() == 0 || patternRemaining.size() == 2){
+			if (searchPattern.size() == 0 || searchPattern.size() == 2){
 				return true;
 			}
 			return false;
 		}
-		List<String> newPattern;
+		List<List<String>> newPattern;
 		List<String> newSearch;
-		if (isInfinite(patternRemaining)){
+		if (isInfinite(searchPattern)){
 			// if we're at the wildcard and both leading elements match, we
 			// keep the pattern (so that we can continue wildcard matching),
 			// but we iterate to the next search element
-			if (patternRemaining.get(0).equals(searchRemaining.get(0))) {
-				newPattern = patternRemaining;
+			if (searchPattern.get(0).contains(searchRemaining.get(0))) {
+				newPattern = searchPattern;
 				newSearch = searchRemaining.subList(1, searchRemaining.size());
 				return true && infiniteMatchRecurse(newPattern,	newSearch);
 			}
@@ -72,24 +84,32 @@ public class GrammarRule implements IGrammarRule {
 			// normally using non-infinite logic; searchRemaining stays the same
 			// so that the next time around, the two leading elements of each list
 			// can be matched and iterated over in unison
-			if (patternRemaining.size() > 2 && patternRemaining.get(2).equals(searchRemaining.get(0))) {
-				newPattern = patternRemaining.subList(2, patternRemaining.size());
+			if (searchPattern.size() > 2 && searchPattern.get(2).contains(searchRemaining.get(0))) {
+				newPattern = searchPattern.subList(2, searchPattern.size());
 				newSearch = searchRemaining;
 				return true && infiniteMatchRecurse(newPattern, newSearch);
 			}
 		}
 		// if we're not matching a wildcard, we iterate one at a time over both
 		// lists checking to see that both leading elements are equal
-		else if (patternRemaining.get(0).equals(searchRemaining.get(0))) {
-			newPattern = patternRemaining.subList(1, patternRemaining.size());
+		else if (searchPattern.get(0).contains(searchRemaining.get(0))) {
+			newPattern = searchPattern.subList(1, searchPattern.size());
 			newSearch = searchRemaining.subList(1, searchRemaining.size());
 			return true && infiniteMatchRecurse(newPattern,	newSearch);
 		}
 		return false;
 	}
-	private static boolean isInfinite(List<String> patternRemaining){
-		if (patternRemaining.size() > 1 
-				&& Constants.INFINITE_MATCHING_LABEL.equals(patternRemaining.get(1))){
+	/**
+	 * To check for infinite, if any of the possible matches is the infinite wildcard,
+	 * then everything else will be ignored; i.e. don't include anything else if you
+	 * include the infinite matching wildcard
+	 * 
+	 * @param searchPattern The remaining pattern to search
+	 * @return Whether the second element contains the infinite matching wildcard
+	 */
+	private static boolean isInfinite(List<List<String>> searchPattern){
+		if (searchPattern.size() > 1 
+				&& searchPattern.get(1).contains(Constants.INFINITE_MATCHING_LABEL)){
 				return true;
 		}
 		return false;

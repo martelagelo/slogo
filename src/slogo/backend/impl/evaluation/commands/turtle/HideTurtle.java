@@ -32,7 +32,7 @@ public class HideTurtle extends Operation{
         args.get(0).environment().put(Constants.RETURN_VALUE_ENVIRONMENT, "0");
 
 
-        ITurtleStatus newStatus = new TurtleStatus(list,cor,dir,pen,Visibility.INVISIBLE);
+        ITurtleStatus newStatus = new TurtleStatus(list,cor,dir,pen,Visibility.INVISIBLE, status.turtleQualities());
         args.get(0).turtles().put(Constants.DEFAULT_TURTLE_NAME, newStatus);
         return new ExecutionContext(args.get(0).turtles(),args.get(0).environment(), args.get(0).userDefinedCommands());
     }

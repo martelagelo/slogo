@@ -9,6 +9,8 @@ import slogo.CommandExecutor;
 import slogo.backend.impl.util.TurtleStatus;
 import slogo.backend.util.ILine;
 import slogo.backend.util.ITurtleStatus;
+import slogo.backend.util.PenState;
+import slogo.backend.util.Visibility;
 import javafx.collections.ObservableList;
 import javafx.geometry.Point2D;
 import javafx.scene.Group;
@@ -47,20 +49,34 @@ public class MethodRunner {
 	}
 	
 	public void changeTurtle() {
+	        showTurtle();
 		moveTurtle();
 		setTurtleDirection();
 		setPenState();
 		setTurtleVisibility();
-		MCH.setListViewVariables((double) TS.turtlePosition().getX(),(double) TS.turtlePosition().getY(), TS.turtleDirection().toDegrees(), true);
+		setTurtleQualities();
+		MCH.setListViewVariables((double) TS.turtlePosition().getX(),(double) TS.turtlePosition().getY(), TS.turtleDirection().toDegrees(), true, turtle.getThickness());
 	}
-	
-	public void changeEnvironment() {
+
+    public void changeEnvironment() {
 		//NEEDS FUNCTIONALITY
-		System.out.println(environment);
+		System.out.println("Environment:      " + environment);
 		
 	}
+    
+        private void showTurtle(){
+            if(TS.turtleVisibility().equals(Visibility.VISIBLE) && !root.getChildren().contains(turtle.getImage())){
+                root.getChildren().add(turtle.getImage());
+            }
+            if(TS.turtleVisibility().equals(Visibility.INVISIBLE) && root.getChildren().contains(turtle.getImage())){
+                root.getChildren().remove(turtle.getImage());
+            }
+            
+        }
 		
 	private void moveTurtle() {
+	    System.out.println(TS.penState().toString());
+	    if(TS.penState().equals(PenState.DOWN)){
 	    for (Line l : pathList) {
 	        root.getChildren().remove(l);
 	    }
@@ -77,6 +93,7 @@ public class MethodRunner {
 	            drawNewLine(l);
 	        }
 	    }
+	    }
 	    turtle.moveTurtle((double) TS.turtlePosition().getX() + AppConstants.INITIAL_TURTLE_X_POS, (double) TS.turtlePosition().getY() + AppConstants.INITIAL_TURTLE_Y_POS); 
 	}
 
@@ -86,7 +103,9 @@ public class MethodRunner {
 	            Math.abs((double) l.end().getX() - (line.getEndX() - AppConstants.INITIAL_TURTLE_X_POS)) < AppConstants.ROUNDING_ERROR &&
 	            Math.abs((double) l.start().getY() - (line.getStartY() - AppConstants.INITIAL_TURTLE_Y_POS)) < AppConstants.ROUNDING_ERROR &&
 	            Math.abs((double) l.end().getY() - (line.getEndY() - AppConstants.INITIAL_TURTLE_Y_POS)) < AppConstants.ROUNDING_ERROR){   
-	        root.getChildren().add(line);
+	        if(!root.getChildren().contains(line)){
+	            root.getChildren().add(line);
+	        }
                 pathList.add(line);
 	        return true;
 	    }
@@ -103,36 +122,56 @@ public class MethodRunner {
 	    line.setEndX((double) l.end().getX() + AppConstants.INITIAL_TURTLE_X_POS);
 	    line.setEndY((double) l.end().getY() + AppConstants.INITIAL_TURTLE_Y_POS);
 	    if(turtle.getLineProperty().equals("Dashed")){
-	        line.getStrokeDashArray().addAll(10d);
+	        line.setStrokeWidth(turtle.getThickness());
+	        line.getStrokeDashArray().addAll(AppConstants.DASH_SIZE);
 	    }
 	    if(turtle.getLineProperty().equals("Bold")){
                 line.getStrokeDashArray().clear();
-                line.setStrokeWidth(5);
+                line.setStrokeWidth(Math.min(AppConstants.MAX_PATH_WIDTH, (turtle.getThickness() + AppConstants.BOLD_SIZE)));
             }
 	    if(turtle.getLineProperty().equals("None")){
                 line.getStrokeDashArray().clear();
-                line.setStrokeWidth(1);
+                line.setStrokeWidth(turtle.getThickness());
             }
 	    root.getChildren().add(line);
 	    pathList.add(line);
 	}
 
 	private void setTurtleDirection() {
-		turtle.setOrientation(TS.turtleDirection().toDegrees() + 90);
+		turtle.setOrientation(TS.turtleDirection().toDegrees() + AppConstants.ORIENTATION_OFFSET);
 	}
 	
 	private void setPenState() {
-		
+
 	}
 	
-	private void setTurtleVisibility() {
-		if (TS.turtleVisibility().VISIBLE != null) {
-			//TODO
-		}
+	private void setTurtleVisibility() { 
+            if (TS.turtleVisibility().VISIBLE != null) {
+                //TODO
+            }
 	}
 	
 	public void setTurtleStatus(ITurtleStatus TS) {
 		this.TS = TS;
+	}
+	
+	private void setTurtleQualities () {
+                   MCH.getBackgroundColorSelector().setValue(TS.turtleQualities().backgroundColor());
+                   MCH.getCanvas().getGraphicsContext2D().setFill(MCH.getBackgroundColorSelector().getValue());
+                   MCH.getCanvas().getGraphicsContext2D().fillRect(1, 1, AppConstants.CANVAS_WIDTH - 2, AppConstants.CANVAS_HEIGHT - 2);
+                   MCH.getPathColorSelector().setValue(TS.turtleQualities().toColor());
+	           turtle.setColor(MCH.getPathColorSelector().getValue());
+	           if(TS.turtleQualities().index() > 0 && TS.turtleQualities().index() <= MCH.getTurtleSelector().getItems().size()){
+	               MCH.getTurtleSelector().setValue((MCH.getTurtleSelector().getItems().get((TS.turtleQualities().index() - 1))));
+	               System.out.println(MCH.getTurtleSelector().getValue());
+	               turtle.setImage(MCH.getTurtleSelector().getValue());
+	           }
+	           else if (TS.turtleQualities().index() < 0 || TS.turtleQualities().index() > MCH.getTurtleSelector().getItems().size()){
+                       new MessageBox("Not a Valid Number!");
+                       TS.turtleQualities().setIndex(0);
+	           }
+	           turtle.setThickness(Math.max(1, TS.turtleQualities().thickness()));
+	           turtle.setThickness(Math.min(AppConstants.MAX_PATH_WIDTH, turtle.getThickness()));
 	}
 
 	public void setEnvironment(String var) {

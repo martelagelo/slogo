@@ -29,7 +29,7 @@ public class PenDown extends Operation{
         
         
         
-        ITurtleStatus newStatus = new TurtleStatus(status.lineSequence(),pos,dir,PenState.DOWN,status.turtleVisibility());
+        ITurtleStatus newStatus = new TurtleStatus(status.lineSequence(),pos,dir,PenState.DOWN,status.turtleVisibility(), status.turtleQualities());
         args.get(0).turtles().put(Constants.DEFAULT_TURTLE_NAME, newStatus);
         return new ExecutionContext(args.get(0).turtles(),args.get(0).environment(), args.get(0).userDefinedCommands());
     }

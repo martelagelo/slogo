@@ -62,9 +62,10 @@ public class TokenizationTest {
 	@Test
 	public void testTokenize(){
 		List<ITokenRule> rules = new ArrayList<>();
-		rules.add(new TokenRule.Builder("constant", "-?[0-9]+\\.?[0-9]*").build());
-		rules.add(new TokenRule.Builder("command", "[a-zA-z_]+(\\?)?").build());
-		Reader input = new StringReader("sum 60 50");
+		rules.add(new TokenRule.Builder(Constants.CONSTANT_LABEL, "-?[0-9]+\\.?[0-9]*").build());
+		rules.add(new TokenRule.Builder(Constants.COMMAND_LABEL, "[a-zA-Z_]+(\\?)?").build());
+		rules.add(new TokenRule.Builder(Constants.OPENING_LIST_LABEL, "\\[").build());
+		Reader input = new StringReader("sum [ 60 50");
 		ITokenizer tokenizer = null;
 		try {
 			tokenizer = new Tokenizer(rules);
@@ -78,9 +79,10 @@ public class TokenizationTest {
 			fail();
 		}
 		String[][] blah = {
-				{"command", "sum"},
-				{"constant", "60"},
-				{"constant", "50"}
+				{Constants.COMMAND_LABEL, "sum"},
+				{Constants.OPENING_LIST_LABEL, "["},
+				{Constants.CONSTANT_LABEL, "60"},
+				{Constants.CONSTANT_LABEL, "50"}
 				};
 		for (int i = 0; i < blah.length; i++){
 			assertEquals(blah[i][0], tokens.get(i).type());

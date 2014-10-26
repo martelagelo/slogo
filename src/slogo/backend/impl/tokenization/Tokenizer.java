@@ -41,7 +41,7 @@ public class Tokenizer implements ITokenizer{
 
 			for (ITokenRule rule: rules){
 				Map<String, IToken> candidateMatch = rule.match(bufferString, isStart, isEnd);
-				if (candidateMatch.size() > 1){
+				if (candidateMatch.size() > 0){
 					tokens.add(candidateMatch.get(Constants.BODY_TOKEN_STRING));
 					IToken closingToken = candidateMatch.get(Constants.CLOSING_TOKEN_STRING);
 					if (closingToken != null){

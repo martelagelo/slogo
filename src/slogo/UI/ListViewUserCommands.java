@@ -16,7 +16,7 @@ public class ListViewUserCommands extends ListViewAllSLOGO {
 
     @Override
     protected void create() {
-        createThings(AppConstants.LIST_BLOCKS_HEIGHT, AppConstants.LIST_BLOCKS_WIDTH, 
+        createListView(AppConstants.LIST_BLOCKS_HEIGHT, AppConstants.LIST_BLOCKS_WIDTH, 
                                            "User Defined Commands", 1, Color.BLACK);
     }
 

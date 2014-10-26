@@ -37,4 +37,8 @@ public class SyntaxNode implements ISyntaxNode{
 		return type;
 	}
 	
+	@Override
+	public String toString() {
+		return type;
+	}
 }
