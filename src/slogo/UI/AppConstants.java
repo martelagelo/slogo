@@ -15,8 +15,8 @@ public class AppConstants {
 	public static final Color BACKGROUND_COLOR = Color.BURLYWOOD;
 	public static final Color DEFAULT_TEXT_COLOR = Color.BLACK;
 	
-        public static final Integer STAGE_WIDTH = 1100;
-        public static final Integer STAGE_HEIGHT = 600;
+        public static final Integer STAGE_WIDTH = 1300;
+        public static final Integer STAGE_HEIGHT = 750;
         public static final Integer STAGE_PADDING = 5;
         public static final Integer MODULE_PADDING = 30;
         

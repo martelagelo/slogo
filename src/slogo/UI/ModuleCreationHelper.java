@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import slogo.View;
 import slogo.frontend.Config.ConfigHashMapCreator;
 import slogo.frontend.Config.ConfigReader;
@@ -638,7 +637,6 @@ public class ModuleCreationHelper {
 					clearCertainList(myUserVariables, myUserVariablesList);
 					for (String s: Variables.keySet()) {
 						addToCertainList(myUserVariables, myUserVariablesList, s +  " = " + Variables.get(s));
-						//NEEDS BACKEND FUNCTIONALITY
 					}
 
 					new MessageBox("Read from config file successful!");
@@ -752,9 +750,6 @@ public class ModuleCreationHelper {
 					s += t.getId() + " ";
 				}
 				myView.sendCommandToBackend("Tell [ " + s + " " + totalTurtles + " ]");
-				//Turtle newTurtle = new Turtle("Triangle", AppConstants.INITIAL_TURTLE_X_POS, AppConstants.INITIAL_TURTLE_Y_POS, "Turtle" + totalTurtles);
-				//myTurtleList.add(newTurtle);
-				//root.getChildren().add(newTurtle.getImage());
 				totalTurtles += 1;
 			}
 		});	    
@@ -842,7 +837,7 @@ public class ModuleCreationHelper {
 					myView.sendCommandToBackend("Forward 10");		
 				}
 				if (event.getCode() == KeyCode.S) {
-					myView.sendCommandToBackend("Back 10");
+					myView.sendCommandToBackend("Backward 10");
 				}
 			}
 		});
@@ -1015,5 +1010,20 @@ public class ModuleCreationHelper {
 	public List<Turtle> getTurtleList(){
 		return myTurtleList;
 	}
+	/**
+	 * Used for adding variables the user dedines to the display
+	 * @param environment the string representing the variables
+	 */
+    protected void setUserVariable (String environment) {
+        myUserVariablesList.getItems().add(environment);
+        
+    }
+    
+    /**
+     * Clears the UserVariables List - needed so UI does not have duplicates of variables
+     */
+    public void clearUserVariables(){
+        myUserVariablesList.getItems().clear();
+    }
 }
 

@@ -126,11 +126,12 @@ public class View implements IView{
 							//try to send to backend and obtain result
 							try {
 								result = backend.execute(commandQueue.poll());
+	                                                        //execute result
+	                                                        executeCommand(result);
 							} catch (ExecutionException e) {
 								new MessageBox(e.getMessage());
+								animationTimeline.pause();
 							}
-							//execute result
-							executeCommand(result);
 							MCH.stepThroughCommandsHistory(0);
 							//stop animation once no more commands in the list
 							if (commandQueue.isEmpty()) {
@@ -190,12 +191,10 @@ public class View implements IView{
 		IExecutionContext result = null;
 		try {
 			result = backend.execute(command);
+			executeCommand(result);
 		} catch (ExecutionException e) {
-			//FIXME handle if an error occurs in execution; 
-			// print this out to a UI widget maybe?
-			e.printStackTrace();
+			new MessageBox(e.getMessage());
 		}
-		executeCommand(result);
 	}
 	
 	/**
@@ -207,10 +206,11 @@ public class View implements IView{
 			IExecutionContext result = null;
 			try {
 				result = backend.execute(commandQueue.poll());
+				executeCommand(result);
 			} catch (ExecutionException e) {
 				new MessageBox(e.getMessage());
 			}
-			executeCommand(result);
+			
 		}
 		else {
 			new MessageBox("No more commands to step through");
@@ -226,10 +226,11 @@ public class View implements IView{
 			IExecutionContext result = null;
 			try {
 				result = backend.execute(commandQueue.poll());
+				executeCommand(result);
 			} catch (ExecutionException e) {
 				new MessageBox(e.getMessage());
 			}
-			executeCommand(result);
+			
 		}
 		else {
 			new MessageBox("No more commands after the next");
@@ -263,17 +264,17 @@ public class View implements IView{
 	 * @param result the context returned by the backend
 	 */
 	private void executeCommand(IExecutionContext result) {
+	        MCH.clearUserVariables();
 		for(String k: result.turtles().keySet()) {
 			executeTurtleCommands(k, result.turtles().get(k));
 		}
 		for(String k: result.environment().keySet()) {
-			executeEnvironmentCommands(result.environment().get("returnValue"));
+			executeEnvironmentCommands(k + "     "  + result.environment().get(k));
 		}
 	}
 
 	@Override
 	public void init() {
-		// TODO Auto-generated method stub
 
 	}
 

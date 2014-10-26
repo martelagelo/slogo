@@ -97,7 +97,7 @@ public class MethodRunner {
 		setPenState();
 		setPenAttributes();
 		setBackgroundColor();
-		MCH.setListViewVariables((double) TS.turtlePosition().getX(), -1*(double) TS.turtlePosition().getY(), -1*TS.turtleDirection().toDegrees(), setPenState(), turtle.getThickness());
+		MCH.setListViewVariables((double) TS.turtlePosition().getX(), -1*(double) TS.turtlePosition().getY(), (-1*TS.turtleDirection().toDegrees()) % 360, setPenState(), turtle.getThickness());
 	    }
 	}
         
@@ -275,9 +275,11 @@ public class MethodRunner {
 	private void setTurtleImage(){
 		//Checks that index is valid based on size of list of options in image selector
 		if(TS.turtleQualities().index() > 0 && TS.turtleQualities().index() <= MCH.getTurtleSelector().getItems().size()){
-			MCH.getTurtleSelector().setValue((MCH.getTurtleSelector().getItems().get((TS.turtleQualities().index() - 1))));
+			System.out.println("This is where I set the image");
+		        MCH.getTurtleSelector().setValue((MCH.getTurtleSelector().getItems().get((TS.turtleQualities().index() - 1))));
 			System.out.println(MCH.getTurtleSelector().getValue());
 			turtle.setImage(MCH.getTurtleSelector().getValue(), root);
+			System.out.println(ID + turtle.getImageName());
 		}
 		//otherwise displays message to user, and sets index to 0
 		else if (TS.turtleQualities().index() < 0 || TS.turtleQualities().index() > MCH.getTurtleSelector().getItems().size()){
@@ -302,7 +304,7 @@ public class MethodRunner {
 	}
 
     public void changeEnvironment () {
-        // TODO Auto-generated method stub
+        MCH.setUserVariable(environment);
         
     }
 
