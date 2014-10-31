@@ -8,6 +8,10 @@ import java.util.List;
 import slogo.Constants;
 import slogo.backend.impl.evaluation.commands.MathOperation;
 
+/**
+ * Return the product of one or many numbers
+ *
+ */
 public class Product extends MathOperation {
     private static final String COMMAND_NAME = "Product";
     private static final int MIN_NUM_CONTEXT = 2;
@@ -17,6 +21,9 @@ public class Product extends MathOperation {
         super(COMMAND_NAME, MIN_NUM_CONTEXT, MAX_NUM_CONTEXT);
     }
 
+    /**
+     * Return the product of a list of numbers
+     */
     @Override
     protected Number executeMath (List<Number> args) {
         double result = 1;
