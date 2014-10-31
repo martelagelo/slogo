@@ -10,12 +10,14 @@ import javafx.scene.shape.Line;
  *
  * Version 1
  *
+ * 
  * @author Michael Deng
- * @author Michael Ren
- * @author Eric Chen
- * @author Nick Widmaier
  *
  */
+
+//This entire file is part of my masterpiece.
+//Michael Deng
+
 public class ToroidalHelper {
 
     List<Line> lineList;
@@ -44,18 +46,10 @@ public class ToroidalHelper {
      */
     public List<Line> makeLinesToroidal () {
         List<Line> newLineList = new ArrayList<Line>();
-
         for (Line l : lineList) {
             if (!checkEndBounds(l)) {
                 List<Line> subLineList = new ArrayList<>();
-                double angle =
-                        Math.atan2(l.getEndX() - l.getStartX(), -(l.getEndY() - l.getStartY()));
-                if (angle > Math.PI / 2) {
-                    angle = angle - Math.PI / 2;
-                }
-                else if (angle < -1 * Math.PI / 2) {
-                    angle = angle + Math.PI / 2;
-                }
+                double angle = setAngle(l);
                 cutLines(l, subLineList, angle);
                 newLineList.addAll(subLineList);
             }
@@ -224,7 +218,7 @@ public class ToroidalHelper {
      * @param l The current line
      * @return True if the whole line is in the canvas
      */
-    private boolean checkAllBounds (Line l) {
+    public boolean checkAllBounds (Line l) {
         return (checkStartBounds(l) && checkEndBounds(l));
     }
 
@@ -265,7 +259,25 @@ public class ToroidalHelper {
      * @param y The y coordinate
      * @return True if the y bound is within the canvas
      */
-    private boolean checkYBounds (double y) {
+    public boolean checkYBounds (double y) {
         return (y <= MAX_Y && y >= MIN_Y);
+    }
+    
+    /**
+     * Sets the angle of the line from the Y axis
+     * 
+     * @param l The currently selected line
+     * @return The angle of the line
+     */
+    public double setAngle(Line l) {
+    	double angle =
+                Math.atan2(l.getEndX() - l.getStartX(), -(l.getEndY() - l.getStartY()));
+        if (angle > Math.PI / 2) {
+            angle = angle - Math.PI / 2;
+        }
+        else if (angle < -1 * Math.PI / 2) {
+            angle = angle + Math.PI / 2;
+        }
+        return angle;
     }
 }

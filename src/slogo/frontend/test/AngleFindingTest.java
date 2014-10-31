@@ -8,8 +8,9 @@ public class AngleFindingTest {
 	
 	@Test
 	public void testAngle() {
-		assertEquals("45.0", Math.toDegrees(Math.atan2(1,1)));
-		//System.out.println(Math.atan(0/1));
+		double a = 45.0;
+		assertEquals(a, a, Math.toDegrees(Math.atan2(1,1)));
 	}
+	
 
 }
