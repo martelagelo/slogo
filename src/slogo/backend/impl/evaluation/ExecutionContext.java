@@ -1,3 +1,6 @@
+// This entire file is part of my masterpiece.
+// Michael Ren
+
 package slogo.backend.impl.evaluation;
 
 import java.util.HashMap;

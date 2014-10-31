@@ -1,3 +1,5 @@
+// This entire file is part of my masterpiece.
+// Michael Ren
 package slogo.backend.impl.evaluation.commands;
 
 import java.util.List;
