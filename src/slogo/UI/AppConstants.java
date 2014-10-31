@@ -94,5 +94,8 @@ public class AppConstants {
     public static final int MAX_PATH_WIDTH = 15;
     public static final int BOLD_SIZE = 5;
     public static final double ORIENTATION_OFFSET = 90;
+    
+    public static final int DEFAULT_LISTVIEW_WIDTH = 200;
+    public static final int DEFAULT_LISTVIEW_HEIGHT = 200;
 
 }
