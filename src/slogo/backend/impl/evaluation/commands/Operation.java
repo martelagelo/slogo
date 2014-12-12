@@ -1,3 +1,6 @@
+// This entire file is part of my masterpiece.
+// Michael Ren
+
 package slogo.backend.impl.evaluation.commands;
 
 import java.util.ArrayList;
@@ -20,6 +23,13 @@ public abstract class Operation implements IOperation {
     private int argMin;
     private int argMax;
 
+    /**
+     * Create a new operation
+     * 
+     * @param type An identifier for this operation
+     * @param argMin The minimum number of arguments for this operation
+     * @param argMax The maximum number of arguments for this operation
+     */
     public Operation (String type, int argMin, int argMax) {
         this.type = type;
         this.argMin = argMin;
@@ -79,10 +89,24 @@ public abstract class Operation implements IOperation {
         return argsNum;
     }
 
+    /**
+     * Provide a policy for which child context should be promoted to represent the state
+     * of the parent
+     * 
+     * @param contexts A list of candidate child contexts to choose from
+     * @return The chosen context
+     */
     protected IExecutionContext mergeContexts (List<IExecutionContext> contexts) {
         return new ExecutionContext(contexts.get(0));
     }
 
+    /**
+     * Get the string return value representation from a context
+     * 
+     * @param context The context to get the return value from
+     * @return The string representing the return value, or an empty string if
+     * no return value exists
+     */
     protected String getContextReturnValue (IExecutionContext context) {
         if (context.environment().containsKey(Constants.RETURN_VALUE_ENVIRONMENT)) {
             return context.environment().get(Constants.RETURN_VALUE_ENVIRONMENT);
@@ -91,6 +115,12 @@ public abstract class Operation implements IOperation {
         }
     }
 
+    /**
+     * Get the name of the variable that was returned in the return value, if any
+     * 
+     * @param context The context to get the returned variable name
+     * @return The name of the variable that was returned
+     */
     protected String getContextReturnedVariableName (IExecutionContext context) {
         if (context.environment().containsKey(Constants.RETURNED_VARIABLE_NAME)) {
             return context.environment().get(Constants.RETURNED_VARIABLE_NAME);

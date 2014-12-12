@@ -1,3 +1,6 @@
+// This entire file is part of my masterpiece.
+// Michael Ren
+
 package slogo.backend.impl.evaluation.commands.booleans;
 
 import java.util.List;
@@ -5,6 +8,10 @@ import java.util.List;
 import slogo.Constants;
 import slogo.backend.impl.evaluation.commands.MathOperation;
 
+/**
+ * Determine whether two values ANDed together represent a true condition or not
+ *
+ */
 public class And extends MathOperation {
 
     private static final String COMMAND_NAME = "And";
@@ -15,6 +22,9 @@ public class And extends MathOperation {
         super(COMMAND_NAME, MIN_NUM_CONTEXT, MAX_NUM_CONTEXT);
     }
 
+    /**
+     * Return a true number of both numbers are not false numbers
+     */
     @Override
     protected Number executeMath (List<Number> args) {
         return (args.get(0).intValue() != Constants.FALSE_INT)
