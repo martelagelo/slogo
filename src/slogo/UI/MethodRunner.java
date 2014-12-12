@@ -26,6 +26,13 @@ import slogo.backend.util.Visibility;
  */
 public class MethodRunner {
 
+	private static final Integer MAX_X = AppConstants.CANVAS_WIDTH + AppConstants.CANVAS_OFFSET_X_POS;
+	private static final Integer MIN_X = AppConstants.CANVAS_OFFSET_X_POS;
+	private static final Integer MAX_Y = AppConstants.CANVAS_HEIGHT + AppConstants.CANVAS_OFFSET_Y_POS;
+	private static final Integer MIN_Y = AppConstants.CANVAS_OFFSET_Y_POS;
+	private static final Integer WIDTH = AppConstants.CANVAS_WIDTH;
+	private static final Integer HEIGHT = AppConstants.CANVAS_HEIGHT;
+	
     private List<Turtle> turtleList;
     private Canvas canvas;
     private Group root;
@@ -152,9 +159,53 @@ public class MethodRunner {
         // turtle.moveTurtle((double) TS.turtlePosition().getX() +
         // AppConstants.INITIAL_TURTLE_X_POS, (double) TS.turtlePosition().getY() +
         // AppConstants.INITIAL_TURTLE_Y_POS);
-        turtle.moveTurtle(pathList.get(pathList.size() - 1).getEndX(),
-                          pathList.get(pathList.size() - 1).getEndY());
-    }
+        //turtle.moveTurtle(pathList.get(pathList.size() - 1).getEndX(),
+        //                 pathList.get(pathList.size() - 1).getEndY());
+		turtle.moveTurtle(getToroidalXPos((double) TS.turtlePosition().getX() + AppConstants.INITIAL_TURTLE_X_POS), getToroidalYPos((double) TS.turtlePosition().getY() + AppConstants.INITIAL_TURTLE_Y_POS));
+	}
+	
+	private double getToroidalXPos(double initialXPos) {
+		while (!checkXBounds(initialXPos)) {
+			if (initialXPos > MAX_X) {
+				initialXPos = initialXPos - WIDTH;
+			}
+			else if (initialXPos < MIN_X) {
+				initialXPos = initialXPos + WIDTH;
+			}
+		}
+		return initialXPos;
+	}
+
+	private double getToroidalYPos(double initialYPos) {
+		while (!checkYBounds(initialYPos)) {
+			if (initialYPos > MAX_Y) {
+				initialYPos = initialYPos - HEIGHT;
+			}
+			else if (initialYPos < MIN_Y) {
+				initialYPos = initialYPos + HEIGHT;
+			}
+		}
+		return initialYPos;
+	}
+	
+	
+	/**
+	 * Checks the if the x bounds of a coordinate point fall in the canvas
+	 * @param x The x coordinate
+	 * @return True if the x bound is within the canvas
+	 */
+	private boolean checkXBounds(double x) {
+		return (x <= MAX_X && x >= MIN_X);
+	}
+
+	/**
+	 * Checks the if the y bounds of a coordinate point fall in the canvas
+	 * @param y The y coordinate
+	 * @return True if the y bound is within the canvas
+	 */
+	private boolean checkYBounds(double y) {
+		return (y <= MAX_Y && y >= MIN_Y);
+	}
 
     /**
      * If a line with the same properties as the ILine exists in the scene, redraw it

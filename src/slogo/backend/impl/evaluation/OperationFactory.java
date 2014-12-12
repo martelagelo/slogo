@@ -14,7 +14,7 @@ public class OperationFactory implements IOperationFactory {
     public OperationFactory () {
         this.root = "slogo.backend.impl.evaluation.commands";
         String[] searchPath = { "booleans", "control", "math", "turtle", "turtlestatus",
-                "multipleturtle" };
+                "multipleTurtle" };
         this.searchPath = searchPath;
     }
 
