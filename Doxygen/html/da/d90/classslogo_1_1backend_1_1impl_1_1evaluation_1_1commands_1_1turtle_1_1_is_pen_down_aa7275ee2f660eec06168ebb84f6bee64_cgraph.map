@@ -1,4 +1,0 @@
-<map id="slogo.backend.impl.evaluation.commands.turtle.IsPenDown.executeRaw" name="slogo.backend.impl.evaluation.commands.turtle.IsPenDown.executeRaw">
-<area shape="rect" id="node2" href="$da/dce/interfaceslogo_1_1backend_1_1util_1_1_i_turtle_status.html#a9529cb7782abfda8ae3de99971d9a964" title="slogo.backend.util.ITurtle\lStatus.penState" alt="" coords="392,5,571,46"/>
-<area shape="rect" id="node3" href="$d8/d4b/interfaceslogo_1_1backend_1_1evaluation_1_1_i_execution_context.html#aff584de9657b0c876f5f0a51d8d01815" title="slogo.backend.evaluation.\lIExecutionContext.turtles" alt="" coords="387,70,575,111"/>
-</map>

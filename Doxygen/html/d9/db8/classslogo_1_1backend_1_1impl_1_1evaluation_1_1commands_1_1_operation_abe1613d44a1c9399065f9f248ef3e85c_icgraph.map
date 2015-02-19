@@ -1,7 +1,0 @@
-<map id="slogo.backend.impl.evaluation.commands.Operation.getContextReturnedVariableName" name="slogo.backend.impl.evaluation.commands.Operation.getContextReturnedVariableName">
-<area shape="rect" id="node2" href="$d4/d63/classslogo_1_1backend_1_1impl_1_1evaluation_1_1commands_1_1control_1_1_loop_operation.html#a61f524688b55b3c61d65e618d81894e2" title="slogo.backend.impl.evaluation.commands.control.\lLoopOperation.handleCounterName" alt="" coords="361,70,703,111"/>
-<area shape="rect" id="node3" href="$d4/d63/classslogo_1_1backend_1_1impl_1_1evaluation_1_1commands_1_1control_1_1_loop_operation.html#a500217fe29d5eecc547fbc5c7ede4dc2" title="slogo.backend.impl.evaluation.commands.control.\lLoopOperation.loop" alt="" coords="753,70,1095,111"/>
-<area shape="rect" id="node4" href="$dd/d73/classslogo_1_1backend_1_1impl_1_1evaluation_1_1commands_1_1control_1_1_do_times.html#a839b4dace74340585e7f52fa02b8a500" title="slogo.backend.impl.evaluation.commands.control.\lDoTimes.executeRaw" alt="" coords="1145,5,1487,46"/>
-<area shape="rect" id="node5" href="$d4/dac/classslogo_1_1backend_1_1impl_1_1evaluation_1_1commands_1_1control_1_1_for.html#a9ced77a4750641a0722d17214e3bff27" title="slogo.backend.impl.evaluation.commands.control.\lFor.executeRaw" alt="" coords="1145,70,1487,111"/>
-<area shape="rect" id="node6" href="$d1/d3e/classslogo_1_1backend_1_1impl_1_1evaluation_1_1commands_1_1control_1_1_repeat.html#a261456e8fb1baf83c9241fdb1fd2e94e" title="slogo.backend.impl.evaluation.commands.control.\lRepeat.executeRaw" alt="" coords="1145,135,1487,177"/>
-</map>

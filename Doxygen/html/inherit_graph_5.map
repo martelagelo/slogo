@@ -1,7 +1,0 @@
-<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node2" href="$de/d76/classslogo_1_1backend_1_1evaluation_1_1_malformed_syntax_exception.html" title="slogo.backend.evaluation.\lMalformedSyntaxException" alt="" coords="153,5,349,46"/>
-<area shape="rect" id="node3" href="$d4/d22/classslogo_1_1backend_1_1impl_1_1_initialization_exception.html" title="slogo.backend.impl.Initialization\lException" alt="" coords="139,70,363,111"/>
-<area shape="rect" id="node4" href="$d6/dc5/classslogo_1_1backend_1_1parsing_1_1_invalid_grammar_rule_exception.html" title="slogo.backend.parsing.Invalid\lGrammarRuleException" alt="" coords="146,135,355,177"/>
-<area shape="rect" id="node5" href="$da/d5f/classslogo_1_1backend_1_1tokenization_1_1_invalid_token_rules_exception.html" title="slogo.backend.tokenization.\lInvalidTokenRulesException" alt="" coords="151,201,351,242"/>
-<area shape="rect" id="node6" href="$d6/d83/classslogo_1_1_execution_exception.html" title="slogo.ExecutionException" alt="" coords="159,267,343,293"/>
-</map>

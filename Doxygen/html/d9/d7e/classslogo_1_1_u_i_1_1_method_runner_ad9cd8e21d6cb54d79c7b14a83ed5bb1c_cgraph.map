@@ -1,8 +1,0 @@
-<map id="slogo.UI.MethodRunner.setPenColor" name="slogo.UI.MethodRunner.setPenColor">
-<area shape="rect" id="node2" href="$db/d19/classslogo_1_1_u_i_1_1_module_creation_helper.html#a679f75316f738921f1b09d44408dcf56" title="slogo.UI.ModuleCreationHelper.get\lPathColorSelector" alt="" coords="245,5,488,46"/>
-<area shape="rect" id="node3" href="$d1/d5f/classslogo_1_1_u_i_1_1_path_color_selector.html#a8e21a21c10f5c90a4b3b91e8366f7bec" title="slogo.UI.PathColorSelector.get\lValue" alt="" coords="259,70,474,111"/>
-<area shape="rect" id="node4" href="$d5/deb/classslogo_1_1_u_i_1_1_turtle.html#adbb65a7625e7af0506d67eedfd0e29d1" title="slogo.UI.Turtle.setColor" alt="" coords="283,136,451,163"/>
-<area shape="rect" id="node5" href="$d1/d5f/classslogo_1_1_u_i_1_1_path_color_selector.html#af047702ce66a0988002651ec8c039af0" title="slogo.UI.PathColorSelector.set\lValue" alt="" coords="259,187,474,229"/>
-<area shape="rect" id="node6" href="$d2/d25/classslogo_1_1backend_1_1impl_1_1util_1_1_qualities.html#acd8e6cd4cebb1e207a1731a47a262579" title="slogo.backend.impl.util.\lQualities.toColor" alt="" coords="281,253,453,294"/>
-<area shape="rect" id="node7" href="$da/dce/interfaceslogo_1_1backend_1_1util_1_1_i_turtle_status.html#ab3f3312b9c4289ea7750dbcaa91819eb" title="slogo.backend.util.ITurtle\lStatus.turtleQualities" alt="" coords="277,318,456,359"/>
-</map>

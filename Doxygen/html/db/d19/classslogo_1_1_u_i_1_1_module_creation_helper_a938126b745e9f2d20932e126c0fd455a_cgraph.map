@@ -1,8 +1,0 @@
-<map id="slogo.UI.ModuleCreationHelper.createPauseButton" name="slogo.UI.ModuleCreationHelper.createPauseButton">
-<area shape="rect" id="node2" href="$db/d19/classslogo_1_1_u_i_1_1_module_creation_helper.html#a9a4f9a714349d603ad1dae7f3dd4a9b3" title="slogo.UI.ModuleCreationHelper.activate\lPauseButton" alt="" coords="318,5,591,46"/>
-<area shape="rect" id="node5" href="$d6/d9d/classslogo_1_1_u_i_1_1_button_creator.html#a26b4ab485f0d82531b0bb7d279cc83eb" title="slogo.UI.ButtonCreator.create\lButton" alt="" coords="349,70,561,111"/>
-<area shape="rect" id="node6" href="$d7/d0e/classslogo_1_1_u_i_1_1_label_creator.html#a9ca0989ecfc0037d473dd3d2e8ead74f" title="slogo.UI.LabelCreator.create\lLabel" alt="" coords="353,135,556,177"/>
-<area shape="rect" id="node7" href="$d5/d66/classslogo_1_1_u_i_1_1_v_box_creator.html#a3f3304b5aed4110a7c1250c64772e2e7" title="slogo.UI.VBoxCreator.createVBox" alt="" coords="337,201,572,228"/>
-<area shape="rect" id="node3" href="$df/d2d/classslogo_1_1_view.html#ad50bfcf609a900a0fece7334c8c66d3e" title="slogo.View.pauseAnimation" alt="" coords="641,12,837,39"/>
-<area shape="rect" id="node4" href="$db/d19/classslogo_1_1_u_i_1_1_module_creation_helper.html#a697317cefd8b036b0aa427c1c246cf9b" title="slogo.UI.ModuleCreationHelper.turn\lOffRunningStatusLabel" alt="" coords="885,5,1133,46"/>
-</map>

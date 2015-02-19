@@ -1,7 +1,0 @@
-<map id="slogo.View.executeEnvironmentCommands" name="slogo.View.executeEnvironmentCommands">
-<area shape="rect" id="node2" href="$d9/d7e/classslogo_1_1_u_i_1_1_method_runner.html#ab7fbaeafa3fe50e148a313796ba47db9" title="slogo.UI.MethodRunner.change\lEnvironment" alt="" coords="277,5,496,46"/>
-<area shape="rect" id="node6" href="$d9/d7e/classslogo_1_1_u_i_1_1_method_runner.html#ac78ec01ad88a9b2c7d24953f582b4730" title="slogo.UI.MethodRunner.set\lEnvironment" alt="" coords="291,70,483,111"/>
-<area shape="rect" id="node3" href="$db/d19/classslogo_1_1_u_i_1_1_module_creation_helper.html#a5b500711ae781870e320e699fa834737" title="slogo.UI.ModuleCreationHelper.set\lUserVariable" alt="" coords="544,5,787,46"/>
-<area shape="rect" id="node4" href="$db/dc0/classslogo_1_1_u_i_1_1_list_view_all_s_l_o_g_o.html#a8d9ecbe1e3a5260f8e7e508c8a9cb66a" title="slogo.UI.ListViewAllSLOGO.get\lItems" alt="" coords="835,5,1048,46"/>
-<area shape="rect" id="node5" href="$da/d8f/classslogo_1_1_u_i_1_1_list_view_creator.html#a081368f4f2cd74f99d9d251625ae4871" title="slogo.UI.ListViewCreator.get\lListView" alt="" coords="1096,5,1296,46"/>
-</map>

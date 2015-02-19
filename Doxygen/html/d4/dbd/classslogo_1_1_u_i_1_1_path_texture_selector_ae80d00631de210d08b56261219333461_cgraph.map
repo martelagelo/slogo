@@ -1,8 +1,0 @@
-<map id="slogo.UI.PathTextureSelector.create" name="slogo.UI.PathTextureSelector.create">
-<area shape="rect" id="node2" href="$d1/dc0/classslogo_1_1_u_i_1_1_selector_creator.html#a0c44ecd788599c95911e8cb47f8920d4" title="slogo.UI.SelectorCreator.create\lSelectorWithLabel" alt="" coords="322,5,545,46"/>
-<area shape="rect" id="node4" href="$d1/dc0/classslogo_1_1_u_i_1_1_selector_creator.html#a432e9e1c42fdb5d40df67218ce891392" title="slogo.UI.SelectorCreator.get\lSelector" alt="" coords="332,70,535,111"/>
-<area shape="rect" id="node5" href="$d4/dbd/classslogo_1_1_u_i_1_1_path_texture_selector.html#aaa0c93c704ef7bef98c4d32d8d9b2000" title="slogo.UI.PathTextureSelector.populate\lLineTextureList" alt="" coords="302,135,565,177"/>
-<area shape="rect" id="node6" href="$d5/deb/classslogo_1_1_u_i_1_1_turtle.html#ae8f557ed173844e4459ac2184de3a71f" title="slogo.UI.Turtle.setLineProperty" alt="" coords="326,201,541,228"/>
-<area shape="rect" id="node7" href="$d1/dc0/classslogo_1_1_u_i_1_1_selector_creator.html#acb6b75b02738ad9dca6a199d406a6aba" title="slogo.UI.SelectorCreator.set\lUpSelector" alt="" coords="333,253,534,294"/>
-<area shape="rect" id="node3" href="$d7/d0e/classslogo_1_1_u_i_1_1_label_creator.html#a9ca0989ecfc0037d473dd3d2e8ead74f" title="slogo.UI.LabelCreator.create\lLabel" alt="" coords="613,5,816,46"/>
-</map>

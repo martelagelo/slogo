@@ -1,8 +1,0 @@
-<map id="slogo.UI.ModuleCreationHelper.activateTextField" name="slogo.UI.ModuleCreationHelper.activateTextField">
-<area shape="rect" id="node2" href="$db/d19/classslogo_1_1_u_i_1_1_module_creation_helper.html#a02dec5fb299a1543ef2758bc6ae70dfb" title="slogo.UI.ModuleCreationHelper.add\lToCertainList" alt="" coords="333,5,579,46"/>
-<area shape="rect" id="node5" href="$df/de6/classslogo_1_1_u_i_1_1_commands_text_field.html#a807dbf0cd67d066122544931db8a3837" title="slogo.UI.CommandsTextField.getText" alt="" coords="329,71,583,97"/>
-<area shape="rect" id="node6" href="$df/d2d/classslogo_1_1_view.html#a6c6c7faf44054a6b1844610eaa159c03" title="slogo.View.recordCommand" alt="" coords="356,121,556,148"/>
-<area shape="rect" id="node7" href="$df/de6/classslogo_1_1_u_i_1_1_commands_text_field.html#a5f18e6aea317867be199cdf6b3f80e05" title="slogo.UI.CommandsTextField.setText" alt="" coords="329,172,583,199"/>
-<area shape="rect" id="node3" href="$db/dc0/classslogo_1_1_u_i_1_1_list_view_all_s_l_o_g_o.html#a5f743353bce4830934bcf532b97e7925" title="slogo.UI.ListViewAllSLOGO.set\lItems" alt="" coords="633,5,845,46"/>
-<area shape="rect" id="node4" href="$da/d8f/classslogo_1_1_u_i_1_1_list_view_creator.html#a081368f4f2cd74f99d9d251625ae4871" title="slogo.UI.ListViewCreator.get\lListView" alt="" coords="893,5,1093,46"/>
-</map>

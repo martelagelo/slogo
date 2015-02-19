@@ -1,5 +1,0 @@
-<map id="slogo.backend.impl.evaluation.commands.Operation.mergeContexts" name="slogo.backend.impl.evaluation.commands.Operation.mergeContexts">
-<area shape="rect" id="node2" href="$d4/d21/classslogo_1_1backend_1_1impl_1_1evaluation_1_1commands_1_1_result.html#a391fd3d1430eb78977c1ac371f1585fa" title="slogo.backend.impl.evaluation.commands.\lResult.executeRaw" alt="" coords="350,5,645,46"/>
-<area shape="rect" id="node3" href="$d8/d96/classslogo_1_1backend_1_1impl_1_1evaluation_1_1commands_1_1_constant.html#aa692988f656aaeba86320df4965d484b" title="slogo.backend.impl.evaluation.commands.\lConstant.executeRaw" alt="" coords="350,70,645,111"/>
-<area shape="rect" id="node4" href="$dd/df7/classslogo_1_1backend_1_1impl_1_1evaluation_1_1commands_1_1_math_operation.html#af413ca0ca4881e3d3aeba6d557513a6d" title="slogo.backend.impl.evaluation.commands.\lMathOperation.executeRaw" alt="" coords="350,135,645,177"/>
-</map>

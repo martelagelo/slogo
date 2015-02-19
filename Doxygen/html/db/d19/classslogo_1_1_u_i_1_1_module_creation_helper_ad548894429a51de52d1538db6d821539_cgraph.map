@@ -1,8 +1,0 @@
-<map id="slogo.UI.ModuleCreationHelper.activateResetButton" name="slogo.UI.ModuleCreationHelper.activateResetButton">
-<area shape="rect" id="node2" href="$df/d2d/classslogo_1_1_view.html#a5a508e4d68f5887c79e5456d6f3a3ab4" title="slogo.View.resetAnimation" alt="" coords="329,77,519,104"/>
-<area shape="rect" id="node3" href="$db/d19/classslogo_1_1_u_i_1_1_module_creation_helper.html#a98aea43b18daf0cebaabb702bf30ca81" title="slogo.UI.ModuleCreationHelper.reset\lCommandsHistoryList" alt="" coords="569,5,823,46"/>
-<area shape="rect" id="node6" href="$db/d19/classslogo_1_1_u_i_1_1_module_creation_helper.html#a43eb4bee8e7f4e1d3976439e0daaa350" title="slogo.UI.ModuleCreationHelper.set\lCommandsHistoryCounter" alt="" coords="575,70,817,111"/>
-<area shape="rect" id="node7" href="$db/d19/classslogo_1_1_u_i_1_1_module_creation_helper.html#a697317cefd8b036b0aa427c1c246cf9b" title="slogo.UI.ModuleCreationHelper.turn\lOffRunningStatusLabel" alt="" coords="572,135,820,177"/>
-<area shape="rect" id="node4" href="$db/dc0/classslogo_1_1_u_i_1_1_list_view_all_s_l_o_g_o.html#a5f743353bce4830934bcf532b97e7925" title="slogo.UI.ListViewAllSLOGO.set\lItems" alt="" coords="873,5,1085,46"/>
-<area shape="rect" id="node5" href="$da/d8f/classslogo_1_1_u_i_1_1_list_view_creator.html#a081368f4f2cd74f99d9d251625ae4871" title="slogo.UI.ListViewCreator.get\lListView" alt="" coords="1133,5,1333,46"/>
-</map>

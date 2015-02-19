@@ -1,5 +1,0 @@
-<map id="slogo.backend.impl.evaluation.commands.turtle.Heading.executeRaw" name="slogo.backend.impl.evaluation.commands.turtle.Heading.executeRaw">
-<area shape="rect" id="node2" href="$d0/d07/interfaceslogo_1_1backend_1_1util_1_1_i_direction.html#a166b3806a3c7c0145a4eaa02576d1d41" title="slogo.backend.util.IDirection.to\lDegrees" alt="" coords="387,5,605,46"/>
-<area shape="rect" id="node3" href="$da/dce/interfaceslogo_1_1backend_1_1util_1_1_i_turtle_status.html#a4a08f292d66a8b54cd6f9d762f96cb77" title="slogo.backend.util.ITurtle\lStatus.turtleDirection" alt="" coords="407,70,585,111"/>
-<area shape="rect" id="node4" href="$d8/d4b/interfaceslogo_1_1backend_1_1evaluation_1_1_i_execution_context.html#aff584de9657b0c876f5f0a51d8d01815" title="slogo.backend.evaluation.\lIExecutionContext.turtles" alt="" coords="402,135,590,177"/>
-</map>

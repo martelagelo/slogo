@@ -1,6 +1,0 @@
-<map id="slogo.UI.ModuleCreationHelper.createGridCheckBox" name="slogo.UI.ModuleCreationHelper.createGridCheckBox">
-<area shape="rect" id="node2" href="$de/d15/classslogo_1_1_u_i_1_1_grid_lines_toggler.html#a8aa5a690c681e51b543cc77d6fbf144a" title="slogo.UI.GridLinesToggler.activate" alt="" coords="317,64,552,91"/>
-<area shape="rect" id="node3" href="$de/d15/classslogo_1_1_u_i_1_1_grid_lines_toggler.html#ae6245cdd68a7d7cd1a20ff11569dc196" title="slogo.UI.GridLinesToggler.addLine" alt="" coords="600,5,835,32"/>
-<area shape="rect" id="node4" href="$d1/d7e/classslogo_1_1_u_i_1_1_turtle_canvas.html#ab409c3c2a963bb1a71e825da03f25465" title="slogo.UI.TurtleCanvas.get\lCanvas" alt="" coords="626,57,809,98"/>
-<area shape="rect" id="node5" href="$de/d15/classslogo_1_1_u_i_1_1_grid_lines_toggler.html#a8ff2ac3caf8b97a98683147f83aedef6" title="slogo.UI.GridLinesToggler.remove\lLines" alt="" coords="601,122,834,163"/>
-</map>

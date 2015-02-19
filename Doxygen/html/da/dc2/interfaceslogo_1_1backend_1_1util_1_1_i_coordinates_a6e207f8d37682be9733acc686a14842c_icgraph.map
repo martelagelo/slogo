@@ -1,5 +1,0 @@
-<map id="slogo.backend.util.ICoordinates.getDistance" name="slogo.backend.util.ICoordinates.getDistance">
-<area shape="rect" id="node2" href="$d8/d8a/classslogo_1_1backend_1_1impl_1_1evaluation_1_1commands_1_1turtle_1_1_home.html#a61b79c73e2a4a1a7e81d9df6e8dd24ce" title="slogo.backend.impl.evaluation.commands.turtle.\lHome.executeRaw" alt="" coords="301,5,635,46"/>
-<area shape="rect" id="node3" href="$d0/dbc/classslogo_1_1backend_1_1impl_1_1evaluation_1_1commands_1_1turtle_1_1_clear_screen.html#a1d80bef2e2dbeb80ec4312afbf2edcb3" title="slogo.backend.impl.evaluation.commands.turtle.\lClearScreen.executeRaw" alt="" coords="301,70,635,111"/>
-<area shape="rect" id="node4" href="$db/d1a/classslogo_1_1backend_1_1impl_1_1evaluation_1_1commands_1_1turtle_1_1_set_position.html#a11eacc22ed0870148d7d43799dfda826" title="slogo.backend.impl.evaluation.commands.turtle.\lSetPosition.executeRaw" alt="" coords="301,135,635,177"/>
-</map>

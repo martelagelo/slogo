@@ -1,5 +1,0 @@
-<map id="slogo.backend.impl.evaluation.commands.control.LoopOperation.loop" name="slogo.backend.impl.evaluation.commands.control.LoopOperation.loop">
-<area shape="rect" id="node2" href="$dd/d73/classslogo_1_1backend_1_1impl_1_1evaluation_1_1commands_1_1control_1_1_do_times.html#a839b4dace74340585e7f52fa02b8a500" title="slogo.backend.impl.evaluation.commands.control.\lDoTimes.executeRaw" alt="" coords="398,5,741,46"/>
-<area shape="rect" id="node3" href="$d1/d3e/classslogo_1_1backend_1_1impl_1_1evaluation_1_1commands_1_1control_1_1_repeat.html#a261456e8fb1baf83c9241fdb1fd2e94e" title="slogo.backend.impl.evaluation.commands.control.\lRepeat.executeRaw" alt="" coords="398,70,741,111"/>
-<area shape="rect" id="node4" href="$d4/dac/classslogo_1_1backend_1_1impl_1_1evaluation_1_1commands_1_1control_1_1_for.html#a9ced77a4750641a0722d17214e3bff27" title="slogo.backend.impl.evaluation.commands.control.\lFor.executeRaw" alt="" coords="398,135,741,177"/>
-</map>

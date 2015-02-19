@@ -1,8 +1,0 @@
-<map id="slogo.UI.ModuleCreationHelper.activateTextField" name="slogo.UI.ModuleCreationHelper.activateTextField">
-<area shape="rect" id="node2" href="$db/d19/classslogo_1_1_u_i_1_1_module_creation_helper.html#ab60ba223f378cf5c5444d21f2b66a61a" title="slogo.UI.ModuleCreationHelper.create\lTextField" alt="" coords="329,34,591,75"/>
-<area shape="rect" id="node3" href="$db/d19/classslogo_1_1_u_i_1_1_module_creation_helper.html#a7c650957b2389d6e6d36e8be8a33cd2b" title="slogo.UI.ModuleCreationHelper.create\lSelectorVBoxModules" alt="" coords="641,34,903,75"/>
-<area shape="rect" id="node4" href="$db/d19/classslogo_1_1_u_i_1_1_module_creation_helper.html#afb9dbbbad7d872234a5b296fe129a34e" title="slogo.UI.ModuleCreationHelper.create\lMainPageModules" alt="" coords="953,5,1215,46"/>
-<area shape="rect" id="node5" href="$d9/d33/classslogo_1_1_u_i_1_1_main.html#a15b7f2e399ee24d160550993ab737e73" title="slogo.UI.Main.start" alt="" coords="1264,12,1405,39"/>
-<area shape="rect" id="node6" href="$db/d19/classslogo_1_1_u_i_1_1_module_creation_helper.html#a3be12a7cc2b8a219db1e296211a2cb88" title="slogo.UI.ModuleCreationHelper.activate\lExtraWorkspaceButton" alt="" coords="1454,5,1727,46"/>
-<area shape="rect" id="node7" href="$db/d19/classslogo_1_1_u_i_1_1_module_creation_helper.html#a702c1ebe24d2857a10c666eb1fcc315d" title="slogo.UI.ModuleCreationHelper.create\lExtraWorkspaceButton" alt="" coords="1777,34,2039,75"/>
-</map>

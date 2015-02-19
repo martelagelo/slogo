@@ -1,9 +1,0 @@
-<map id="slogo.UI.PathTextureSelector.populateLineTextureList" name="slogo.UI.PathTextureSelector.populateLineTextureList">
-<area shape="rect" id="node2" href="$d4/dbd/classslogo_1_1_u_i_1_1_path_texture_selector.html#ae80d00631de210d08b56261219333461" title="slogo.UI.PathTextureSelector.create" alt="" coords="317,41,565,68"/>
-<area shape="rect" id="node3" href="$db/d19/classslogo_1_1_u_i_1_1_module_creation_helper.html#af7f2919454fdbf6e9d7d912e99634857" title="slogo.UI.ModuleCreationHelper.create\lSelectors" alt="" coords="614,34,877,75"/>
-<area shape="rect" id="node4" href="$db/d19/classslogo_1_1_u_i_1_1_module_creation_helper.html#a7c650957b2389d6e6d36e8be8a33cd2b" title="slogo.UI.ModuleCreationHelper.create\lSelectorVBoxModules" alt="" coords="926,34,1189,75"/>
-<area shape="rect" id="node5" href="$db/d19/classslogo_1_1_u_i_1_1_module_creation_helper.html#afb9dbbbad7d872234a5b296fe129a34e" title="slogo.UI.ModuleCreationHelper.create\lMainPageModules" alt="" coords="1238,5,1501,46"/>
-<area shape="rect" id="node6" href="$d9/d33/classslogo_1_1_u_i_1_1_main.html#a15b7f2e399ee24d160550993ab737e73" title="slogo.UI.Main.start" alt="" coords="1549,12,1691,39"/>
-<area shape="rect" id="node7" href="$db/d19/classslogo_1_1_u_i_1_1_module_creation_helper.html#a3be12a7cc2b8a219db1e296211a2cb88" title="slogo.UI.ModuleCreationHelper.activate\lExtraWorkspaceButton" alt="" coords="1739,5,2013,46"/>
-<area shape="rect" id="node8" href="$db/d19/classslogo_1_1_u_i_1_1_module_creation_helper.html#a702c1ebe24d2857a10c666eb1fcc315d" title="slogo.UI.ModuleCreationHelper.create\lExtraWorkspaceButton" alt="" coords="2062,34,2325,75"/>
-</map>

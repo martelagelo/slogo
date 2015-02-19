@@ -1,6 +1,0 @@
-<map id="slogo.UI.ModuleCreationHelper.createExtraWorkspaceButton" name="slogo.UI.ModuleCreationHelper.createExtraWorkspaceButton">
-<area shape="rect" id="node2" href="$db/d19/classslogo_1_1_u_i_1_1_module_creation_helper.html#a7c650957b2389d6e6d36e8be8a33cd2b" title="slogo.UI.ModuleCreationHelper.create\lSelectorVBoxModules" alt="" coords="318,5,581,46"/>
-<area shape="rect" id="node3" href="$db/d19/classslogo_1_1_u_i_1_1_module_creation_helper.html#afb9dbbbad7d872234a5b296fe129a34e" title="slogo.UI.ModuleCreationHelper.create\lMainPageModules" alt="" coords="630,5,893,46"/>
-<area shape="rect" id="node4" href="$d9/d33/classslogo_1_1_u_i_1_1_main.html#a15b7f2e399ee24d160550993ab737e73" title="slogo.UI.Main.start" alt="" coords="941,16,1083,43"/>
-<area shape="rect" id="node5" href="$db/d19/classslogo_1_1_u_i_1_1_module_creation_helper.html#a3be12a7cc2b8a219db1e296211a2cb88" title="slogo.UI.ModuleCreationHelper.activate\lExtraWorkspaceButton" alt="" coords="1131,37,1405,78"/>
-</map>

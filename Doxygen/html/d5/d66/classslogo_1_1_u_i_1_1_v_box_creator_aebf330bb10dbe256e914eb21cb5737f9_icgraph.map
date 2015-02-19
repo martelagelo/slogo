@@ -1,9 +1,0 @@
-<map id="slogo.UI.VBoxCreator.createVBoxScrollable" name="slogo.UI.VBoxCreator.createVBoxScrollable">
-<area shape="rect" id="node2" href="$db/d19/classslogo_1_1_u_i_1_1_module_creation_helper.html#a6e38c15bc7b44e69bdf77d28d34d2ecf" title="slogo.UI.ModuleCreationHelper.create\lListVBox" alt="" coords="257,5,519,46"/>
-<area shape="rect" id="node8" href="$db/d19/classslogo_1_1_u_i_1_1_module_creation_helper.html#a8f9b4027c734eecffc42662626b2e601" title="slogo.UI.ModuleCreationHelper.create\lSelectorVBox" alt="" coords="257,70,519,111"/>
-<area shape="rect" id="node3" href="$db/d19/classslogo_1_1_u_i_1_1_module_creation_helper.html#afb9dbbbad7d872234a5b296fe129a34e" title="slogo.UI.ModuleCreationHelper.create\lMainPageModules" alt="" coords="569,38,831,79"/>
-<area shape="rect" id="node4" href="$d9/d33/classslogo_1_1_u_i_1_1_main.html#a15b7f2e399ee24d160550993ab737e73" title="slogo.UI.Main.start" alt="" coords="880,16,1021,43"/>
-<area shape="rect" id="node5" href="$db/d19/classslogo_1_1_u_i_1_1_module_creation_helper.html#a3be12a7cc2b8a219db1e296211a2cb88" title="slogo.UI.ModuleCreationHelper.activate\lExtraWorkspaceButton" alt="" coords="1070,5,1343,46"/>
-<area shape="rect" id="node6" href="$db/d19/classslogo_1_1_u_i_1_1_module_creation_helper.html#a702c1ebe24d2857a10c666eb1fcc315d" title="slogo.UI.ModuleCreationHelper.create\lExtraWorkspaceButton" alt="" coords="1393,5,1655,46"/>
-<area shape="rect" id="node7" href="$db/d19/classslogo_1_1_u_i_1_1_module_creation_helper.html#a7c650957b2389d6e6d36e8be8a33cd2b" title="slogo.UI.ModuleCreationHelper.create\lSelectorVBoxModules" alt="" coords="1705,34,1967,75"/>
-</map>
