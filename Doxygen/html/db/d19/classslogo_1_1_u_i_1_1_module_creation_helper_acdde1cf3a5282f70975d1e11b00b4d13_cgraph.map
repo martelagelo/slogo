@@ -1,0 +1,11 @@
+<map id="slogo.UI.ModuleCreationHelper.createSaveButton" name="slogo.UI.ModuleCreationHelper.createSaveButton">
+<area shape="rect" id="node2" href="$db/d19/classslogo_1_1_u_i_1_1_module_creation_helper.html#a397d79a7f7d1aaf8f0db169e99728205" title="slogo.UI.ModuleCreationHelper.activate\lSaveButton" alt="" coords="318,135,591,177"/>
+<area shape="rect" id="node10" href="$d6/d9d/classslogo_1_1_u_i_1_1_button_creator.html#a26b4ab485f0d82531b0bb7d279cc83eb" title="slogo.UI.ButtonCreator.create\lButton" alt="" coords="349,201,561,242"/>
+<area shape="rect" id="node3" href="$db/d10/classslogo_1_1frontend_1_1_config_1_1_config_hash_map_creator.html#ad94914a4d07dd7dc69aec64f685fb624" title="slogo.frontend.Config.Config\lHashMapCreator.getConfigHashMap" alt="" coords="641,5,895,46"/>
+<area shape="rect" id="node4" href="$db/dc0/classslogo_1_1_u_i_1_1_list_view_all_s_l_o_g_o.html#a8d9ecbe1e3a5260f8e7e508c8a9cb66a" title="slogo.UI.ListViewAllSLOGO.get\lItems" alt="" coords="661,70,875,111"/>
+<area shape="rect" id="node6" href="$db/d10/classslogo_1_1frontend_1_1_config_1_1_config_hash_map_creator.html#a22753815aaa14900f14ef222ec563268" title="slogo.frontend.Config.Config\lHashMapCreator.setNumOfTurtles" alt="" coords="649,135,887,177"/>
+<area shape="rect" id="node8" href="$db/d10/classslogo_1_1frontend_1_1_config_1_1_config_hash_map_creator.html#a07aea807904d0069637fa4abd371da55" title="slogo.frontend.Config.Config\lHashMapCreator.setVariableMap" alt="" coords="653,201,883,242"/>
+<area shape="rect" id="node9" href="$d4/df2/classslogo_1_1frontend_1_1_config_1_1_config_writer.html#ac5ae212e6162267c0247fbb1c05eeec3" title="slogo.frontend.Config.Config\lWriter.writeToTextFile" alt="" coords="667,266,869,307"/>
+<area shape="rect" id="node5" href="$da/d8f/classslogo_1_1_u_i_1_1_list_view_creator.html#a081368f4f2cd74f99d9d251625ae4871" title="slogo.UI.ListViewCreator.get\lListView" alt="" coords="960,70,1160,111"/>
+<area shape="rect" id="node7" href="$db/d10/classslogo_1_1frontend_1_1_config_1_1_config_hash_map_creator.html#a1a0e11887aa8fdc8d0b3bed256ba1d09" title="slogo.frontend.Config.Config\lHashMapCreator.fromIntToString" alt="" coords="945,135,1175,177"/>
+</map>

@@ -1,0 +1,6 @@
+<map id="slogo.backend.impl.evaluation.commands.control.ConditionalOperation" name="slogo.backend.impl.evaluation.commands.control.ConditionalOperation">
+<area shape="rect" id="node4" href="$d9/d51/classslogo_1_1backend_1_1impl_1_1evaluation_1_1commands_1_1control_1_1_if.html" title="slogo.backend.impl.evaluation.commands.control.If" alt="" coords="979,5,1330,32"/>
+<area shape="rect" id="node5" href="$d9/d12/classslogo_1_1backend_1_1impl_1_1evaluation_1_1commands_1_1control_1_1_if_else.html" title="slogo.backend.impl.evaluation.commands.control.\lIfElse" alt="" coords="983,57,1326,98"/>
+<area shape="rect" id="node2" href="$d9/db8/classslogo_1_1backend_1_1impl_1_1evaluation_1_1commands_1_1_operation.html" title="slogo.backend.impl.evaluation.commands.\lOperation" alt="" coords="243,27,538,69"/>
+<area shape="rect" id="node3" href="$dc/d38/interfaceslogo_1_1backend_1_1evaluation_1_1_i_operation.html" title="slogo.backend.evaluation.\lIOperation" alt="" coords="6,27,194,69"/>
+</map>

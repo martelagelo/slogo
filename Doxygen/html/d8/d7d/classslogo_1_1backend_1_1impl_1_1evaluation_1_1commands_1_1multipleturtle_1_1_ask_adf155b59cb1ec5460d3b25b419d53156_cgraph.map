@@ -1,0 +1,5 @@
+<map id="slogo.backend.impl.evaluation.commands.multipleturtle.Ask.executeRaw" name="slogo.backend.impl.evaluation.commands.multipleturtle.Ask.executeRaw">
+<area shape="rect" id="node2" href="$dd/d4b/classslogo_1_1backend_1_1impl_1_1evaluation_1_1_evaluator.html#a6552d5f695507b206d457087cc2c4118" title="slogo.backend.impl.evaluation.\lEvaluator.evaluate" alt="" coords="437,5,656,46"/>
+<area shape="rect" id="node4" href="$d8/d4b/interfaceslogo_1_1backend_1_1evaluation_1_1_i_execution_context.html#aff584de9657b0c876f5f0a51d8d01815" title="slogo.backend.evaluation.\lIExecutionContext.turtles" alt="" coords="453,70,641,111"/>
+<area shape="rect" id="node3" href="$d4/dcd/interfaceslogo_1_1backend_1_1parsing_1_1_i_syntax_node.html#ae9c7f128dc4e816a6a383fe8feb087e4" title="slogo.backend.parsing.ISyntax\lNode.children" alt="" coords="704,5,920,46"/>
+</map>

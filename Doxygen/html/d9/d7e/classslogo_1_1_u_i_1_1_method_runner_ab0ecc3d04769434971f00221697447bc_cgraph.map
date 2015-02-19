@@ -1,0 +1,10 @@
+<map id="slogo.UI.MethodRunner.drawNewLine" name="slogo.UI.MethodRunner.drawNewLine">
+<area shape="rect" id="node2" href="$d1/d09/interfaceslogo_1_1backend_1_1util_1_1_i_line.html#aa180a270cffb1f34de2d2cfb61f67be6" title="slogo.backend.util.ILine.end" alt="" coords="285,5,483,32"/>
+<area shape="rect" id="node3" href="$d5/deb/classslogo_1_1_u_i_1_1_turtle.html#a7adef46173959908cce8907c5d5bc8c5" title="slogo.UI.Turtle.getLineProperty" alt="" coords="276,56,492,83"/>
+<area shape="rect" id="node4" href="$d5/deb/classslogo_1_1_u_i_1_1_turtle.html#a33702e403a8c52f3cfcd77f223695543" title="slogo.UI.Turtle.getThickness" alt="" coords="285,107,483,133"/>
+<area shape="rect" id="node5" href="$da/dc2/interfaceslogo_1_1backend_1_1util_1_1_i_coordinates.html#adb373b7523e63ee3698283ec8ac752d8" title="slogo.backend.util.ICoordinates.getX" alt="" coords="257,157,511,184"/>
+<area shape="rect" id="node6" href="$da/dc2/interfaceslogo_1_1backend_1_1util_1_1_i_coordinates.html#a79bf643857961ce08b426cd660121b91" title="slogo.backend.util.ICoordinates.getY" alt="" coords="257,208,511,235"/>
+<area shape="rect" id="node7" href="$d1/d09/interfaceslogo_1_1backend_1_1util_1_1_i_line.html#a1fdae77b8086d45775f369066c763473" title="slogo.backend.util.ILine.start" alt="" coords="282,259,486,285"/>
+<area shape="rect" id="node8" href="$d2/d25/classslogo_1_1backend_1_1impl_1_1util_1_1_qualities.html#acd8e6cd4cebb1e207a1731a47a262579" title="slogo.backend.impl.util.\lQualities.toColor" alt="" coords="298,310,470,351"/>
+<area shape="rect" id="node9" href="$da/dce/interfaceslogo_1_1backend_1_1util_1_1_i_turtle_status.html#ab3f3312b9c4289ea7750dbcaa91819eb" title="slogo.backend.util.ITurtle\lStatus.turtleQualities" alt="" coords="295,375,473,417"/>
+</map>

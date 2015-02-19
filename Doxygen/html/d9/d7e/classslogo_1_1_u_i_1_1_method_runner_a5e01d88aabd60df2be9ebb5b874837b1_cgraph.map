@@ -1,0 +1,25 @@
+<map id="slogo.UI.MethodRunner.setPenAttributes" name="slogo.UI.MethodRunner.setPenAttributes">
+<area shape="rect" id="node2" href="$d9/d7e/classslogo_1_1_u_i_1_1_method_runner.html#ad9cd8e21d6cb54d79c7b14a83ed5bb1c" title="slogo.UI.MethodRunner.set\lPenColor" alt="" coords="245,201,437,242"/>
+<area shape="rect" id="node9" href="$d9/d7e/classslogo_1_1_u_i_1_1_method_runner.html#a5fcec4f854c4d3f6a300974e88678854" title="slogo.UI.MethodRunner.set\lPenThickness" alt="" coords="245,413,437,454"/>
+<area shape="rect" id="node13" href="$d9/d7e/classslogo_1_1_u_i_1_1_method_runner.html#a7acbc486941b60522435d579c227d6db" title="slogo.UI.MethodRunner.set\lTurtleImage" alt="" coords="245,685,437,726"/>
+<area shape="rect" id="node3" href="$db/d19/classslogo_1_1_u_i_1_1_module_creation_helper.html#a679f75316f738921f1b09d44408dcf56" title="slogo.UI.ModuleCreationHelper.get\lPathColorSelector" alt="" coords="485,70,728,111"/>
+<area shape="rect" id="node4" href="$d1/d5f/classslogo_1_1_u_i_1_1_path_color_selector.html#af047702ce66a0988002651ec8c039af0" title="slogo.UI.PathColorSelector.set\lValue" alt="" coords="499,135,714,177"/>
+<area shape="rect" id="node5" href="$da/dce/interfaceslogo_1_1backend_1_1util_1_1_i_turtle_status.html#ab3f3312b9c4289ea7750dbcaa91819eb" title="slogo.backend.util.ITurtle\lStatus.turtleQualities" alt="" coords="517,383,696,425"/>
+<area shape="rect" id="node6" href="$d2/d25/classslogo_1_1backend_1_1impl_1_1util_1_1_qualities.html#acd8e6cd4cebb1e207a1731a47a262579" title="slogo.backend.impl.util.\lQualities.toColor" alt="" coords="521,201,693,242"/>
+<area shape="rect" id="node7" href="$d5/deb/classslogo_1_1_u_i_1_1_turtle.html#adbb65a7625e7af0506d67eedfd0e29d1" title="slogo.UI.Turtle.setColor" alt="" coords="523,267,691,293"/>
+<area shape="rect" id="node8" href="$d1/d5f/classslogo_1_1_u_i_1_1_path_color_selector.html#a8e21a21c10f5c90a4b3b91e8366f7bec" title="slogo.UI.PathColorSelector.get\lValue" alt="" coords="499,5,714,46"/>
+<area shape="rect" id="node10" href="$d5/deb/classslogo_1_1_u_i_1_1_turtle.html#a55344b9d9b4eb0ea6f1dbac099231ade" title="slogo.UI.Turtle.setThickness" alt="" coords="508,500,705,527"/>
+<area shape="rect" id="node11" href="$d2/d25/classslogo_1_1backend_1_1impl_1_1util_1_1_qualities.html#af41ef7e9f79c8f02afe5118705d0f6a7" title="slogo.backend.impl.util.\lQualities.thickness" alt="" coords="521,318,693,359"/>
+<area shape="rect" id="node12" href="$d5/deb/classslogo_1_1_u_i_1_1_turtle.html#a33702e403a8c52f3cfcd77f223695543" title="slogo.UI.Turtle.getThickness" alt="" coords="507,449,706,476"/>
+<area shape="rect" id="node14" href="$d2/d25/classslogo_1_1backend_1_1impl_1_1util_1_1_qualities.html#a9c0511ff3f9f0c06f31d6e208e278233" title="slogo.backend.impl.util.\lQualities.index" alt="" coords="521,718,693,759"/>
+<area shape="rect" id="node15" href="$db/d19/classslogo_1_1_u_i_1_1_module_creation_helper.html#a7d4ceedd3ea9d1c8681733259857e45e" title="slogo.UI.ModuleCreationHelper.get\lTurtleSelector" alt="" coords="485,783,728,825"/>
+<area shape="rect" id="node16" href="$dd/da7/classslogo_1_1_u_i_1_1_turtle_image_selector.html#a2c95ee89ba5c1f9d63420f66d410a14f" title="slogo.UI.TurtleImageSelector.get\lItems" alt="" coords="493,849,721,890"/>
+<area shape="rect" id="node17" href="$dd/da7/classslogo_1_1_u_i_1_1_turtle_image_selector.html#ad570a7a304a1f1472b6db9817ab0da54" title="slogo.UI.TurtleImageSelector.set\lValue" alt="" coords="493,914,720,955"/>
+<area shape="rect" id="node18" href="$dd/da7/classslogo_1_1_u_i_1_1_turtle_image_selector.html#a22fb095c556bc698508be92158ceaf17" title="slogo.UI.TurtleImageSelector.get\lValue" alt="" coords="493,979,721,1021"/>
+<area shape="rect" id="node19" href="$d5/deb/classslogo_1_1_u_i_1_1_turtle.html#acea66642c893474f33f416ebf67f769e" title="slogo.UI.Turtle.setImage" alt="" coords="519,551,694,577"/>
+<area shape="rect" id="node23" href="$d5/deb/classslogo_1_1_u_i_1_1_turtle.html#a4d7a9e756fd71da69ff4377833c0ca23" title="slogo.UI.Turtle.getImageName" alt="" coords="499,601,714,628"/>
+<area shape="rect" id="node24" href="$d2/d25/classslogo_1_1backend_1_1impl_1_1util_1_1_qualities.html#a6815c20983c4396631598d0e5728c3a3" title="slogo.backend.impl.util.\lQualities.setIndex" alt="" coords="521,653,693,694"/>
+<area shape="rect" id="node20" href="$d5/deb/classslogo_1_1_u_i_1_1_turtle.html#a678c8daca68b92f79f73967a8be0f269" title="slogo.UI.Turtle.moveTurtle" alt="" coords="777,551,962,577"/>
+<area shape="rect" id="node21" href="$d5/deb/classslogo_1_1_u_i_1_1_turtle.html#a85f06fd2596915a4b658293482a7c041" title="slogo.UI.Turtle.setXPos" alt="" coords="1011,525,1178,552"/>
+<area shape="rect" id="node22" href="$d5/deb/classslogo_1_1_u_i_1_1_turtle.html#a2e077221329000d9c17edcdaa0a83489" title="slogo.UI.Turtle.setYPos" alt="" coords="1012,576,1177,603"/>
+</map>

@@ -1,0 +1,13 @@
+<map id="slogo.UI.ToroidalHelper.makeLinesToroidal" name="slogo.UI.ToroidalHelper.makeLinesToroidal">
+<area shape="rect" id="node2" href="$d0/d32/classslogo_1_1_u_i_1_1_toroidal_helper.html#afe4f76a7e0638e9a7f99ee8918a5b863" title="slogo.UI.ToroidalHelper.check\lEndBounds" alt="" coords="502,298,709,339"/>
+<area shape="rect" id="node5" href="$d0/d32/classslogo_1_1_u_i_1_1_toroidal_helper.html#a9d143072a1321d4267bb97cf11062922" title="slogo.UI.ToroidalHelper.cut\lLines" alt="" coords="262,135,453,177"/>
+<area shape="rect" id="node3" href="$d0/d32/classslogo_1_1_u_i_1_1_toroidal_helper.html#a22d58c7c2d7c4237c3f1524eadd2630c" title="slogo.UI.ToroidalHelper.check\lXBounds" alt="" coords="758,233,965,274"/>
+<area shape="rect" id="node4" href="$d0/d32/classslogo_1_1_u_i_1_1_toroidal_helper.html#a741cec86e924fde87b003f2979e5b048" title="slogo.UI.ToroidalHelper.check\lYBounds" alt="" coords="1014,102,1221,143"/>
+<area shape="rect" id="node6" href="$d0/d32/classslogo_1_1_u_i_1_1_toroidal_helper.html#ad878914aa73174cd1b5bdebd0fcdacf9" title="slogo.UI.ToroidalHelper.check\lStartBounds" alt="" coords="502,37,709,78"/>
+<area shape="rect" id="node7" href="$d0/d32/classslogo_1_1_u_i_1_1_toroidal_helper.html#a366128809cd6506ca8d776c625a19da2" title="slogo.UI.ToroidalHelper.run\lLineXShift" alt="" coords="510,233,701,274"/>
+<area shape="rect" id="node8" href="$d0/d32/classslogo_1_1_u_i_1_1_toroidal_helper.html#aa1432fa1f1a208f83285575425bf96f4" title="slogo.UI.ToroidalHelper.run\lLineYShift" alt="" coords="766,39,957,81"/>
+<area shape="rect" id="node9" href="$d0/d32/classslogo_1_1_u_i_1_1_toroidal_helper.html#a6ff252815c642ce9b37ff6c50f9cc466" title="slogo.UI.ToroidalHelper.run\lXCalculations" alt="" coords="510,167,701,209"/>
+<area shape="rect" id="node11" href="$d0/d32/classslogo_1_1_u_i_1_1_toroidal_helper.html#a6babdb66f06fca1bddc1823bb5f56f87" title="slogo.UI.ToroidalHelper.run\lYShift" alt="" coords="510,102,701,143"/>
+<area shape="rect" id="node10" href="$d0/d32/classslogo_1_1_u_i_1_1_toroidal_helper.html#a41c57a3394c07d6aaeae4fe2cf8fe5d6" title="slogo.UI.ToroidalHelper.set\lLineCoords" alt="" coords="1022,167,1213,209"/>
+<area shape="rect" id="node12" href="$d0/d32/classslogo_1_1_u_i_1_1_toroidal_helper.html#ab0c1d137b6ae06b1379ea8df424ca082" title="slogo.UI.ToroidalHelper.run\lYCalculations" alt="" coords="766,105,957,146"/>
+</map>

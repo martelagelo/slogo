@@ -1,0 +1,22 @@
+<map id="slogo.UI.MethodRunner" name="slogo.UI.MethodRunner">
+<area shape="rect" id="node37" href="$df/d2d/classslogo_1_1_view.html" title="slogo.View" alt="" coords="1167,267,1257,293"/>
+<area shape="rect" id="node2" href="$db/d19/classslogo_1_1_u_i_1_1_module_creation_helper.html" title="slogo.UI.ModuleCreationHelper" alt="" coords="1528,1040,1747,1067"/>
+<area shape="rect" id="node4" href="$d4/d8d/classslogo_1_1_u_i_1_1_background_color_selector.html" title="slogo.UI.BackgroundColor\lSelector" alt="" coords="677,1511,864,1553"/>
+<area shape="rect" id="node6" href="$dd/da7/classslogo_1_1_u_i_1_1_turtle_image_selector.html" title="slogo.UI.TurtleImageSelector" alt="" coords="669,1751,873,1777"/>
+<area shape="rect" id="node21" href="$db/dc0/classslogo_1_1_u_i_1_1_list_view_all_s_l_o_g_o.html" title="slogo.UI.ListViewAllSLOGO" alt="" coords="676,1204,865,1231"/>
+<area shape="rect" id="node42" href="$d1/d5f/classslogo_1_1_u_i_1_1_path_color_selector.html" title="slogo.UI.PathColorSelector" alt="" coords="675,1581,866,1608"/>
+<area shape="rect" id="node29" href="$d1/d7e/classslogo_1_1_u_i_1_1_turtle_canvas.html" title="slogo.UI.TurtleCanvas" alt="" coords="691,673,850,700"/>
+<area shape="rect" id="node10" href="$df/de6/classslogo_1_1_u_i_1_1_commands_text_field.html" title="slogo.UI.CommandsTextField" alt="" coords="669,545,873,572"/>
+<area shape="rect" id="node17" href="$d4/df2/classslogo_1_1frontend_1_1_config_1_1_config_writer.html" title="slogo.frontend.Config.Config\lWriter" alt="" coords="1111,974,1313,1015"/>
+<area shape="rect" id="node20" href="$d3/df5/classslogo_1_1_u_i_1_1_list_view_user_variables.html" title="slogo.UI.ListViewUserVariables" alt="" coords="1104,1360,1320,1387"/>
+<area shape="rect" id="node27" href="$dc/d95/classslogo_1_1_u_i_1_1_list_view_s_l_o_g_o_variables.html" title="slogo.UI.ListViewSLOGOVariables" alt="" coords="1096,1259,1328,1285"/>
+<area shape="rect" id="node43" href="$de/d37/classslogo_1_1_u_i_1_1_list_view_user_commands.html" title="slogo.UI.ListViewUserCommands" alt="" coords="1096,1091,1328,1117"/>
+<area shape="rect" id="node44" href="$de/d1a/classslogo_1_1_u_i_1_1_list_view_previous_commands.html" title="slogo.UI.ListViewPrevious\lCommands" alt="" coords="1121,1142,1303,1183"/>
+<area shape="rect" id="node22" href="$da/d8f/classslogo_1_1_u_i_1_1_list_view_creator.html" title="slogo.UI.ListViewCreator" alt="" coords="300,1204,476,1231"/>
+<area shape="rect" id="node47" href="$d5/deb/classslogo_1_1_u_i_1_1_turtle.html" title="slogo.UI.Turtle" alt="" coords="333,199,443,225"/>
+<area shape="rect" id="node31" href="$d9/d3c/classslogo_1_1frontend_1_1_config_1_1_config_reader.html" title="slogo.frontend.Config.Config\lReader" alt="" coords="1111,1838,1313,1879"/>
+<area shape="rect" id="node32" href="$dd/def/classslogo_1_1frontend_1_1_config_1_1_parameter_distributor.html" title="slogo.frontend.Config.Parameter\lDistributor" alt="" coords="656,1869,885,1910"/>
+<area shape="rect" id="node38" href="$d1/d59/interfaceslogo_1_1_i_view.html" title="slogo.IView" alt="" coords="725,193,817,220"/>
+<area shape="rect" id="node40" href="$d6/d69/interfaceslogo_1_1_i_model.html" title="slogo.IModel" alt="" coords="720,295,821,321"/>
+<area shape="rect" id="node46" href="$da/dce/interfaceslogo_1_1backend_1_1util_1_1_i_turtle_status.html" title="slogo.backend.util.ITurtle\lStatus" alt="" coords="299,250,477,291"/>
+</map>

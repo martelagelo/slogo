@@ -1,0 +1,9 @@
+<map id="slogo.UI.Turtle.Turtle" name="slogo.UI.Turtle.Turtle">
+<area shape="rect" id="node2" href="$d5/deb/classslogo_1_1_u_i_1_1_turtle.html#ab393341907a3b0fd4eac48816b75a83a" title="slogo.UI.Turtle.activate\lTurtle" alt="" coords="231,5,398,46"/>
+<area shape="rect" id="node3" href="$d5/deb/classslogo_1_1_u_i_1_1_turtle.html#a80d34c27eafebc47e6a1c5bffb104945" title="slogo.UI.Turtle.generate\lSelectorMap" alt="" coords="228,70,401,111"/>
+<area shape="rect" id="node4" href="$d5/deb/classslogo_1_1_u_i_1_1_turtle.html#af262fa0e157c69c307a2e9aac351c510" title="slogo.UI.Turtle.initialImagesMap" alt="" coords="203,136,426,163"/>
+<area shape="rect" id="node5" href="$d5/deb/classslogo_1_1_u_i_1_1_turtle.html#a678c8daca68b92f79f73967a8be0f269" title="slogo.UI.Turtle.moveTurtle" alt="" coords="222,187,407,213"/>
+<area shape="rect" id="node8" href="$d5/deb/classslogo_1_1_u_i_1_1_turtle.html#a3668db47c95c920dff92209832467a0f" title="slogo.UI.Turtle.setOrientation" alt="" coords="211,237,418,264"/>
+<area shape="rect" id="node6" href="$d5/deb/classslogo_1_1_u_i_1_1_turtle.html#a85f06fd2596915a4b658293482a7c041" title="slogo.UI.Turtle.setXPos" alt="" coords="475,161,642,188"/>
+<area shape="rect" id="node7" href="$d5/deb/classslogo_1_1_u_i_1_1_turtle.html#a2e077221329000d9c17edcdaa0a83489" title="slogo.UI.Turtle.setYPos" alt="" coords="476,212,641,239"/>
+</map>

@@ -1,0 +1,4 @@
+<map id="slogo.backend.util.IDirection.toRadians" name="slogo.backend.util.IDirection.toRadians">
+<area shape="rect" id="node2" href="$da/dba/classslogo_1_1backend_1_1impl_1_1evaluation_1_1commands_1_1turtle_1_1_backward.html#a403f01b198cadf4cef192b36bd776d39" title="slogo.backend.impl.evaluation.commands.turtle.\lBackward.executeRaw" alt="" coords="272,5,605,46"/>
+<area shape="rect" id="node3" href="$da/d34/classslogo_1_1backend_1_1impl_1_1evaluation_1_1commands_1_1turtle_1_1_forward.html#a9fca7d06932aa5b628d30e79d5f30858" title="slogo.backend.impl.evaluation.commands.turtle.\lForward.executeRaw" alt="" coords="272,70,605,111"/>
+</map>

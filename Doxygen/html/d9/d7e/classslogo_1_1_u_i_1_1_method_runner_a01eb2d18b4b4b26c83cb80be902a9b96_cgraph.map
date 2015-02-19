@@ -1,0 +1,5 @@
+<map id="slogo.UI.MethodRunner.setTurtleDirection" name="slogo.UI.MethodRunner.setTurtleDirection">
+<area shape="rect" id="node2" href="$d5/deb/classslogo_1_1_u_i_1_1_turtle.html#a3668db47c95c920dff92209832467a0f" title="slogo.UI.Turtle.setOrientation" alt="" coords="251,5,458,32"/>
+<area shape="rect" id="node3" href="$d0/d07/interfaceslogo_1_1backend_1_1util_1_1_i_direction.html#a166b3806a3c7c0145a4eaa02576d1d41" title="slogo.backend.util.IDirection.to\lDegrees" alt="" coords="245,57,464,98"/>
+<area shape="rect" id="node4" href="$da/dce/interfaceslogo_1_1backend_1_1util_1_1_i_turtle_status.html#a4a08f292d66a8b54cd6f9d762f96cb77" title="slogo.backend.util.ITurtle\lStatus.turtleDirection" alt="" coords="265,122,444,163"/>
+</map>

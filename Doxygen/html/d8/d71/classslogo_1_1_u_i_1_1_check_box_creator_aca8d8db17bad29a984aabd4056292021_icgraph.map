@@ -1,0 +1,11 @@
+<map id="slogo.UI.CheckBoxCreator.createCheckBox" name="slogo.UI.CheckBoxCreator.createCheckBox">
+<area shape="rect" id="node2" href="$db/d19/classslogo_1_1_u_i_1_1_module_creation_helper.html#afeaf6871695e05fe4c4756dc94f61e03" title="slogo.UI.ModuleCreationHelper.create\lDebugButton" alt="" coords="286,51,549,93"/>
+<area shape="rect" id="node9" href="$db/d19/classslogo_1_1_u_i_1_1_module_creation_helper.html#adae20b1c5c7e8547cab8bf2ddbdd6039" title="slogo.UI.ModuleCreationHelper.create\lLabelsCheckBox" alt="" coords="598,114,861,155"/>
+<area shape="rect" id="node10" href="$de/d15/classslogo_1_1_u_i_1_1_grid_lines_toggler.html#a549f2284355a60d6d3e7565859a9cdce" title="slogo.UI.GridLinesToggler.\lGridLinesToggler" alt="" coords="325,170,509,211"/>
+<area shape="rect" id="node3" href="$db/d19/classslogo_1_1_u_i_1_1_module_creation_helper.html#a975af4ea47dc85df72215bdf1a0d20ce" title="slogo.UI.ModuleCreationHelper.create\lDebugModules" alt="" coords="598,49,861,90"/>
+<area shape="rect" id="node4" href="$db/d19/classslogo_1_1_u_i_1_1_module_creation_helper.html#afb9dbbbad7d872234a5b296fe129a34e" title="slogo.UI.ModuleCreationHelper.create\lMainPageModules" alt="" coords="910,49,1173,90"/>
+<area shape="rect" id="node5" href="$d9/d33/classslogo_1_1_u_i_1_1_main.html#a15b7f2e399ee24d160550993ab737e73" title="slogo.UI.Main.start" alt="" coords="1221,16,1363,43"/>
+<area shape="rect" id="node6" href="$db/d19/classslogo_1_1_u_i_1_1_module_creation_helper.html#a3be12a7cc2b8a219db1e296211a2cb88" title="slogo.UI.ModuleCreationHelper.activate\lExtraWorkspaceButton" alt="" coords="1411,5,1685,46"/>
+<area shape="rect" id="node7" href="$db/d19/classslogo_1_1_u_i_1_1_module_creation_helper.html#a702c1ebe24d2857a10c666eb1fcc315d" title="slogo.UI.ModuleCreationHelper.create\lExtraWorkspaceButton" alt="" coords="1734,5,1997,46"/>
+<area shape="rect" id="node8" href="$db/d19/classslogo_1_1_u_i_1_1_module_creation_helper.html#a7c650957b2389d6e6d36e8be8a33cd2b" title="slogo.UI.ModuleCreationHelper.create\lSelectorVBoxModules" alt="" coords="2046,63,2309,105"/>
+</map>

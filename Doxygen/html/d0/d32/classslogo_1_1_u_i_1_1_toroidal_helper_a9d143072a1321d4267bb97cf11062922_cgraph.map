@@ -1,0 +1,11 @@
+<map id="slogo.UI.ToroidalHelper.cutLines" name="slogo.UI.ToroidalHelper.cutLines">
+<area shape="rect" id="node2" href="$d0/d32/classslogo_1_1_u_i_1_1_toroidal_helper.html#ad878914aa73174cd1b5bdebd0fcdacf9" title="slogo.UI.ToroidalHelper.check\lStartBounds" alt="" coords="246,5,453,46"/>
+<area shape="rect" id="node3" href="$d0/d32/classslogo_1_1_u_i_1_1_toroidal_helper.html#a366128809cd6506ca8d776c625a19da2" title="slogo.UI.ToroidalHelper.run\lLineXShift" alt="" coords="254,70,445,111"/>
+<area shape="rect" id="node5" href="$d0/d32/classslogo_1_1_u_i_1_1_toroidal_helper.html#aa1432fa1f1a208f83285575425bf96f4" title="slogo.UI.ToroidalHelper.run\lLineYShift" alt="" coords="510,259,701,301"/>
+<area shape="rect" id="node7" href="$d0/d32/classslogo_1_1_u_i_1_1_toroidal_helper.html#a6ff252815c642ce9b37ff6c50f9cc466" title="slogo.UI.ToroidalHelper.run\lXCalculations" alt="" coords="254,135,445,177"/>
+<area shape="rect" id="node9" href="$d0/d32/classslogo_1_1_u_i_1_1_toroidal_helper.html#a6babdb66f06fca1bddc1823bb5f56f87" title="slogo.UI.ToroidalHelper.run\lYShift" alt="" coords="254,201,445,242"/>
+<area shape="rect" id="node4" href="$d0/d32/classslogo_1_1_u_i_1_1_toroidal_helper.html#a22d58c7c2d7c4237c3f1524eadd2630c" title="slogo.UI.ToroidalHelper.check\lXBounds" alt="" coords="502,74,709,115"/>
+<area shape="rect" id="node6" href="$d0/d32/classslogo_1_1_u_i_1_1_toroidal_helper.html#a741cec86e924fde87b003f2979e5b048" title="slogo.UI.ToroidalHelper.check\lYBounds" alt="" coords="758,230,965,271"/>
+<area shape="rect" id="node8" href="$d0/d32/classslogo_1_1_u_i_1_1_toroidal_helper.html#a41c57a3394c07d6aaeae4fe2cf8fe5d6" title="slogo.UI.ToroidalHelper.set\lLineCoords" alt="" coords="766,165,957,206"/>
+<area shape="rect" id="node10" href="$d0/d32/classslogo_1_1_u_i_1_1_toroidal_helper.html#ab0c1d137b6ae06b1379ea8df424ca082" title="slogo.UI.ToroidalHelper.run\lYCalculations" alt="" coords="510,194,701,235"/>
+</map>

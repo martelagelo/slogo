@@ -1,0 +1,4 @@
+<map id="slogo.UI.ModuleCreationHelper.activateTurtleImageLoaderButton" name="slogo.UI.ModuleCreationHelper.activateTurtleImageLoaderButton">
+<area shape="rect" id="node2" href="$d4/d44/classslogo_1_1_u_i_1_1_image_loader.html#a1f2ccd3e841622268f7ca449352ee0cd" title="slogo.UI.ImageLoader.choose\lNewImage" alt="" coords="328,5,539,46"/>
+<area shape="rect" id="node3" href="$dd/da7/classslogo_1_1_u_i_1_1_turtle_image_selector.html#a4027c3cc7bec44abaaf0cb28bcb04a7b" title="slogo.UI.TurtleImageSelector.updateMap" alt="" coords="587,12,866,39"/>
+</map>

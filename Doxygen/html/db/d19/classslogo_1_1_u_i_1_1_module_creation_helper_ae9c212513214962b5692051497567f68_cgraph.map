@@ -1,0 +1,16 @@
+<map id="slogo.UI.ModuleCreationHelper.createLoadButton" name="slogo.UI.ModuleCreationHelper.createLoadButton">
+<area shape="rect" id="node2" href="$db/d19/classslogo_1_1_u_i_1_1_module_creation_helper.html#aa6a7c88b3112494b64bba3cfc608e2be" title="slogo.UI.ModuleCreationHelper.activate\lLoadButton" alt="" coords="318,169,591,210"/>
+<area shape="rect" id="node15" href="$d6/d9d/classslogo_1_1_u_i_1_1_button_creator.html#a26b4ab485f0d82531b0bb7d279cc83eb" title="slogo.UI.ButtonCreator.create\lButton" alt="" coords="349,234,561,275"/>
+<area shape="rect" id="node3" href="$db/d19/classslogo_1_1_u_i_1_1_module_creation_helper.html#a02dec5fb299a1543ef2758bc6ae70dfb" title="slogo.UI.ModuleCreationHelper.add\lToCertainList" alt="" coords="643,5,890,46"/>
+<area shape="rect" id="node6" href="$db/d19/classslogo_1_1_u_i_1_1_module_creation_helper.html#a09c0beb9734d7a18b69412fd9b86830e" title="slogo.UI.ModuleCreationHelper.clear\lCertainList" alt="" coords="640,70,893,111"/>
+<area shape="rect" id="node7" href="$dd/def/classslogo_1_1frontend_1_1_config_1_1_parameter_distributor.html#a7bac9213372ffab559d6115ab33bb837" title="slogo.frontend.Config.Parameter\lDistributor.getColorMap" alt="" coords="652,135,881,177"/>
+<area shape="rect" id="node8" href="$dd/def/classslogo_1_1frontend_1_1_config_1_1_parameter_distributor.html#aea7859afe42663af17f3e64171aae246" title="slogo.frontend.Config.Parameter\lDistributor.getNumOfTurtles" alt="" coords="652,201,881,242"/>
+<area shape="rect" id="node9" href="$dd/def/classslogo_1_1frontend_1_1_config_1_1_parameter_distributor.html#abfbc8b6e3d3f278a0dc46bba3422ce76" title="slogo.frontend.Config.Parameter\lDistributor.getVariableMap" alt="" coords="652,266,881,307"/>
+<area shape="rect" id="node10" href="$d9/d3c/classslogo_1_1frontend_1_1_config_1_1_config_reader.html#ac79590c5fe1030679ca58c8c26ef8dab" title="slogo.frontend.Config.Config\lReader.readFile" alt="" coords="665,331,868,373"/>
+<area shape="rect" id="node4" href="$db/dc0/classslogo_1_1_u_i_1_1_list_view_all_s_l_o_g_o.html#a5f743353bce4830934bcf532b97e7925" title="slogo.UI.ListViewAllSLOGO.set\lItems" alt="" coords="950,38,1162,79"/>
+<area shape="rect" id="node5" href="$da/d8f/classslogo_1_1_u_i_1_1_list_view_creator.html#a081368f4f2cd74f99d9d251625ae4871" title="slogo.UI.ListViewCreator.get\lListView" alt="" coords="1233,38,1433,79"/>
+<area shape="rect" id="node11" href="$d9/d3c/classslogo_1_1frontend_1_1_config_1_1_config_reader.html#ae4744f47d2bdc03df7fdea398acf93c5" title="slogo.frontend.Config.Config\lReader.calculateNumOfLines" alt="" coords="954,266,1158,307"/>
+<area shape="rect" id="node12" href="$d9/d3c/classslogo_1_1frontend_1_1_config_1_1_config_reader.html#a4971123a7490154db778678d59b79f4d" title="slogo.frontend.Config.Config\lReader.populateTextData" alt="" coords="955,331,1157,373"/>
+<area shape="rect" id="node13" href="$dd/def/classslogo_1_1frontend_1_1_config_1_1_parameter_distributor.html#a44241aeccc00d7aafa4c6b65abf62961" title="slogo.frontend.Config.Parameter\lDistributor.readConfigHashMap" alt="" coords="941,397,1171,438"/>
+<area shape="rect" id="node14" href="$dd/def/classslogo_1_1frontend_1_1_config_1_1_parameter_distributor.html#a36e5a2113ad3ba19c2005f177d542249" title="slogo.frontend.Config.Parameter\lDistributor.distributeVariables" alt="" coords="1219,397,1448,438"/>
+</map>

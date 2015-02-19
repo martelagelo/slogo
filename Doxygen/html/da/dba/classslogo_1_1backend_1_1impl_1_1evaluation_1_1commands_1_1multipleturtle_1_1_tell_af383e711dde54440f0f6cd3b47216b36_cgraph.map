@@ -1,0 +1,6 @@
+<map id="slogo.backend.impl.evaluation.commands.multipleturtle.Tell.executeRaw" name="slogo.backend.impl.evaluation.commands.multipleturtle.Tell.executeRaw">
+<area shape="rect" id="node2" href="$de/db9/classslogo_1_1backend_1_1impl_1_1util_1_1_turtle_status_1_1_builder.html#a83f77fa599a5580f0d287846f67a4a10" title="slogo.backend.impl.util.\lTurtleStatus.Builder.build" alt="" coords="443,5,621,46"/>
+<area shape="rect" id="node4" href="$d2/d25/classslogo_1_1backend_1_1impl_1_1util_1_1_qualities.html#a358d24a1bcd4e8c8ebea1beac8df8230" title="slogo.backend.impl.util.\lQualities.setBackground" alt="" coords="443,70,621,111"/>
+<area shape="rect" id="node5" href="$d8/d4b/interfaceslogo_1_1backend_1_1evaluation_1_1_i_execution_context.html#aff584de9657b0c876f5f0a51d8d01815" title="slogo.backend.evaluation.\lIExecutionContext.turtles" alt="" coords="438,135,626,177"/>
+<area shape="rect" id="node3" href="$d0/d4d/classslogo_1_1backend_1_1impl_1_1util_1_1_turtle_status.html#a44b9c5aa3d271e66ff5979ec133fea38" title="slogo.backend.impl.util.\lTurtleStatus.TurtleStatus" alt="" coords="675,5,853,46"/>
+</map>
