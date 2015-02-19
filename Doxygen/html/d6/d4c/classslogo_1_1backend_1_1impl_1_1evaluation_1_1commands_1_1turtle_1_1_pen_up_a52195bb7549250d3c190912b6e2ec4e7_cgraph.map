@@ -1,0 +1,9 @@
+<map id="slogo.backend.impl.evaluation.commands.turtle.PenUp.executeRaw" name="slogo.backend.impl.evaluation.commands.turtle.PenUp.executeRaw">
+<area shape="rect" id="node2" href="$da/dce/interfaceslogo_1_1backend_1_1util_1_1_i_turtle_status.html#aba75fc263d688682e8a1c9417c0d171e" title="slogo.backend.util.ITurtle\lStatus.isActive" alt="" coords="392,5,571,46"/>
+<area shape="rect" id="node3" href="$da/dce/interfaceslogo_1_1backend_1_1util_1_1_i_turtle_status.html#a152eefbc91fa474620751cf643f21b87" title="slogo.backend.util.ITurtle\lStatus.lineSequence" alt="" coords="392,70,571,111"/>
+<area shape="rect" id="node4" href="$da/dce/interfaceslogo_1_1backend_1_1util_1_1_i_turtle_status.html#a4a08f292d66a8b54cd6f9d762f96cb77" title="slogo.backend.util.ITurtle\lStatus.turtleDirection" alt="" coords="392,135,571,177"/>
+<area shape="rect" id="node5" href="$da/dce/interfaceslogo_1_1backend_1_1util_1_1_i_turtle_status.html#ae3148492422bedc104358196be2c099a" title="slogo.backend.util.ITurtle\lStatus.turtlePosition" alt="" coords="392,201,571,242"/>
+<area shape="rect" id="node6" href="$da/dce/interfaceslogo_1_1backend_1_1util_1_1_i_turtle_status.html#ab3f3312b9c4289ea7750dbcaa91819eb" title="slogo.backend.util.ITurtle\lStatus.turtleQualities" alt="" coords="392,266,571,307"/>
+<area shape="rect" id="node7" href="$d8/d4b/interfaceslogo_1_1backend_1_1evaluation_1_1_i_execution_context.html#aff584de9657b0c876f5f0a51d8d01815" title="slogo.backend.evaluation.\lIExecutionContext.turtles" alt="" coords="387,331,575,373"/>
+<area shape="rect" id="node8" href="$da/dce/interfaceslogo_1_1backend_1_1util_1_1_i_turtle_status.html#ac462e594c461da9b6ca21c85d5f46341" title="slogo.backend.util.ITurtle\lStatus.turtleVisibility" alt="" coords="392,397,571,438"/>
+</map>

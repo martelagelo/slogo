@@ -1,0 +1,10 @@
+<map id="slogo.UI.TurtleImageSelector.updateMap" name="slogo.UI.TurtleImageSelector.updateMap">
+<area shape="rect" id="node2" href="$d4/d44/classslogo_1_1_u_i_1_1_image_loader.html#a1f2ccd3e841622268f7ca449352ee0cd" title="slogo.UI.ImageLoader.choose\lNewImage" alt="" coords="333,34,544,75"/>
+<area shape="rect" id="node3" href="$db/d19/classslogo_1_1_u_i_1_1_module_creation_helper.html#a1da970a2c0974e2dcdf914a9012e29fb" title="slogo.UI.ModuleCreationHelper.activate\lTurtleImageLoaderButton" alt="" coords="593,34,866,75"/>
+<area shape="rect" id="node4" href="$db/d19/classslogo_1_1_u_i_1_1_module_creation_helper.html#aece15f9312b16091af80cd03ce7615ae" title="slogo.UI.ModuleCreationHelper.create\lTurtleImageLoaderButton" alt="" coords="915,34,1178,75"/>
+<area shape="rect" id="node5" href="$db/d19/classslogo_1_1_u_i_1_1_module_creation_helper.html#a7c650957b2389d6e6d36e8be8a33cd2b" title="slogo.UI.ModuleCreationHelper.create\lSelectorVBoxModules" alt="" coords="1227,34,1490,75"/>
+<area shape="rect" id="node6" href="$db/d19/classslogo_1_1_u_i_1_1_module_creation_helper.html#afb9dbbbad7d872234a5b296fe129a34e" title="slogo.UI.ModuleCreationHelper.create\lMainPageModules" alt="" coords="1539,5,1802,46"/>
+<area shape="rect" id="node7" href="$d9/d33/classslogo_1_1_u_i_1_1_main.html#a15b7f2e399ee24d160550993ab737e73" title="slogo.UI.Main.start" alt="" coords="1851,12,1992,39"/>
+<area shape="rect" id="node8" href="$db/d19/classslogo_1_1_u_i_1_1_module_creation_helper.html#a3be12a7cc2b8a219db1e296211a2cb88" title="slogo.UI.ModuleCreationHelper.activate\lExtraWorkspaceButton" alt="" coords="2041,5,2314,46"/>
+<area shape="rect" id="node9" href="$db/d19/classslogo_1_1_u_i_1_1_module_creation_helper.html#a702c1ebe24d2857a10c666eb1fcc315d" title="slogo.UI.ModuleCreationHelper.create\lExtraWorkspaceButton" alt="" coords="2363,34,2626,75"/>
+</map>

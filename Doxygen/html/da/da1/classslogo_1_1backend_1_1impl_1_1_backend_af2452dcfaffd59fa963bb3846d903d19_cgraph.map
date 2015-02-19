@@ -1,0 +1,8 @@
+<map id="slogo.backend.impl.Backend.Backend" name="slogo.backend.impl.Backend.Backend">
+<area shape="rect" id="node2" href="$de/db9/classslogo_1_1backend_1_1impl_1_1util_1_1_turtle_status_1_1_builder.html#a83f77fa599a5580f0d287846f67a4a10" title="slogo.backend.impl.util.\lTurtleStatus.Builder.build" alt="" coords="307,5,485,46"/>
+<area shape="rect" id="node4" href="$da/da1/classslogo_1_1backend_1_1impl_1_1_backend.html#a6603085f0783ae07b5b45280f27e7386" title="slogo.backend.impl.Backend.grammar\lRules" alt="" coords="262,70,530,111"/>
+<area shape="rect" id="node5" href="$da/da1/classslogo_1_1backend_1_1impl_1_1_backend.html#a57e50288932944f6885af53132589ed7" title="slogo.backend.impl.Backend.token\lRules" alt="" coords="274,135,518,177"/>
+<area shape="rect" id="node3" href="$d0/d4d/classslogo_1_1backend_1_1impl_1_1util_1_1_turtle_status.html#a44b9c5aa3d271e66ff5979ec133fea38" title="slogo.backend.impl.util.\lTurtleStatus.TurtleStatus" alt="" coords="605,5,784,46"/>
+<area shape="rect" id="node6" href="$d1/d5b/classslogo_1_1backend_1_1impl_1_1tokenization_1_1_token_rule_1_1_builder.html#aab124b94d44e749bd75aee3502356c7e" title="slogo.backend.impl.tokenization.\lTokenRule.Builder.build" alt="" coords="579,135,810,177"/>
+<area shape="rect" id="node7" href="$d8/dc5/classslogo_1_1backend_1_1impl_1_1tokenization_1_1_token_rule.html#ad2616f44a4694e9b04add930a4e6f017" title="slogo.backend.impl.tokenization.\lTokenRule.TokenRule" alt="" coords="859,135,1090,177"/>
+</map>

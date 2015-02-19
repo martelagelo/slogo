@@ -1,0 +1,9 @@
+<map id="slogo.UI.SliderCreator.createSlider" name="slogo.UI.SliderCreator.createSlider">
+<area shape="rect" id="node2" href="$db/d19/classslogo_1_1_u_i_1_1_module_creation_helper.html#a656d4da94bd0a30d0d71770d07f1b3e2" title="slogo.UI.ModuleCreationHelper.create\lAnimationSpeedSlider" alt="" coords="259,34,522,75"/>
+<area shape="rect" id="node8" href="$dc/d28/classslogo_1_1_u_i_1_1_slider_creator.html#a7f56a41ca013c1b048c2dc37ff36ea54" title="slogo.UI.SliderCreator.create\lSlider" alt="" coords="288,99,493,141"/>
+<area shape="rect" id="node3" href="$db/d19/classslogo_1_1_u_i_1_1_module_creation_helper.html#a7c650957b2389d6e6d36e8be8a33cd2b" title="slogo.UI.ModuleCreationHelper.create\lSelectorVBoxModules" alt="" coords="571,34,834,75"/>
+<area shape="rect" id="node4" href="$db/d19/classslogo_1_1_u_i_1_1_module_creation_helper.html#afb9dbbbad7d872234a5b296fe129a34e" title="slogo.UI.ModuleCreationHelper.create\lMainPageModules" alt="" coords="883,5,1146,46"/>
+<area shape="rect" id="node5" href="$d9/d33/classslogo_1_1_u_i_1_1_main.html#a15b7f2e399ee24d160550993ab737e73" title="slogo.UI.Main.start" alt="" coords="1195,12,1336,39"/>
+<area shape="rect" id="node6" href="$db/d19/classslogo_1_1_u_i_1_1_module_creation_helper.html#a3be12a7cc2b8a219db1e296211a2cb88" title="slogo.UI.ModuleCreationHelper.activate\lExtraWorkspaceButton" alt="" coords="1385,5,1658,46"/>
+<area shape="rect" id="node7" href="$db/d19/classslogo_1_1_u_i_1_1_module_creation_helper.html#a702c1ebe24d2857a10c666eb1fcc315d" title="slogo.UI.ModuleCreationHelper.create\lExtraWorkspaceButton" alt="" coords="1707,34,1970,75"/>
+</map>

@@ -1,0 +1,12 @@
+<map id="slogo.UI.ModuleCreationHelper.createResetButton" name="slogo.UI.ModuleCreationHelper.createResetButton">
+<area shape="rect" id="node2" href="$db/d19/classslogo_1_1_u_i_1_1_module_creation_helper.html#ad548894429a51de52d1538db6d821539" title="slogo.UI.ModuleCreationHelper.activate\lResetButton" alt="" coords="318,70,591,111"/>
+<area shape="rect" id="node9" href="$d6/d9d/classslogo_1_1_u_i_1_1_button_creator.html#a26b4ab485f0d82531b0bb7d279cc83eb" title="slogo.UI.ButtonCreator.create\lButton" alt="" coords="349,135,561,177"/>
+<area shape="rect" id="node10" href="$d7/d0e/classslogo_1_1_u_i_1_1_label_creator.html#a9ca0989ecfc0037d473dd3d2e8ead74f" title="slogo.UI.LabelCreator.create\lLabel" alt="" coords="353,201,556,242"/>
+<area shape="rect" id="node11" href="$d5/d66/classslogo_1_1_u_i_1_1_v_box_creator.html#a3f3304b5aed4110a7c1250c64772e2e7" title="slogo.UI.VBoxCreator.createVBox" alt="" coords="337,267,572,293"/>
+<area shape="rect" id="node3" href="$df/d2d/classslogo_1_1_view.html#a5a508e4d68f5887c79e5456d6f3a3ab4" title="slogo.View.resetAnimation" alt="" coords="641,77,831,104"/>
+<area shape="rect" id="node4" href="$db/d19/classslogo_1_1_u_i_1_1_module_creation_helper.html#a98aea43b18daf0cebaabb702bf30ca81" title="slogo.UI.ModuleCreationHelper.reset\lCommandsHistoryList" alt="" coords="881,5,1135,46"/>
+<area shape="rect" id="node7" href="$db/d19/classslogo_1_1_u_i_1_1_module_creation_helper.html#a43eb4bee8e7f4e1d3976439e0daaa350" title="slogo.UI.ModuleCreationHelper.set\lCommandsHistoryCounter" alt="" coords="887,70,1129,111"/>
+<area shape="rect" id="node8" href="$db/d19/classslogo_1_1_u_i_1_1_module_creation_helper.html#a697317cefd8b036b0aa427c1c246cf9b" title="slogo.UI.ModuleCreationHelper.turn\lOffRunningStatusLabel" alt="" coords="884,135,1132,177"/>
+<area shape="rect" id="node5" href="$db/dc0/classslogo_1_1_u_i_1_1_list_view_all_s_l_o_g_o.html#a5f743353bce4830934bcf532b97e7925" title="slogo.UI.ListViewAllSLOGO.set\lItems" alt="" coords="1185,5,1397,46"/>
+<area shape="rect" id="node6" href="$da/d8f/classslogo_1_1_u_i_1_1_list_view_creator.html#a081368f4f2cd74f99d9d251625ae4871" title="slogo.UI.ListViewCreator.get\lListView" alt="" coords="1445,5,1645,46"/>
+</map>

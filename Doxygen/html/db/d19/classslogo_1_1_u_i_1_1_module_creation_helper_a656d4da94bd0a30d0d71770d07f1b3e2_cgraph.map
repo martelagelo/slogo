@@ -1,0 +1,4 @@
+<map id="slogo.UI.ModuleCreationHelper.createAnimationSpeedSlider" name="slogo.UI.ModuleCreationHelper.createAnimationSpeedSlider">
+<area shape="rect" id="node2" href="$d7/d0e/classslogo_1_1_u_i_1_1_label_creator.html#a9ca0989ecfc0037d473dd3d2e8ead74f" title="slogo.UI.LabelCreator.create\lLabel" alt="" coords="319,5,521,46"/>
+<area shape="rect" id="node3" href="$dc/d28/classslogo_1_1_u_i_1_1_slider_creator.html#a9d7a6e09db65e44f8ec72b1aa127f325" title="slogo.UI.SliderCreator.create\lSlider" alt="" coords="317,70,523,111"/>
+</map>

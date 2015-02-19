@@ -1,0 +1,7 @@
+<map id="slogo.backend.impl.parsing.Parser.generateParseErrorMessage" name="slogo.backend.impl.parsing.Parser.generateParseErrorMessage">
+<area shape="rect" id="node2" href="$d3/df5/classslogo_1_1backend_1_1impl_1_1parsing_1_1_parser.html#a388145ba8a86a6e54edecca6832f3514" title="slogo.backend.impl.parsing.\lParser.parse" alt="" coords="301,90,501,131"/>
+<area shape="rect" id="node3" href="$da/da1/classslogo_1_1backend_1_1impl_1_1_backend.html#a4e32fe759ec977d48686b98339d37b30" title="slogo.backend.impl.Backend.execute" alt="" coords="549,5,808,32"/>
+<area shape="rect" id="node4" href="$d6/df5/classslogo_1_1backend_1_1test_1_1_parsing_test.html#a3116cffcaf5fb3ba840f007570afeb62" title="slogo.backend.test.Parsing\lTest.testParse" alt="" coords="582,57,775,98"/>
+<area shape="rect" id="node5" href="$d6/df5/classslogo_1_1backend_1_1test_1_1_parsing_test.html#a83bcd3f6b2ff419efe7c9381346e637b" title="slogo.backend.test.Parsing\lTest.testInvalidCommand" alt="" coords="582,122,775,163"/>
+<area shape="rect" id="node6" href="$d6/df5/classslogo_1_1backend_1_1test_1_1_parsing_test.html#a26b09f1404285875861f843ebdba0a31" title="slogo.backend.test.Parsing\lTest.testUnparseableCommand" alt="" coords="567,187,791,229"/>
+</map>

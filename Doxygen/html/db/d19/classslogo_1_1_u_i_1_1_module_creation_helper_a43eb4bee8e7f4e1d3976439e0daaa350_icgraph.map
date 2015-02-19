@@ -1,0 +1,11 @@
+<map id="slogo.UI.ModuleCreationHelper.setCommandsHistoryCounter" name="slogo.UI.ModuleCreationHelper.setCommandsHistoryCounter">
+<area shape="rect" id="node2" href="$df/d2d/classslogo_1_1_view.html#a5a508e4d68f5887c79e5456d6f3a3ab4" title="slogo.View.resetAnimation" alt="" coords="297,41,487,68"/>
+<area shape="rect" id="node3" href="$db/d19/classslogo_1_1_u_i_1_1_module_creation_helper.html#ad548894429a51de52d1538db6d821539" title="slogo.UI.ModuleCreationHelper.activate\lResetButton" alt="" coords="537,34,810,75"/>
+<area shape="rect" id="node4" href="$db/d19/classslogo_1_1_u_i_1_1_module_creation_helper.html#aa76f49f1feda966f0a2b6314418bf931" title="slogo.UI.ModuleCreationHelper.create\lResetButton" alt="" coords="859,34,1122,75"/>
+<area shape="rect" id="node5" href="$db/d19/classslogo_1_1_u_i_1_1_module_creation_helper.html#ae1e0ce18826b0895f1c3d4786b3776b7" title="slogo.UI.ModuleCreationHelper.create\lSecondRowButtons" alt="" coords="1171,34,1434,75"/>
+<area shape="rect" id="node6" href="$db/d19/classslogo_1_1_u_i_1_1_module_creation_helper.html#a7c650957b2389d6e6d36e8be8a33cd2b" title="slogo.UI.ModuleCreationHelper.create\lSelectorVBoxModules" alt="" coords="1483,34,1746,75"/>
+<area shape="rect" id="node7" href="$db/d19/classslogo_1_1_u_i_1_1_module_creation_helper.html#afb9dbbbad7d872234a5b296fe129a34e" title="slogo.UI.ModuleCreationHelper.create\lMainPageModules" alt="" coords="1795,5,2058,46"/>
+<area shape="rect" id="node8" href="$d9/d33/classslogo_1_1_u_i_1_1_main.html#a15b7f2e399ee24d160550993ab737e73" title="slogo.UI.Main.start" alt="" coords="2107,12,2248,39"/>
+<area shape="rect" id="node9" href="$db/d19/classslogo_1_1_u_i_1_1_module_creation_helper.html#a3be12a7cc2b8a219db1e296211a2cb88" title="slogo.UI.ModuleCreationHelper.activate\lExtraWorkspaceButton" alt="" coords="2297,5,2570,46"/>
+<area shape="rect" id="node10" href="$db/d19/classslogo_1_1_u_i_1_1_module_creation_helper.html#a702c1ebe24d2857a10c666eb1fcc315d" title="slogo.UI.ModuleCreationHelper.create\lExtraWorkspaceButton" alt="" coords="2619,34,2882,75"/>
+</map>

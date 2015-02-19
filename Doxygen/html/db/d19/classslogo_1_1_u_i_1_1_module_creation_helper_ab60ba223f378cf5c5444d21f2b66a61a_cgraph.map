@@ -1,0 +1,12 @@
+<map id="slogo.UI.ModuleCreationHelper.createTextField" name="slogo.UI.ModuleCreationHelper.createTextField">
+<area shape="rect" id="node2" href="$db/d19/classslogo_1_1_u_i_1_1_module_creation_helper.html#ae81191bac120ff263515d5d9453dd4dd" title="slogo.UI.ModuleCreationHelper.activate\lTextField" alt="" coords="318,114,591,155"/>
+<area shape="rect" id="node9" href="$df/de6/classslogo_1_1_u_i_1_1_commands_text_field.html#a2896618c8a73f7e72e1d9302a3f5797b" title="slogo.UI.CommandsTextField.create\lTextField" alt="" coords="330,201,579,242"/>
+<area shape="rect" id="node11" href="$df/de6/classslogo_1_1_u_i_1_1_commands_text_field.html#a64abddac6879f89f091c6d751056c12d" title="slogo.UI.CommandsTextField.get\lTextField" alt="" coords="340,266,569,307"/>
+<area shape="rect" id="node3" href="$db/d19/classslogo_1_1_u_i_1_1_module_creation_helper.html#a02dec5fb299a1543ef2758bc6ae70dfb" title="slogo.UI.ModuleCreationHelper.add\lToCertainList" alt="" coords="645,5,891,46"/>
+<area shape="rect" id="node6" href="$df/de6/classslogo_1_1_u_i_1_1_commands_text_field.html#a807dbf0cd67d066122544931db8a3837" title="slogo.UI.CommandsTextField.getText" alt="" coords="641,71,895,97"/>
+<area shape="rect" id="node7" href="$df/d2d/classslogo_1_1_view.html#a6c6c7faf44054a6b1844610eaa159c03" title="slogo.View.recordCommand" alt="" coords="668,121,868,148"/>
+<area shape="rect" id="node8" href="$df/de6/classslogo_1_1_u_i_1_1_commands_text_field.html#a5f18e6aea317867be199cdf6b3f80e05" title="slogo.UI.CommandsTextField.setText" alt="" coords="641,172,895,199"/>
+<area shape="rect" id="node4" href="$db/dc0/classslogo_1_1_u_i_1_1_list_view_all_s_l_o_g_o.html#a5f743353bce4830934bcf532b97e7925" title="slogo.UI.ListViewAllSLOGO.set\lItems" alt="" coords="945,5,1157,46"/>
+<area shape="rect" id="node5" href="$da/d8f/classslogo_1_1_u_i_1_1_list_view_creator.html#a081368f4f2cd74f99d9d251625ae4871" title="slogo.UI.ListViewCreator.get\lListView" alt="" coords="1205,5,1405,46"/>
+<area shape="rect" id="node10" href="$d7/d0e/classslogo_1_1_u_i_1_1_label_creator.html#a9ca0989ecfc0037d473dd3d2e8ead74f" title="slogo.UI.LabelCreator.create\lLabel" alt="" coords="667,223,869,265"/>
+</map>

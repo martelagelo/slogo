@@ -1,0 +1,8 @@
+<map id="slogo.UI.MethodRunner.setBackgroundColor" name="slogo.UI.MethodRunner.setBackgroundColor">
+<area shape="rect" id="node2" href="$db/d19/classslogo_1_1_u_i_1_1_module_creation_helper.html#a6b2e517bcd35fd05f930556aecb29439" title="slogo.UI.ModuleCreationHelper.get\lBackgroundColorSelector" alt="" coords="245,5,488,46"/>
+<area shape="rect" id="node3" href="$db/d19/classslogo_1_1_u_i_1_1_module_creation_helper.html#a08cc5ea6e2ea440ad524d13d6faf0a01" title="slogo.UI.ModuleCreationHelper.get\lCanvas" alt="" coords="245,70,488,111"/>
+<area shape="rect" id="node5" href="$d4/d8d/classslogo_1_1_u_i_1_1_background_color_selector.html#ab515dbceef9cce4fbe71544225e4ca6a" title="slogo.UI.BackgroundColor\lSelector.getValue" alt="" coords="273,135,460,177"/>
+<area shape="rect" id="node6" href="$d4/d8d/classslogo_1_1_u_i_1_1_background_color_selector.html#a66eca4cd02e09850ceab8e5248f4cdd9" title="slogo.UI.BackgroundColor\lSelector.setValue" alt="" coords="273,201,460,242"/>
+<area shape="rect" id="node7" href="$da/dce/interfaceslogo_1_1backend_1_1util_1_1_i_turtle_status.html#ab3f3312b9c4289ea7750dbcaa91819eb" title="slogo.backend.util.ITurtle\lStatus.turtleQualities" alt="" coords="277,266,456,307"/>
+<area shape="rect" id="node4" href="$d1/d7e/classslogo_1_1_u_i_1_1_turtle_canvas.html#ab409c3c2a963bb1a71e825da03f25465" title="slogo.UI.TurtleCanvas.get\lCanvas" alt="" coords="537,70,719,111"/>
+</map>

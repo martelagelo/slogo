@@ -1,0 +1,13 @@
+<map id="slogo.UI.ListViewCreator.createListViewWithLabel" name="slogo.UI.ListViewCreator.createListViewWithLabel">
+<area shape="rect" id="node2" href="$db/dc0/classslogo_1_1_u_i_1_1_list_view_all_s_l_o_g_o.html#a5c010e0c2ee827d63a0990c92add658d" title="slogo.UI.ListViewAllSLOGO.create\lListView" alt="" coords="275,89,509,130"/>
+<area shape="rect" id="node3" href="$de/d1a/classslogo_1_1_u_i_1_1_list_view_previous_commands.html#a539b4f10c0510a43263276fc23d742c8" title="slogo.UI.ListViewPrevious\lCommands.create" alt="" coords="605,5,787,46"/>
+<area shape="rect" id="node10" href="$d3/df5/classslogo_1_1_u_i_1_1_list_view_user_variables.html#a9daee622bf33651d8ae9c07779f4973c" title="slogo.UI.ListViewUserVariables.create" alt="" coords="565,71,827,97"/>
+<area shape="rect" id="node11" href="$de/d37/classslogo_1_1_u_i_1_1_list_view_user_commands.html#ac8197870dd939ccc8b43744a50d52044" title="slogo.UI.ListViewUserCommands.create" alt="" coords="557,121,835,148"/>
+<area shape="rect" id="node12" href="$dc/d95/classslogo_1_1_u_i_1_1_list_view_s_l_o_g_o_variables.html#a9876b72a9b2e6a0887b385834e8e93b6" title="slogo.UI.ListViewSLOGOVariables.create" alt="" coords="557,172,835,199"/>
+<area shape="rect" id="node4" href="$db/d19/classslogo_1_1_u_i_1_1_module_creation_helper.html#af4fd617bc69e5e9986e2634bc7f30d7d" title="slogo.UI.ModuleCreationHelper.create\lListViews" alt="" coords="883,89,1146,130"/>
+<area shape="rect" id="node5" href="$db/d19/classslogo_1_1_u_i_1_1_module_creation_helper.html#afb9dbbbad7d872234a5b296fe129a34e" title="slogo.UI.ModuleCreationHelper.create\lMainPageModules" alt="" coords="1195,89,1458,130"/>
+<area shape="rect" id="node6" href="$d9/d33/classslogo_1_1_u_i_1_1_main.html#a15b7f2e399ee24d160550993ab737e73" title="slogo.UI.Main.start" alt="" coords="1507,67,1648,93"/>
+<area shape="rect" id="node7" href="$db/d19/classslogo_1_1_u_i_1_1_module_creation_helper.html#a3be12a7cc2b8a219db1e296211a2cb88" title="slogo.UI.ModuleCreationHelper.activate\lExtraWorkspaceButton" alt="" coords="1697,55,1970,97"/>
+<area shape="rect" id="node8" href="$db/d19/classslogo_1_1_u_i_1_1_module_creation_helper.html#a702c1ebe24d2857a10c666eb1fcc315d" title="slogo.UI.ModuleCreationHelper.create\lExtraWorkspaceButton" alt="" coords="2019,55,2282,97"/>
+<area shape="rect" id="node9" href="$db/d19/classslogo_1_1_u_i_1_1_module_creation_helper.html#a7c650957b2389d6e6d36e8be8a33cd2b" title="slogo.UI.ModuleCreationHelper.create\lSelectorVBoxModules" alt="" coords="2331,85,2594,126"/>
+</map>

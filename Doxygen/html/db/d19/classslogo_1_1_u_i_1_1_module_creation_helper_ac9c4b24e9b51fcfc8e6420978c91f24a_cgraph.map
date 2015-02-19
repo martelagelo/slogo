@@ -1,0 +1,6 @@
+<map id="slogo.UI.ModuleCreationHelper.createStopButton" name="slogo.UI.ModuleCreationHelper.createStopButton">
+<area shape="rect" id="node2" href="$db/d19/classslogo_1_1_u_i_1_1_module_creation_helper.html#ac47c1d6534d09cc9ea49d339485dcb57" title="slogo.UI.ModuleCreationHelper.activate\lExitAppButton" alt="" coords="318,5,591,46"/>
+<area shape="rect" id="node3" href="$d6/d9d/classslogo_1_1_u_i_1_1_button_creator.html#a26b4ab485f0d82531b0bb7d279cc83eb" title="slogo.UI.ButtonCreator.create\lButton" alt="" coords="349,70,561,111"/>
+<area shape="rect" id="node4" href="$d7/d0e/classslogo_1_1_u_i_1_1_label_creator.html#a9ca0989ecfc0037d473dd3d2e8ead74f" title="slogo.UI.LabelCreator.create\lLabel" alt="" coords="353,135,556,177"/>
+<area shape="rect" id="node5" href="$d5/d66/classslogo_1_1_u_i_1_1_v_box_creator.html#a3f3304b5aed4110a7c1250c64772e2e7" title="slogo.UI.VBoxCreator.createVBox" alt="" coords="337,201,572,228"/>
+</map>

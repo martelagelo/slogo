@@ -1,0 +1,5 @@
+<map id="slogo.UI.ModuleCreationHelper.createHelpButton" name="slogo.UI.ModuleCreationHelper.createHelpButton">
+<area shape="rect" id="node2" href="$db/d19/classslogo_1_1_u_i_1_1_module_creation_helper.html#a8a48fbaa484299e1c50b000cd3496bca" title="slogo.UI.ModuleCreationHelper.activate\lHelpButton" alt="" coords="318,5,591,46"/>
+<area shape="rect" id="node4" href="$d6/d9d/classslogo_1_1_u_i_1_1_button_creator.html#a26b4ab485f0d82531b0bb7d279cc83eb" title="slogo.UI.ButtonCreator.create\lButton" alt="" coords="349,70,561,111"/>
+<area shape="rect" id="node3" href="$d8/d0c/classslogo_1_1_u_i_1_1_h_t_m_l_help_page.html#abf6b2ec54b2bed95b33e884c959f53c8" title="slogo.UI.HTMLHelpPage.displayPage" alt="" coords="640,12,891,39"/>
+</map>

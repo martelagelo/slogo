@@ -1,0 +1,11 @@
+<map id="slogo.backend.impl.evaluation.commands.turtle.Left.executeRaw" name="slogo.backend.impl.evaluation.commands.turtle.Left.executeRaw">
+<area shape="rect" id="node2" href="$d8/d4b/interfaceslogo_1_1backend_1_1evaluation_1_1_i_execution_context.html#afe32a6f173c35dc4f7061e18741f38b2" title="slogo.backend.evaluation.\lIExecutionContext.environment" alt="" coords="387,5,610,46"/>
+<area shape="rect" id="node3" href="$da/dce/interfaceslogo_1_1backend_1_1util_1_1_i_turtle_status.html#aba75fc263d688682e8a1c9417c0d171e" title="slogo.backend.util.ITurtle\lStatus.isActive" alt="" coords="409,70,588,111"/>
+<area shape="rect" id="node4" href="$da/dce/interfaceslogo_1_1backend_1_1util_1_1_i_turtle_status.html#a152eefbc91fa474620751cf643f21b87" title="slogo.backend.util.ITurtle\lStatus.lineSequence" alt="" coords="409,135,588,177"/>
+<area shape="rect" id="node5" href="$da/dce/interfaceslogo_1_1backend_1_1util_1_1_i_turtle_status.html#a9529cb7782abfda8ae3de99971d9a964" title="slogo.backend.util.ITurtle\lStatus.penState" alt="" coords="409,201,588,242"/>
+<area shape="rect" id="node6" href="$d0/d07/interfaceslogo_1_1backend_1_1util_1_1_i_direction.html#a166b3806a3c7c0145a4eaa02576d1d41" title="slogo.backend.util.IDirection.to\lDegrees" alt="" coords="389,266,608,307"/>
+<area shape="rect" id="node7" href="$da/dce/interfaceslogo_1_1backend_1_1util_1_1_i_turtle_status.html#a4a08f292d66a8b54cd6f9d762f96cb77" title="slogo.backend.util.ITurtle\lStatus.turtleDirection" alt="" coords="409,331,588,373"/>
+<area shape="rect" id="node8" href="$da/dce/interfaceslogo_1_1backend_1_1util_1_1_i_turtle_status.html#ae3148492422bedc104358196be2c099a" title="slogo.backend.util.ITurtle\lStatus.turtlePosition" alt="" coords="409,397,588,438"/>
+<area shape="rect" id="node9" href="$da/dce/interfaceslogo_1_1backend_1_1util_1_1_i_turtle_status.html#ab3f3312b9c4289ea7750dbcaa91819eb" title="slogo.backend.util.ITurtle\lStatus.turtleQualities" alt="" coords="409,462,588,503"/>
+<area shape="rect" id="node10" href="$da/dce/interfaceslogo_1_1backend_1_1util_1_1_i_turtle_status.html#ac462e594c461da9b6ca21c85d5f46341" title="slogo.backend.util.ITurtle\lStatus.turtleVisibility" alt="" coords="409,527,588,569"/>
+</map>

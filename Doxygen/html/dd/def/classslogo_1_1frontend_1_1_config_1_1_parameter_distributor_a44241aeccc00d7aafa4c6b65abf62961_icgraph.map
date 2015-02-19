@@ -1,0 +1,10 @@
+<map id="slogo.frontend.Config.ParameterDistributor.readConfigHashMap" name="slogo.frontend.Config.ParameterDistributor.readConfigHashMap">
+<area shape="rect" id="node2" href="$d9/d3c/classslogo_1_1frontend_1_1_config_1_1_config_reader.html#ac79590c5fe1030679ca58c8c26ef8dab" title="slogo.frontend.Config.Config\lReader.readFile" alt="" coords="283,34,485,75"/>
+<area shape="rect" id="node3" href="$db/d19/classslogo_1_1_u_i_1_1_module_creation_helper.html#aa6a7c88b3112494b64bba3cfc608e2be" title="slogo.UI.ModuleCreationHelper.activate\lLoadButton" alt="" coords="534,34,807,75"/>
+<area shape="rect" id="node4" href="$db/d19/classslogo_1_1_u_i_1_1_module_creation_helper.html#ae9c212513214962b5692051497567f68" title="slogo.UI.ModuleCreationHelper.create\lLoadButton" alt="" coords="857,34,1119,75"/>
+<area shape="rect" id="node5" href="$db/d19/classslogo_1_1_u_i_1_1_module_creation_helper.html#a7c650957b2389d6e6d36e8be8a33cd2b" title="slogo.UI.ModuleCreationHelper.create\lSelectorVBoxModules" alt="" coords="1169,34,1431,75"/>
+<area shape="rect" id="node6" href="$db/d19/classslogo_1_1_u_i_1_1_module_creation_helper.html#afb9dbbbad7d872234a5b296fe129a34e" title="slogo.UI.ModuleCreationHelper.create\lMainPageModules" alt="" coords="1481,5,1743,46"/>
+<area shape="rect" id="node7" href="$d9/d33/classslogo_1_1_u_i_1_1_main.html#a15b7f2e399ee24d160550993ab737e73" title="slogo.UI.Main.start" alt="" coords="1792,12,1933,39"/>
+<area shape="rect" id="node8" href="$db/d19/classslogo_1_1_u_i_1_1_module_creation_helper.html#a3be12a7cc2b8a219db1e296211a2cb88" title="slogo.UI.ModuleCreationHelper.activate\lExtraWorkspaceButton" alt="" coords="1982,5,2255,46"/>
+<area shape="rect" id="node9" href="$db/d19/classslogo_1_1_u_i_1_1_module_creation_helper.html#a702c1ebe24d2857a10c666eb1fcc315d" title="slogo.UI.ModuleCreationHelper.create\lExtraWorkspaceButton" alt="" coords="2305,34,2567,75"/>
+</map>

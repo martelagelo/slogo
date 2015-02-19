@@ -1,0 +1,12 @@
+<map id="slogo.backend.test.OperationTest.buildContext" name="slogo.backend.test.OperationTest.buildContext">
+<area shape="rect" id="node2" href="$df/dc1/classslogo_1_1backend_1_1test_1_1_operation_test.html#a06e13123a60f4399d3f5d29597611354" title="slogo.backend.test.Operation\lTest.operate" alt="" coords="264,167,475,209"/>
+<area shape="rect" id="node9" href="$df/dc1/classslogo_1_1backend_1_1test_1_1_operation_test.html#ab8b3fd4448844a7a931a7ce3eb20cbae" title="slogo.backend.test.Operation\lTest.testForward" alt="" coords="264,233,475,274"/>
+<area shape="rect" id="node10" href="$df/dc1/classslogo_1_1backend_1_1test_1_1_operation_test.html#a9c667bef1efac1920c23e13622ef25ac" title="slogo.backend.test.Operation\lTest.testHideTurtle" alt="" coords="264,298,475,339"/>
+<area shape="rect" id="node11" href="$df/dc1/classslogo_1_1backend_1_1test_1_1_operation_test.html#a77a93b19885ca9ec44546a75852f883e" title="slogo.backend.test.Operation\lTest.testRepeat" alt="" coords="264,363,475,405"/>
+<area shape="rect" id="node3" href="$df/dc1/classslogo_1_1backend_1_1test_1_1_operation_test.html#a598fc1aea7245a978a61e5ac6f525e70" title="slogo.backend.test.Operation\lTest.testAnd" alt="" coords="523,5,733,46"/>
+<area shape="rect" id="node4" href="$df/dc1/classslogo_1_1backend_1_1test_1_1_operation_test.html#a113d2c636e782da04eaf350e96017642" title="slogo.backend.test.Operation\lTest.testOr" alt="" coords="523,70,733,111"/>
+<area shape="rect" id="node5" href="$df/dc1/classslogo_1_1backend_1_1test_1_1_operation_test.html#a9be308ccdd0f0e18e0bf250a6c82e90b" title="slogo.backend.test.Operation\lTest.testNot" alt="" coords="523,135,733,177"/>
+<area shape="rect" id="node6" href="$df/dc1/classslogo_1_1backend_1_1test_1_1_operation_test.html#a4de75391d48fb2dd78b5c63329100a29" title="slogo.backend.test.Operation\lTest.testLess" alt="" coords="523,201,733,242"/>
+<area shape="rect" id="node7" href="$df/dc1/classslogo_1_1backend_1_1test_1_1_operation_test.html#af4fdf4913449d3ddc2248d1b004b9e20" title="slogo.backend.test.Operation\lTest.testSum" alt="" coords="523,266,733,307"/>
+<area shape="rect" id="node8" href="$df/dc1/classslogo_1_1backend_1_1test_1_1_operation_test.html#afee141079923ca4d86af1e97a1f83bea" title="slogo.backend.test.Operation\lTest.testAtan" alt="" coords="523,331,733,373"/>
+</map>

@@ -1,0 +1,11 @@
+<map id="slogo.backend.impl.parsing.GrammarRule.isInfinite" name="slogo.backend.impl.parsing.GrammarRule.isInfinite">
+<area shape="rect" id="node2" href="$de/d7d/classslogo_1_1backend_1_1impl_1_1parsing_1_1_grammar_rule.html#ae95fddbc132e8bbaf7dee288541d0dd3" title="slogo.backend.impl.parsing.\lGrammarRule.infiniteMatchRecurse" alt="" coords="253,103,499,145"/>
+<area shape="rect" id="node3" href="$de/d7d/classslogo_1_1backend_1_1impl_1_1parsing_1_1_grammar_rule.html#ae0668da4488437d8490363df8443c8c5" title="slogo.backend.impl.parsing.\lGrammarRule.infiniteMatches" alt="" coords="559,38,769,79"/>
+<area shape="rect" id="node5" href="$d8/d1e/classslogo_1_1backend_1_1test_1_1_grammar_rule_test.html#af6337331d822cc2df1cfc40a2c3d4b82" title="slogo.backend.test.Grammar\lRuleTest.testInfiniteMatchRecurse" alt="" coords="547,169,781,210"/>
+<area shape="rect" id="node4" href="$de/d7d/classslogo_1_1backend_1_1impl_1_1parsing_1_1_grammar_rule.html#a517123ed403a599fd66edfa0d813da2d" title="slogo.backend.impl.parsing.\lGrammarRule.matches" alt="" coords="835,5,1035,46"/>
+<area shape="rect" id="node6" href="$d8/d1e/classslogo_1_1backend_1_1test_1_1_grammar_rule_test.html#a037d3f6ca3a658be4dc823dd7689b058" title="slogo.backend.test.Grammar\lRuleTest.testSunny" alt="" coords="830,70,1039,111"/>
+<area shape="rect" id="node7" href="$d8/d1e/classslogo_1_1backend_1_1test_1_1_grammar_rule_test.html#a7212ab5def97e21ec5956a6d76748374" title="slogo.backend.test.Grammar\lRuleTest.testSunnyEnd" alt="" coords="830,135,1039,177"/>
+<area shape="rect" id="node8" href="$d8/d1e/classslogo_1_1backend_1_1test_1_1_grammar_rule_test.html#a48a19009d6ea5ad11a3eb169fb6984a5" title="slogo.backend.test.Grammar\lRuleTest.testExtraPattern" alt="" coords="830,201,1039,242"/>
+<area shape="rect" id="node9" href="$d8/d1e/classslogo_1_1backend_1_1test_1_1_grammar_rule_test.html#a89dcc434de9dc046121896064d265428" title="slogo.backend.test.Grammar\lRuleTest.testExtraSearch" alt="" coords="830,266,1039,307"/>
+<area shape="rect" id="node10" href="$d8/d1e/classslogo_1_1backend_1_1test_1_1_grammar_rule_test.html#ad58a8d8eeb9aef679e44f24f753db74a" title="slogo.backend.test.Grammar\lRuleTest.testJustOneRepeat" alt="" coords="830,331,1039,373"/>
+</map>
